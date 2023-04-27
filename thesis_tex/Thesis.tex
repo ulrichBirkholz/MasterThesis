@@ -51,10 +51,10 @@ pointlessnumbers
 
 %\bibliographystyle{abbrvnat}
 
-\input{master_thesis/format/pdf}
-%\input{master_thesis/format/linkcolors-pdf} % Links klickbar, vom PDF-Viewer hervorgehoben
-%\input{master_thesis/format/linkcolors-colored} % Links klickbar, farbig hervorgehoben
-\input{master_thesis/format/linkcolors-print} % Links klickbar, aber nicht hervorgehoben
+\input{thesis_tex/format/pdf}
+%\input{thesis_tex/format/linkcolors-pdf} % Links klickbar, vom PDF-Viewer hervorgehoben
+%\input{thesis_tex/format/linkcolors-colored} % Links klickbar, farbig hervorgehoben
+\input{thesis_tex/format/linkcolors-print} % Links klickbar, aber nicht hervorgehoben
 
 
 
@@ -159,7 +159,7 @@ pointlessnumbers
 % Erklärung
 \cleardoublepage
 \pagestyle{empty}
-\include{master_thesis/struktural/Erklaerung}
+\include{thesis_tex/struktural/Erklaerung}
 \pagestyle{empty}
 
 
@@ -167,7 +167,7 @@ pointlessnumbers
 \setcounter{page}{2}
 \begin{abstract}
 \thispagestyle{plain}
-\input{master_thesis/struktural/Abstract}
+\input{thesis_tex/struktural/Abstract}
 \end{abstract}
 
 % Inhaltsverzeichnis
@@ -184,12 +184,12 @@ pointlessnumbers
 % CAREFUL: This is just an example what the outline of your thesis might look like. Your topic might require a different approach:
 % e.g. you might not have a Data collection chapter, because you use existing data. Your Experimental Studies might be so numerous that they should be split into two chapters, maybe you need a chapter for a user study. So please asapt this template according to your specific needs.
 
-\include{master_thesis/chapters/1_Introduction/1_Introduction}
-\include{master_thesis/chapters/2_BackgroundAndRelatedWork/1_Background_Related_Work}
-\include{master_thesis/chapters/3_ConceptionAndImplementation/1_ConceptionAndImplementation}
-\include{master_thesis/chapters/4_TrainingAndTest/1_TrainingAndTest}
-\include{master_thesis/chapters/5_ResultsAndEvaluation/1_ResultsAndEvaluation}
-\include{master_thesis/chapters/6_SummaryAndOutlook/1_Conclusion}
+\include{thesis_tex/chapters/1_Introduction/1_Introduction}
+\include{thesis_tex/chapters/2_BackgroundAndRelatedWork/1_Background_Related_Work}
+\include{thesis_tex/chapters/3_ConceptionAndImplementation/1_ConceptionAndImplementation}
+\include{thesis_tex/chapters/4_TrainingAndTest/1_TrainingAndTest}
+\include{thesis_tex/chapters/5_ResultsAndEvaluation/1_ResultsAndEvaluation}
+\include{thesis_tex/chapters/6_SummaryAndOutlook/1_Conclusion}
 
 
 % Anhang
@@ -197,14 +197,14 @@ pointlessnumbers
 \pagenumbering{roman}
 \part*{Appendix}
 \begin{appendix}
-\include{master_thesis/struktural/Appendix}
+\include{thesis_tex/struktural/Appendix}
 \end{appendix}
 
 % Verzeichnisse
 \cleardoublepage
 \listoffigures
 \listoftables
-\bibliographystyle{master_thesis/format/natdin_lat}
+\bibliographystyle{thesis_tex/format/natdin_lat}
 \bibliography{literature}
 
 
