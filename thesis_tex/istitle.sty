@@ -1,0 +1,90 @@
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\thesistype}[1]{
+  \def\@thesistype{#1}
+  }
+
+\newcommand{\matriculationid}[1]{
+	\def\@matriculationid{#1}
+}
+
+\newcommand{\studyProgram}[1]{
+	\def\@studyProgram{#1}
+}
+
+\newcommand{\tutor}[2]{
+  \def\@tutorfirst{#1}
+  \def\@tutorsecond{#2}
+  }
+\def\@tutorfirst{
+  \@latex@warning@no@line{Package `title': No \noexpand\tutor given}}
+
+\def\@timeperiodend{}
+\newcommand{\timeperiod}[2]{
+  \def\@timeperiodbegin{#1}
+  \def\@timeperiodend{#2}
+  }
+\def\@timeperiodbegin{
+  \@latex@warning@no@line{Package `title': No \noexpand\timeperiod given}}
+
+
+\newsavebox{\logobox}
+\sbox{\logobox}{}
+\newcommand{\logo}[1]{
+  \sbox{\logobox}{\includegraphics[width=0.35\textwidth]{#1}}}
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}  
+  \vspace*{0.7cm}
+  
+  {\sffamily
+    \parbox{1.4cm}{\ } %%% \parbox{0.0cm}{\ }
+    \begin{minipage}{8cm}
+      \begin{flushleft}       
+        \textbf{\@thesistype}
+        
+        \vspace{1.5cm}
+        {\Large \@title \\}     %%% Titel
+        
+        \vspace{1.5cm}
+      
+        \@author  \\            %%% Autor
+        \rule[1.2ex]{30mm}{0.4pt} \\[-2ex]
+        {\hspace*{2.5mm}\tiny}
+      \end{flushleft}
+    \end{minipage}
+  
+  \vfill
+  
+  \begin{flushright}
+
+   \@timeperiodbegin~--~\@timeperiodend
+                                %%% Zeitspanne
+    \vspace{.9cm}
+															    \\
+       Matriculation Id:  \@matriculationid \\ %%% matriculationid
+       Course of Study: \@studyProgram \\
+    
+    \vspace{0.5cm}
+    \textbf{Reviewer:}
+    
+    %\vspace{.7cm}
+    
+    \@tutorfirst \\             %%% Erster Betreuer
+    \@tutorsecond               %%% Zweiter Betreuer
+
+    \vspace{0.5cm}
+
+    \usebox{\logobox}\\
+       \textbf{FernUniversität in Hagen}\\
+        Center of Advanced Technology for Assisted Learning and Predictive Analytics \\
+        Research Professorship Computational Linguistics \\
+        58097 Hagen
+    
+  \end{flushright}
+  }
+\newpage
+\thispagestyle{empty}
+\newpage
+}
