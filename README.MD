@@ -12,16 +12,16 @@
     |   └── generate_answer_variations.py           # Erzeugt Variationen in Sprache, Wortlaut und Syntax einer gegebenen Antwort
     └── data                                        # Erzeugte Trainings und Quelldaten
         |                                           # Die Verzeichnisstruktur ist für die automatisierte verarbeitung durch python skripte optimiert.
-        ├── questions.csv                           # Question | SampleAnswer (Optional) | QuestionId
-        ├── answers.csv                             # QuestionId | Answer | AnswerId | Rating
+        ├── questions.tsv                           # Question | SampleAnswer (Optional) | QuestionId
+        ├── answers.tsv                             # QuestionId | Answer | AnswerId | Rating
         └── variations
             ├── answerId1
-            |   ├── spelling.csv                    # Variation | Rating (optional)
-            |   ├── punctuation.csv                 # Variation | Rating (optional)
+            |   ├── spelling.tsv                    # Variation | Rating (optional)
+            |   ├── punctuation.tsv                 # Variation | Rating (optional)
             |   └── ...
             └── answerIdN
-                ├── spelling.csv                    # -"-
-                ├── punctuation.csv                 # -"-
+                ├── spelling.tsv                    # -"-
+                ├── punctuation.tsv                 # -"-
                 └── ...
 
 # Voraussetzungen
