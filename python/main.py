@@ -4,6 +4,7 @@ from generate_base_answers import generate_answers
 
 import argparse
 import uuid
+import logging as log
 
 # Setup and parse arguments
 def setup_args():
@@ -18,6 +19,9 @@ def setup_args():
     return parser.parse_args()
 
 if __name__ == "__main__":
+
+    log.basicConfig(level=log.DEBUG)
+
     args = setup_args()
     questions = get_questions(args.data_path + '/questions.tsv', args.sample)
 
@@ -25,9 +29,8 @@ if __name__ == "__main__":
     for question in questions:
         parameter = (args.api_key, args.quantity, args.ignore_text_syntax) + tuple(question)
         for answer in generate_answers(*parameter):
-            row = (question[0], answer['answer'], str(uuid.uuid4()), answer['rating'])
+            row = (question[-1], answer['answer'], str(uuid.uuid4()), answer['rating'])
             answer_rows.append(row)
-            print(answer)
-
+            log.debug(f"Got answer: {answer}")
 
     write_answers_tsv(args.data_path + '/answers.tsv', answer_rows)

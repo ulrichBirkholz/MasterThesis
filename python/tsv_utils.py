@@ -25,6 +25,8 @@ def get_questions(file, sample):
 
 # QuestionId | Answer | AnswerId | Score
 def write_answers_tsv(file, answers):
+    log.debug(f"Writing answers: {answers} to file: {file}")
+    print(f"Writing answers: {answers} to file: {file}")
     with open(file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter='\t')
         writer.writerow(['QuestionId', 'Answer', 'AnswerId', 'Score'])
