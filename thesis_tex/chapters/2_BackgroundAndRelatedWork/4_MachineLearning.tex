@@ -1,7 +1,65 @@
 \section{Maschinelles Lernen}
 
+- Bedeutung von maschinellem Lernen (ML): Grundlegende Technologie für automatische Bewertung von Freitextantworten, Anwendung in vielen Bereichen der künstlichen Intelligenz
+
+- Verbindung zu GPTs und Trainingsdaten: ML als Brücke, um GPTs für automatische Bewertung zu trainieren und optimieren, unter Verwendung von Trainingsdaten
+
+- Überblick über ML-Konzepte: Supervised Learning, Evaluierung von Modellen, Performanzmetriken und die Bewältigung von Herausforderungen wie Overfitting und Underfitting
+
+- Ziel der Einleitung: Leser auf die wichtigsten Aspekte des maschinellen Lernens im Kontext der Arbeit vorbereiten, Verständnis für die Rolle von ML in der automatischen Bewertung von Freitextantworten fördern
+
 \subsection{Grundlagen von ML-Modellen}
+
+- Definition von maschinellem Lernen: Computerprogramme, die aus Erfahrungen (Daten) lernen und ihre Leistung bei bestimmten Aufgaben verbessern
+
+- Grundlegende Arten von ML: Supervised Learning, Unsupervised Learning, Reinforcement Learning, Semi-Supervised Learning
+
+- Neuronale Netze: Biologisch inspirierte Modelle, bestehend aus miteinander verbundenen Neuronen (Knoten), mehrschichtig (Eingabe-, Versteckte- und Ausgabeschichten)
+
+- Lernprozess: Gewichtsanpassung der Verbindungen zwischen Neuronen, um den Fehler (Differenz zwischen erwartetem und tatsächlichem Ergebnis) zu minimieren
+
+- Kostenfunktion: Quantifiziert den Fehler und dient als Optimierungsziel (z.B. Mean Squared Error, Cross-Entropy)
+
+- Optimierungsverfahren: Algorithmen zur Anpassung der Gewichte und Minimierung der Kostenfunktion (z.B. Gradient Descent, Stochastic Gradient Descent, Adam)
+
+- Regularisierung: Techniken zur Vermeidung von Overfitting, wie L1/L2-Regularisierung, Dropout, Early Stopping
+
+- Modellarchitekturen: Auswahl und Anpassung der ML-Modelle an die spezifische Aufgabe, z.B. einfache neuronale Netze, Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs), Transformer-basierte Modelle (GPTs)
 
 \subsection{Supervised Learning}
 
+- Definition von Supervised Learning: Lernansatz, bei dem Modelle aus beschrifteten Trainingsdaten (Input-Output-Paare) lernen
+
+- Hauptaufgaben: Klassifizierung (kategorische Zielvariable) und Regression (kontinuierliche Zielvariable)
+
+- Beispiel: Automatische Bewertung von Freitextantworten als Klassifizierungsaufgabe (Bewertungskategorien) oder Regression (numerische Bewertung)
+
+- Trainingsprozess: Modell lernt Muster und Zusammenhänge in den Trainingsdaten, um Vorhersagen für neue, unbekannte Daten zu treffen
+
+- Trainings-, Validierungs- und Testdaten: Aufteilung der Daten in separate Datensätze zur Vermeidung von Overfitting und zur Evaluierung des Modells
+
+- Kreuzvalidierung: Technik zur Robustheitseinschätzung des Modells, wiederholte Aufteilung der Daten in Trainings- und Testdaten (z.B. k-Fold Cross-Validation)
+
+- Hyperparameteroptimierung: Anpassung von Modellparametern (z.B. Lernrate, Anzahl der Schichten, Regularisierung), die nicht während des Trainings gelernt werden, um die Modellperformanz zu verbessern
+
+- Performanzmetriken: Messung der Qualität der Vorhersagen, abhängig von der Aufgabe (z.B. Genauigkeit, Präzision, Recall, F1-Score für Klassifizierung; Mean Squared Error, R² für Regression)
+
 \subsection{Bewertung von ML-Modellen}
+
+- Bedeutung der Modellbewertung: Beurteilung der Leistungsfähigkeit, Generalisierbarkeit und Robustheit von ML-Modellen
+
+- Testdaten: Unabhängiger, nicht im Training verwendeter Datensatz zur Evaluierung der Modellperformanz auf unbekannten Daten
+
+- Performanzmetriken: Quantitative Maße zur Beurteilung der Modellqualität (z.B. Genauigkeit, Präzision, Recall, F1-Score für Klassifizierung; Mean Squared Error, R² für Regression)
+
+- Bias-Variance-Tradeoff: Abwägung zwischen Modellkomplexität und Generalisierbarkeit, Vermeidung von Overfitting (zu komplexe Modelle) und Underfitting (zu einfache Modelle)
+
+- Konfusionsmatrix: Visualisierung der Klassifikationsergebnisse, zeigt die Verteilung der wahren und vorhergesagten Klassen
+
+- Kreuzvalidierung: Robustheitsschätzung durch wiederholte Aufteilung der Daten in Trainings- und Testdaten, Berechnung von Durchschnittsperformanz und Standardabweichung
+
+- Fehleranalyse: Identifizierung und Untersuchung von Fehlern in den Vorhersagen, Aufdeckung von systematischen Schwächen und Verbesserungspotenzialen des Modells
+
+- Vergleich mit Baseline-Modellen: Beurteilung der relativen Leistungsfähigkeit des entwickelten Modells im Vergleich zu einfachen oder etablierten Modellen (z.B. zufällige Klassifikation, logistische Regression)
+
+- Ablationsstudien: Systematische Untersuchung der Auswirkungen von Modellkomponenten, Architekturvarianten oder Hyperparametern auf die Modellperformanz
