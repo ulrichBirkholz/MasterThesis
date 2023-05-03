@@ -12,12 +12,12 @@
     |   └── generate_answer_variations.py           # Erzeugt Variationen in Sprache, Wortlaut und Syntax einer gegebenen Antwort
     └── data                                        # Erzeugte Trainings und Quelldaten
         |                                           # Die Verzeichnisstruktur ist für die automatisierte verarbeitung durch python skripte optimiert.
-        ├── questions.tsv                           # Question | SampleAnswer (Optional) | QuestionId
-        ├── answers.tsv                             # QuestionId | Answer | AnswerId | Rating
+        ├── questions.tsv                           # Question | SampleAnswer (Optional) | QuestionId // 1-10 from Powergrading
+        ├── answers.tsv                             # QuestionId | Answer | AnswerId | Score
         └── variations
             ├── answerId1
-            |   ├── spelling.tsv                    # Variation | Rating (optional)
-            |   ├── punctuation.tsv                 # Variation | Rating (optional)
+            |   ├── spelling.tsv                    # Variation | Score (optional)
+            |   ├── punctuation.tsv                 # Variation | Score (optional)
             |   └── ...
             └── answerIdN
                 ├── spelling.tsv                    # -"-

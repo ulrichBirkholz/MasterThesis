@@ -1,0 +1,4 @@
+name: master_thesis
+dependencies:
+  - python>=3.9
+  - openai
