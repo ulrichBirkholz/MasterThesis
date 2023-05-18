@@ -1,0 +1,25 @@
+QuestionId	Answer	AnswerId	Score
+1	The Bill of Rights	26ec8172-aaa2-41e6-9ec9-8d5cfb7dbed4	2
+1	The first ten amendments to the Constitution are called the Bill of Rights	aefabf45-7e29-4e7e-8287-ce9a5385c76e	3
+1	The first ten amendments to the U.S. Constitution are called the Bill of Rights.	1870f4a0-4938-4dfb-b3a3-933189d7bb5f	4
+1	The first amendment is freedom of religion, the second is freedom of speech. The third amendment is the right to bear arms, 	d1257d85-8091-4bc9-a4f4-c1c28663639f	2
+1	The Bill of Rights	111fc31d-8c70-4206-813e-1f495ddc762d	5
+1	The first 10 amendments are the Bill of Rights	7332e3bc-655b-4e19-955f-8dfde4e729b0	4
+1	The first ten amendments to the United States Constitution are known as the Bill of Rights.	2f371784-9423-4941-86b1-84adbf727b85	5
+1	The first ten amendments to the United States Constitution are known as the Ten Commandments.	707b12aa-3489-460c-9475-bb2c04f7c98b	1
+1	The first ten amendments to the U.S. Constitution are called the Bill of Rights.	592289e0-6fab-4486-a3c1-d56e3d079a46	5
+1	The first ten amendments to the U.S. Constitution are called the Ten Commandments.	8b94c429-00bf-4ebf-87a0-2f61b3363488	1
+1	The first ten amendments to the U.S. Constitution are called the Bill of Rights.	cc9011ce-66dd-41a5-8ba9-0196785f35ea	5
+1	The first ten amendments to the U.S. Constitution are called the Ten Commandments.	254aa339-1daf-4fbf-8ad1-3d0ceeb6180c	1
+1	The first ten amendments are called The Bill of Rights.	ac3afab7-8e52-4e82-ba38-d9909e8318e0	5
+1	The first ten amendments are not important.	22a4133b-1772-422b-9713-f415ce9ccfbb	1
+
+answer:
+	temperature = 0.8
+    frequency_penalty = 0.4
+    presence_penalty = 0.6
+
+rating:
+	temperature = 0.4
+    frequency_penalty = 0.6
+    presence_penalty = 0.4

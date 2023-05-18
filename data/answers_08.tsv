@@ -1,0 +1,23 @@
+QuestionId	Answer	AnswerId	Score
+1	The first ten amendments to the U.S. Constitution are called The Bill of Rights.	c855d6b2-dbc1-4def-9959-56e05b43b1c3	1
+1	The first ten amendments are The Bill of Rights	04435d94-2241-420c-888b-d4e2d420ad9c	5
+1	The first ten amendments to the U.S. Constitution are called The Bill of Rights.	2123f937-dfc5-4b06-b2de-ce2901f462c7	5
+1	The first ten amendments to the U.S. Constitution are called The Articles of Confederation.	86c89fd1-1dcc-4a7e-9f10-fa472c82e5ba	1
+1	The Bill of Rights	663e5032-8369-4e90-8be8-a9c2d9c19c1e	5
+1	The first ten amendments are the Bill of Rights	26bff894-c6d1-4683-90fb-0fc0ede60bd5	5
+1	The first ten amendments to the Constitution are collectively known as the Bill of Rights.	b9ae50ed-1ec1-4131-a9a9-7f7803edc55b	5
+1	The first ten amendments are collectively known as the Bill of Rights, and they were ratified on December 15, 1791.	7e539c1b-5942-4311-b37a-f8f8ba06d092	5
+1	The Bill of Rights	4ad5c064-998a-4ce7-899f-f0bf4c08b0d2	5
+1	The first ten amendments to the U.S. Constitution are called the Bill of Rights	462877b6-71ae-4476-a6c5-efdc0d91789a	5
+1	The first ten amendments to the U.S. Constitution are called the Bill of Rights.	a0fee40c-9d50-4586-bb82-6552acc2177d	5
+1	The first ten amendments to the U.S. Constitution are called The Magna Carta.	f88e0a88-b354-4ee2-9c21-c3bba96f4124	1
+
+answer:
+	temperature = 0.7
+    frequency_penalty = 0.4
+    presence_penalty = 0.6
+
+rating:
+	temperature = 0.4
+    frequency_penalty = 0.6
+    presence_penalty = 0.4

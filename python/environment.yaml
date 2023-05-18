@@ -1,4 +1,10 @@
 name: master_thesis
+channels:
+  - pytorch
+  - conda-forge
 dependencies:
   - python>=3.9
   - openai
+  - pytorch
+  # - cudatoolkit   # If using GPU
+  - transformers
