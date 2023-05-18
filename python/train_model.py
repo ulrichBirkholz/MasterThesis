@@ -10,8 +10,9 @@ import logging as log
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
+    parser.add_argument('-mode', default='new', help='Number of training iterations')
     # TODO: we start with 10-20 and evaluate how this affect the rating quality
-    parser.add_argument('epoches', nargs='?', default=10, help='Number of training iterations')
+    parser.add_argument('-epoches', type=int, default=10, help='Number of training iterations')
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -20,16 +21,17 @@ if __name__ == "__main__":
 
     args = setup_args()
     config = get_config()
-    questions = get_questions(config["data_path"] + config["questions"], False)
-    answers = get_answers_per_question(config["data_path"] + config["answers"])
 
     # samples = [{"question":'...', "answers":[answers]}]
     samples = []
-    for question in questions:
-        answers_for_question = answers[question[-1]]
-        log.debug(f"Training question: {question[0]} answers: {answers_for_question}")
+    if args.mode == 'new' or args.mode == 'extend':
+        questions = get_questions(config["data_path"] + config["questions"], False)
+        answers = get_answers_per_question(config["data_path"] + config["answers"])
 
-        samples.append({"question": question[0], "answers": answers_for_question})
-    
-    # TODO: make 'mode' a parameter
-    train_model(samples, config["model_path"], args.epoches)
+        for question in questions:
+            answers_for_question = answers[question[-1]]
+            log.debug(f"Training question: {question[0]} answers: {answers_for_question}")
+
+            samples.append({"question": question[0], "answers": answers_for_question})
+
+    train_model(samples, config["model_path"], args.epoches, args.mode)

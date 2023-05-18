@@ -11,7 +11,7 @@ import logging as log
 def setup_args():
     parser = argparse.ArgumentParser(description='Create annotated Answers')
     parser.add_argument('api_key', help='The API key for the OpenAI API')
-    parser.add_argument('quantity', nargs='?', default=2, help='Amount of created Answers')
+    parser.add_argument('quantity', default=2, help='Amount of created Answers')
     parser.add_argument('--use_sample', action='store_true', help='Use SampleAnswer for more context')
     parser.add_argument('--ignore_text_syntax', action='store_true', help='Ignore spelling or punctuation mistakes for the evaluation')
 
