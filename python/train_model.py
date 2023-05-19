@@ -4,7 +4,6 @@ from bert_utils import train_model
 from config import get_config
 
 import argparse
-import uuid
 import logging as log
 
 # Setup and parse arguments

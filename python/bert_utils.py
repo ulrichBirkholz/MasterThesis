@@ -6,13 +6,6 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader
 import logging as log
 
-# This is just a poc / script to check the possibilities
-# TODO: later we will sve the model after each epoche, this allows us to continue if the training breaks up because of an error
-# TODO: we will add the option to just continue (without adding new questions) for this case (scenario 1)
-# TODO: we willl add the option to add a new question to an existing model
-# TODO: If we train a new model, we will create the tensors for all questions / answers / labels and train them at once
-
-
 # The BERT model accepts input sequences with a maximum length of 512 tokens.
 # Limit length to 512 token, ca 230 Words of Lorem Ipsum (represents question + answer + special token ([CLS], [SEP]))
 MAX_TOKEN_LENGTH = 512
@@ -21,7 +14,6 @@ MAX_TOKEN_LENGTH = 512
 def _save_model_and_tensor(model, all_sample_ids, label, path):
     os.makedirs(path, exist_ok=True)
     model.save_pretrained(f"{path}")
-    # torch.save(input_ids, f"{path}/sample_ids.pt")
     torch.save(label, f"{path}/label.pt")
 
     # The input tensors are now a list of 1D tensors, which can't be saved directly.
@@ -144,19 +136,35 @@ def train_model(samples, path, epochs, mode='new'):
 
     return model
 
-def evaluate_text(path, question, answer):
-    model, _, _ = _load_components(path)
+def rate_answer(path, questions_and_answers):
+    _, model, _, _ = _load_components(path)
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     
-    question_tokens = tokenizer.tokenize(question)
-    answer_tokens = tokenizer.tokenize(answer)
-    tokens = _format_tokens(question_tokens, answer_tokens)
+    rated_answers = []
+    for question_and_answers in questions_and_answers:
+        question_tokens = tokenizer.tokenize(question_and_answers["question"])
+
+        for answer in question_and_answers["answers"]:
+            answer_tokens = tokenizer.tokenize(answer["answer"])
+            tokens = _format_tokens(question_tokens, answer_tokens)
+            
+            token_ids = tokenizer.convert_tokens_to_ids(tokens)
+
+            tensor_ids = torch.tensor([token_ids])
+            tensor_ids = tensor_ids.to(model.device)
+            with torch.no_grad():
+                outputs = model(tensor_ids)
+
+            print(f"Rate: {outputs}")
+
+            # Average, TODO: check if this is supposed to be tensor containing multiple values
+            average_value = torch.mean(outputs.logits).item()
+
+            rated_answers.append([
+                question_and_answers["question_id"],
+                answer["answer_id"],
+                average_value
+                                
+            ])
     
-    token_ids = tokenizer.convert_tokens_to_ids(tokens)
-
-    tensor_ids = torch.tensor([token_ids])
-    tensor_ids = tensor_ids.to(model.device)
-    with torch.no_grad():
-        outputs = model(tensor_ids)
-
-    return outputs.logits.item()
+    return rated_answers

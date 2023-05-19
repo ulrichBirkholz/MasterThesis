@@ -2,5 +2,7 @@
 	"data_path": "../data/",
 	"model_path": "../models/v1",
 	"questions": "questions.tsv",
-	"answers": "answers.tsv"
+	"answers": "answers.tsv",
+	"answers_to_rate": "to_be_rated.tsv",
+	"rated_answers": "rated.tsv"
 }
