@@ -1,170 +1,141 @@
-import torch
 import os
 import shutil
-from transformers import BertTokenizer, BertForSequenceClassification
-from torch.nn.utils.rnn import pad_sequence
-from torch.utils.data import DataLoader
+import pickle
+from transformers import BertForSequenceClassification, BertTokenizer, Trainer, TrainingArguments
+from sklearn.model_selection import train_test_split
+import torch
 import logging as log
+from dataclasses import dataclass
+from typing import List
+from tsv_utils import Answer
+
+@dataclass
+class AnswersForQuestion:
+    question_id: str
+    question: str
+    answers: List[Answer]
 
 # The BERT model accepts input sequences with a maximum length of 512 tokens.
 # Limit length to 512 token, ca 230 Words of Lorem Ipsum (represents question + answer + special token ([CLS], [SEP]))
 MAX_TOKEN_LENGTH = 512
 
+# currently not wanted
+os.environ["WANDB_DISABLED"] = "true"
 
-def _save_model_and_tensor(model, all_sample_ids, label, path):
-    os.makedirs(path, exist_ok=True)
-    model.save_pretrained(f"{path}")
-    torch.save(label, f"{path}/label.pt")
+def _format_dataset(dataset):
+    for i in range(len(dataset)):
+        # tokenized input
+        dataset[i]['input_ids'] = torch.tensor(dataset[i]['input_ids'])
+        # identify which tokens are words and which are padding
+        dataset[i]['attention_mask'] = torch.tensor(dataset[i]['attention_mask'])
+        # stcore of intput
+        dataset[i]['labels'] = torch.tensor(dataset[i]['labels'])
 
-    # The input tensors are now a list of 1D tensors, which can't be saved directly.
-    # We need to save them separately:
-    for i, sample_ids in enumerate(all_sample_ids):
-        torch.save(sample_ids, f"{path}/sample_ids_{i}.pt")
+def _save_model_and_dataset(tokenizer, trainer, train_dataset, validation_dataset, path):
+    os.makedirs(f"{path}", exist_ok=True)
+    trainer.save_model(f"{path}")
+    tokenizer.save_pretrained(f"{path}")
 
-def _format_tokens(question_tokens, answer_tokens):
-    tokens = ['[CLS]'] + question_tokens + \
-        ['[SEP]'] + answer_tokens + ['[SEP]']
-    if len(tokens) > MAX_TOKEN_LENGTH:
-        log.error(
-            f"The sequence '{tokens}' is too long for the model to handle.")
-        raise ValueError(
-            f"Token length {len(tokens)} exceeds maximum of {MAX_TOKEN_LENGTH}")
-    return tokens
+    with open(f"{path}train_dataset.pkl", 'wb') as f:
+        pickle.dump(train_dataset, f)
+    with open(f"{path}validation_dataset.pkl", 'wb') as f:
+        pickle.dump(validation_dataset, f)
 
 def _load_components(path):
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model_and_tokenizer_source = path
 
-    model_path = f"{path}"
-    label_path = f"{path}/label.pt"
+    if not os.path.exists(path):
+        model_and_tokenizer_source = 'bert-base-uncased'
 
-    if os.path.exists(model_path) and os.path.isfile(os.path.join(model_path, 'pytorch_model.bin')):
-        model = _create_model(model_path)
-    else:
-        model = _create_model('bert-base-uncased')
-        log.info("No pretrained model found, using default bert-base-uncased model.")
+    model = BertForSequenceClassification.from_pretrained(model_and_tokenizer_source,  num_labels=5)
+    tokenizer = BertTokenizer.from_pretrained(model_and_tokenizer_source)
 
-    file_number = 0
-    sample_ids = []
-    while os.path.exists(f"{path}/sample_ids_{file_number}.pt"):
-        sample_ids.append(torch.load(f"{path}/sample_ids_{file_number}.pt").long())
-        file_number += 1
+    train_dataset = []
+    validation_dataset = []
+    if os.path.exists(path):
+        with open(f"{path}train_dataset.pkl", 'rb') as f:
+            train_dataset = pickle.load(f)
+        with open(f"{path}validation_dataset.pkl", 'rb') as f:
+            validation_dataset = pickle.load(f)
 
-	# one tensor for an array of label
-    if os.path.exists(label_path):
-        label_tensor = torch.load(label_path)
-    else:
-        label_tensor = torch.tensor([])
-        log.info("No label tensor found, using an empty tensor.")
-
-    return device, model.to(device), sample_ids, label_tensor
-
-def _collate_fn(batch):
-    # batch is a list of tensor samples
-    # Pad the sequence and return as a single tensor
-    return pad_sequence(batch, batch_first=True)
-
-# num_labels = 6: 0 + 1 - 5
-def _create_model(model_path, num_labels=6):
-    model = BertForSequenceClassification.from_pretrained(
-        model_path, num_labels=num_labels)
-    if torch.cuda.is_available() and torch.cuda.device_count() > 1:
-        model = torch.nn.DataParallel(model)
-    return model
+    return train_dataset, validation_dataset, model, tokenizer
 
 # possible modes: 'new', 'continue', 'extend'
 # 'new' do not load and use given samples
 # 'extend' do load and use samples
 # 'continue' do load and ignore samples
-def train_model(samples, path, epochs, mode='new'):
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-
-    all_sample_tensors = []
-    labels = []
+def train_model(samples:List[AnswersForQuestion], path, epochs, mode='new'):
 
     # cleanup
-    if mode == 'new':
+    if mode == 'new' and os.path.exists(path):
         shutil.rmtree(path)
-        os.mkdir(path)
 
+    loaded_train_dataset, loaded_validation_dataset, model, tokenizer = _load_components(path)
+
+    dataset = []
     if mode == 'new' or mode == 'extend':
         for sample in samples:
+            for answer in sample.answers:
+                encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
 
-            question_tokens = tokenizer.tokenize(sample["question"])
-            for answer in sample["answers"]:
-                answer_tokens = tokenizer.tokenize(answer['answer'])
-                sample_tokens = _format_tokens(question_tokens, answer_tokens)
-                
-                sample_ids = tokenizer.convert_tokens_to_ids(sample_tokens)
-                all_sample_tensors.append(torch.tensor(sample_ids))
-                labels.append(int(answer['score']))
-
-    # one tensor for an array of label
-    label_tensor = torch.tensor(labels)
-    device, model, loaded_sample_tensors, loaded_label_tensor = _load_components(path)
+                label = int(answer.score_2)
+                assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
+                dataset.append({'input_ids': encodings['input_ids'], 'attention_mask': encodings['attention_mask'], 'labels': label})
     
-    labels_tensors = torch.cat((loaded_label_tensor, label_tensor), dim=0)
-    
-    all_sample_tensors = all_sample_tensors + loaded_sample_tensors
-    assert len(all_sample_tensors) == labels_tensors.size(0), f"Assertion failed: The number of sample tensors: {len(all_sample_tensors)} must equal the number of labels: {labels_tensors.size(0)}"
-    
-    label_tensors_loader = DataLoader(labels_tensors.long(), batch_size=32, drop_last=False)
+    # Split data into train and validation
+    # TODO: we start with 0.2 and evaluate how this affect the rating quality
+    train_dataset, validation_dataset = train_test_split(dataset, test_size=0.2)
 
-    # Combine sample ids, create sample tensors and create a DataLoader for the sample tensors
-    # Padding tensors, (add zeros until every id is of equal length)
-	# this is required for batch processing answers
-    sample_tensors_loader = DataLoader(
-        all_sample_tensors, batch_size=32, collate_fn=_collate_fn, drop_last=False)
+    _format_dataset(train_dataset)
+    _format_dataset(validation_dataset)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
+    combined_train_dataset = train_dataset + loaded_train_dataset
+    combined_validation_dataset = validation_dataset + loaded_validation_dataset
 
-    # categorization task
-    criterion = torch.nn.CrossEntropyLoss()
+    training_args = TrainingArguments(
+        output_dir=path,                 # output directory
+        #save_total_limit=2,
+        num_train_epochs=epochs,         # total number of training epochs also try 3
+        per_device_train_batch_size=16,  # batch size per device during training # TODO: depends on GPU memory, worth a parameter?
+        per_device_eval_batch_size=64,   # batch size for evaluation # TODO: depends on GPU memory, worth a parameter?
+        warmup_steps=500,                # number of warmup steps for learning rate scheduler
+        weight_decay=0.01,               # strength of weight decay
+        learning_rate=1e-5,              # learning rate
+        logging_dir=f"{path}logs",       # directory for storing logs
+    )
 
-    for epoch in range(epochs):
-        for sample_tensor_batch, labels_tensor_batch in zip(sample_tensors_loader, label_tensors_loader):
-            # debug
-            log.debug(f'Sample tensor batch size: {sample_tensor_batch.size()}, Labels tensor batch size: {labels_tensor_batch.size()}')
-            assert sample_tensor_batch.size(0) == labels_tensor_batch.size(0), f"Assertion failed: The batch size of samples tensors: {sample_tensor_batch.size(0)} and label tensors: {labels_tensor_batch.size(0)} must be equal"
-            
-            optimizer.zero_grad()
-            outputs = model(sample_tensor_batch.to(device))
-            loss = criterion(outputs.logits, labels_tensor_batch)
-            loss.backward()
-            optimizer.step()
-        # save after every epoche, so we can continue without much losses
-        _save_model_and_tensor(model, all_sample_tensors, labels_tensors, path)
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=combined_train_dataset,
+        eval_dataset=combined_validation_dataset,
+    )
 
-    return model
+    # Save data before training, the model will be updated by the trainer (see output_dir)
+    _save_model_and_dataset(tokenizer, trainer, combined_train_dataset, combined_validation_dataset, path)
 
-def rate_answer(path, questions_and_answers):
-    _, model, _, _ = _load_components(path)
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    
+    trainer.train()
+
+    #_save_model_and_dataset(tokenizer, trainer, combined_train_dataset, combined_validation_dataset, path)
+
+def rate_answer(path, answers_for_questions:List[AnswersForQuestion]) -> List[Answer]:
+    _, _, model, tokenizer = _load_components(path)
+
     rated_answers = []
-    for question_and_answers in questions_and_answers:
-        question_tokens = tokenizer.tokenize(question_and_answers["question"])
+    for answers_for_question in answers_for_questions:
+        for answer in answers_for_question.answers:
+            # Tokenize and format the question-answer pair
+            encodings = tokenizer(answers_for_question.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
+            input_ids = torch.tensor(encodings['input_ids']).unsqueeze(0)  # add batch dimension
+            attention_mask = torch.tensor(encodings['attention_mask']).unsqueeze(0)  # add batch dimension
 
-        for answer in question_and_answers["answers"]:
-            answer_tokens = tokenizer.tokenize(answer["answer"])
-            tokens = _format_tokens(question_tokens, answer_tokens)
-            
-            token_ids = tokenizer.convert_tokens_to_ids(tokens)
+            # Make prediction
+            with torch.no_grad():  # deactivate autograd engine to reduce memory usage and speed up computations
+                outputs = model(input_ids, attention_mask)
+                logits = outputs.logits
 
-            tensor_ids = torch.tensor([token_ids])
-            tensor_ids = tensor_ids.to(model.device)
-            with torch.no_grad():
-                outputs = model(tensor_ids)
+            # Compute predicted rating
+            answer.score_1 = torch.argmax(logits, dim=1).item()
+            rated_answers.append(answer)
 
-            print(f"Rate: {outputs}")
-
-            # Average, TODO: check if this is supposed to be tensor containing multiple values
-            average_value = torch.mean(outputs.logits).item()
-
-            rated_answers.append([
-                question_and_answers["question_id"],
-                answer["answer_id"],
-                average_value
-                                
-            ])
-    
     return rated_answers

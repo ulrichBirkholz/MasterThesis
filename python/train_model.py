@@ -1,7 +1,7 @@
 from tsv_utils import get_questions
 from tsv_utils import get_answers_per_question
-from bert_utils import train_model
-from config import get_config
+from bert_utils import train_model, AnswersForQuestion
+from config import Configuration
 
 import argparse
 import logging as log
@@ -19,18 +19,18 @@ if __name__ == "__main__":
     log.basicConfig(level=log.DEBUG)
 
     args = setup_args()
-    config = get_config()
+    config = Configuration()
 
     # samples = [{"question":'...', "answers":[answers]}]
     samples = []
     if args.mode == 'new' or args.mode == 'extend':
-        questions = get_questions(config["data_path"] + config["questions"], False)
-        answers = get_answers_per_question(config["data_path"] + config["answers"])
+        questions = get_questions(config.get_questions_path(), False)
+        answers = get_answers_per_question(config.get_answers_path())
 
         for question in questions:
-            answers_for_question = answers[question[-1]]
-            log.debug(f"Training question: {question[0]} answers: {answers_for_question}")
+            answers_for_question = answers[question.question_id]
+            log.debug(f"Training question: {question.question_id} answers: {answers_for_question}")
 
-            samples.append({"question": question[0], "answers": answers_for_question})
+            samples.append(AnswersForQuestion(question.question_id, question.question, answers_for_question))
 
-    train_model(samples, config["model_path"], args.epoches, args.mode)
+    train_model(samples, config.get_trained_bert_model_path(), args.epoches, args.mode)

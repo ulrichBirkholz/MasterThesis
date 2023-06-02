@@ -1,16 +1,18 @@
 from typing import List
 from json.decoder import JSONDecodeError
 import openai
+import time
+from openai.error import OpenAIError, RateLimitError
 import re
 import json
 import argparse
 import logging as log
 import re
+from tsv_utils import Answer, Question
+import hashlib
 
-model_engine = "text-davinci-003"
 
-
-def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question, solution, question_id):
+def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question) -> List[Answer]:
     openai.api_key = api_key
 
     # We target 1k Answers per Question
@@ -27,26 +29,51 @@ def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question,
     answers = []
     for category in sampleCategories:
         answers = answers + \
-            __generate_answers(
-                question, solution, ignore_text_syntax, category, quantity_of_answers)
+            _generate_answers(
+                question, ignore_text_syntax, category, quantity_of_answers)
 
-    return __rate_answers(question, answers, quantity_of_answers)
+    return _rate_answers(question, answers, quantity_of_answers)
 
 # TODO: 2 step process? (step one create answers, step two rate them, one request per answer, return rating)
 # TODO: update answer.tsv after each request
-# TODO: higher temperature for creating answers, lower for rating them
-# The tasks affects the rating
 
+def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presence_penalty):
+    model_engine = "text-davinci-003"
+    retries = 0
+    while True:
+        try:
+            return openai.Completion.create(
+                engine=model_engine,
+                prompt=prompt,
+                max_tokens=max_tokens,
+                temperature=temperature,
+                frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
+                n=1,
+                stop=None,
+            )
+        except RateLimitError:
+            #TODO: Adjust this values as needed
+            retries += 1
+            sleep_duration = 10
+            log.warning(f"Rate limit hit. Sleeping for {sleep_duration} before starting retry number: {retries}")
+            time.sleep(sleep_duration)
+            if retries > 3600:
+                log.error(f"Aborting retries")
+                break
+        except OpenAIError as e:
+            log.error(f"OpenAI API caused an error: {e}")
+            raise e
 
-def __generate_answers(question, solution, ignore_text_syntax, task, quantity_of_answers=20) -> List[str]:
+def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_answers=20) -> List[str]:
     # Define prompt
     basePrompt = f"""Create possible answers for a test.
-    The question '{question}' should be answered on {quantity_of_answers} different ways using up to 2 Sentences each.
-    Each answer should be rated from 1 to 5 regarding its correctness.
+    The question '{question.question}' should be answered on {quantity_of_answers} different ways using up to 2 Sentences each.
+    Each answer should be rated from 0 to 4 regarding its correctness.
     Present the answers and their ratings in an JSON array of objects formatted like [{{"answer":"answer1", "rating":"7"}}]"""
 
-    if solution is not None:
-        basePrompt += f"\nConsider '{solution}' as sample solution containing all relevant aspects."
+    if question.sample_answer is not None:
+        basePrompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
 
     if ignore_text_syntax:
         basePrompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
@@ -61,15 +88,12 @@ def __generate_answers(question, solution, ignore_text_syntax, task, quantity_of
     presence_penalty = 0.6
 
     # Generate answers
-    generated_answers = openai.Completion.create(
-        engine=model_engine,
+    generated_answers = _execute_api_call(
         prompt=prompt,
         max_tokens=max_tokens,
         temperature=temperature,
         frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty,
-        n=1,
-        stop=None,
+        presence_penalty=presence_penalty
     )
 
     # Extract answers from OpenAI API response
@@ -86,8 +110,8 @@ def __generate_answers(question, solution, ignore_text_syntax, task, quantity_of
             answer_str = contains_json.group(0)
             try:
                 json_answer = json.loads(answer_str)
-                rectified_keys = map(__rectify_keys, json_answer)
-                valid_answers = filter(__rectify_answer, rectified_keys)
+                rectified_keys = map(_rectify_keys, json_answer)
+                valid_answers = filter(_rectify_answer, rectified_keys)
                 answers.extend(valid_answers)
             except JSONDecodeError as e:
                 log.error(
@@ -97,13 +121,10 @@ def __generate_answers(question, solution, ignore_text_syntax, task, quantity_of
     return answers
 
 # high temperature can lead to problems creating the JSON
-
-
-def __rectify_keys(answer):
+def _rectify_keys(answer):
     return {key.lower(): value for key, value in answer.items()}
 
-
-def __rectify_answer(answer):
+def _rectify_answer(answer):
     # if this is incorrect, we need to drop the answer
     if 'answer' not in answer:
         log.error(f"Drop invalid answer: {answer}")
@@ -111,26 +132,26 @@ def __rectify_answer(answer):
 
     # fix minor mistakes
     if 'rating' not in answer:
-        formatted_answer, rating = __parse_rating_from_answer(answer['answer'])
+        formatted_answer, rating = _parse_rating_from_answer(answer['answer'])
         answer['answer'] = formatted_answer
         answer['rating'] = rating
     else:
-        answer['rating'] = __validate_rating(answer['rating'])
+        answer['rating'] = _validate_rating(answer['rating'])
 
     return True
 
 
-def __validate_rating(rating):
+def _validate_rating(rating):
     try:
         rating = int(rating)
-        if rating >= 1 and rating <= 5:
+        if rating >= 0 and rating <= 4:
             return rating
     except:
         log.error(f"Identified invalid rating: {rating}")
     return -1
 
 
-def __parse_rating_from_answer(answer):
+def _parse_rating_from_answer(answer):
     # It has been observed, that sometimes the rating was added to the answer after a separation of ', ' or ', rating: ' ect.
     patterns = [r', \d$', r'[,]*\s+[Rr]ating:\s*\d$']
 
@@ -143,32 +164,38 @@ def __parse_rating_from_answer(answer):
             final_answer = re.sub(pattern, '', answer).strip()
             # get number only
             parsed_number = int(re.search(r'\d$', answer).group())
-            if parsed_number >= 1 and parsed_number <= 5:
+            if parsed_number >= 0 and parsed_number <= 4:
                 number = parsed_number
             break
 
     return final_answer, number
 
 
-def __rate_answers(question, answers, ignore_text_syntax) -> List[str]:
+def _rate_answers(question:Question, answers, ignore_text_syntax) -> List[str]:
     numerated_rated_answers = {
         f"{idx+1}": {"answer": answer['answer'], "rating": answer['rating']} for idx, answer in enumerate(answers)}
     numerated_answers = {f"{idx}": answer['answer']
                          for idx, answer in numerated_rated_answers.items()}
     # Define prompt
+
+    # TODO: category to configuration
+    # TODO: datensatzspezische modelle (Powergrading, SRA, CREE usw.)
+    # TODO: kappa man vs machine
+    # ChatGPT should also rate manually annotated test answers
+    # Trained models should rate equal answers
     prompt = f"""I am an AI trained to score responses based on a five-point scale of relevance, coherence, and completeness.
     The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
     Please evaluate the following answers based on these criteria:
 
-    Question: {question}
+    Question: {question.question}
     Answers: {numerated_answers}
 
     rating_id: criteria
-    1: Incorrect or irrelevant
-    2: Partially correct
-    3: Somewhat correct
-    4: Mostly correct
-    5: Completely correct
+    0: Incorrect or irrelevant
+    1: Partially correct
+    2: Somewhat correct
+    3: Mostly correct
+    4: Completely correct
 
     Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
 
@@ -178,21 +205,18 @@ def __rate_answers(question, answers, ignore_text_syntax) -> List[str]:
     # print(f"Prompt: {prompt}")
 
     # Set up parameters for generating answers
-    max_tokens = 3036
+    max_tokens = 2000
     temperature = 0.4
     frequency_penalty = 0.6
     presence_penalty = 0.2
 
     # Generate answers
-    generated_answers = openai.Completion.create(
-        engine=model_engine,
+    generated_answers = _execute_api_call(
         prompt=prompt,
         max_tokens=max_tokens,
         temperature=temperature,
         frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty,
-        n=1,
-        stop=None,
+        presence_penalty=presence_penalty
     )
 
     # Extract answers from OpenAI API response
@@ -209,31 +233,13 @@ def __rate_answers(question, answers, ignore_text_syntax) -> List[str]:
             try:
                 json_answer = json.loads(answer_str)
                 for answer_id, rating_id in json_answer.items():
-                    answer = numerated_rated_answers[answer_id]
+                    original_answer = numerated_rated_answers[answer_id]
+                    answer_text = original_answer['answer']
                     rated_answers.append(
-                        {'answer': answer['answer'], 'rating1': answer['rating'], 'rating2': __validate_rating(rating_id)})
+                        Answer(question.question_id, answer_text, hashlib.md5(answer_text.encode()).hexdigest(), original_answer['rating'], _validate_rating(rating_id)))
             except JSONDecodeError as e:
                 log.error(
                     f"Unable to parse JOSN response: {e}; JSON: {answer_str}")
 
     # Return list of answers
     return rated_answers
-
-
-if __name__ == "__main__":
-    # Parse command line arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "question", help="The question for which to generate answers")
-    parser.add_argument('--answer', default=None,
-                        help='A sample answer (optional)')
-    parser.add_argument('quantity', default=20,
-                        help='Amount of created Answers')
-    parser.add_argument('api_key', help='The API key for the OpenAI API')
-    parser.add_argument('--ignore_text_syntax', action='store_true',
-                        help='Ignore spelling or punctuation mistakes for the evaluation')
-    args = parser.parse_args()
-
-    # Print list of answers, the question_id is always '1' hence there is only one question
-    for i, answer in enumerate(generate_answers(args.api_key, args.quantity, args.ignore_text_syntax, args.question, args.answer, 1)):
-        print(f"{i+1}. {answer}")
