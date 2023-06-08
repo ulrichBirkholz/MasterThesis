@@ -29,7 +29,7 @@ if __name__ == "__main__":
     questions = get_questions(config.get_questions_path(), args.use_sample)
 
     # map could be used but makes it less readable
-    answer_path = config.get_answers_path()
+    answer_path = config.get_ai_answers_path()
     for question in questions:
         for answer in generate_answers(args.api_key, args.quantity, args.ignore_text_syntax, question):
             write_answers_tsv_2(answer_path, [answer], True)

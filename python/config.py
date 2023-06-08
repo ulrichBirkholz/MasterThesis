@@ -20,8 +20,11 @@ class Configuration():
 	def get_questions_path(self):
 		return self._get_path_for_datafile(self.config["questions"])
 
-	def get_answers_path(self):
-		return self._get_path_for_datafile(self.config["answers"])
+	def get_ai_answers_path(self):
+		return self._get_path_for_datafile(self.config["ai_answers"])
+
+	def get_man_answers_path(self):
+		return self._get_path_for_datafile(self.config["man_answers"])
 
 	def get_answers_to_rate_path(self):
 		return self._get_path_for_datafile(self.config["answers_to_rate"])

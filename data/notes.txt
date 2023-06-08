@@ -1,0 +1,10 @@
+ASAP 5 & 6
+Powergrading
+
+CREE -> Fragen?
+
+SRA numeric (leichter convertierbar als SRA)
+-> kopieren und nicht verwendbaare fragen löschen
+-> All questions that require additional context to be properly answered (Pictures, Tables, 'explain your reasoning', ect.) were removed
+-> All Questions that required to create or modify pictures (Draw an arrow to show which direction the water flows in the river)
+-> Some answers are incomplete and therefore not usable (e. g. SE_47b shows the reasoning for the choice, but not the choice itself)

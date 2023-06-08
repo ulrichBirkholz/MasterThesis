@@ -1,15 +1,89 @@
-QuestionId	Answer	AnswerId
-1	The first ten amendments to the U.S. Constitution are often referred to as the 'Bill of Rights'.	2e9fef13-13c6-4e1e-9a26-a4ce6d79daab
-1	The first 10 changes made to the U.S. Constitution are called the Bill of Rights.	1dae4425-45c3-4649-90ff-26de747e293b
-1	The first ten amendments to the U.S Constitution are referred to as the Bill of Rights, 4/5	037115f7-c3c6-4665-a8d4-f825dd3fb21b
-1	The Bill of Rights is a set of 10 additional Constitutional Amendments, 5/5	e4efdc2b-2378-41fd-834c-f0a5866f8ffb
-1	The first ten amendments to the US Constitution are known as the Bill of Rights.	b922a6c3-9760-4383-b07e-ac54861487fb
-1	The first ten amendments to the U.S Constitution are referred to as the Amendments.	f7c7f044-ff8b-4bfc-9611-a6056ee0caab
-1	The Bill of Rights	ff83e148-bb77-472a-95b1-3725c743146b
-1	The Ten Articles	5daca857-8050-4490-b466-407c75e2cfbb
-1	The first ten amendments to the U.S. Constitution are known as the Bill of Rights.	82b77f9f-bcb4-4f08-944c-b74d6a51f6bb
-1	The first ten amendments to the U.S. Constitution are referred to as the Bill of Rights.	24277051-34f9-4db3-92c6-97605a538b5b
-1	The first 10 Amendments to the US Constitution are known as the Bill of Rights.	e97e4843-9b78-4d27-ab2e-895a2bee39ab
-1	The first ten amendments to the Constitution are referred to as the Bill of Rights.	831710cc-e8b9-4f12-b2e5-58aa3fe6fa5b
-1	The ten amendments to the Constitution are referred to as the ten commandments.	912d8c5b-1de3-4308-a1a8-545d2c28b06b
-1	The first ten amendments to the U.S. Constitution are commonly known as the Bill of Rights.	e41e4d84-9baa-473d-9c67-5f8ab21610eb
+QuestionId	Answer	AnswerId	Score1	Score2MS_43a	Because they are both different.	MS.43a.501.1		0.0
+MS_43b	35 grams to a glass case, 60 grams to a big book.	MS.43b.153.1		0.0
+VB_15a	The variable they controlled was bringing their own balls.	VB.15a.477.1		0.0
+VB_15b	How they ran to the line and threw their balls.	VB.15b.525.1		1.0
+VB_15c	They should all start in the line.	VB.15c.539.1		1.0
+PS_44	The shorter strings make a higher sound because the vibrations do not travel as long.	PS.44.223.1		2.0
+MX_22a	It has and weighs more with more things in it than a solution.	MX.22a.633.1		0.0
+MX_18	It is a product on the bottom of the cap.	MX.18.387.1		0.0
+MX_53	He should look for the solid material in his house or store.	MX.53.113.1		0.0
+PS_24a	A quarter past left of the cup.	PS.24a.319.1		0.0
+SE_46	Yes. Because dark colors like black contract heat but light colors like white do not.	SE.46.242.1		1.0
+FN_20a	Anna should make sure one is not salted and one is not.	FN.20a.581.1		0.0
+FN_20b	Using only the results from her experiment, Anna will know which one has more fat in it by the larger the grease spot the more fat.	FN.20b.101.1		2.0
+ME_5b	It would not stick because it is not magnetic.	ME.5b.293.1		1.0
+SE_45	That happened because the earth moves which made the sun face the other way and made the sign face the other direction.	SE.45.616.1		0.0
+SE_10	It would best demonstrate shadows change because the flashlight is acting as the sun, and the globe as the earth, so the earth would rotate, not the sun.	SE.10.511.1		2.0
+EM_35	Because of it he you scratch with a penny.	EM.35.603.1		1.0
+PS_4bp	Low.	PS.4b.495.1		2.0
+PS_4ap	It would be a higher pitch.	PS.4ap.263.1		2.0
+EM_46	The crystals were points and the salt crystal were Xs.	EM.46.422.1		2.0
+VB_12d	The shorter the string the more swings the longer the string the less the swings.	VB.12d.638.1		2.0
+II_38	You see people upside down and kite, cart, cow, buoyant.	II.38.101.1		1.0
+II_24b	The dog's name will be on the paper so you know which dog it came from.	II.24b.571.1		0.0
+VB_42	The more blocks the less meters it goes.	VB.42.643.1		2.0
+LF_39	2. Then trace the model. 4. You draw the map like the overlay grid.	LF.39.509.1		1.0
+ST_59	Get her own shelter for that lizard.	ST.59.420.1		2.0
+DESCRIBE_GAP_LOCATE_PROCEDURE_Q	when the voltages changes to zero at a specific terminal	FaultFinding-DESCRIBE_GAP_LOCATE_PROCEDURE_Q.sbjb29-l1.qa185		2.0
+EM_21a	She can rub them together and switch, if there is a mark on it and it goes away, it is hard.	EM.21a.594.1		2.0
+EM_21b	The one that make a mark. She should also see if stuff comes off when she scratches it.	EM.21b.223.1		2.0
+MX_1	The salt turns to liquid like an ice cube and then to water sand does not.	MX.1.494.1		1.0
+MX_36a	I think Grace thinks she made a solution because she mixed eggshells and vinegar together.	MX.36a.543.1		0.0
+MX_36b	Because there are bubbles and the shells just disappeared.	MX.36b.282.1		2.0
+MS_64a	Their hands could be different length.	MS.64a.319.1		2.0
+ME_27b	I will stick or not stick.	ME.27b.121.1		1.0
+VB_1	By putting everything where it goes.	VB.1.628.1		0.0
+MX_24	You know because the solid matrix I will dissolve overnight.	MX.24.466.1		1.0
+DAMAGED_BULB_SWITCH_Q	"The both don""t work"	SwitchesBulbsSeries-DAMAGED_BULB_SWITCH_Q.sbjb37-l1.qa81		1.0
+LF_18a	In a flood the water would be moving stronger and faster than usual.	LF.18a.779.1		1.0
+EM_43b	Move.	EM.43b.569.1		0.0
+FN_27a	Overly Orange because it took the least amount of drops to turn clear.	FN.27a.263.1		2.0
+FN_27b	Because Fruitsnap did not have a lot of vitamin C in it.	FN.27b.325.1		2.0
+MX_41	Yes because something else can have the exact same thing and it does not have to be like that.	MX.41.564.1		1.0
+MS_50a	A thermometer.	MS.50a.566.1		0.0
+MS_50b	So everyone know what you are talking about.	MS.50b.319.1		2.0
+MX_42a	The solid would be too big to pass through the small holes in the filter paper.	MX.42a.568.1		2.0
+MX_10	Because the solution bubbled.	MX.10.502.1		1.0
+PS_26p	Yes, because sound has to vibrate it.	PS.26p.504.1		0.0
+PS_51b	Which side has more string is a lower pitch. Whichever side has more string it has a lower pitch.	PS.51b.145.1		2.0
+PS_51a	When she tightened the string there was a higher pitch.	PS.51a.461.1		2.0
+SE_48	C. Because it has more black circles.	SE.48.253.1		1.0
+MX_16a	Yes, because if the same amount of solute and make a saturated solution the concentration would be the same if the solutions had the same volume.	MX.16a.497.1		1.0
+LF_6b	My choices cause more erosion because if you have a bigger hole more water can pour through and if the slope is steeper water will come down harder.	LF.6b.844.1		1.0
+MS_30b	That they have different hands that are big and small.	MS.30b.382.1		0.0
+PS_12	Because if you put it in the water it has volume and volume helps make sound.	PS.12.531.1		0.0
+EM_16b	Topaz has to have X, Y, Z as minerals.	EM.16b.606.1		0.0
+PS_45b	Because Sammy used lots of different objects, plastic, metal, wood, Nathaniel thinks you should use the same object, just different shapes.	PS.45b.528.1		0.0
+ST_31b	Horn.	ST.31b.427.1		0.0
+SE_44	Heat sink will you power and you do not pay money for power.	SE.44.564.1		0.0
+LF_26a2	To see the different landforms in front of them.	LF.26a2.747.1		1.0
+FN_17c	If the syringe goes up and if it bubbles that means it has acid.	FN.17c.399.1		2.0
+FN_17a	This means that there was acid and or sugar in the product.	FN.17a.250.1		2.0
+EM_26	I do not know.	EM.26.578.1		0.0
+ME_30	If the car goes over the magnet faster than 5 miles per hour it should turn green.	ME.30.123.1		0.0
+EM_47	Because the sand is big so it goes on the bottom and the flour is small so it goes on the top of the sand.	EM.47.502.1		2.0
+HYBRID_BURNED_OUT_WHY_Q3	open switch and broken bulb are the same	SwitchesBulbsParallel-HYBRID_BURNED_OUT_WHY_Q3.sbj46-l2.qa133		0.0
+ME_73	Connect one of the tips of the long wire to the switch. Connect the other long end of the wire to the D-cell and connect the short wire to the D-cell and the switch.	ME.73.120.1		2.0
+VOLTAGE_DIFF_DISCUSS_1_Q	bulb	FaultFinding-VOLTAGE_DIFF_DISCUSS_1_Q.sbj31-l1.qa185		1.0
+LF_13a	It goes to a different place.	LF.13a.394.1		2.0
+LF_13b	They get eroded away.	LF.13b.418.1		0.0
+PS_2b	We hear it harder.	PS.2b.491.1		0.0
+SE_4a	A substance that can take in and give off heat.	SE.4a.493.1		2.0
+EM_13	Material made up of different ingredients called mineral. And rocks can be squished up and mineral can they are squish up all very squished up.	EM.13.521.1		0.0
+LP_15c	The farther away the effort is from the fulcrum the easier it is to lift the load.	LP.15c.604.1		2.0
+VOLTAGE_ELECTRICAL_STATE_DISCUSS_Q	The relationship is that they are different depending on whether or not they are connected to the positive or negative battery terminal.	FaultFinding-VOLTAGE_ELECTRICAL_STATE_DISCUSS_Q.sbjb41-l1.qa146		0.0
+VOLTAGE_DEFINE_Q	a measure of the strength of electricity	FaultFinding-VOLTAGE_DEFINE_Q.sbj43-l1.qa220		0.0
+ST_58	I will look at the seed.	ST.58.456.1		2.0
+LF_31b	Deltas are formed by deposition that is when earth materials are carried away then let off at another place to form a delta.	LF.31b.680.1		1.0
+ST_52a	Because that is what a plant need to grow. The roots are the part of the plant that sucks up the water.	ST.52a.600.1		2.0
+MX_19	Something happened so it is a reaction.	MX.19.595.1		0.0
+VB_29	You use a standard so that you can test it and compare with your standard. And compare with your variable.	VB.29.458.1		1.0
+II_20b	By looking at it when Sarah tries it.	II.20b.442.1		1.0
+ME_36	One gets more power than the other.	ME.36.215.1		0.0
+DAMAGED_BULB_EXPLAIN_2_Q	when the bulb is burned out there is no path through the bulb holder	SwitchesBulbsSeries-DAMAGED_BULB_EXPLAIN_2_Q.sbj19-l1.qa125		2.0
+PS_2a	Because it is vibrating.	PS.2a.154.1		2.0
+MS_39	Because you might not know how much it is!	MS.39.393.1		0.0
+EM_27b	Because the one thing that you put vinegar has or has not calcite.	EM.27b.559.1		0.0
+EM_33b	Because it is just like a penny.	EM.33b.532.1		0.0
+EM_45c	I knew the crystals were salt because of the patterns and shapes.	EM.45c.614.1		2.0
+EM_45b	We poured just the water into another thing and let the water evaporate.	EM.45b.387.1		2.0

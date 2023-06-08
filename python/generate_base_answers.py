@@ -12,11 +12,12 @@ from tsv_utils import Answer, Question
 import hashlib
 
 
-def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question) -> List[Answer]:
+def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:Question) -> List[Answer]:
     openai.api_key = api_key
 
     # We target 1k Answers per Question
     sampleCategories = [
+        # TODO: according to the sample solution -> only if given
         "The answers should describe all aspects according to the sample solution",
         "The answers should contain one wrong aspect",
         "The answers should miss at leased one aspect",
@@ -110,7 +111,7 @@ def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_a
             answer_str = contains_json.group(0)
             try:
                 json_answer = json.loads(answer_str)
-                rectified_keys = map(_rectify_keys, json_answer)
+                rectified_keys = list(map(_rectify_keys, json_answer))
                 valid_answers = filter(_rectify_answer, rectified_keys)
                 answers.extend(valid_answers)
             except JSONDecodeError as e:

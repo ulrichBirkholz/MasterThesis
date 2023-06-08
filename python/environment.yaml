@@ -10,5 +10,6 @@ dependencies:
   #- cudatoolkit=11.1
   - pip
   - pip:
-    - transformers==4.9.1
+    - transformers
+    - sentencepiece
     - pandas

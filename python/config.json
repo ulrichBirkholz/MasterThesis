@@ -4,7 +4,8 @@
 	"trained_bert_version": "v1",
 	"alpaca_7B": "chavinlo/alpaca-native",
 	"questions": "questions.tsv",
-	"answers": "answers.tsv",
+	"ai_answers": "ai_answers.tsv",
+	"man_answers": "man_answers.tsv",
 	"answers_to_rate": "to_be_rated.tsv",
 	"rated_answers": "rated_#.tsv"
 }

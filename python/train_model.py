@@ -25,7 +25,7 @@ if __name__ == "__main__":
     samples = []
     if args.mode == 'new' or args.mode == 'extend':
         questions = get_questions(config.get_questions_path(), False)
-        answers = get_answers_per_question(config.get_answers_path())
+        answers = get_answers_per_question(config.get_ai_answers_path())
 
         for question in questions:
             answers_for_question = answers[question.question_id]
