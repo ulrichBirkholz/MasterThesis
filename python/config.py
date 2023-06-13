@@ -22,10 +22,16 @@ class Configuration():
 
 	def get_ai_answers_path(self):
 		return self._get_path_for_datafile(self.config["ai_answers"])
+	
+	def get_ai_unrated_answer_path(self):
+		return self._get_path_for_datafile(self.config["ai_unrated_answer_path"])
 
 	def get_man_answers_path(self):
 		return self._get_path_for_datafile(self.config["man_answers"])
 
+	def get_key_elements_path(self):
+		return self._get_path_for_datafile(self.config["key_elements"])
+	
 	def get_answers_to_rate_path(self):
 		return self._get_path_for_datafile(self.config["answers_to_rate"])
 

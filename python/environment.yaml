@@ -8,6 +8,7 @@ dependencies:
   - scikit-learn
   - pytorch=1.8.1
   #- cudatoolkit=11.1
+  - tiktoken
   - pip
   - pip:
     - transformers

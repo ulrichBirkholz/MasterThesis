@@ -1,47 +1,62 @@
-from typing import List
+from typing import List, Iterator, Generator
 from json.decoder import JSONDecodeError
 import openai
 import time
 from openai.error import OpenAIError, RateLimitError
 import re
 import json
-import argparse
+import config
 import logging as log
 import re
-from tsv_utils import Answer, Question
+from tsv_utils import Answer, Question, KeyElement
 import hashlib
+import tiktoken
 
+def _count_token(prompt:str) -> int:
+    # TODO: model to config
+    #enc = tiktoken.encoding_for_model("gpt-4")
+    enc = tiktoken.encoding_for_model("text-davinci-003")
 
-def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:Question) -> List[Answer]:
+    return len(enc.encode(prompt))
+
+def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     openai.api_key = api_key
 
-    # We target 1k Answers per Question
-    sampleCategories = [
-        # TODO: according to the sample solution -> only if given
-        "The answers should describe all aspects according to the sample solution",
-        "The answers should contain one wrong aspect",
-        "The answers should miss at leased one aspect",
+    sample_categories = [
+        "The answer must not contain any key element",
+        "The answer must contain exactly one key element",
+        "The answer must contain exactly two key elements",
+        "The answer must contain exactly three key elements",
+        "The answer must contain at leased three key elements",
+        "The answer must contain one key elements and one wrong aspect"
         "The answers should be contradictory",
         "The answers should be non domain",
-        "The answers should be irrelevant",
-        "The answers should be entirely wrong"
+        "The answers should be irrelevant"
     ]
 
-    answers = []
-    for category in sampleCategories:
-        answers = answers + \
-            _generate_answers(
-                question, ignore_text_syntax, category, quantity_of_answers)
+    for category in sample_categories:
+        retries = 0
+        # TODO: configure amount of retries
+        max_retries = 5
+        while retries < max_retries:
+            try:
+                yield _generate_answers(
+                        question, ignore_text_syntax, category, quantity_of_answers, key_elements)
+                break
+            except JSONDecodeError as e:
+                retries += 1
+                log.error(
+                    f"Unable to parse JSON response: {e}; JSON")
 
-    return _rate_answers(question, answers, quantity_of_answers)
-
-# TODO: 2 step process? (step one create answers, step two rate them, one request per answer, return rating)
-# TODO: update answer.tsv after each request
+        if retries >= max_retries:
+            # TODO: add more info like question?
+            log.error(f"Exceeded {max_retries} retries, the creation of answers will be aborted")
 
 def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presence_penalty):
     model_engine = "text-davinci-003"
     retries = 0
-    while True:
+    max_retries = 3600
+    while retries < max_retries:
         try:
             return openai.Completion.create(
                 engine=model_engine,
@@ -59,31 +74,39 @@ def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presen
             sleep_duration = 10
             log.warning(f"Rate limit hit. Sleeping for {sleep_duration} before starting retry number: {retries}")
             time.sleep(sleep_duration)
-            if retries > 3600:
-                log.error(f"Aborting retries")
-                break
         except OpenAIError as e:
             log.error(f"OpenAI API caused an error: {e}")
             raise e
 
-def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_answers=20) -> List[str]:
+    if retries >= max_retries:
+        log.error(f"To many retries")
+
+def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_answers, key_elements:List[KeyElement]) -> List[Answer]:
     # Define prompt
-    basePrompt = f"""Create possible answers for a test.
+    prompt = f"""Create possible answers for a test.
     The question '{question.question}' should be answered on {quantity_of_answers} different ways using up to 2 Sentences each.
-    Each answer should be rated from 0 to 4 regarding its correctness.
+    Each answer should be rated from 0 to 3 regarding the amount of key elements present.
     Present the answers and their ratings in an JSON array of objects formatted like [{{"answer":"answer1", "rating":"7"}}]"""
 
     if question.sample_answer is not None:
-        basePrompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
+        prompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
 
     if ignore_text_syntax:
-        basePrompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
+        prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
+
+    if len(key_elements) > 0:
+        prompt += "\nThe key elements are:"
+        for element in key_elements:
+            prompt += f"\n{element}"
 
     # prompt = basePrompt
-    prompt = basePrompt + f"\n{task}"
+    prompt += f"\n{task}"
 
+    prompt_size = _count_token(prompt)
+    if prompt_size > 1000:
+        log.warn(f"The prompt is very huge: {prompt_size}")
     # Set up parameters for generating answers
-    max_tokens = 3036
+    max_tokens = 4000 - prompt_size
     temperature = 0.8
     frequency_penalty = 0.2
     presence_penalty = 0.6
@@ -109,14 +132,10 @@ def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_a
 
         if contains_json:
             answer_str = contains_json.group(0)
-            try:
-                json_answer = json.loads(answer_str)
-                rectified_keys = list(map(_rectify_keys, json_answer))
-                valid_answers = filter(_rectify_answer, rectified_keys)
-                answers.extend(valid_answers)
-            except JSONDecodeError as e:
-                log.error(
-                    f"Unable to parse JOSN response: {e}; JSON: {answer_str}")
+            json_answer = json.loads(answer_str)
+            rectified_keys = list(map(_rectify_keys, json_answer))
+            valid_answers = filter(_rectify_answer, rectified_keys)
+            answers.extend([Answer(question.question_id, answer['answer'], hashlib.md5(answer['answer'].encode()).hexdigest(), answer['rating']) for answer in valid_answers])
 
     # Return list of answers
     return answers
@@ -134,7 +153,7 @@ def _rectify_answer(answer):
     # fix minor mistakes
     if 'rating' not in answer:
         formatted_answer, rating = _parse_rating_from_answer(answer['answer'])
-        answer['answer'] = formatted_answer
+        answer['answer'] = formatted_answer.strip()
         answer['rating'] = rating
     else:
         answer['rating'] = _validate_rating(answer['rating'])
@@ -145,7 +164,7 @@ def _rectify_answer(answer):
 def _validate_rating(rating):
     try:
         rating = int(rating)
-        if rating >= 0 and rating <= 4:
+        if rating >= 0 and rating <= 3:
             return rating
     except:
         log.error(f"Identified invalid rating: {rating}")
@@ -165,48 +184,47 @@ def _parse_rating_from_answer(answer):
             final_answer = re.sub(pattern, '', answer).strip()
             # get number only
             parsed_number = int(re.search(r'\d$', answer).group())
-            if parsed_number >= 0 and parsed_number <= 4:
+            if parsed_number >= 0 and parsed_number <= 3:
                 number = parsed_number
             break
 
     return final_answer, number
 
-
-def _rate_answers(question:Question, answers, ignore_text_syntax) -> List[str]:
+def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> List[Answer]:
+    openai.api_key = api_key
     numerated_rated_answers = {
-        f"{idx+1}": {"answer": answer['answer'], "rating": answer['rating']} for idx, answer in enumerate(answers)}
-    numerated_answers = {f"{idx}": answer['answer']
+        f"{idx+1}": answer for idx, answer in enumerate(answers)}
+
+    # map {id:answer} sent to openAi
+    numerated_answers = {f"{idx}": answer.answer
                          for idx, answer in numerated_rated_answers.items()}
     # Define prompt
-
-    # TODO: category to configuration
-    # TODO: datensatzspezische modelle (Powergrading, SRA, CREE usw.)
-    # TODO: kappa man vs machine
-    # ChatGPT should also rate manually annotated test answers
-    # Trained models should rate equal answers
     prompt = f"""I am an AI trained to score responses based on a five-point scale of relevance, coherence, and completeness.
     The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
-    Please evaluate the following answers based on these criteria:
+    Evaluate the following answers based on the quantity of key elements present from 0 to 3:"""
 
+    if len(key_elements) > 0:
+        prompt += "\nThe key elements are:"
+        for element in key_elements:
+            prompt += f"\n{element}"
+
+    prompt += f"""
     Question: {question.question}
     Answers: {numerated_answers}
 
     rating_id: criteria
-    0: Incorrect or irrelevant
-    1: Partially correct
-    2: Somewhat correct
-    3: Mostly correct
-    4: Completely correct
+    0: Other
+    1: One key element
+    2: Two key elements
+    3: Three key elements
 
     Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
 
     if ignore_text_syntax:
         prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
 
-    # print(f"Prompt: {prompt}")
-
     # Set up parameters for generating answers
-    max_tokens = 2000
+    max_tokens = 10 * len(answers) # < 10 token / answer {"id":"rating"}
     temperature = 0.4
     frequency_penalty = 0.6
     presence_penalty = 0.2
@@ -221,7 +239,6 @@ def _rate_answers(question:Question, answers, ignore_text_syntax) -> List[str]:
     )
 
     # Extract answers from OpenAI API response
-    rated_answers = []
     for choice in generated_answers.choices:
         log.debug(f"generated rating: {choice.text}")
         # remove new lines
@@ -231,16 +248,29 @@ def _rate_answers(question:Question, answers, ignore_text_syntax) -> List[str]:
 
         if contains_json:
             answer_str = contains_json.group(0).replace("'", '"')
-            try:
-                json_answer = json.loads(answer_str)
-                for answer_id, rating_id in json_answer.items():
-                    original_answer = numerated_rated_answers[answer_id]
-                    answer_text = original_answer['answer']
-                    rated_answers.append(
-                        Answer(question.question_id, answer_text, hashlib.md5(answer_text.encode()).hexdigest(), original_answer['rating'], _validate_rating(rating_id)))
-            except JSONDecodeError as e:
-                log.error(
-                    f"Unable to parse JOSN response: {e}; JSON: {answer_str}")
+            json_answer = json.loads(answer_str)
+            return [_add_rating(numerated_rated_answers, answer_id, rating_id) for answer_id, rating_id in json_answer.items()]
+        raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
 
-    # Return list of answers
-    return rated_answers
+def rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+    retry = 0
+    # TODO: configuration
+    max_retries = 5
+    while retry < max_retries:
+        try:
+            yield _rate_answers(api_key, question, answers, ignore_text_syntax, key_elements)
+            break
+        except JSONDecodeError as e:
+            retry += 1
+            log.error(
+                f"Unable to parse JSON response: {e}; JSON")
+
+    if retry >= max_retries: 
+        log.error(f"Exceeded {retry} retries, the rating of answers will be aborted")
+
+        
+
+def _add_rating(numerated_rated_answers, answer_id, rating_id):
+    original_answer = numerated_rated_answers[answer_id]
+    original_answer.score_2 = _validate_rating(rating_id)
+    return original_answer

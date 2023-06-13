@@ -2,7 +2,7 @@ import csv
 import os
 import logging as log
 from dataclasses import dataclass
-from typing import List, Any, Dict, Optional
+from typing import List, Iterator, Any, Dict, Optional
 
 # TODO: refactor, isolate duplicated code, strate up naming (answer, sample, rating score ect.) and such
 # TODO: refactor, consumer must not require knowledge about the tsv files
@@ -27,7 +27,34 @@ class Rating:
     question: Optional[Question] = None
     answer: Optional[Answer] = None
 
+@dataclass
+class KeyElement:
+    question_id: Optional[str] = None
+    element: Optional[str] = None
+
 # Load tsv files
+
+def get_key_elements_by_question_id(file:str) -> Dict:
+    key_elements = {}
+    with open(file, newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter='\t')
+        next(reader)  # skip header row
+        for row in reader:
+            if len(row) == 0:
+                log.warn(f"Found empty row in file: {file}")
+                continue
+
+            log.debug(f"Parse Key Element: {row}")
+            element = KeyElement(row[0], row[1])
+
+            # Sort answers per question_id
+            if element.question_id in key_elements:
+                key_elements[element.question_id].append(element)
+            else:
+                key_elements[element.question_id] = [element]
+
+    return key_elements
+
 
 # Parse a given tsv file and use SampleAnswer depending on the property 'sample'
 # Question | SampleAnswer (Optional) | QuestionId
@@ -37,6 +64,9 @@ def get_questions(file:str, use_sample:bool) -> List[Question]:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
+            if len(row) == 0:
+                log.warn(f"Found empty row in file: {file}")
+                continue
             log.debug(f'Parse Question: {row[0]}')
             parsed_row = Question(row[0])
             if use_sample and len(row) > 1:
@@ -56,6 +86,9 @@ def get_answers_per_question(file:str) -> Dict:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
+            if len(row) == 0:
+                log.warn(f"Found empty row in file: {file}")
+                continue
             log.debug(f'Parse Answer: {row[2]}')
             answer = Answer(row[0], row[1], row[2])
 
@@ -78,15 +111,18 @@ def _get_questions_per_question_id(file:str) -> Dict:
     questions = {question.question_id: question.question for question in question_list}
     return questions
 
-def get_ratings(rated_file:str, questions_file:str) -> List[Rating]:
+def get_ratings(file:str, questions_file:str) -> List[Rating]:
     ratings = []
     questions = _get_questions_per_question_id(questions_file)
 
     # QuestionId | AnswerId | Score1 | Score2
-    with open(rated_file, newline='') as csvfile:
+    with open(file, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
+            if len(row) == 0:
+                log.warn(f"Found empty row in file: {file}")
+                continue
             question = questions[row[0]]
             # NOTE: if we need the answer text or the original annotation use: get_answers_per_question
             rating = Rating(question, Answer(row[0], None, row[1], row[2], None))
@@ -114,7 +150,7 @@ def write_rated_answers_tsv(file: str, answers: List[Answer], extend:bool) -> No
 
 # Score1 is generated along with the answer, Score2 is separately assigned
 # QuestionId | Answer | AnswerId | Score1 | Score2
-def write_answers_tsv_2(file:str, answers:List[Answer], extend:bool) -> None:
+def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> None:
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
     log.debug(f"Writing answers: {answers} to file: {file}")
@@ -122,8 +158,10 @@ def write_answers_tsv_2(file:str, answers:List[Answer], extend:bool) -> None:
         writer = csv.writer(csvfile, delimiter='\t')
         if mode == 'w':
             writer.writerow(['QuestionId', 'Answer', 'AnswerId', 'Score1', 'Score2'])
-        for row in answers:
-            writer.writerow(_to_array(row))
+        for answer_list in answers:
+            for row in answer_list:
+                # every answer represents one row
+                writer.writerow(_to_array(row))
 
 # utility
 def _to_array(obj: Any) -> List:

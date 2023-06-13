@@ -5,7 +5,9 @@
 	"alpaca_7B": "chavinlo/alpaca-native",
 	"questions": "questions.tsv",
 	"ai_answers": "ai_answers.tsv",
+	"ai_unrated_answer_path": "ai_unrated_answer_path.tsv",
 	"man_answers": "man_answers.tsv",
+	"key_elements": "key_elements.tsv",
 	"answers_to_rate": "to_be_rated.tsv",
 	"rated_answers": "rated_#.tsv"
 }
