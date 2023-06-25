@@ -1,5 +1,13 @@
 import json
+import hashlib
+from dataclasses import dataclass
+from typing import List
 
+@dataclass
+class BatchSize:
+    size: int
+    ids: List[str]
+	
 
 class Configuration():
 	def __init__(self):
@@ -32,17 +40,30 @@ class Configuration():
 	def get_key_elements_path(self):
 		return self._get_path_for_datafile(self.config["key_elements"])
 	
-	def get_answers_to_rate_path(self):
-		return self._get_path_for_datafile(self.config["answers_to_rate"])
+	def get_ai_answers_to_rate_path(self):
+		return self._get_path_for_datafile(self.config["ai_answers_to_rate"])
+	
+	def get_ai_answers_for_training_path(self):
+		return self._get_path_for_datafile(self.config["ai_answers_for_training"])
+	
+	def get_man_answers_to_rate_path(self):
+		return self._get_path_for_datafile(self.config["man_answers_to_rate"])
+
+	def get_man_answers_for_training_path(self):
+		return self._get_path_for_datafile(self.config["man_answers_for_training"])
 
 	def get_rated_answers_path(self, id):
 		suffix = self.config['rated_answers'].replace('#', id)
 		return self._get_path_for_datafile(suffix)
 	
 	# AI Model
-	def get_trained_bert_model_path(self):
-		return self._get_path_for_model("trained_bert_version")
+	def get_trained_bert_model_path(self, question:str, batch_size:int, batch_id:str, descriptor:str):
+		path_suffix = hashlib.md5(f"{question}_{batch_size}_{batch_id}_{descriptor}".encode()).hexdigest()
+		return f"{self._get_path_for_model('trained_bert_version')}/{path_suffix}/"
 
 	def get_alpaca_7B_model_and_path(self):
 		name = "alpaca_7B"
 		return self._get_path_for_model(name), self.config[name]
+
+	def get_batch_sizes(self) -> List[BatchSize]:
+		return [BatchSize(batch_size["size"], batch_size["ids"]) for batch_size in self.config["batch_sizes"]]

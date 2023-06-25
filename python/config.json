@@ -5,9 +5,13 @@
 	"alpaca_7B": "chavinlo/alpaca-native",
 	"questions": "questions.tsv",
 	"ai_answers": "ai_answers.tsv",
-	"ai_unrated_answer_path": "ai_unrated_answer_path.tsv",
+	"ai_answers_for_training": "ai_answers_for_training.tsv",
+	"ai_answers_to_rate": "ai_answers_to_rate.tsv",
+	"ai_unrated_answer_path": "ai_unrated_answer.tsv",
 	"man_answers": "man_answers.tsv",
+	"man_answers_for_training": "man_answers_for_training.tsv",
+	"man_answers_to_rate": "man_answers_to_rate.tsv",
 	"key_elements": "key_elements.tsv",
-	"answers_to_rate": "to_be_rated.tsv",
-	"rated_answers": "rated_#.tsv"
+	"rated_answers": "rated_#.tsv",
+	"batch_sizes": [{"size":50, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":100, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":200, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":400, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":800, "ids":["A"]}, {"size":1600, "ids":["A"]}, {"size":3200, "ids":["A"]}]
 }

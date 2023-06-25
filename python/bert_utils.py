@@ -64,7 +64,7 @@ def _load_components(path):
 # 'new' do not load and use given samples
 # 'extend' do load and use samples
 # 'continue' do load and ignore samples
-def train_model(samples:List[AnswersForQuestion], path, epochs, mode='new'):
+def train_model(sample:AnswersForQuestion, path, epochs, mode='new'):
 
     # cleanup
     if mode == 'new' and os.path.exists(path):
@@ -74,13 +74,12 @@ def train_model(samples:List[AnswersForQuestion], path, epochs, mode='new'):
 
     dataset = []
     if mode == 'new' or mode == 'extend':
-        for sample in samples:
-            for answer in sample.answers:
-                encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
+        for answer in sample.answers:
+            encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
 
-                label = int(answer.score_2)
-                assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
-                dataset.append({'input_ids': encodings['input_ids'], 'attention_mask': encodings['attention_mask'], 'labels': label})
+            label = int(answer.score_2)
+            assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
+            dataset.append({'input_ids': encodings['input_ids'], 'attention_mask': encodings['attention_mask'], 'labels': label})
     
     # Split data into train and validation
     # TODO: we start with 0.2 and evaluate how this affect the rating quality
@@ -118,24 +117,27 @@ def train_model(samples:List[AnswersForQuestion], path, epochs, mode='new'):
 
     #_save_model_and_dataset(tokenizer, trainer, combined_train_dataset, combined_validation_dataset, path)
 
-def rate_answer(path, answers_for_questions:List[AnswersForQuestion]) -> List[Answer]:
+def rate_answer(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
+    if not os.path.exists(path):
+        log.warn(f"The path: {path} does not point to a trained model")
+        return
+
     _, _, model, tokenizer = _load_components(path)
 
     rated_answers = []
-    for answers_for_question in answers_for_questions:
-        for answer in answers_for_question.answers:
-            # Tokenize and format the question-answer pair
-            encodings = tokenizer(answers_for_question.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
-            input_ids = torch.tensor(encodings['input_ids']).unsqueeze(0)  # add batch dimension
-            attention_mask = torch.tensor(encodings['attention_mask']).unsqueeze(0)  # add batch dimension
+    for answer in answers_for_question.answers:
+        # Tokenize and format the question-answer pair
+        encodings = tokenizer(answers_for_question.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH)
+        input_ids = torch.tensor(encodings['input_ids']).unsqueeze(0)  # add batch dimension
+        attention_mask = torch.tensor(encodings['attention_mask']).unsqueeze(0)  # add batch dimension
 
-            # Make prediction
-            with torch.no_grad():  # deactivate autograd engine to reduce memory usage and speed up computations
-                outputs = model(input_ids, attention_mask)
-                logits = outputs.logits
+        # Make prediction
+        with torch.no_grad():  # deactivate autograd engine to reduce memory usage and speed up computations
+            outputs = model(input_ids, attention_mask)
+            logits = outputs.logits
 
-            # Compute predicted rating
-            answer.score_1 = torch.argmax(logits, dim=1).item()
-            rated_answers.append(answer)
+        # Compute predicted rating
+        answer.score_1 = torch.argmax(logits, dim=1).item()
+        rated_answers.append(answer)
 
     return rated_answers

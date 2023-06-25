@@ -5,7 +5,7 @@ import time
 from openai.error import OpenAIError, RateLimitError
 import re
 import json
-import config
+#import config
 import logging as log
 import re
 from tsv_utils import Answer, Question, KeyElement
@@ -23,15 +23,16 @@ def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:
     openai.api_key = api_key
 
     sample_categories = [
-        "The answer must not contain any key element",
-        "The answer must contain exactly one key element",
-        "The answer must contain exactly two key elements",
-        "The answer must contain exactly three key elements",
-        "The answer must contain at leased three key elements",
-        "The answer must contain one key elements and one wrong aspect"
-        "The answers should be contradictory",
-        "The answers should be non domain",
-        "The answers should be irrelevant"
+        "The answers must not contain any key element",
+        "The answers must contain exactly one key element",
+        "The answers must contain exactly two key elements",
+        "The answers must contain exactly three key elements",
+        "The answers must contain exactly three key elements expressed in different words",
+        "The answers must contain exactly three key elements but in a wrong context",
+        "The answers must contain at leased three key elements",
+        "The answers must be off-topic but contain key elements",
+        "The answers must be contradictory",
+        "The answers must contain misinformation"
     ]
 
     for category in sample_categories:
@@ -46,7 +47,11 @@ def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:
             except JSONDecodeError as e:
                 retries += 1
                 log.error(
-                    f"Unable to parse JSON response: {e}; JSON")
+                    f"Unable to parse JSON response: {e}")
+            except Exception as e:
+                retries += 1
+                log.error(
+                    f"Unable to generate Answers: {e}")
 
         if retries >= max_retries:
             # TODO: add more info like question?
@@ -76,35 +81,33 @@ def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presen
             time.sleep(sleep_duration)
         except OpenAIError as e:
             log.error(f"OpenAI API caused an error: {e}")
-            raise e
+            retries += 1
+            sleep_duration = 10
+            log.warning(f"Rate limit hit. Sleeping for {sleep_duration} before starting retry number: {retries}")
+            time.sleep(sleep_duration)
+            #raise e
 
     if retries >= max_retries:
         log.error(f"To many retries")
 
 def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_answers, key_elements:List[KeyElement]) -> List[Answer]:
     # Define prompt
-    prompt = f"""Create possible answers for a test.
-    The question '{question.question}' should be answered on {quantity_of_answers} different ways using up to 2 Sentences each.
-    Each answer should be rated from 0 to 3 regarding the amount of key elements present.
-    Present the answers and their ratings in an JSON array of objects formatted like [{{"answer":"answer1", "rating":"7"}}]"""
+    prompt = f"""Develop {quantity_of_answers} distinct responses for the question '{question.question}' Each response should be confined to a maximum of two sentences.
+When generating these answers, ensure to utilize various perspectives and explanations, such as from the point of view of a biologist, 
+a student learning the topic for the first time, a lecturer explaining the topic to students, or a researcher exploring novel aspects of protein synthesis. 
+Try to use different analogies, examples or contextual scenarios in your responses. They also should differ in Tone Syntax, mood, voice and style.
+Represent the responses and their scores in a JSON array of strings, following this structure: ["answer1", "answer2"]"""
 
     if question.sample_answer is not None:
         prompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
 
-    if ignore_text_syntax:
-        prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
-
-    if len(key_elements) > 0:
-        prompt += "\nThe key elements are:"
-        for element in key_elements:
-            prompt += f"\n{element}"
-
     # prompt = basePrompt
-    prompt += f"\n{task}"
+    prompt += f"\nNOTE: {task}"
 
     prompt_size = _count_token(prompt)
     if prompt_size > 1000:
         log.warn(f"The prompt is very huge: {prompt_size}")
+
     # Set up parameters for generating answers
     max_tokens = 4000 - prompt_size
     temperature = 0.8
@@ -120,8 +123,6 @@ def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_a
         presence_penalty=presence_penalty
     )
 
-    # Extract answers from OpenAI API response
-    answers = []
     for choice in generated_answers.choices:
         log.debug(f"generated answer: {choice.text}")
 
@@ -133,12 +134,12 @@ def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_a
         if contains_json:
             answer_str = contains_json.group(0)
             json_answer = json.loads(answer_str)
-            rectified_keys = list(map(_rectify_keys, json_answer))
-            valid_answers = filter(_rectify_answer, rectified_keys)
-            answers.extend([Answer(question.question_id, answer['answer'], hashlib.md5(answer['answer'].encode()).hexdigest(), answer['rating']) for answer in valid_answers])
+            #rectified_keys = list(map(_rectify_keys, json_answer))
+            #valid_answers = filter(_rectify_answer, rectified_keys)
+            #answers.extend([Answer(question.question_id, answer['answer'], hashlib.md5(answer['answer'].encode()).hexdigest(), answer['rating']) for answer in valid_answers])
+            return [Answer(question.question_id, answer, hashlib.md5(answer.encode()).hexdigest(), -1) for answer in json_answer]
 
-    # Return list of answers
-    return answers
+        raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
 
 # high temperature can lead to problems creating the JSON
 def _rectify_keys(answer):
@@ -199,26 +200,26 @@ def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_
     numerated_answers = {f"{idx}": answer.answer
                          for idx, answer in numerated_rated_answers.items()}
     # Define prompt
-    prompt = f"""I am an AI trained to score responses based on a five-point scale of relevance, coherence, and completeness.
-    The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
-    Evaluate the following answers based on the quantity of key elements present from 0 to 3:"""
+    prompt = f"""I am an AI trained to score responses based on a four-point scale of relevance, coherence, and completeness.
+The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
+Evaluate the following answers based on the quantity of key elements present from 0 to 3:"""
 
     if len(key_elements) > 0:
         prompt += "\nThe key elements are:"
         for element in key_elements:
-            prompt += f"\n{element}"
+            prompt += f"\n{element.element}"
 
     prompt += f"""
-    Question: {question.question}
-    Answers: {numerated_answers}
+Question: {question.question}
+Answers: {numerated_answers}
 
-    rating_id: criteria
-    0: Other
-    1: One key element
-    2: Two key elements
-    3: Three key elements
+rating_id: criteria
+0: Other
+1: One key element
+2: Two key elements
+3: Three key elements
 
-    Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
+Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
 
     if ignore_text_syntax:
         prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
@@ -244,7 +245,7 @@ def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_
         # remove new lines
         answer = re.sub(r'\n', ' ', choice.text.strip())
         # find json content
-        contains_json = re.search(r'^\{.*\}$', answer)
+        contains_json = re.search(r'\{.*\}', answer)
 
         if contains_json:
             answer_str = contains_json.group(0).replace("'", '"')
@@ -263,7 +264,11 @@ def rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_t
         except JSONDecodeError as e:
             retry += 1
             log.error(
-                f"Unable to parse JSON response: {e}; JSON")
+                f"Unable to parse JSON response: {e}")
+        except Exception as e:
+            retry += 1
+            log.error(
+                f"Unable to rate Answer: {e}")
 
     if retry >= max_retries: 
         log.error(f"Exceeded {retry} retries, the rating of answers will be aborted")

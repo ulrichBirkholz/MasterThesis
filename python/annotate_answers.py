@@ -5,9 +5,6 @@ from config import Configuration
 import argparse
 import logging as log
 
-# TODO: "key elements" should be configurable
-# TODO: count token and adjust values dynamically
-
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Create annotated Answers')
