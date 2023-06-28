@@ -106,7 +106,7 @@ Represent the responses and their scores in a JSON array of strings, following t
 
     prompt_size = _count_token(prompt)
     if prompt_size > 1000:
-        log.warn(f"The prompt is very huge: {prompt_size}")
+        log.warning(f"The prompt is very huge: {prompt_size}")
 
     # Set up parameters for generating answers
     max_tokens = 4000 - prompt_size

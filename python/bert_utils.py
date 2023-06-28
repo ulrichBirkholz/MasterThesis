@@ -119,8 +119,8 @@ def train_model(sample:AnswersForQuestion, path, epochs, mode='new'):
 
 def rate_answer(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
     if not os.path.exists(path):
-        log.warn(f"The path: {path} does not point to a trained model")
-        return
+        log.warning(f"The path: {path} does not point to a trained model")
+        return []
 
     _, _, model, tokenizer = _load_components(path)
 

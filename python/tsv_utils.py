@@ -41,7 +41,7 @@ def get_key_elements_by_question_id(file:str) -> Dict:
         next(reader)  # skip header row
         for row in reader:
             if len(row) == 0:
-                log.warn(f"Found empty row in file: {file}")
+                log.warning(f"Found empty row in file: {file}")
                 continue
 
             log.debug(f"Parse Key Element: {row}")
@@ -65,7 +65,7 @@ def get_questions(file:str, use_sample:bool) -> List[Question]:
         next(reader)  # skip header row
         for row in reader:
             if len(row) == 0:
-                log.warn(f"Found empty row in file: {file}")
+                log.warning(f"Found empty row in file: {file}")
                 continue
             log.debug(f'Parse Question: {row[0]}')
             parsed_row = Question(row[0])
@@ -78,16 +78,14 @@ def get_questions(file:str, use_sample:bool) -> List[Question]:
             questions.append(parsed_row)
     return questions
 
-# {"question_id": [Answer]}
-# Score 1 is just for reference
-def get_answers_per_question(file:str) -> Dict:
-    answers = {}
+def get_answers(file:str) -> List[Answer]:
+    answers = []
     with open(file, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
             if len(row) == 0:
-                log.warn(f"Found empty row in file: {file}")
+                log.warning(f"Found empty row in file: {file}")
                 continue
             log.debug(f'Parse Answer: {row[2]}')
             answer = Answer(row[0], row[1], row[2])
@@ -97,12 +95,22 @@ def get_answers_per_question(file:str) -> Dict:
                 answer.score_1 = row[3]
                 answer.score_2 = row[4]
 
-            # Sort answers per question_id
-            if answer.question_id in answers:
-                answers[answer.question_id].append(answer)
-            else:
-                answers[answer.question_id] = [answer]
+            answers.append(answer)
 
+    return answers
+
+# {"question_id": [Answer]}
+# Score 1 is just for reference
+def get_answers_per_question(file:str) -> Dict:
+    answers = {}
+    answer_list = get_answers(file)
+
+    for answer in answer_list:
+        # Sort answers per question_id
+        if answer.question_id in answers:
+            answers[answer.question_id].append(answer)
+        else:
+            answers[answer.question_id] = [answer]
     return answers
 
 # {"question_id": [Question]}
@@ -121,7 +129,7 @@ def get_ratings(file:str, questions_file:str) -> List[Rating]:
         next(reader)  # skip header row
         for row in reader:
             if len(row) == 0:
-                log.warn(f"Found empty row in file: {file}")
+                log.warning(f"Found empty row in file: {file}")
                 continue
             question = questions[row[0]]
             # NOTE: if we need the answer text or the original annotation use: get_answers_per_question

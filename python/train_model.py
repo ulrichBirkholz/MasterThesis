@@ -55,9 +55,9 @@ if __name__ == "__main__":
                         _train_model_for_question(ai_answers[question.question_id], question,
                                                 config.get_trained_bert_model_path(question.question, batch_size.size, id, 'ai'), args, batch_size)
                     else:
-                        log.warn(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
+                        log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
                     if len(man_answers[question.question_id]) >= batch_size.size:
                         _train_model_for_question(man_answers[question.question_id], question,
                                             config.get_trained_bert_model_path(question.question, batch_size.size, id, 'man'), args, batch_size)
                     else:
-                        log.warn(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
+                        log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
