@@ -36,7 +36,7 @@ class KeyElement:
 
 def get_key_elements_by_question_id(file:str) -> Dict:
     key_elements = {}
-    with open(file, newline='') as csvfile:
+    with open(file, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
@@ -60,7 +60,7 @@ def get_key_elements_by_question_id(file:str) -> Dict:
 # Question | SampleAnswer (Optional) | QuestionId
 def get_questions(file:str, use_sample:bool) -> List[Question]:
     questions = []
-    with open(file, newline='') as csvfile:
+    with open(file, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
@@ -80,7 +80,7 @@ def get_questions(file:str, use_sample:bool) -> List[Question]:
 
 def get_answers(file:str) -> List[Answer]:
     answers = []
-    with open(file, newline='') as csvfile:
+    with open(file, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
@@ -124,7 +124,7 @@ def get_ratings(file:str, questions_file:str) -> List[Rating]:
     questions = _get_questions_per_question_id(questions_file)
 
     # QuestionId | AnswerId | Score1 | Score2
-    with open(file, newline='') as csvfile:
+    with open(file, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile, delimiter='\t')
         next(reader)  # skip header row
         for row in reader:
@@ -149,7 +149,7 @@ def write_rated_answers_tsv(file: str, answers: List[Answer], extend:bool) -> No
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
     log.debug(f"Writing rated answers: {answers} to file: {file}")
-    with open(file, mode, newline='') as csvfile:
+    with open(file, mode, newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile, delimiter='\t')
         if mode == 'w':
             writer.writerow(['QuestionId', 'AnswerId', 'Score1', 'Score2'])
@@ -162,7 +162,7 @@ def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> 
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
     log.debug(f"Writing answers: {answers} to file: {file}")
-    with open(file, mode, newline='') as csvfile:
+    with open(file, mode, newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile, delimiter='\t')
         if mode == 'w':
             writer.writerow(['QuestionId', 'Answer', 'AnswerId', 'Score1', 'Score2'])

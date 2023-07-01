@@ -10,6 +10,7 @@ dependencies:
   - accelerate>=0.20.1 # added
   #- cudatoolkit=11.1
   - tiktoken
+  - xgboost
   - pip
   - pip:
     - transformers
