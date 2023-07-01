@@ -48,8 +48,8 @@ def train_model(sample:AnswersForQuestion, path, mode='new'):
     answers = []
     ratings = []
     for answer in sample.answers:
-        rating = answer.score_2
-        assert rating >= 0 and rating <= 4, f"Invalid rating {int(rating)} was detected"
+        rating = int(answer.score_2)
+        assert rating >= 0 and rating <= 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
     
