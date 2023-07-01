@@ -1,7 +1,8 @@
 {
 	"data_path": "../data",
 	"model_path": "../models",
-	"trained_bert_version": "v1",
+	"trained_bert_version": "bert_v1",
+	"trained_xg_boost_version": "xgb_v1",
 	"alpaca_7B": "chavinlo/alpaca-native",
 	"questions": "questions.tsv",
 	"ai_answers": "ai_answers.tsv",

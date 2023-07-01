@@ -3,6 +3,7 @@ import shutil
 import pickle
 from transformers import BertForSequenceClassification, BertTokenizer, Trainer, TrainingArguments
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 import torch
 import logging as log
 from dataclasses import dataclass
@@ -47,7 +48,7 @@ def _load_components(path):
     if not os.path.exists(path):
         model_and_tokenizer_source = 'bert-base-uncased'
 
-    model = BertForSequenceClassification.from_pretrained(model_and_tokenizer_source,  num_labels=5)
+    model = BertForSequenceClassification.from_pretrained(model_and_tokenizer_source,  num_labels=4)
     tokenizer = BertTokenizer.from_pretrained(model_and_tokenizer_source)
 
     train_dataset = []
@@ -115,8 +116,6 @@ def train_model(sample:AnswersForQuestion, path, epochs, mode='new'):
 
     trainer.train()
 
-    #_save_model_and_dataset(tokenizer, trainer, combined_train_dataset, combined_validation_dataset, path)
-
 def rate_answer(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
     if not os.path.exists(path):
         log.warning(f"The path: {path} does not point to a trained model")
@@ -140,4 +139,47 @@ def rate_answer(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
         answer.score_1 = torch.argmax(logits, dim=1).item()
         rated_answers.append(answer)
 
-    return rated_answers
+    ratings = []
+    predictions = []
+    for answer in rated_answers:
+        ratings.append(answer.score_2)
+        predictions.append(answer.score_1)
+
+
+    cm = confusion_matrix(ratings, predictions)
+    return rated_answers, cm
+
+
+import torch
+
+def generate_confusion_matrix(path, answers_for_question:AnswersForQuestion):
+    if not os.path.exists(path):
+        log.warning(f"The path: {path} does not point to a trained model")
+        return
+
+    _, _, model, tokenizer = _load_components(path)
+
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+
+    model.to(device)
+
+    answers = [answer.answer for answer in answers_for_question.answers]
+    ratings = [int(answer.score_2) for answer in answers_for_question.answers]
+
+    # Convert answers to input tensors
+    inputs = tokenizer(answers, return_tensors='pt', padding=True, truncation=True)
+    inputs = {name: tensor.to(device) for name, tensor in inputs.items()}
+
+    # Get predictions
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    # Convert logits to probabilities
+    probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
+
+    # Get the class with the highest probability for each sample
+    pred_labels = torch.argmax(probabilities, dim=1)
+
+    # Calculate the confusion matrix
+    cm = confusion_matrix(ratings, pred_labels.cpu())
+    return cm

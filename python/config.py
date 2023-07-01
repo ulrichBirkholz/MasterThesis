@@ -57,11 +57,19 @@ class Configuration():
 		file_name = self.config['rated_answers'].replace('#', suffix)
 		return self.get_path_for_datafile(file_name)
 	
+	def get_model_path_descriptor(self, question:str, batch_size:int, batch_id:str, descriptor:str):
+		if batch_id is None: # TODO: just to test first set of models, remove it later
+			return f"{question}_{batch_size}_{descriptor}"
+		return f"{question}_{batch_size}_{batch_id}_{descriptor}"
+
 	# AI Model
 	def get_trained_bert_model_path(self, question:str, batch_size:int, batch_id:str, descriptor:str):
-		#path_suffix = hashlib.md5(f"{question}_{batch_size}_{batch_id}_{descriptor}".encode()).hexdigest()
-		path_suffix = hashlib.md5(f"{question}_{batch_size}_{descriptor}".encode()).hexdigest()
+		path_suffix = hashlib.md5(self.get_model_path_descriptor(question, batch_size, batch_id, descriptor).encode()).hexdigest()
 		return f"{self._get_path_for_model('trained_bert_version')}/{path_suffix}/"
+
+	def get_trained_xg_boost_model_path(self, question:str, batch_size:int, batch_id:str, descriptor:str):
+		path_suffix = hashlib.md5(self.get_model_path_descriptor(question, batch_size, batch_id, descriptor).encode()).hexdigest()
+		return f"{self._get_path_for_model('trained_xg_boost_version')}/{path_suffix}/"
 
 	def get_alpaca_7B_model_and_path(self):
 		name = "alpaca_7B"
