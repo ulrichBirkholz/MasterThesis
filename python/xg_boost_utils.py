@@ -30,18 +30,17 @@ def _load_components(path):
     return model, vectorizer
 
 def _save_model_and_vectorizer(model, vectorizer, path):
-    os.makedirs(f"{path}", exist_ok=True)
+    os.makedirs(path, exist_ok=True)
     
     model.save_model(f"{path}/model")
     with open(f"{path}/vectorizer", 'wb') as file:
             pickle.dump(vectorizer, file)
     
 
-def train_model(sample:AnswersForQuestion, path, mode='new'):
+def train_model(sample:AnswersForQuestion, path):
 
     # cleanup
-    if mode == 'new' and os.path.exists(path):
-        shutil.rmtree(path)
+    shutil.rmtree(path)
 
     model, vectorizer = _load_components(path)
     

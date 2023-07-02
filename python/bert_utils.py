@@ -25,12 +25,13 @@ MAX_TOKEN_LENGTH = 512
 os.environ["WANDB_DISABLED"] = "true"
 
 def _save_dataset(train_dataset, validation_dataset, path):
-    os.makedirs(f"{path}", exist_ok=True)
+    os.makedirs(path, exist_ok=True)
 
-    with open(f"{path}train_dataset.pkl", 'wb') as f:
-        pickle.dump(train_dataset, f)
-    with open(f"{path}validation_dataset.pkl", 'wb') as f:
-        pickle.dump(validation_dataset, f)
+    # this is only save to evaluate it on demand
+    with open(f"{path}train_dataset.pkl", 'wb') as file:
+        pickle.dump(train_dataset, file)
+    with open(f"{path}validation_dataset.pkl", 'wb') as file:
+        pickle.dump(validation_dataset, file)
 
 def _load_components(path):
     model_and_tokenizer_source = path
@@ -41,52 +42,36 @@ def _load_components(path):
     model = BertForSequenceClassification.from_pretrained(model_and_tokenizer_source,  num_labels=4)
     tokenizer = BertTokenizer.from_pretrained(model_and_tokenizer_source)
 
-    train_dataset = []
-    validation_dataset = []
-    if os.path.exists(path):
-        with open(f"{path}train_dataset.pkl", 'rb') as file:
-            train_dataset = pickle.load(file)
-        with open(f"{path}validation_dataset.pkl", 'rb') as file:
-            validation_dataset = pickle.load(file)
-
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
     model.to(device)
 
-    return train_dataset, validation_dataset, model, tokenizer, device
+    return model, tokenizer, device
 
-# possible modes: 'new', 'continue', 'extend'
-# 'new' do not load and use given samples
-# 'extend' do load and use samples
-# 'continue' do load and ignore samples
-def train_model(sample:AnswersForQuestion, path, epochs, mode='new'):
+
+def train_model(sample:AnswersForQuestion, path, epochs):
 
     # cleanup
-    if mode == 'new' and os.path.exists(path):
+    if os.path.exists(path):
         shutil.rmtree(path)
 
-    loaded_train_dataset, loaded_validation_dataset, model, tokenizer, _ = _load_components(path)
+    model, tokenizer, _ = _load_components(path)
 
     dataset = []
-    if mode == 'new' or mode == 'extend':
-        for answer in sample.answers:
-            encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH, return_tensors='pt')
+    for answer in sample.answers:
+        encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH, return_tensors='pt')
 
-            label = int(answer.score_2)
-            assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
-            
-            dataset.append({'input_ids': encodings['input_ids'].squeeze(), 'attention_mask': encodings['attention_mask'].squeeze(), 'labels': label})
+        label = int(answer.score_2)
+        assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
+        
+        dataset.append({'input_ids': encodings['input_ids'].squeeze(), 'attention_mask': encodings['attention_mask'].squeeze(), 'labels': label})
     
     # Split data into train and validation
     # TODO: we start with 0.2 and evaluate how this affect the rating quality
     #   maybe we adjust this value dynamically depending on the amount of samples
     train_dataset, validation_dataset = train_test_split(dataset, test_size=0.2)
 
-    combined_train_dataset = train_dataset + loaded_train_dataset
-    combined_validation_dataset = validation_dataset + loaded_validation_dataset
-
     training_args = TrainingArguments(
         output_dir=path,
-        #save_total_limit=2,
         num_train_epochs=epochs,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=64,
@@ -99,21 +84,23 @@ def train_model(sample:AnswersForQuestion, path, epochs, mode='new'):
     trainer = Trainer(
         model=model,
         args=training_args,
-        train_dataset=combined_train_dataset,
-        eval_dataset=combined_validation_dataset,
+        train_dataset=train_dataset,
+        eval_dataset=validation_dataset,
     )
 
     # Save data before training, the model will be saved by the trainer (see output_dir)
-    _save_dataset(combined_train_dataset, combined_validation_dataset, path)
+    _save_dataset(train_dataset, validation_dataset, path)
 
     trainer.train()
+    trainer.save_model(path)
+
 
 def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
     if not os.path.exists(path):
         log.warning(f"The path: {path} does not point to a trained model")
         return [], []
 
-    _, _, model, tokenizer, device = _load_components(path)
+    model, tokenizer, device = _load_components(path)
 
     predictions = []
     true_values = []

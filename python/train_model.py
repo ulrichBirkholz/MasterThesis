@@ -14,7 +14,6 @@ import logging as log
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
-    parser.add_argument('-mode', default='new', help='Number of training iterations')
     parser.add_argument('-epoches', type=int, default=15, help='Number of training iterations')
     return parser.parse_args()
 
@@ -36,8 +35,8 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
     log.debug(f"Training question: {question.question_id} answers: {answers}")
     answer_batch = random.sample(answers, batch_size.size)
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
-    bert_train_model(samples, bert_path, args.epoches, args.mode)
-    xgb_train_model(samples, xgb_path, args.mode)
+    bert_train_model(samples, bert_path, args.epoches)
+    xgb_train_model(samples, xgb_path)
 
     for path in [bert_path, xgb_path]:
         finish_marker = f"{path}description.json"
@@ -64,26 +63,25 @@ if __name__ == "__main__":
     config = Configuration()
 
     # samples = [{"question":'...', "answers":[answers]}]
-    if args.mode == 'new' or args.mode == 'extend':
-        questions = get_questions(config.get_questions_path(), False)
-        ai_answers = get_answers_per_question(config.get_ai_answers_for_training_path())
-        man_answers = get_answers_per_question(config.get_man_answers_for_training_path())
+    questions = get_questions(config.get_questions_path(), False)
+    ai_answers = get_answers_per_question(config.get_ai_answers_for_training_path())
+    man_answers = get_answers_per_question(config.get_man_answers_for_training_path())
 
-        for question in questions:
-            for batch_size in config.get_batch_sizes():
-                for id in batch_size.ids:
-                    if len(ai_answers[question.question_id]) >= batch_size.size:
-                        descriptor_args = (question.question, batch_size.size, id, 'ai')
-                        descriptor = config.get_model_path_descriptor(*descriptor_args)
-                        _train_model_for_question(ai_answers[question.question_id], question,
-                                                descriptor_args, args, batch_size, id, descriptor)
-                    else:
-                        log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
-                    
-                    if len(man_answers[question.question_id]) >= batch_size.size:
-                        descriptor_args = (question.question, batch_size.size, id, 'man')
-                        descriptor = config.get_model_path_descriptor(*descriptor_args)
-                        _train_model_for_question(man_answers[question.question_id], question,
+    for question in questions:
+        for batch_size in config.get_batch_sizes():
+            for id in batch_size.ids:
+                if len(ai_answers[question.question_id]) >= batch_size.size:
+                    descriptor_args = (question.question, batch_size.size, id, 'ai')
+                    descriptor = config.get_model_path_descriptor(*descriptor_args)
+                    _train_model_for_question(ai_answers[question.question_id], question,
                                             descriptor_args, args, batch_size, id, descriptor)
-                    else:
-                        log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
+                else:
+                    log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
+                
+                if len(man_answers[question.question_id]) >= batch_size.size:
+                    descriptor_args = (question.question, batch_size.size, id, 'man')
+                    descriptor = config.get_model_path_descriptor(*descriptor_args)
+                    _train_model_for_question(man_answers[question.question_id], question,
+                                        descriptor_args, args, batch_size, id, descriptor)
+                else:
+                    log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
