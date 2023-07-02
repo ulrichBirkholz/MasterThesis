@@ -16,10 +16,10 @@ def _load_components(path):
 
     if os.path.exists(path):
         model = xgb.XGBClassifier()
-        model.load_model(f"{path}/model")
+        model.load_model(f"{path}model")
         
 		# the vectorizer learns from the training data during the fit_transform process
-        with open(f"{path}/vectorizer", 'rb') as file:
+        with open(f"{path}vectorizer", 'rb') as file:
             vectorizer = pickle.load(file)
 
     else:
@@ -32,8 +32,8 @@ def _load_components(path):
 def _save_model_and_vectorizer(model, vectorizer, path):
     os.makedirs(path, exist_ok=True)
     
-    model.save_model(f"{path}/model")
-    with open(f"{path}/vectorizer", 'wb') as file:
+    model.save_model(f"{path}model")
+    with open(f"{path}vectorizer", 'wb') as file:
             pickle.dump(vectorizer, file)
     
 
@@ -67,15 +67,15 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
 
     if not os.path.exists(path):
         log.warning(f"The path: {path} does not point to a trained model")
-        return []
+        return [], []
 
     model, vectorizer = _load_components(path)
 
     answers = []
     ratings = []
     for answer in answers_for_question.answers:
-        rating = answer.score_2
-        assert rating >= 0 and rating <= 4, f"Invalid rating {int(rating)} was detected"
+        rating = int(answer.score_2)
+        assert rating >= 0 and rating <= 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
 
@@ -85,5 +85,4 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
         answer.score_1 = prediction
 
     cm = confusion_matrix(ratings, predictions)
-
-    return predictions, cm
+    return answers_for_question.answers, cm.tolist()
