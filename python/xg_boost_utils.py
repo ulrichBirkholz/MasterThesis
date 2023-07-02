@@ -54,9 +54,10 @@ def train_model(sample:AnswersForQuestion, path, mode='new'):
         ratings.append(rating)
     
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
-    model.fit(answers_train, ratings_train)
+    model.fit(vectorizer.fit_transform(answers_train), ratings_train)
     
-    accuracy = accuracy_score(answers_test, ratings_test)
+    predictions = model.predict(vectorizer.transform(answers_test))
+    accuracy = accuracy_score(predictions, ratings_test)
     print("Accuracy: %.2f%%" % (accuracy * 100.0))
     
     _save_model_and_vectorizer(model, vectorizer, path)
@@ -78,8 +79,7 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
         answers.append(answer.answer)
         ratings.append(rating)
 
-    v_answers = vectorizer.transform(answers)
-    predictions = model.predict(v_answers)
+    predictions = model.predict(vectorizer.transform(answers))
 
     for answer, prediction in zip(answers_for_question.answers, predictions):
         answer.score_1 = prediction

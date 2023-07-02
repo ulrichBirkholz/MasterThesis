@@ -2,7 +2,7 @@ from tsv_utils import get_questions
 from tsv_utils import get_answers_per_question
 from bert_utils import train_model as bert_train_model, AnswersForQuestion
 from xg_boost_utils import train_model as xgb_train_model
-from config import Configuration, BatchSize
+from config import Configuration
 import random
 import os
 import shutil
@@ -15,8 +15,7 @@ import logging as log
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
     parser.add_argument('-mode', default='new', help='Number of training iterations')
-    # TODO: we start with 10-20 and evaluate how this affect the rating quality
-    parser.add_argument('-epoches', type=int, default=10, help='Number of training iterations')
+    parser.add_argument('-epoches', type=int, default=15, help='Number of training iterations')
     return parser.parse_args()
 
 def _train_model_for_question(answers, question, descriptor_args, args, batch_size, id, descriptor):
@@ -85,6 +84,6 @@ if __name__ == "__main__":
                         descriptor_args = (question.question, batch_size.size, id, 'man')
                         descriptor = config.get_model_path_descriptor(*descriptor_args)
                         _train_model_for_question(man_answers[question.question_id], question,
-                                            config.get_trained_bert_model_path(*descriptor_args), args, batch_size, id, descriptor)
+                                            descriptor_args, args, batch_size, id, descriptor)
                     else:
                         log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
