@@ -7,8 +7,7 @@ dependencies:
   - openai
   - scikit-learn
   - pytorch=1.8.1
-  - accelerate>=0.20.1 # added
-  #- cudatoolkit=11.1
+  - accelerate>=0.20.1
   - tiktoken
   - xgboost
   - pip

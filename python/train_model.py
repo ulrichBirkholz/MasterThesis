@@ -31,10 +31,11 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
             else:
                 # the answers are randomly selected so we do not continue
                 shutil.rmtree(path)
-            
-    log.debug(f"Training question: {question.question_id} answers: {answers}")
+
     answer_batch = random.sample(answers, batch_size.size)
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
+
+    log.debug(f"Training question_id: {question.question_id} for batch_size: {len(answer_batch)} with {args.epoches} epoches")
     bert_train_model(samples, bert_path, args.epoches)
     xgb_train_model(samples, xgb_path)
 
@@ -52,7 +53,8 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 "question": question.question,
                 "batch_size": batch_size.size,
                 "batch_variant_id": id,
-                "descriptor": descriptor
+                "descriptor": descriptor,
+                "epoches": args.epoches
             }, file)
 
 if __name__ == "__main__":

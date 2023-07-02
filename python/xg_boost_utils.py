@@ -40,7 +40,8 @@ def _save_model_and_vectorizer(model, vectorizer, path):
 def train_model(sample:AnswersForQuestion, path):
 
     # cleanup
-    shutil.rmtree(path)
+    if os.path.exists(path):
+        shutil.rmtree(path)
 
     model, vectorizer = _load_components(path)
     
