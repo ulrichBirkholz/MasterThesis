@@ -27,7 +27,7 @@ if __name__ == "__main__":
     man_answers = get_answers_per_question(config.get_man_answers_path())
 
     _split_answers_for_question(ai_answers, 'ai', config)
-    #_split_answers_for_question(man_answers, 'man', config)
+    _split_answers_for_question(man_answers, 'man', config)
 
     
     
