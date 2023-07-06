@@ -93,6 +93,7 @@ def train_model(sample:AnswersForQuestion, path, epochs):
 
     trainer.train()
     trainer.save_model(path)
+    tokenizer.save_pretrained(path)
 
 
 def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
