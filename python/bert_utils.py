@@ -61,7 +61,7 @@ def train_model(sample:AnswersForQuestion, path, epochs):
         encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH, return_tensors='pt')
 
         label = int(answer.score_2)
-        assert label >= 0 and label <= 4, f"Invalid label {int(answer.score_2)} was detected"
+        assert label >= 0 and label < 4, f"Invalid label {label} was detected"
         
         dataset.append({'input_ids': encodings['input_ids'].squeeze(), 'attention_mask': encodings['attention_mask'].squeeze(), 'labels': label})
     
