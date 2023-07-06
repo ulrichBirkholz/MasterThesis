@@ -170,6 +170,7 @@ def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> 
             for row in answer_list:
                 # every answer represents one row
                 writer.writerow(_to_array(row))
+            csvfile.flush()
 
 # utility
 def _to_array(obj: Any) -> List:

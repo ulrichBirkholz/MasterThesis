@@ -19,30 +19,17 @@ def _count_token(prompt:str) -> int:
 
     return len(enc.encode(prompt))
 
-def generate_answers(api_key, quantity_of_answers, ignore_text_syntax, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+def generate_answers(api_key, batch_size, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     openai.api_key = api_key
 
-    sample_categories = [
-        "The answers must not contain any key element",
-        "The answers must contain exactly one key element",
-        "The answers must contain exactly two key elements",
-        "The answers must contain exactly three key elements",
-        "The answers must contain exactly three key elements expressed in different words",
-        "The answers must contain exactly three key elements but in a wrong context",
-        "The answers must contain at leased three key elements",
-        "The answers must be off-topic but contain key elements",
-        "The answers must be contradictory",
-        "The answers must contain misinformation"
-    ]
-
-    for category in sample_categories:
+    for prompt in generate_answer_prompt(question, batch_size, key_elements):
         retries = 0
         # TODO: configure amount of retries
         max_retries = 5
         while retries < max_retries:
             try:
                 yield _generate_answers(
-                        question, ignore_text_syntax, category, quantity_of_answers, key_elements)
+                        question, prompt)
                 break
             except JSONDecodeError as e:
                 retries += 1
@@ -90,20 +77,90 @@ def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presen
     if retries >= max_retries:
         log.error(f"To many retries")
 
-def _generate_answers(question:Question, ignore_text_syntax, task, quantity_of_answers, key_elements:List[KeyElement]) -> List[Answer]:
-    # Define prompt
-    prompt = f"""Develop {quantity_of_answers} distinct responses for the question '{question.question}' Each response should be confined to a maximum of two sentences.
-When generating these answers, ensure to utilize various perspectives and explanations, such as from the point of view of a biologist, 
-a student learning the topic for the first time, a lecturer explaining the topic to students, or a researcher exploring novel aspects of protein synthesis. 
-Try to use different analogies, examples or contextual scenarios in your responses. They also should differ in Tone Syntax, mood, voice and style.
+def _add_key_elements(prompt:str, key_elements:List[KeyElement]) -> str:
+    if len(key_elements) > 0:
+        result = prompt + "\n\nThe key elements are:"
+        for element in key_elements:
+            result += f"\n- {element.element}"
+    return result + "\n"
+
+# 10 x 20 x 3 = 600 batches.
+# With a batch size of 3, 1800 Answers will be created during one execution
+def generate_answer_prompt(question:Question, batch_size, key_elements:List[KeyElement]):
+
+    # 10 categories of correctness
+    sample_categories = [
+        "The answers must not contain any key element expressed in different words",
+        "The answers must contain exactly one key element expressed in different words",
+        "The answers must contain exactly two key elements expressed in different words",
+        "The answers must contain exactly three key elements expressed in different words",
+        "The answers must contain exactly three key elements but in a wrong context",
+        "The answers must contain at leased three key elements",
+        "The answers must be off-topic but contain key elements",
+        "The answers must be contradictory",
+        "The answers must contain misinformation",
+        "The answers must be wrong and less than 8 words in length."
+    ]
+
+    # 20 combinations of tone syntax, mood, voice and style
+    styles = [
+        "delivered with a satirical tone, employ complex syntax, establish a joyful mood, utilize a first-person voice, and maintain a descriptive style",
+        "drafted in a formal tone, use simple syntax, cultivate a gloomy mood, adopt a third-person limited voice, and demonstrate an expository style",
+        "composed with a condescending tone, incorporate compound syntax, evoke a suspenseful mood, employ a second-person voice, and adhere to a narrative style",
+        "articulated in an affectionate tone, feature interrogative syntax, foster a melodramatic mood, rely on a stream-of-consciousness voice, and exemplify a persuasive style",
+        "written with an energetic tone, use declarative syntax, generate an excited mood, be expressed in an epistolary voice, and follow an analytical style",
+        "conveyed in a respectful tone, apply active syntax, nurture a nostalgic mood, utilize an autobiographical voice, and espouse an argumentative style",
+        "formulated with a bitter tone, involve passive syntax, create an anxious mood, adopt a third-person omniscient voice, and uphold a cause-and-effect style",
+        "expressed in a candid tone, incorporate fragmented syntax, set a romantic mood, use an unreliable voice, and embrace a compare-and-contrast style",
+        "presented with an enthusiastic tone, feature inverted syntax, kindle a somber mood, apply a reliable voice, and maintain a problem-solution style",
+        "developed in an indifferent tone, use elliptical syntax, engender an angry mood, deploy a subjective voice, and exemplify a sequential style",
+        "written in a humorous tone, integrate cumulative syntax, foster a peaceful mood, employ an objective voice, and espouse a definition style",
+        "shaped with a serious tone, utilize periodic syntax, invoke a fearful mood, use a naive voice, and adopt a classification style",
+        "formulated in a whimsical tone, incorporate parallel syntax, elicit a mysterious mood, employ an experienced voice, and adhere to a process style",
+        "constructed with a melancholic tone, apply antithetical syntax, generate a reflective mood, use a childlike voice, and uphold a critique style",
+        "articulated in a sincere tone, integrate nominal syntax, stimulate a whimsical mood, utilize a worldly voice, and maintain a satirical style",
+        "expressed with a pessimistic tone, employ verbal syntax, kindle an euphoric mood, adopt an introspective voice, and demonstrate an symbolic style",
+        "composed in an optimistic tone, use balanced syntax, provoke a despairing mood, apply a detached voice, and embrace an allegorical style",
+        "delivered in an ironic tone, incorporate parenthetical syntax, cultivate a hopeful mood, employ a cynical voice, and follow an ironical style",
+        "drafted with an informal tone, apply imperative syntax, stir an inspiring mood, utilize an idealistic voice, and uphold a metaphorical style",
+        "written in a sarcastic tone, feature exclamatory syntax, create a bizarre mood, use an innocent voice, and adhere to a realistic style"
+    ]
+
+    # 3 roles the AI embodies by creating the answers
+    roles = [
+        "student learning the topic for the first time",
+        "researcher exploring novel aspects of the topic",
+        "professor with a deep understanding of the subject"
+    ]
+
+    for category in sample_categories:
+        for style in styles:
+            for role in roles:
+                prompt = f"""
+Imagine you're a {role}.
+Develop {batch_size} distinct responses for the question '{question.question}' Each response should be confined to a maximum of two sentences.
+The text should be {style}.
+Try to use different analogies, examples or contextual scenarios in your responses.
 Represent the responses and their scores in a JSON array of strings, following this structure: ["answer1", "answer2"]"""
 
-    if question.sample_answer is not None:
-        prompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
+                if question.sample_answer is not None:
+                    prompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
 
-    # prompt = basePrompt
-    prompt += f"\nNOTE: {task}"
+                prompt = _add_key_elements(prompt, key_elements)
 
+                prompt += f"\nNOTE: {category}"
+
+            yield prompt
+
+def _find_json_content(choice:str):
+    # remove new lines
+    answer = re.sub(r'\n', ' ', choice.strip())
+    if "[" not in answer and "]" not in answer:
+        answer = f"[{answer}]"
+    
+    return re.search(r'\[(.*?)\]', answer)
+
+def _generate_answers(question:Question, prompt) -> List[Answer]:
     prompt_size = _count_token(prompt)
     if prompt_size > 1000:
         log.warning(f"The prompt is very huge: {prompt_size}")
@@ -125,21 +182,14 @@ Represent the responses and their scores in a JSON array of strings, following t
 
     for choice in generated_answers.choices:
         log.debug(f"generated answer: {choice.text}")
-
-        # remove new lines
-        answer = re.sub(r'\n', ' ', choice.text.strip())
-        # find json content
-        contains_json = re.search(r'\[(.*?)\]', answer)
+        contains_json = _find_json_content(choice.text)
 
         if contains_json:
             answer_str = contains_json.group(0)
-            json_answer = json.loads(answer_str)
-            #rectified_keys = list(map(_rectify_keys, json_answer))
-            #valid_answers = filter(_rectify_answer, rectified_keys)
-            #answers.extend([Answer(question.question_id, answer['answer'], hashlib.md5(answer['answer'].encode()).hexdigest(), answer['rating']) for answer in valid_answers])
-            return [Answer(question.question_id, answer, hashlib.md5(answer.encode()).hexdigest(), -1) for answer in json_answer]
+            json_answers = json.loads(answer_str)
+            return [Answer(question.question_id, answer.strip(), hashlib.md5(answer.strip().encode()).hexdigest(), -1) for answer in json_answers]
 
-        raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
+        raise JSONDecodeError(f"No valid JSON found in answer: {choice.text}")
 
 # high temperature can lead to problems creating the JSON
 def _rectify_keys(answer):
@@ -191,23 +241,12 @@ def _parse_rating_from_answer(answer):
 
     return final_answer, number
 
-def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> List[Answer]:
-    openai.api_key = api_key
-    numerated_rated_answers = {
-        f"{idx+1}": answer for idx, answer in enumerate(answers)}
-
-    # map {id:answer} sent to openAi
-    numerated_answers = {f"{idx}": answer.answer
-                         for idx, answer in numerated_rated_answers.items()}
-    # Define prompt
+def generate_rating_prompt(question, numerated_answers, ignore_text_syntax, key_elements):
     prompt = f"""I am an AI trained to score responses based on a four-point scale of relevance, coherence, and completeness.
 The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
 Evaluate the following answers based on the quantity of key elements present from 0 to 3:"""
 
-    if len(key_elements) > 0:
-        prompt += "\nThe key elements are:"
-        for element in key_elements:
-            prompt += f"\n{element.element}"
+    prompt = _add_key_elements(prompt, key_elements)
 
     prompt += f"""
 Question: {question.question}
@@ -223,6 +262,19 @@ Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
 
     if ignore_text_syntax:
         prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
+    
+    return prompt
+
+def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> List[Answer]:
+    openai.api_key = api_key
+    numerated_rated_answers = {
+        f"{idx+1}": answer for idx, answer in enumerate(answers)}
+
+    # map {id:answer} sent to openAi
+    numerated_answers = {f"{idx}": answer.answer
+                         for idx, answer in numerated_rated_answers.items()}
+
+    prompt = generate_rating_prompt(question, numerated_answers, ignore_text_syntax, key_elements)
 
     # Set up parameters for generating answers
     max_tokens = 10 * len(answers) # < 10 token / answer {"id":"rating"}

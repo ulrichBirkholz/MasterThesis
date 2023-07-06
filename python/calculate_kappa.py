@@ -6,7 +6,6 @@ import logging as log
 
 from sklearn.metrics import cohen_kappa_score
 import matplotlib.pyplot as plt
-import numpy as np
 
 class KappaFigure():
     def __init__(self, title:str, identifier:str) -> None:
@@ -89,9 +88,11 @@ def _answers_to_rating(answers):
 
 def _get_figure_for_dataset(diagrams:Dict, id:str, model_descriptor:str, answer_descriptor:str) -> KappaFigure:
     identifier = f"{model_descriptor}_model_{answer_descriptor}_answers_{id}"
+    platform = model_descriptor.split("_")[0]
+    
     if identifier not in diagrams:
-        if model_descriptor == "ai":
-            diagram_title = "AI-Refined"
+        if model_descriptor.endswith("ai"):
+            diagram_title = f"{platform} AI-Refined"
             if answer_descriptor == "ai-training":
                 diagram_title += " ML Model\nrating answers used for training"
             elif answer_descriptor == "man-rating":
@@ -102,8 +103,8 @@ def _get_figure_for_dataset(diagrams:Dict, id:str, model_descriptor:str, answer_
                 log.warning(f"The answer_descriptor {answer_descriptor} is invalid")
                 return
 
-        elif model_descriptor == "man":
-            diagram_title = "Expert-Refined"
+        elif model_descriptor.endswith("man"):
+            diagram_title = f"{platform} Expert-Refined"
             if answer_descriptor == "man-training":
                 diagram_title += " ML Model\nrating answers used for training"
             elif answer_descriptor == "ai-rating":
@@ -114,8 +115,8 @@ def _get_figure_for_dataset(diagrams:Dict, id:str, model_descriptor:str, answer_
                 log.warning(f"The answer_descriptor {answer_descriptor} is invalid")
                 return
 
-        elif model_descriptor == "ai-v-man":
-            diagram_title = "AI-Refined compared with Expert-Refined ML Model\nrating "
+        elif model_descriptor.endswith("ai-v-man"):
+            diagram_title = f"{platform} AI-Refined compared with Expert-Refined ML Model\nrating "
             if answer_descriptor == "ai-rating":
                 diagram_title += "answers created by AI"
             
@@ -151,24 +152,45 @@ if __name__ == "__main__":
     for batch_size in config.get_batch_sizes():
         for id in batch_size.ids:
             log.debug(f"Calculate graph for batch size: {batch_size.size} and id: {id}")
-            ai_model_ai_training = get_ratings(config.get_rated_answers_path('ai', 'ai-training', batch_size.size, id), questions_path)
-            ai_model_ai_rating = get_ratings(config.get_rated_answers_path('ai', 'ai-rating', batch_size.size, id), questions_path)
-            ai_model_man_rating = get_ratings(config.get_rated_answers_path('ai', 'man-rating', batch_size.size, id), questions_path)
+            bert_ai_model_ai_training = get_ratings(config.get_rated_answers_path('bert_ai', 'ai-training', batch_size.size, id), questions_path)
+            bert_ai_model_ai_rating = get_ratings(config.get_rated_answers_path('bert_ai', 'ai-rating', batch_size.size, id), questions_path)
+            bert_ai_model_man_rating = get_ratings(config.get_rated_answers_path('bert_ai', 'man-rating', batch_size.size, id), questions_path)
 
-            man_model_man_training = get_ratings(config.get_rated_answers_path('man', 'man-training', batch_size.size, id), questions_path)
-            man_model_man_rating = get_ratings(config.get_rated_answers_path('man', 'man-rating', batch_size.size, id), questions_path)
-            man_model_ai_rating = get_ratings(config.get_rated_answers_path('man', 'ai-rating', batch_size.size, id), questions_path)
+            bert_man_model_man_training = get_ratings(config.get_rated_answers_path('bert_man', 'man-training', batch_size.size, id), questions_path)
+            bert_man_model_man_rating = get_ratings(config.get_rated_answers_path('bert_man', 'man-rating', batch_size.size, id), questions_path)
+            bert_man_model_ai_rating = get_ratings(config.get_rated_answers_path('bert_man', 'ai-rating', batch_size.size, id), questions_path)
 
-            _get_figure_for_dataset(diagrams, id, 'ai', 'ai-training').plot(batch_size.size, *evaluate_ratings(ai_model_ai_training, _answers_to_rating(ai_answers_training)))
-            _get_figure_for_dataset(diagrams, id, 'ai', 'ai-rating').plot(batch_size.size, *evaluate_ratings(ai_model_ai_rating, _answers_to_rating(ai_answers_rating)))
-            _get_figure_for_dataset(diagrams, id, 'ai', 'man-rating').plot(batch_size.size, *evaluate_ratings(ai_model_man_rating, _answers_to_rating(man_answers_rating)))
+            xgb_ai_model_ai_training = get_ratings(config.get_rated_answers_path('xgb_ai', 'ai-training', batch_size.size, id), questions_path)
+            xgb_ai_model_ai_rating = get_ratings(config.get_rated_answers_path('xgb_ai', 'ai-rating', batch_size.size, id), questions_path)
+            xgb_ai_model_man_rating = get_ratings(config.get_rated_answers_path('xgb_ai', 'man-rating', batch_size.size, id), questions_path)
+
+            xgb_man_model_man_training = get_ratings(config.get_rated_answers_path('xgb_man', 'man-training', batch_size.size, id), questions_path)
+            xgb_man_model_man_rating = get_ratings(config.get_rated_answers_path('xgb_man', 'man-rating', batch_size.size, id), questions_path)
+            xgb_man_model_ai_rating = get_ratings(config.get_rated_answers_path('xgb_man', 'ai-rating', batch_size.size, id), questions_path)
+
+            # bert
+            _get_figure_for_dataset(diagrams, id, 'bert_ai', 'ai-training').plot(batch_size.size, *evaluate_ratings(bert_ai_model_ai_training, _answers_to_rating(ai_answers_training)))
+            _get_figure_for_dataset(diagrams, id, 'bert_ai', 'ai-rating').plot(batch_size.size, *evaluate_ratings(bert_ai_model_ai_rating, _answers_to_rating(ai_answers_rating)))
+            _get_figure_for_dataset(diagrams, id, 'bert_ai', 'man-rating').plot(batch_size.size, *evaluate_ratings(bert_ai_model_man_rating, _answers_to_rating(man_answers_rating)))
             
-            _get_figure_for_dataset(diagrams, id, 'man', 'man-training').plot(batch_size.size, *evaluate_ratings(man_model_man_training, _answers_to_rating(man_answers_training)))
-            _get_figure_for_dataset(diagrams, id, 'man', 'man-rating').plot(batch_size.size, *evaluate_ratings(man_model_man_rating, _answers_to_rating(man_answers_rating)))
-            _get_figure_for_dataset(diagrams, id, 'man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(man_model_ai_rating, _answers_to_rating(ai_answers_rating)))
+            _get_figure_for_dataset(diagrams, id, 'bert_man', 'man-training').plot(batch_size.size, *evaluate_ratings(bert_man_model_man_training, _answers_to_rating(man_answers_training)))
+            _get_figure_for_dataset(diagrams, id, 'bert_man', 'man-rating').plot(batch_size.size, *evaluate_ratings(bert_man_model_man_rating, _answers_to_rating(man_answers_rating)))
+            _get_figure_for_dataset(diagrams, id, 'bert_man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(bert_man_model_ai_rating, _answers_to_rating(ai_answers_rating)))
 
-            _get_figure_for_dataset(diagrams, id, 'ai-v-man', 'man-rating').plot(batch_size.size, *evaluate_ratings(ai_model_ai_rating, man_model_ai_rating))
-            _get_figure_for_dataset(diagrams, id, 'ai-v-man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(ai_model_man_rating, man_model_man_rating))
+            _get_figure_for_dataset(diagrams, id, 'bert_ai-v-man', 'man-rating').plot(batch_size.size, *evaluate_ratings(bert_ai_model_ai_rating, bert_man_model_ai_rating))
+            _get_figure_for_dataset(diagrams, id, 'bert_ai-v-man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(bert_ai_model_man_rating, bert_man_model_man_rating))
+
+            # xgb
+            _get_figure_for_dataset(diagrams, id, 'xgb_ai', 'ai-training').plot(batch_size.size, *evaluate_ratings(xgb_ai_model_ai_training, _answers_to_rating(ai_answers_training)))
+            _get_figure_for_dataset(diagrams, id, 'xgb_ai', 'ai-rating').plot(batch_size.size, *evaluate_ratings(xgb_ai_model_ai_rating, _answers_to_rating(ai_answers_rating)))
+            _get_figure_for_dataset(diagrams, id, 'xgb_ai', 'man-rating').plot(batch_size.size, *evaluate_ratings(xgb_ai_model_man_rating, _answers_to_rating(man_answers_rating)))
+            
+            _get_figure_for_dataset(diagrams, id, 'xgb_man', 'man-training').plot(batch_size.size, *evaluate_ratings(xgb_man_model_man_training, _answers_to_rating(man_answers_training)))
+            _get_figure_for_dataset(diagrams, id, 'xgb_man', 'man-rating').plot(batch_size.size, *evaluate_ratings(xgb_man_model_man_rating, _answers_to_rating(man_answers_rating)))
+            _get_figure_for_dataset(diagrams, id, 'xgb_man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(xgb_man_model_ai_rating, _answers_to_rating(ai_answers_rating)))
+
+            _get_figure_for_dataset(diagrams, id, 'xgb_ai-v-man', 'man-rating').plot(batch_size.size, *evaluate_ratings(xgb_ai_model_ai_rating, xgb_man_model_ai_rating))
+            _get_figure_for_dataset(diagrams, id, 'xgb_ai-v-man', 'ai-rating').plot(batch_size.size, *evaluate_ratings(xgb_ai_model_man_rating, xgb_man_model_man_rating))
 
     for id, diagram in diagrams.items():
         diagram.save(config)
