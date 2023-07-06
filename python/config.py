@@ -27,9 +27,13 @@ class Configuration():
 	# tsv files
 	def get_questions_path(self):
 		return self.get_path_for_datafile(self.config["questions"])
-
-	def get_ai_answers_path(self):
-		return self.get_path_for_datafile(self.config["ai_answers"])
+	
+	def get_ai_answers_path(self, id=None):
+		if id is None or len(id) == 0:
+			replacement = ""
+		else:
+			replacement = f"_{id}"
+		return self.get_path_for_datafile(self.config["ai_answers"].replace('#', replacement))
 	
 	def get_ai_unrated_answer_path(self):
 		return self.get_path_for_datafile(self.config["ai_unrated_answer_path"])

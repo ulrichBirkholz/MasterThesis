@@ -5,7 +5,7 @@
 	"trained_xg_boost_version": "xgb_v1",
 	"alpaca_7B": "chavinlo/alpaca-native",
 	"questions": "questions.tsv",
-	"ai_answers": "ai_answers.tsv",
+	"ai_answers": "ai_answers#.tsv",
 	"ai_answers_for_training": "ai_answers_for_training.tsv",
 	"ai_answers_to_rate": "ai_answers_to_rate.tsv",
 	"ai_unrated_answer_path": "ai_unrated_answer.tsv",
