@@ -37,14 +37,17 @@ class KappaFigure():
             if self.answer_count > answer_count:
                 self.answer_count = answer_count
 
+    def _add_figtext(self,figtext):
+        plt.figtext(0.5, 1, figtext, fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
+
     def save(self, config: Configuration, figtext:str=None):
         plt.figure(self.figure.number)
         if figtext is not None:
-            plt.figtext(figtext)
+            self._add_figtext(figtext)
         elif self.all_counts_equal is True:
-            plt.figtext(0.5, 1, f"Each value represents the agreement of exactly {self.answer_count} ratings", fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
+            self._add_figtext(f"Each value represents the agreement of exactly {self.answer_count} ratings")
         else:
-            plt.figtext(0.5, 1, f"Each value represents the agreement of at leased {self.answer_count} ratings", fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
+            self._add_figtext(f"Each value represents the agreement of at leased {self.answer_count} ratings")
 
         log.debug(f"Save Diagram: {self.filename}")
         self.figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
