@@ -37,9 +37,11 @@ class KappaFigure():
             if self.answer_count > answer_count:
                 self.answer_count = answer_count
 
-    def save(self, config: Configuration):
+    def save(self, config: Configuration, figtext:str=None):
         plt.figure(self.figure.number)
-        if self.all_counts_equal is True:
+        if figtext is not None:
+            plt.figtext(figtext)
+        elif self.all_counts_equal is True:
             plt.figtext(0.5, 1, f"Each value represents the agreement of exactly {self.answer_count} ratings", fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
         else:
             plt.figtext(0.5, 1, f"Each value represents the agreement of at leased {self.answer_count} ratings", fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
@@ -202,9 +204,9 @@ if __name__ == "__main__":
     # Thats ugly
     score_1_v_2 = KappaFigure("Kappa of score_1 vs. score_2", "score_1_vs_score_2")
     plt.xlabel('Source')
-    score_1_v_2.plot("AI-Dataset", _calculate_kappa(_get_scores_1(all_ai_answers), _get_scores_2(all_ai_answers)))
-    score_1_v_2.plot("Expert-Dataset", _calculate_kappa(_get_scores_1(all_man_answers), _get_scores_2(all_man_answers)))
-    diagrams["score_1_vs_score_2"] = score_1_v_2
+    score_1_v_2.plot("AI-Dataset", _calculate_kappa(_get_scores_1(all_ai_answers), _get_scores_2(all_ai_answers)), -1)
+    score_1_v_2.plot("Expert-Dataset", _calculate_kappa(_get_scores_1(all_man_answers), _get_scores_2(all_man_answers)), -1)
+    score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.")
 
     for id, diagram in diagrams.items():
         diagram.save(config)
