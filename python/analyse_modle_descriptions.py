@@ -2,6 +2,9 @@ import os
 import json
 from config import Configuration
 import logging as log
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 def _tabs_for_alignment(text, tabstop=8):
 	if len(text) >= 32:
@@ -9,6 +12,10 @@ def _tabs_for_alignment(text, tabstop=8):
 	else:
 		tabs = 1
 	return "\t" * tabs
+
+def _generate_model_id(descriptor:str, question_id:str):
+    index = descriptor.find('_')
+    return f"{question_id}_{descriptor[index:]}"
 
 if __name__ == "__main__":
 	config = Configuration()
@@ -18,6 +25,10 @@ if __name__ == "__main__":
 
 	output_file = config.get_path_for_datafile("model_descriptor_analysis.txt")
 
+	data_frame = {
+		"answer_ids": [],
+		"model_identifier": []
+	}
 	with open(output_file, 'w') as file:
 		print(f"base_dir: {base_dir}")
 		for version_dir in os.listdir(base_dir):
@@ -44,6 +55,12 @@ if __name__ == "__main__":
 					file.write(f"Descriptor: {data['descriptor']}\n")
 					file.write(f"\nAnswers: \n")
 
+					model_id = _generate_model_id(data['descriptor'], data['question_id'])
+
+					for answer in data['answer_batch']:
+						data_frame["answer_ids"].append(answer['answer_id'])
+						data_frame["model_identifier"].append(model_id)
+
 					for i in range(0, len(data['answer_batch']), 4):
 						group = data['answer_batch'][i:i+4]
 
@@ -65,3 +82,10 @@ if __name__ == "__main__":
 						file.write("\n")
 
 				file.write(f"###############################################\n\n")
+	
+	plt.figure(figsize=(15, 10))
+	plt.title("Answer distribution across models")
+	df = pd.DataFrame({'answer_id': data_frame["answer_ids"], 'model_identifier': data_frame["model_identifier"]})
+	cross_tab = pd.crosstab(df['answer_id'], df['model_identifier'])
+	sns.heatmap(cross_tab, cmap="YlGnBu", cbar=False)
+	plt.show()
