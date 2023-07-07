@@ -16,10 +16,6 @@ def _rate_answers(question: Question, answers_for_question:Dict, config:Configur
             log.info(f"No answers to rate for question: {question}")
             return
     answers = answers_for_question[question.question_id]
-
-    # we rate max. 1000 answers TODO: use if it takes too long, note Question '6' has more than 1k answers to rate, this requires to be dealt with
-    #if len(answers) > 1000:
-    #      answers = random.sample(answers, 1000)
  
     cm_matrices = {}
     for batch_size in config.get_batch_sizes():

@@ -14,7 +14,7 @@ import logging as log
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
-    parser.add_argument('-epoches', type=int, default=10, help='Number of training iterations')
+    parser.add_argument('-epochs', type=int, default=10, help='Number of training iterations')
     return parser.parse_args()
 
 def _train_model_for_question(answers, question, descriptor_args, args, batch_size, id, descriptor):
@@ -35,10 +35,11 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 shutil.rmtree(path)
 
     answer_batch = random.sample(answers, batch_size.size)
+    # TODO: check if random works as intended
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
 
-    log.debug(f"Training question_id: {question.question_id} for batch_size: {len(answer_batch)} with {args.epoches} epoches")
-    bert_train_model(samples, bert_path, args.epoches)
+    log.debug(f"Training question_id: {question.question_id} for batch_size: {len(answer_batch)} with {args.epochs} epochs")
+    bert_train_model(samples, bert_path, args.epochs)
     xgb_train_model(samples, xgb_path)
 
     for path in [bert_path, xgb_path]:
@@ -56,7 +57,7 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 "batch_size": batch_size.size,
                 "batch_variant_id": id,
                 "descriptor": descriptor,
-                "epoches": args.epoches
+                "epochs": args.epochs
             }, file)
 
 if __name__ == "__main__":
