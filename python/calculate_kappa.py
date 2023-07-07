@@ -207,8 +207,8 @@ if __name__ == "__main__":
     # Thats ugly
     score_1_v_2 = KappaFigure("Kappa of score_1 vs. score_2", "score_1_vs_score_2")
     plt.xlabel('Source')
-    score_1_v_2.plot("AI-Dataset", *_calculate_kappa(_get_scores_1(all_ai_answers)[0], _get_scores_2(all_ai_answers)))
-    score_1_v_2.plot("Expert-Dataset", *_calculate_kappa(_get_scores_1(all_man_answers)[0], _get_scores_2(all_man_answers)))
+    score_1_v_2.plot("AI-Dataset", *_calculate_kappa(_get_scores_1(all_ai_answers), _get_scores_2(all_ai_answers)))
+    score_1_v_2.plot("Expert-Dataset", *_calculate_kappa(_get_scores_1(all_man_answers), _get_scores_2(all_man_answers)))
     score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.")
 
     for id, diagram in diagrams.items():
