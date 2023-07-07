@@ -21,6 +21,9 @@ class Configuration():
 	def get_path_for_datafile(self, name):
 		return f"{self.config['data_path']}/{name}"
 
+	def _get_base_model_path(self):
+		return self.config['model_path']
+
 	def _get_path_for_model(self, suffix):
 		return f"{self.config['model_path']}/{self.config[suffix]}"
 
