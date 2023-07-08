@@ -31,7 +31,7 @@ def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
 
         if len(new_answer_batch) <= 800:
             max_similarity = 0.2
-        elif len(new_answer_batch) <= 1600:
+        else:
             # larger batches naturally have a higher similarity
             max_similarity = 0.51
 
