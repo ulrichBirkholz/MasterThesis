@@ -75,7 +75,8 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 "batch_size": batch_size.size,
                 "batch_variant_id": id,
                 "descriptor": descriptor,
-                "epochs": args.epochs
+                "epochs": args.epochs,
+                "existing_batches": len(previous_answer_batches)
             }, file)
 
 if __name__ == "__main__":

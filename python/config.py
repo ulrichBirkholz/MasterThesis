@@ -65,8 +65,6 @@ class Configuration():
 		return self.get_path_for_datafile(file_name)
 	
 	def get_model_path_descriptor(self, question:str, batch_size:int, batch_id:str, descriptor:str):
-		if batch_id is None: # TODO: just to test first set of models, remove it later
-			return f"{question}_{batch_size}_{descriptor}"
 		return f"{question}_{batch_size}_{batch_id}_{descriptor}"
 
 	# AI Model
