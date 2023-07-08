@@ -13,6 +13,8 @@ import logging as log
 
 from typing import List
 
+from config_logger import config_logger
+
 previous_answer_batches = []
 
 def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]):
@@ -86,9 +88,7 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
             }, file)
 
 if __name__ == "__main__":
-
-    log.basicConfig(level=log.DEBUG)
-    log.basicConfig(filename='train.log', filemode='w')
+    config_logger(log.DEBUG, "train.log")
 
     args = setup_args()
     config = Configuration()
