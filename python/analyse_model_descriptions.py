@@ -97,13 +97,15 @@ if __name__ == "__main__":
 
 	df['model_num'] = df['model_identifier'].str.extract('_(\d+)_[A-F]_[a-z]*$').astype(int)
 	asc_df = df.sort_values('model_num', ascending=True)
-	asc_df.drop('model_num', axis=1)
+	asc_df = asc_df.drop('model_num', axis=1)
+
+	asc_df['model_identifier'] = pd.Categorical(asc_df['model_identifier'], categories=asc_df['model_identifier'].unique(), ordered=True)
 
 	print(asc_df)
 
+	plt.figure(figsize=(100, 100))
 	plt.title("Answer distribution across models")
 
-	plt.figure(figsize=(100, 100))
 	cross_tab = pd.crosstab(asc_df['answer_id'], asc_df['model_identifier'])
 	sns.heatmap(cross_tab, cmap="PuBuGn", cbar=False)
 	plt.show()
