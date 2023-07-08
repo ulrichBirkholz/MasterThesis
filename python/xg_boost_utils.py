@@ -8,11 +8,12 @@ from sklearn.metrics import confusion_matrix
 from tsv_utils import Answer
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
 import os
 import shutil
 import logging as log
 
-def _load_components(path):
+def _load_components(path, num_class=0):
 
     if os.path.exists(path):
         model = xgb.XGBClassifier()
@@ -23,8 +24,8 @@ def _load_components(path):
             vectorizer = pickle.load(file)
 
     else:
-        # multiclass classification problem (0 - 3)
-        model = xgb.XGBClassifier(objective='multi:softmax', num_class=4, random_state=42)     
+        # multiclass classification problem (0 - 3), small datasets may not contain all categories
+        model = xgb.XGBClassifier(objective='multi:softmax', num_class=num_class, random_state=42)     
         vectorizer = TfidfVectorizer()
     
     return model, vectorizer
@@ -42,16 +43,22 @@ def train_model(sample:AnswersForQuestion, path):
     # cleanup
     if os.path.exists(path):
         shutil.rmtree(path)
-
-    model, vectorizer = _load_components(path)
     
     answers = []
     ratings = []
     for answer in sample.answers:
         rating = int(answer.score_2)
-        assert rating >= 0 and rating <= 4, f"Invalid rating {rating} was detected"
+        assert rating >= 0 and rating < 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
+
+    num_classes = len(set(ratings))
+    if num_classes < 4:
+        label_encoder = LabelEncoder()
+        ratings = label_encoder.fit_transform(ratings)
+    
+    
+    model, vectorizer = _load_components(path, len(set(ratings)))
     
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
     model.fit(vectorizer.fit_transform(answers_train), ratings_train)
@@ -75,7 +82,7 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
     ratings = []
     for answer in answers_for_question.answers:
         rating = int(answer.score_2)
-        assert rating >= 0 and rating <= 4, f"Invalid rating {rating} was detected"
+        assert rating >= 0 and rating < 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
 

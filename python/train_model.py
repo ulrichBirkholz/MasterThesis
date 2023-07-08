@@ -1,4 +1,4 @@
-from tsv_utils import get_questions
+from tsv_utils import get_questions, Answer
 from tsv_utils import get_answers_per_question
 from bert_utils import train_model as bert_train_model, AnswersForQuestion
 from xg_boost_utils import train_model as xgb_train_model
@@ -11,9 +11,14 @@ import json
 import argparse
 import logging as log
 
+from typing import List
+
 previous_answer_batches = []
 
-def _jaccard_similarity(list1, list2):
+def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]):
+    list1 = [answer.answer_id for answer in answer_batch_a]
+    list2 = [answer.answer_id for answer in answer_batch_b]
+
     intersection = len(set(list1) & set(list2))
     union = len(set(list1) | set(list2))
     return intersection / union
@@ -21,6 +26,7 @@ def _jaccard_similarity(list1, list2):
 def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
     for answer_batch in previous_answer_batches:
         if _jaccard_similarity(answer_batch, new_answer_batch) > 0.2:
+            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} is to similar compared to the old one: {[answer.answer_id for answer in answer_batch]}")
             return True
     return False
 
@@ -48,8 +54,8 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 shutil.rmtree(path)
 
     answer_batch = random.sample(answers, batch_size.size)
-    while _is_too_similar(answer_batch):
-        log.error(f"Answer batch is too similar to existing one")
+    while _is_too_similar(previous_answer_batches, answer_batch):
+        log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = random.sample(answers, batch_size.size)
 
     previous_answer_batches.append(answer_batch)
@@ -82,6 +88,7 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
 if __name__ == "__main__":
 
     log.basicConfig(level=log.DEBUG)
+    log.basicConfig(filename='train.log', filemode='w')
 
     args = setup_args()
     config = Configuration()
