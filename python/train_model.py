@@ -27,8 +27,9 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
 
 def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
     for answer_batch in previous_answer_batches:
-        if _jaccard_similarity(answer_batch, new_answer_batch) > 0.2:
-            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} is to similar compared to the old one: {[answer.answer_id for answer in answer_batch]}")
+        similarity = _jaccard_similarity(answer_batch, new_answer_batch)
+        if similarity > 0.2:
+            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]}")
             return True
     return False
 
