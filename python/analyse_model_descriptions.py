@@ -94,12 +94,13 @@ if __name__ == "__main__":
 	
 
 	df = pd.DataFrame({'answer_id': data_frame["answer_ids"], 'model_identifier': data_frame["model_identifier"]})
+	asc_df = df.sort_values('model_identifier', ascending=True)
 
-	print(df)
+	print(asc_df)
 
 	plt.title("Answer distribution across models")
 
 	plt.figure(figsize=(100, 100))
-	cross_tab = pd.crosstab(df['answer_id'], df['model_identifier'])
+	cross_tab = pd.crosstab(asc_df['answer_id'], asc_df['model_identifier'])
 	sns.heatmap(cross_tab, cmap="PuBuGn", cbar=False)
 	plt.show()
