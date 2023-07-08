@@ -94,7 +94,10 @@ if __name__ == "__main__":
 	
 
 	df = pd.DataFrame({'answer_id': data_frame["answer_ids"], 'model_identifier': data_frame["model_identifier"]})
-	asc_df = df.sort_values('model_identifier', ascending=True)
+
+	df['model_num'] = df['model_identifier'].str.extract('_(\d+)_[A-F]_[a-z]*$').astype(int)
+	asc_df = df.sort_values('model_num', ascending=True)
+	asc_df.drop('model_num', axis=1)
 
 	print(asc_df)
 
