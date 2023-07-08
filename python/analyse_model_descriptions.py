@@ -5,6 +5,7 @@ import logging as log
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import re
 
 def _tabs_for_alignment(text, tabstop=8):
 	if len(text) >= 32:
@@ -62,7 +63,9 @@ if __name__ == "__main__":
 
 					# -> Adjust this to modify the analysed dataset
 					# TODO: parameterise??
-					if model_id.startswith("5") and "_50_" in model_id and model_id.endswith("ai") and version_dir.startswith("bert"):
+					pattern = r'^bert_v1_5_(50|100|200|400)_B_ai$'
+
+					if re.match(pattern, model_id):
 						for answer in data['answer_batch']:
 							data_frame["answer_ids"].append(answer['answer_id'])
 							data_frame["model_identifier"].append(model_id)
