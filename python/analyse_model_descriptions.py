@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
 					# -> Adjust this to modify the analysed dataset
 					# TODO: parameterise??
-					pattern = r'^bert_v1_5_(50|100|200|400)_B_ai$'
+					pattern = r'^bert_v1_5_(50|100|200|400)_[B]_ai$'
 
 					if re.match(pattern, model_id):
 						for answer in data['answer_batch']:

@@ -24,6 +24,7 @@ MAX_TOKEN_LENGTH = 512
 # currently not wanted
 os.environ["WANDB_DISABLED"] = "true"
 
+
 def _save_dataset(train_dataset, validation_dataset, path):
     os.makedirs(path, exist_ok=True)
 
@@ -32,6 +33,7 @@ def _save_dataset(train_dataset, validation_dataset, path):
         pickle.dump(train_dataset, file)
     with open(f"{path}validation_dataset.pkl", 'wb') as file:
         pickle.dump(validation_dataset, file)
+
 
 def _load_components(path):
     model_and_tokenizer_source = path

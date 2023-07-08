@@ -11,6 +11,19 @@ import json
 import argparse
 import logging as log
 
+previous_answer_batches = []
+
+def _jaccard_similarity(list1, list2):
+    intersection = len(set(list1) & set(list2))
+    union = len(set(list1) | set(list2))
+    return intersection / union
+
+def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
+    for answer_batch in previous_answer_batches:
+        if _jaccard_similarity(answer_batch, new_answer_batch) > 0.2:
+            return True
+    return False
+
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
@@ -35,7 +48,12 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 shutil.rmtree(path)
 
     answer_batch = random.sample(answers, batch_size.size)
-    # TODO: check if random works as intended
+    while _is_too_similar(answer_batch):
+        log.error(f"Answer batch is too similar to existing one")
+        answer_batch = random.sample(answers, batch_size.size)
+
+    previous_answer_batches.append(answer_batch)
+
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
 
     log.debug(f"Training question_id: {question.question_id} for batch_size: {len(answer_batch)} with {args.epochs} epochs")
