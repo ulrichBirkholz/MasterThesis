@@ -29,14 +29,14 @@ def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
     for answer_batch in previous_answer_batches:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
 
-        if len(new_answer_batch) < 1600:
+        if len(new_answer_batch) <= 800:
             max_similarity = 0.2
-        else:
+        elif len(new_answer_batch) <= 1600:
             # larger batches naturally have a higher similarity
-            max_similarity = 0.26
+            max_similarity = 0.51
 
         if similarity > max_similarity:
-            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]}")
+            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]} with len: {len(answer_batch)}")
             return True
     return False
 
