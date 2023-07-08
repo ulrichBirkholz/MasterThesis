@@ -28,7 +28,14 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
 def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
     for answer_batch in previous_answer_batches:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
-        if similarity > 0.2:
+
+        if len(new_answer_batch) < 1600:
+            max_similarity = 0.2
+        else:
+            # larger batches naturally have a higher similarity
+            max_similarity = 0.26
+
+        if similarity > max_similarity:
             log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]}")
             return True
     return False
@@ -57,7 +64,7 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 shutil.rmtree(path)
 
     answer_batch = random.sample(answers, batch_size.size)
-    # NOTE: we observed several similarities of 1.0, so random.sample which translates to the selection of identical answer batches
+    # NOTE: we observed several similarities of 1.0, which translates to the selection of identical answer batches
     while _is_too_similar(previous_answer_batches, answer_batch):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = random.sample(answers, batch_size.size)
