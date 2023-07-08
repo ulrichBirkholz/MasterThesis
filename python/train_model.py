@@ -57,6 +57,7 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 shutil.rmtree(path)
 
     answer_batch = random.sample(answers, batch_size.size)
+    # NOTE: we observed several similarities of 1.0, so random.sample which translates to the selection of identical answer batches
     while _is_too_similar(previous_answer_batches, answer_batch):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = random.sample(answers, batch_size.size)

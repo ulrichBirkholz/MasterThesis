@@ -1,7 +1,7 @@
 import logging
 
 def config_logger(level: int, filename="execution.log"):
-	logger = logging.getLogger(__name__)
+	logger = logging.getLogger()
 	logger.setLevel(level)
 
 	console_handler = logging.StreamHandler()
