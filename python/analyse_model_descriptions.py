@@ -13,9 +13,9 @@ def _tabs_for_alignment(text, tabstop=8):
 		tabs = 1
 	return "\t" * tabs
 
-def _generate_model_id(descriptor:str, question_id:str):
+def _generate_model_id(descriptor:str, question_id:str, version:str):
     index = descriptor.find('_')
-    return f"{question_id}{descriptor[index:]}"
+    return f"{version}_{question_id}{descriptor[index:]}"
 
 if __name__ == "__main__":
 	config = Configuration()
@@ -48,14 +48,17 @@ if __name__ == "__main__":
 						except Exception as e:
 							log.error(f"Unable to parse file: {description_file}, error: {e}")
 							continue
+					
+
+					model_id = _generate_model_id(data['descriptor'], data['question_id'], version_dir)
 
 					# Write the path and contents of the JSON file to the output file
 					file.write(f"Path: {model_dir_path}\n")
 					file.write(f"Question Id: {data['question_id']} batch size: {data['batch_size']} variant: {data['batch_variant_id']}\n")
 					file.write(f"Descriptor: {data['descriptor']}\n")
+					file.write(f"ID: {model_id}\n")
 					file.write(f"\nAnswers: \n")
 
-					model_id = _generate_model_id(data['descriptor'], data['question_id'])
 
 					# -> Adjust this to modify the analysed dataset
 					# TODO: parameterise??
