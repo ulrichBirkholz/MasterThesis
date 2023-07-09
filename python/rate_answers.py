@@ -6,7 +6,7 @@ from xg_boost_utils import rate_answers as xgb_rate_answers
 from config import Configuration
 from tsv_utils import Question
 from typing import Dict
-import random
+from config_logger import config_logger
 
 import logging as log
 import json
@@ -52,7 +52,7 @@ def _rate_answers(question: Question, answers_for_question:Dict, config:Configur
         json.dump(cm_matrices, file)
 
 if __name__ == "__main__":
-    log.basicConfig(level=log.DEBUG)
+    config_logger(log.DEBUG, "rate.log")
     config = Configuration()
 
     questions = get_questions(config.get_questions_path(), False)
