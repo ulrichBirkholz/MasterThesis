@@ -39,11 +39,11 @@ def _rate_answers(question: Question, answers_for_question:Dict, config:Configur
             
             bert_path = config.get_trained_bert_model_path(question.question, batch_size.size, id, model_descriptor)
             bert_rated_answers, bert_cm_matrix = bert_rate_answers(bert_path, AnswersForQuestion(question.question, question.question_id, answers))
-            _add_value(f"bert_{config.get_model_path_descriptor(question.question, batch_size.size, id, model_descriptor)}", bert_cm_matrix, bert_path)
+            _add_value(cm_matrices, f"bert_{config.get_model_path_descriptor(question.question, batch_size.size, id, model_descriptor)}", bert_cm_matrix, bert_path)
 
             xgb_path = config.get_trained_xg_boost_model_path(question.question, batch_size.size, id, model_descriptor)
             xgb_rated_answers, xgb_cm_matrix = xgb_rate_answers(xgb_path, AnswersForQuestion(question.question, question.question_id, answers))
-            _add_value(f"xgb_{config.get_model_path_descriptor(question.question, batch_size.size, id, model_descriptor)}", xgb_cm_matrix, xgb_path)
+            _add_value(cm_matrices, f"xgb_{config.get_model_path_descriptor(question.question, batch_size.size, id, model_descriptor)}", xgb_cm_matrix, xgb_path)
             
             write_rated_answers_tsv(config.get_rated_answers_path(f"bert_{model_descriptor}", answer_descriptor, batch_size.size, id), bert_rated_answers, True)
             write_rated_answers_tsv(config.get_rated_answers_path(f"xgb_{model_descriptor}", answer_descriptor, batch_size.size, id), xgb_rated_answers, True)
