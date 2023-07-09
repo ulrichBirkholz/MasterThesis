@@ -33,10 +33,14 @@ def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
             max_similarity = 0.2
         else:
             # larger batches naturally have a higher similarity
-            max_similarity = 0.51
+            max_similarity = 0.52
 
         if similarity > max_similarity:
-            log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]} with len: {len(answer_batch)}")
+            if len(new_answer_batch) <= 400:
+                log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]} with len: {len(answer_batch)}")
+            else:
+                # it is not useful to print too large datasets, the entire line won't be displayed anyway
+                log.error(f"The new batch with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one with len: {len(answer_batch)}")
             return True
     return False
 
