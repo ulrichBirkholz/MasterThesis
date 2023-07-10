@@ -6,9 +6,10 @@ def _print_cm(config, model_descriptor, answer_descriptor):
 		data = json.load(file)
 	
 	with open(config.get_path_for_datafile(f"{model_descriptor}_{answer_descriptor}_confusion_matrices.txt"), 'w') as file:
-		for key, cm in data.items():
-			file.write(key + "\n")
-			for row in cm:
+		for key, entry in data.items():
+			file.write(f"Key: {key}\n")
+			file.write(f"Path: {entry['path']}\n")
+			for row in entry["cm_matrix"]:
 				file.write(",".join(map(str, row)) + "\n")
 		file.write("###################################################\n\n")
 
