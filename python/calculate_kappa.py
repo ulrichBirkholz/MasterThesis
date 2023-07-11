@@ -11,25 +11,25 @@ from collections import defaultdict
 from itertools import chain
 import os
 
-
+# TODO: access kappas for boxplot
 class KappaFigure():
     def __init__(self, title:str, identifier:str) -> None:
-        self.figure = plt.figure()
         self.answer_count = -1
         self.all_counts_equal = True
-        plt.title(title)
-        plt.xlabel('Amount of samples the model was trained with')
-        plt.ylabel('Kappa')
 
         self.filename = f"kappa_{identifier}.pdf"
+        self.title = title
+
+        self.kappa_values = []
+        self.model_sample_sizes = []
     
-    def plot(self, x, y, answer_count):
-        if y <= -1 or y >= 1:
-            log.warning(f"Ignore invalid kappa: {y}")
+    def plot(self, model_sample_size, kappa, answer_count):
+        if kappa <= -1 or kappa >= 1:
+            log.warning(f"Ignore invalid kappa: {kappa}")
             return
 
-        plt.figure(self.figure.number)
-        plt.plot(x, y, 'ro')
+        self.kappa_values.append(kappa)
+        self.model_sample_sizes.append(model_sample_size)
 
         if self.answer_count == -1:
             self.answer_count = answer_count
@@ -46,7 +46,14 @@ class KappaFigure():
         plt.figtext(0.5, 1, figtext, fontsize=12, bbox={'facecolor': 'grey', 'alpha': 0.5, 'pad': 10})
 
     def save(self, config: Configuration, figtext:str=None):
-        plt.figure(self.figure.number)
+        figure = plt.figure()
+        plt.title(self.title)
+
+        plt.xlabel('Amount of samples the model was trained with')
+        plt.ylabel('Kappa')
+
+        plt.plot(self.model_sample_sizes, self.kappa_values, 'bo')
+
         if figtext is not None:
             self._add_figtext(figtext)
         elif self.all_counts_equal is True:
@@ -55,7 +62,7 @@ class KappaFigure():
             self._add_figtext(f"Each value represents the agreement of at leased {self.answer_count} ratings")
 
         log.debug(f"Save Diagram: {self.filename}")
-        self.figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
+        figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
 
 
 def _2d_dict():
