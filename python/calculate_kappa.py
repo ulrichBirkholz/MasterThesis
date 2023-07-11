@@ -78,7 +78,7 @@ def _get_diagram_title(model_descriptor: str, answer_descriptor: str):
     refined_type = "AI-Refined" if model_descriptor.endswith("ai") else "Expert-Refined"
     title = f"{platform} {refined_type}"
 
-    if model_descriptor.endswith("ai-v-man"):
+    if model_descriptor.endswith("ai_v_man"):
         title = f"{platform} AI-Refined compared with Expert-Refined ML Model\nrating "
     elif answer_descriptor in descriptors:
         title += descriptors[answer_descriptor]
