@@ -5,6 +5,7 @@ from config import Configuration
 
 import argparse
 import logging as log
+from config_logger import config_logger
 
 # Setup and parse arguments
 def setup_args():
@@ -17,9 +18,7 @@ def setup_args():
     return parser.parse_args()
 
 if __name__ == "__main__":
-
-    log.basicConfig(level=log.DEBUG)
-    log.basicConfig(filename='generate.log', filemode='w')
+    config_logger(log.DEBUG, "generate.log")
 
     args = setup_args()
     config = Configuration()
