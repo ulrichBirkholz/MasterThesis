@@ -71,6 +71,7 @@ def train_model(sample:AnswersForQuestion, path):
 
 
 def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
+    log.debug(f"rating answers with xgb: {path}")
 
     if not os.path.exists(path):
         log.warning(f"The path: {path} does not point to a trained model")

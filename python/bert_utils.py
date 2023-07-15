@@ -99,6 +99,8 @@ def train_model(sample:AnswersForQuestion, path, epochs):
 
 
 def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
+    log.debug(f"rating answers with bert: {path}")
+
     if not os.path.exists(path):
         log.warning(f"The path: {path} does not point to a trained model")
         return [], []
