@@ -363,7 +363,7 @@ if __name__ == "__main__":
             data_set_a = (accumulated_data[model_set[0]][answer_descriptor], model_set[0])
             data_set_b = (accumulated_data[model_set[1]][answer_descriptor], model_set[1])
 
-            descriptor = f"{platform}_ai_vs_man"
+            descriptor = f"{platform}_ai_v_man"
             # it is always ai_vs_man
             title = _get_diagram_title(descriptor, answer_descriptor)
             _print_dual_dataset_boxplot(f"{descriptor}_{answer_descriptor}", data_set_a, data_set_b, title)
