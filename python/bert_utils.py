@@ -117,7 +117,8 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
         with torch.no_grad():
             outputs = model(input_ids, attention_mask=attention_mask)
         
-        answer.score_1 = torch.argmax(outputs.logits, dim=1)
+        answer.score_1 = torch.argmax(outputs.logits, dim=1).item()
+
         predictions.append(int(answer.score_1))
         true_values.append(int(answer.score_2))
 

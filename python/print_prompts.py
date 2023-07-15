@@ -16,7 +16,7 @@ def setup_args():
 if __name__ == "__main__":
 
     log.basicConfig(level=log.DEBUG)
-    log.basicConfig(filename='generate.log', filemode='w')
+    log.basicConfig(filename='prompt.log', filemode='w')
 
     args = setup_args()
 
