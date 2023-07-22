@@ -11,6 +11,13 @@ import re
 from tsv_utils import Answer, Question, KeyElement
 import hashlib
 import tiktoken
+import random
+from dataclasses import dataclass
+
+@dataclass
+class SampleCategory:
+    number_of_key_elements: int
+    task: str
 
 def _count_token(prompt:str) -> int:
     # TODO: model to config
@@ -19,10 +26,10 @@ def _count_token(prompt:str) -> int:
 
     return len(enc.encode(prompt))
 
-def generate_answers(api_key, batch_size, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+def generate_answers(api_key, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     openai.api_key = api_key
 
-    for prompt in generate_answer_prompt(question, batch_size, key_elements):
+    for prompt in generate_answer_prompt(question, key_elements):
         retries = 0
         # TODO: configure amount of retries
         max_retries = 5
@@ -79,76 +86,112 @@ def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presen
 
 def _add_key_elements(prompt:str, key_elements:List[KeyElement]) -> str:
     if len(key_elements) > 0:
-        result = prompt + "\n\nThe key elements are:"
+        result = prompt + "\n\nThe key elements for this task are:"
         for element in key_elements:
             result += f"\n- {element.element}"
     return result + "\n"
 
-# 10 x 20 x 3 = 600 batches.
-# With a batch size of 3, 1800 Answers will be created during one execution
-def generate_answer_prompt(question:Question, batch_size, key_elements:List[KeyElement]):
+def _setup_category(category:SampleCategory, key_elements:List[KeyElement]):
+    random_elements = random.sample(key_elements, category.number_of_key_elements)
+    if len(key_elements) > 0:
+        line = f"{category.task}:"
+        for element in random_elements:
+            line += f"\n- {element.element}"
+    return line
+    
+
+# 10 x 21 x 20 = 4200 individual prompts
+# The texts have been enhanced with the assistance of Chat-GPT, optimizing their comprehensibility for Davinci-003.
+# The elements use a simple phrasing to make them easily understandable
+def generate_answer_prompt(question:Question, key_elements:List[KeyElement]):
 
     # 10 categories of correctness
     sample_categories = [
-        "The answers must not contain any key element expressed in different words",
-        "The answers must contain exactly one key element expressed in different words",
-        "The answers must contain exactly two key elements expressed in different words",
-        "The answers must contain exactly three key elements expressed in different words",
-        "The answers must contain exactly three key elements but in a wrong context",
-        "The answers must contain at leased three key elements",
-        "The answers must be off-topic but contain key elements",
-        "The answers must be contradictory",
-        "The answers must contain misinformation",
-        "The answers must be wrong and less than 8 words in length."
+        SampleCategory(len(key_elements), "avoid any of the following information in the response"),
+        SampleCategory(len(key_elements), "provide an analogy or metaphor for comprehension but avoid any of the following information in the response"),
+        SampleCategory(1, "include a paraphrase of all of the following information in the response"),
+        SampleCategory(2, "include a paraphrase of all of the following information in the response"),
+        SampleCategory(3, "include a paraphrase of all of the following information in the response"),
+        SampleCategory(3, "include a paraphrase of all of the following information in an unrelated or incorrect context in the response"),
+        SampleCategory(random.randint(3, len(key_elements)), "include a paraphrase of all of the following information in the response"),
+        SampleCategory(random.randint(1, len(key_elements)), "include a paraphrase of all of the following information but deviate from the main topic in the response"),
+        SampleCategory(len(key_elements), "create a response that contradicts the following information, with reasoning"),
+        SampleCategory(len(key_elements), "provide an analogy or metaphor for comprehension but avoid any of the following information in the response")
     ]
 
-    # 20 combinations of tone syntax, mood, voice and style
+    # 21 combinations of tone syntax, mood, voice and style
+    # This could be broken down in tones ["Neutral", ...] 
+    #   and syntaxes ["complex scientific jargon", ...] 
+    #   to further increase the number of variations of styles
     styles = [
-        "delivered with a satirical tone, employ complex syntax, establish a joyful mood, utilize a first-person voice, and maintain a descriptive style",
-        "drafted in a formal tone, use simple syntax, cultivate a gloomy mood, adopt a third-person limited voice, and demonstrate an expository style",
-        "composed with a condescending tone, incorporate compound syntax, evoke a suspenseful mood, employ a second-person voice, and adhere to a narrative style",
-        "articulated in an affectionate tone, feature interrogative syntax, foster a melodramatic mood, rely on a stream-of-consciousness voice, and exemplify a persuasive style",
-        "written with an energetic tone, use declarative syntax, generate an excited mood, be expressed in an epistolary voice, and follow an analytical style",
-        "conveyed in a respectful tone, apply active syntax, nurture a nostalgic mood, utilize an autobiographical voice, and espouse an argumentative style",
-        "formulated with a bitter tone, involve passive syntax, create an anxious mood, adopt a third-person omniscient voice, and uphold a cause-and-effect style",
-        "expressed in a candid tone, incorporate fragmented syntax, set a romantic mood, use an unreliable voice, and embrace a compare-and-contrast style",
-        "presented with an enthusiastic tone, feature inverted syntax, kindle a somber mood, apply a reliable voice, and maintain a problem-solution style",
-        "developed in an indifferent tone, use elliptical syntax, engender an angry mood, deploy a subjective voice, and exemplify a sequential style",
-        "written in a humorous tone, integrate cumulative syntax, foster a peaceful mood, employ an objective voice, and espouse a definition style",
-        "shaped with a serious tone, utilize periodic syntax, invoke a fearful mood, use a naive voice, and adopt a classification style",
-        "formulated in a whimsical tone, incorporate parallel syntax, elicit a mysterious mood, employ an experienced voice, and adhere to a process style",
-        "constructed with a melancholic tone, apply antithetical syntax, generate a reflective mood, use a childlike voice, and uphold a critique style",
-        "articulated in a sincere tone, integrate nominal syntax, stimulate a whimsical mood, utilize a worldly voice, and maintain a satirical style",
-        "expressed with a pessimistic tone, employ verbal syntax, kindle an euphoric mood, adopt an introspective voice, and demonstrate an symbolic style",
-        "composed in an optimistic tone, use balanced syntax, provoke a despairing mood, apply a detached voice, and embrace an allegorical style",
-        "delivered in an ironic tone, incorporate parenthetical syntax, cultivate a hopeful mood, employ a cynical voice, and follow an ironical style",
-        "drafted with an informal tone, apply imperative syntax, stir an inspiring mood, utilize an idealistic voice, and uphold a metaphorical style",
-        "written in a sarcastic tone, feature exclamatory syntax, create a bizarre mood, use an innocent voice, and adhere to a realistic style"
+        "Neutral tone with complex scientific jargon",
+        "Academic tone with simple, direct language",
+        "Didactic tone with compound sentences",
+        "Curious tone with question-based syntax",
+        "Energetic tone with assertive language",
+        "Respectful tone with active syntax",
+        "Critical tone with passive syntax",
+        "Honest tone with concise syntax",
+        "Enthusiastic tone with cause-and-effect syntax",
+        "Pragmatic tone with precise syntax",
+        "Serene tone with layered syntax",
+        "Serious tone with procedural syntax",
+        "Imaginative tone with parallel syntax",
+        "Contemplative tone with contrasting syntax",
+        "Clear tone with concise syntax",
+        "Realistic tone with technical syntax",
+        "Optimistic tone with balanced syntax",
+        "Concise tone with analytical syntax",
+        "Engaging tone with narrative syntax",
+        "Curious tone with question-based syntax"
+        "Brief, less than 8 words"
     ]
 
-    # 3 roles the AI embodies by creating the answers
+    # 20 roles the AI embodies by creating the answers
+    # It would be possible to provide a list of distinct idioms if this is not working properly
     roles = [
-        "student learning the topic for the first time",
-        "researcher exploring novel aspects of the topic",
-        "professor with a deep understanding of the subject"
+        # Beginner
+        "an American Southerner using regional vernacular, new to the subject",
+        "an ESL student with basic English skills, discovering the subject",
+        "a Caribbean native with beginner English skills, learning the subject with Creole influences",
+        "an English-speaking student learning the topic for the first time",
+        "a non-native English speaker with limited English, navigating basic concepts of the topic",
+        
+        # Intermediate
+        "an American Midwesterner with intermediate subject knowledge, using regional dialect",
+        "a Scot with foundational subject knowledge, integrating Scottish slang",
+        "an East African English speaker studying the topic at an intermediate level with Swahili influences",
+        "an undergraduate student with a basic grasp on the subject",
+        "a non-specialist approaching the subject from a different field's perspective",
+
+        # Advanced
+        "a native English speaking senior researcher with considerable subject knowledge",
+        "a Bostonian with substantial understanding of the subject, using local dialect",
+        "a South African with significant subject understanding, integrating local colloquialisms",
+        "a Canadian with deep subject understanding, using Canadian English expressions",
+        "an advanced ESL student with comprehensive subject knowledge",
+
+        # Expert
+        "a Scottish subject expert integrating Scots dialect",
+        "a non-native English speaker who is a leading subject expert",
+        "an ESL professor teaching the subject at a postgraduate level with high English proficiency",
+        "a native English speaker who is a renowned subject expert",
+        "a native English speaker from Ireland who is a field leader, using Irish English idioms"
     ]
 
     for category in sample_categories:
         for style in styles:
             for role in roles:
+                # we use JSON array for the later possibility of creating multiple answers per prompt
                 prompt = f"""
-Imagine you're a {role}.
-Develop {batch_size} distinct responses for the question '{question.question}' Each response should be confined to a maximum of two sentences.
-The text should be {style}.
-Try to use different analogies, examples or contextual scenarios in your responses.
-Represent the responses and their scores in a JSON array of strings, following this structure: ["answer1", "answer2"]"""
+As {role}, develop an answer for the question '{question.question}' in a maximum of two sentences.
+Use a {style} as communication style.
+Please return your answer as a JSON array: ["answer"]"""
 
                 if question.sample_answer is not None:
                     prompt += f"\nConsider '{question.sample_answer}' as sample solution containing all relevant aspects."
 
-                prompt = _add_key_elements(prompt, key_elements)
-
-                prompt += f"\nNOTE: {category}"
+                prompt += f"\nAlso {_setup_category(category, key_elements)}"
 
             yield prompt
 
@@ -241,28 +284,27 @@ def _parse_rating_from_answer(answer):
 
     return final_answer, number
 
-def generate_rating_prompt(question, numerated_answers, ignore_text_syntax, key_elements):
-    prompt = f"""I am an AI trained to score responses based on a four-point scale of relevance, coherence, and completeness.
-The answers to be rated are formatted as JSON in the following matter {{"answer_id1":"answer1"}} 
-Evaluate the following answers based on the quantity of key elements present from 0 to 3:"""
-
+def generate_rating_prompt(question, numerated_answers, key_elements):
+    prompt = f"""In this task, you will assess answers to a specific question, based on the presence of distinct key elements.
+These elements may not be quoted verbatim, but their central meaning should be clearly conveyed in the response."""
     prompt = _add_key_elements(prompt, key_elements)
 
     prompt += f"""
-Question: {question.question}
-Answers: {numerated_answers}
+You will classify each answer into categories, depending on the number of key elements it contains:
+    Category 0: The answer includes none of the key elements.
+    Category 1: The describes includes one key element.
+    Category 2: The describes includes two key elements.
+    Category 3: The describes includes three or more key elements.
 
-rating_id: criteria
-0: Other
-1: One key element
-2: Two key elements
-3: Three key elements
+Keep in mind, the punctuation, stylistic choices, or the specific wording used in an answer do not influence its score.
+The evaluation is solely based on the presence or absence of the key elements.
 
-Present the ratings in a JSON format like {{"answer_id1":"rating_id1"}}"""
+The answers will be provided to you in JSON format, such as {{"answer_id1":"answer1"}}.
+After you assess them, you should provide the scores in a similar JSON format: {{"answer_id1":"rating_id1"}}.
 
-    if ignore_text_syntax:
-        prompt += "\nIgnore spelling or punctuation mistakes for the evaluation."
-    
+Question: "{question.question}"
+Answers: "{numerated_answers}"
+"""
     return prompt
 
 def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> List[Answer]:
@@ -305,13 +347,13 @@ def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_
             return [_add_rating(numerated_rated_answers, answer_id, rating_id) for answer_id, rating_id in json_answer.items()]
         raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
 
-def rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+def rate_answers(api_key, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     retry = 0
     # TODO: configuration
     max_retries = 5
     while retry < max_retries:
         try:
-            yield _rate_answers(api_key, question, answers, ignore_text_syntax, key_elements)
+            yield _rate_answers(api_key, question, answers, key_elements)
             break
         except JSONDecodeError as e:
             retry += 1

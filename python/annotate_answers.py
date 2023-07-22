@@ -12,8 +12,6 @@ def setup_args():
     
     # 2 produces stable results, 5 is unstable, so some responses are unparsable 10 and higher was unusable
     parser.add_argument('chunk_size', default=2, type=int, help='Maximal amount of simultaneously annotated Answers')
-    parser.add_argument('--use_sample', action='store_true', help='Use SampleAnswer for more context')
-    parser.add_argument('--ignore_text_syntax', action='store_true', help='Ignore spelling or punctuation mistakes for the evaluation')
     return parser.parse_args()
 
 def _chunk(answers, size:int):
@@ -39,7 +37,7 @@ if __name__ == "__main__":
         key_elements = key_elements_per_question[question_id]
         question = next(filter(lambda question: question.question_id == question_id, questions))
         for chunk in _chunk(answers, args.chunk_size):
-            write_answers_tsv(answer_path, rate_answers(args.api_key, question, chunk, True, key_elements), True)
+            write_answers_tsv(answer_path, rate_answers(args.api_key, question, chunk, key_elements), True)
 
             
     

@@ -1,37 +1,36 @@
-from tsv_utils import KeyElement, Question
+from tsv_utils import get_questions, get_key_elements_by_question_id, get_answers_per_question
 from generate_base_answers import generate_answer_prompt, generate_rating_prompt
+from config import Configuration
+import random
 
-import argparse
 import logging as log
-
-# Setup and parse arguments
-def setup_args():
-    parser = argparse.ArgumentParser(description='Print prompts as they will be sent to open.ai')
-    
-    # 2 produces stable results, 5 is unstable, so some responses are unparsable 10 and higher was unusable
-    parser.add_argument('batch_size', default=3, type=int, help='Each of the 600 batches, generates "batch_size" number of answers. With a batch size of 3, this equates to 1,800 answers being produced.')
-    parser.add_argument('--use_sample', action='store_true', help='Use SampleAnswer for more context')
-    return parser.parse_args()
+from config_logger import config_logger
 
 if __name__ == "__main__":
-
-    log.basicConfig(level=log.DEBUG)
-    log.basicConfig(filename='prompt.log', filemode='w')
-
-    args = setup_args()
+    config_logger(log.DEBUG, 'prompt.log')
+    config = Configuration()
+    key_elements_per_question = get_key_elements_by_question_id(config.get_key_elements_path())
+    answers_per_question = get_answers_per_question(config.get_ai_answers_path())
 
     # We target 4k Answers per Question in total
-    for question in [Question(f"Question-{id}", None, str(id)) for id in range(2)]:
-        key_elements = [KeyElement(question.question_id, f"Key-element-{id}") for id in range(5)]
+    for question in get_questions(config.get_questions_path(), False):
+        key_elements = key_elements_per_question[question.question_id]
+        answers = random.sample(answers_per_question[question.question_id], 10)
+
+        numerated_rated_answers = {
+        f"{idx+1}": answer for idx, answer in enumerate(answers)}
+
+        # map {id:answer} sent to openAi
+        numerated_answers = {f"{idx}": answer.answer
+                            for idx, answer in numerated_rated_answers.items()}
         
         print("Create answer Prompts:")
         print("##########################################################################################\n")
-        for prompt in generate_answer_prompt(question, args.batch_size, key_elements):
+        for prompt in generate_answer_prompt(question, key_elements):
             print(prompt)
             print("##########################################################################################\n")
         
-        rate_prompt = generate_rating_prompt(question, {f"{idx}": answer
-                         for idx, answer in enumerate(['answer 1', 'answer 2', 'answer 3'])}, True, key_elements)
+        rate_prompt = generate_rating_prompt(question, numerated_answers, key_elements)
         print(f"Rate answers Prompt:\n{rate_prompt}")
         print("##########################################################################################\n")
     
