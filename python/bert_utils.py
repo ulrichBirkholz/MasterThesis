@@ -83,11 +83,12 @@ def train_model(sample:AnswersForQuestion, path, epochs):
         logging_dir=f"{path}logs",
     )
 
+    # TODO: check if Trainer uses best model 'save_best_model' or something
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset,
-        eval_dataset=validation_dataset,
+        eval_dataset=validation_dataset
     )
 
     # Save data before training, the model will be saved by the trainer (see output_dir)

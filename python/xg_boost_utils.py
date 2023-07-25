@@ -60,12 +60,14 @@ def train_model(sample:AnswersForQuestion, path):
     
     model, vectorizer = _load_components(path, len(set(ratings)))
     
+    # We split the data the same way as for bert, to keep it comparable
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
     model.fit(vectorizer.fit_transform(answers_train), ratings_train)
     
     predictions = model.predict(vectorizer.transform(answers_test))
     accuracy = accuracy_score(predictions, ratings_test)
-    print("Accuracy: %.2f%%" % (accuracy * 100.0))
+
+    log.info("Accuracy of xg_boost model: %.2f%%" % (accuracy * 100.0))
     
     _save_model_and_vectorizer(model, vectorizer, path)
 
