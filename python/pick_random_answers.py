@@ -6,11 +6,12 @@ from typing import List
 import logging as log
 from config_logger import config_logger
 
+# {'category', percent} -> {'0': 10, '1': 50, '2': 15, '3': 25}
 def _calculate_distribution(answers:List[Answer]):
     category_counts = Counter([answer.score_2 for answer in answers])
     total_count = len(answers)
-    distribution = {k: round((v / total_count * 100)) for k, v in category_counts.items()}
-    return distribution
+    return {category: round((count / total_count) * 100) for category, count in category_counts.items()}
+
 
 def _get_adjust_distribution(ai_answers, man_answers_distribution):
     total_count = len(ai_answers)
@@ -30,6 +31,22 @@ def _get_adjust_distribution(ai_answers, man_answers_distribution):
     return adjusted_distribution
 
 def _split_array(answers:List[Answer], training_size):
+    distribution = _calculate_distribution(answers)
+
+    training_factor = training_size / len(answers)
+    rating_factor = 1 - training_factor
+
+    category_items = {category: [answer for answer in ai_answers if answer.score_2 == category] for category in man_answers_distribution}
+
+    answers_for_training = []
+    answers_for_rating = []
+    for category, target_percent in distribution.items():
+        sample_size_training = len(category_items[category]) * training_factor
+        answers_for_training.extend(random.sample(category_items[category], sample_size_training))
+
+        sample_size_rating = len(category_items[category]) * rating_factor
+        answers_for_rating.extend(random.sample(category_items[category], sample_size_rating))
+
     answers_for_training = random.sample(answers, training_size)  # Select training_size random elements used to train the model
     answers_for_rating = [answer for answer in answers if answer not in answers_for_training] # The rest is for rating
 
