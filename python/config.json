@@ -14,5 +14,6 @@
 	"man_answers_to_rate": "man_answers_to_rate.tsv",
 	"key_elements": "key_elements.tsv",
 	"rated_answers": "rated_#.tsv",
+	"ttr_calculations": "ttr_calculations.tsv",
 	"batch_sizes": [{"size":50, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":100, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":200, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":400, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":800, "ids":["A"]}, {"size":1600, "ids":["A"]}, {"size":3200, "ids":["A"]}]
 }

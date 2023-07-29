@@ -27,6 +27,9 @@ class Configuration():
 	def _get_path_for_model(self, suffix):
 		return f"{self.config['model_path']}/{self.config[suffix]}"
 
+	def get_ttr_calculations_path(self):
+		return self.get_path_for_datafile(self.config["ttr_calculations"])
+
 	# tsv files
 	def get_questions_path(self):
 		return self.get_path_for_datafile(self.config["questions"])
