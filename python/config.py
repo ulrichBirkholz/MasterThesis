@@ -43,6 +43,9 @@ class Configuration():
 	
 	def get_ai_unrated_answer_path(self):
 		return self.get_path_for_datafile(self.config["ai_unrated_answer_path"])
+	
+	def get_ai_rated_man_answers_path(self):
+		return self.get_path_for_datafile(self.config["ai_rated_man_answers"])
 
 	def get_man_answers_path(self):
 		return self.get_path_for_datafile(self.config["man_answers"])

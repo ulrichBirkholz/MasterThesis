@@ -29,7 +29,7 @@ def _count_token(prompt:str) -> int:
 
     return len(enc.encode(prompt))
 
-# TODO: call this generate_samples
+# TODO: rename this method to 'generate_samples'
 def generate_answers(api_key, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     openai.api_key = api_key
 
@@ -395,10 +395,10 @@ These elements may not be quoted verbatim, but their central meaning should be c
 
     prompt += f"""
 You will classify each answer into categories, depending on the number of key elements it contains:
-    Category 0: The answer includes none of the key elements.
-    Category 1: The describes includes one key element.
-    Category 2: The describes includes two key elements.
-    Category 3: The describes includes three or more key elements.
+    0: The answer includes none of the key elements.
+    1: The describes includes one key element.
+    2: The describes includes two key elements.
+    3: The describes includes three or more key elements.
 
 Keep in mind, the punctuation, stylistic choices, or the specific wording used in an answer do not influence its score.
 The evaluation is solely based on the presence or absence of the key elements.
@@ -411,7 +411,7 @@ Answers: "{numerated_answers}"
 """
     return prompt
 
-def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_text_syntax, key_elements:List[KeyElement], score_type:int) -> List[Answer]:
+def _rate_answers(api_key, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement], score_type:int) -> List[Answer]:
     openai.api_key = api_key
     numerated_rated_answers = {
         f"{idx+1}": answer for idx, answer in enumerate(answers)}
@@ -420,7 +420,7 @@ def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_
     numerated_answers = {f"{idx}": answer.answer
                          for idx, answer in numerated_rated_answers.items()}
 
-    prompt = generate_rating_prompt(question, numerated_answers, ignore_text_syntax, key_elements)
+    prompt = generate_rating_prompt(question, numerated_answers, key_elements)
     log.debug(f"Annotate sample answers with the following prompt: {prompt}")
 
     # Set up parameters for generating answers
@@ -454,13 +454,15 @@ def _rate_answers(api_key, question:Question, answers: Iterator[Answer], ignore_
         raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
 
 # TODO: call this annotate_samples
-def rate_answers(api_key, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement], score_type:int) -> Generator[List[Answer], None, None]:
+def rate_answers(api_key, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
     retry = 0
     max_retries = 5
     while retry < max_retries:
         try:
-            log.debug(f"Try to rate answers for score_type {score_type} with retry number: {retry}")
-            yield _rate_answers(api_key, question, answers, key_elements, score_type)
+            log.debug(f"Try to rate answers with retry number: {retry}")
+            # rate score_1 and score_2
+            rated_answers = _rate_answers(api_key, question, answers, key_elements, 1)
+            yield _rate_answers(api_key, question, rated_answers, key_elements, 2)
             break
         except JSONDecodeError as e:
             retry += 1
