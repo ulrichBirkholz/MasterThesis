@@ -24,11 +24,11 @@ _data_writer = DataWriter()
 # {'category', percent} -> {'0': 10, '1': 50, '2': 15, '3': 25}
 def _calculate_distribution(answers:List[Answer], score_type:int, total:bool = False):
     category_counts = Counter([getattr(answer, f'score_{score_type}') for answer in answers])
-    total_count = len(answers)
     if total:
-        return {category: count for category, count in category_counts.items()}
+        return {category: category_counts[category] for category in sorted(category_counts)}
     else:
-        return {category: round((count / total_count) * 100) for category, count in category_counts.items()}
+        total_count = len(answers)
+        return {category: round((category_counts[category] / total_count) * 100) for category in sorted(category_counts)}
 
 def _adjust_distribution(ai_answers, man_answers_distribution, score_type:int):
     total_count = len(ai_answers)
@@ -130,7 +130,8 @@ def _cleanup(config:Configuration):
 # TODO: add - factor of ration ai = n times man to distribution.txt
 
 # TODO: if the distribution is too different in the end, we need to think of something else
-#   - maybe by adding a tollerance to the categories
+#   - maybe by adding a tolerance to the categories
+#   - we could calculate the ratio and increase the tolerance until we reach a certain value
 if __name__ == "__main__":
     config = Configuration()
     config_logger(log.DEBUG, "pick_answers.log")
