@@ -29,6 +29,9 @@ class Configuration():
 
 	def get_ttr_calculations_path(self):
 		return self.get_path_for_datafile(self.config["ttr_calculations"])
+	
+	def get_distribution_path(self):
+		return self.get_path_for_datafile(self.config["distribution"])
 
 	# tsv files
 	def get_questions_path(self):
