@@ -57,6 +57,7 @@ def _kv_pairs(string):
 
 
 # Setup and parse arguments
+# example: python -m train_model --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
 
