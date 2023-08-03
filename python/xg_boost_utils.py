@@ -38,7 +38,7 @@ def _save_model_and_vectorizer(model, vectorizer, path):
             pickle.dump(vectorizer, file)
     
 
-def train_model(sample:AnswersForQuestion, path):
+def train_model(sample:AnswersForQuestion, path, score_type):
 
     # cleanup
     if os.path.exists(path):
@@ -47,16 +47,17 @@ def train_model(sample:AnswersForQuestion, path):
     answers = []
     ratings = []
     for answer in sample.answers:
-        rating = int(answer.score_2)
+        rating = int(getattr(answer, f'score_{score_type}'))
         assert rating >= 0 and rating < 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
 
+    """
     num_classes = len(set(ratings))
     if num_classes < 4:
         label_encoder = LabelEncoder()
         ratings = label_encoder.fit_transform(ratings)
-    
+    """
     
     model, vectorizer = _load_components(path, len(set(ratings)))
     

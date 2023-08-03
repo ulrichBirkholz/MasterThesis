@@ -106,6 +106,7 @@ def _split_answers_for_question(answers_redistributed_per_question, mode:str, co
         answers = distribution["answers"]
 
         all_answers = distribution["all_answers"]
+        _data_writer.add_line(f"{mode} answers for question: {question_id} use score_type", score_type)
         _data_writer.add_line(f"Distribution in % of all {mode} answers for question: {question_id}", _calculate_distribution(all_answers, score_type))
         _data_writer.add_line(f"Distribution of all {mode} answers for question: {question_id}", _calculate_distribution(all_answers, score_type, True))
 

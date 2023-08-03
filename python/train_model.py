@@ -25,7 +25,7 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
     union = len(set(list1) | set(list2))
     return intersection / union
 
-def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
+def _is_too_similar(previous_answer_batches, new_answer_batch, score_type:int) -> bool:
     for answer_batch in previous_answer_batches:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
 
@@ -42,34 +42,57 @@ def _is_too_similar(previous_answer_batches, new_answer_batch) -> bool:
                 # it is not useful to print too large datasets, the entire line won't be displayed anyway
                 log.error(f"The new batch with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one with len: {len(answer_batch)}")
             return True
+
+    # ensure the presence of at leased one answer per score_type
+    if len(set([getattr(answer, f'score_{score_type}') for answer in new_answer_batch])) == 4:
+        return True
+    
     return False
+
+
+def _kv_pairs(string):
+    # Convert "key=value" pairs into pairs
+    key, value = string.split('=')
+    return key, value
+
 
 # Setup and parse arguments
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
+
+    parser.add_argument('--ai_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
+                    help='key-value to defining ai question_id and the respective score_type to be used')
+    parser.add_argument('--man_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
+                    help='key-value to defining man question_id and the respective score_type to be used')
+
     parser.add_argument('-epochs', type=int, default=10, help='Number of training iterations')
     return parser.parse_args()
 
-def _train_model_for_question(answers, question, descriptor_args, args, batch_size, id, descriptor):
+
+def _does_model_exist(paths):
+    markers = [f"{path}description.json" for path in paths]
+    markers_exist = [os.path.exists(marker) for marker in markers]
+
+    # If any of the marker_does not exist, delete all models for this question
+    if not all(markers_exist):
+        for path in paths:
+            if os.path.exists(path):
+                shutil.rmtree(path)
+        return False
+
+    return True
+
+
+def _train_model_for_question(answers, question, descriptor_args, args, batch_size, id, descriptor, score_type):
     bert_path = config.get_trained_bert_model_path(*descriptor_args)
     xgb_path = config.get_trained_xg_boost_model_path(*descriptor_args)
 
-    # TODO: currently we skip if the file exists in either of folder
-    # but we should only skip training the respective model
-    for path in [bert_path, xgb_path]:
-        # we started training for this batch
-        if os.path.exists(path):
-            finish_marker = f"{path}description.json"
-            # the training was finished, nothing left to do
-            if os.path.exists(finish_marker):
-                return
-            else:
-                # the answers are randomly selected so we do not continue
-                shutil.rmtree(path)
+    if _does_model_exist([bert_path, xgb_path]):
+        return
 
     answer_batch = random.sample(answers, batch_size.size)
     # NOTE: we observed several similarities of 1.0, which translates to the selection of identical answer batches
-    while _is_too_similar(previous_answer_batches, answer_batch):
+    while _is_too_similar(previous_answer_batches, answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = random.sample(answers, batch_size.size)
 
@@ -78,8 +101,8 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
 
     log.debug(f"Training question_id: {question.question_id} for batch_size: {len(answer_batch)} with {args.epochs} epochs")
-    bert_train_model(samples, bert_path, args.epochs)
-    xgb_train_model(samples, xgb_path)
+    bert_train_model(samples, bert_path, args.epochs, score_type)
+    xgb_train_model(samples, xgb_path, score_type)
 
     for path in [bert_path, xgb_path]:
         finish_marker = f"{path}description.json"
@@ -117,6 +140,9 @@ if __name__ == "__main__":
             for id in batch_size.ids:
                 total_number_of_modles += 2
 
+    ai_score_types = {question_id: score_type for question_id, score_type in args.ai_score_types}
+    man_score_types = {question_id: score_type for question_id, score_type in args.man_score_types}
+
     train_model = 1
     for question in questions:
         for batch_size in config.get_batch_sizes():
@@ -126,7 +152,7 @@ if __name__ == "__main__":
                     descriptor_args = (question.question, batch_size.size, id, 'ai')
                     descriptor = config.get_model_path_descriptor(*descriptor_args)
                     _train_model_for_question(ai_answers[question.question_id], question,
-                                            descriptor_args, args, batch_size, id, descriptor)
+                                            descriptor_args, args, batch_size, id, descriptor, ai_score_types[question.question_id])
                 else:
                     log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
                 train_model += 1
@@ -136,7 +162,7 @@ if __name__ == "__main__":
                     descriptor_args = (question.question, batch_size.size, id, 'man')
                     descriptor = config.get_model_path_descriptor(*descriptor_args)
                     _train_model_for_question(man_answers[question.question_id], question,
-                                        descriptor_args, args, batch_size, id, descriptor)
+                                        descriptor_args, args, batch_size, id, descriptor, man_score_types[question.question_id])
                 else:
                     log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
                 train_model += 1

@@ -50,7 +50,7 @@ def _load_components(path):
     return model, tokenizer, device
 
 
-def train_model(sample:AnswersForQuestion, path, epochs):
+def train_model(sample:AnswersForQuestion, path, epochs, score_type):
 
     # cleanup
     if os.path.exists(path):
@@ -62,7 +62,7 @@ def train_model(sample:AnswersForQuestion, path, epochs):
     for answer in sample.answers:
         encodings = tokenizer(sample.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH, return_tensors='pt')
 
-        label = int(answer.score_2)
+        label = int(getattr(answer, f'score_{score_type}'))
         assert label >= 0 and label < 4, f"Invalid label {label} was detected"
         
         dataset.append({'input_ids': encodings['input_ids'].squeeze(), 'attention_mask': encodings['attention_mask'].squeeze(), 'labels': label})
