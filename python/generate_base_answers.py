@@ -68,7 +68,7 @@ def _execute_api_call(prompt, max_tokens, temperature, frequency_penalty, presen
                 frequency_penalty=frequency_penalty,
                 presence_penalty=presence_penalty,
                 n=1,
-                stop=None,
+                stop=None
             )
         except RateLimitError as e:
             retries += 1
@@ -183,7 +183,7 @@ def generate_answer_prompt(question:Question, key_elements:List[KeyElement]):
             "Like finding a needle in a haystack",  # Extremely hard to find
             "Faster than a one-legged man in a butt-kicking contest"  # Very fast
         ],
-        "category_9": [
+        "category_2": [
             "Bite the bullet",  # Face a difficult situation
             "Hit the nail on the head",  # Exactly right
             "When pigs fly",  # Never
@@ -285,10 +285,10 @@ def generate_answer_prompt(question:Question, key_elements:List[KeyElement]):
     roles = [
         # Beginner
         SampleRole("an American Southerner using regional vernacular, new to the subject", "category_1"),
-        SampleRole("an ESL student with basic English skills, discovering the subject", "category_9"),
+        SampleRole("an ESL student with basic English skills, discovering the subject", "category_2"),
         SampleRole("a Caribbean native with beginner English skills, learning the subject with Creole influences", "category_3"),
         SampleRole("an English-speaking student learning the topic for the first time", None),
-        SampleRole("a non-native English speaker with limited English, navigating basic concepts of the topic", "category_9"),
+        SampleRole("a non-native English speaker with limited English, navigating basic concepts of the topic", "category_2"),
         
         # Intermediate
         SampleRole("an American Midwesterner with intermediate subject knowledge, using regional dialect", "category_4"),
@@ -379,8 +379,17 @@ def _validate_rating(rating):
     error_msg = ""
     try:
         rating = int(rating)
+        if rating < 0:
+            log.error(f"Identified invalid rating: {rating}. {error_msg}")
+            return 0
+        
+        if rating > 3:
+            log.error(f"Identified invalid rating: {rating}. {error_msg}")
+            return 3
+
         if rating >= 0 and rating <= 3:
             return rating
+
     except Exception as e:
         error_msg = f" Error: {str(e)}"
 
@@ -394,14 +403,13 @@ These elements may not be quoted verbatim, but their central meaning should be c
     prompt = _add_key_elements(prompt, key_elements)
 
     prompt += f"""
-You will classify each answer into categories, depending on the number of key elements it contains:
+You will classify each answer into categories, depending on the number of key elements it contains from 0 to 3:
     0: The answer includes none of the key elements.
     1: The describes includes one key element.
     2: The describes includes two key elements.
     3: The describes includes three or more key elements.
 
 Keep in mind, the punctuation, stylistic choices, or the specific wording used in an answer do not influence its score.
-The evaluation is solely based on the presence or absence of the key elements.
 
 The answers will be provided to you in JSON format, such as {{"answer_id1":"answer1"}}.
 After you assess them, you should provide the scores in a similar JSON format: {{"answer_id1":"rating_id1"}}.
