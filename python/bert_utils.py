@@ -2,6 +2,7 @@ import os
 import shutil
 import pickle
 from transformers import BertForSequenceClassification, BertTokenizer, Trainer, TrainingArguments
+from transformers.trainer_utils import IntervalStrategy
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 import torch
@@ -81,7 +82,8 @@ def train_model(sample:AnswersForQuestion, path, epochs, score_type):
         weight_decay=0.01,
         learning_rate=1e-5,
         logging_dir=f"{path}logs",
-        load_best_model_at_end=True
+        load_best_model_at_end=True,
+        evaluation_strategy=IntervalStrategy.STEPS
     )
 
     trainer = Trainer(
