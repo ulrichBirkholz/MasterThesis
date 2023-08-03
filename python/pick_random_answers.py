@@ -30,8 +30,9 @@ def _calculate_distribution(answers:List[Answer], score_type:int, total:bool = F
         total_count = len(answers)
         return {category: round((category_counts[category] / total_count) * 100) for category in sorted(category_counts)}
 
-def _adjust_distribution(ai_answers, man_answers_distribution, score_type:int):
+def _adjust_distribution(ai_answers, man_answers_distribution, score_type:int, min_size:int=0):
     total_count = len(ai_answers)
+    assert min_size < total_count, f"The minimal required result size: {min_size} is larger than the total number of answers: {total_count}"
 
     category_items = {category: [answer for answer in ai_answers if getattr(answer, f'score_{score_type}') == category] for category in man_answers_distribution}
 
@@ -40,9 +41,22 @@ def _adjust_distribution(ai_answers, man_answers_distribution, score_type:int):
 
     log.debug(f"Lowest category ratio: {lowest_category_ratio}")
 
-    new_distributions = [random.sample(category_items[category], round((target_percent / 100) * total_count * lowest_category_ratio)) 
-            for category, target_percent in man_answers_distribution.items()]
-    return [item for category in new_distributions for item in category]
+    result = []
+    tolerance = 0
+    # increase tolerance until we reach the desired number of answers
+    while (len(result) < min_size):
+        result.clear()
+        for category, target_percent in man_answers_distribution.items():
+            number_of_samples = len(category_items[category])
+            number_to_pick = round((target_percent / 100) * total_count * lowest_category_ratio) + tolerance
+
+            if number_to_pick > number_of_samples:
+                number_to_pick = number_of_samples
+
+            result.extend(random.sample(category_items[category], number_to_pick))
+        tolerance += 1
+
+    return result
 
 
 def _select_answers_for_category(category_item, factor):
@@ -53,7 +67,7 @@ def _select_answers_for_category(category_item, factor):
 
 
 def _split_answers(answers:List[Answer], score_type, training_size):
-    assert len(answers) > training_size + 100, f"""The distribution is too small!
+    assert len(answers) >= training_size + 100, f"""The distribution is too small!
 We need at leased {training_size} answers for training + 100 answers for rating, but we have only {len(answers)}"""
 
     # we split the list of answers based on its current distribution and the defined training_size
@@ -77,7 +91,7 @@ We need at leased {training_size} answers for training + 100 answers for rating,
 
 def _split_answers_for_question(answers_redistributed_per_question, mode:str, config:Configuration):
     if mode == "ai":
-        training_size = 200 #TODO: 3200
+        training_size = 3200
         training_path = config.get_ai_answers_for_training_path()
         rating_path = config.get_ai_answers_to_rate_path()
     else:
@@ -109,7 +123,6 @@ def _split_answers_for_question(answers_redistributed_per_question, mode:str, co
         _data_writer.add_line(f"Number of dropped {mode} answers for question: {question_id}", len(all_answers) - len(answers_for_rating) - len(answers_for_training))
         write_answers_tsv(training_path, [answers_for_training], True)
         write_answers_tsv(rating_path, [answers_for_rating], True)
-        
 
 
 def _delete_file(file):
@@ -146,6 +159,7 @@ if __name__ == "__main__":
     for question_id, man_answers in man_answers_per_question.items():
         ai_answers = ai_answers_per_question[question_id]
 
+        # distribution for score_1 and score_2
         man_answers_distribution = {score_type: _calculate_distribution(man_answers, score_type) for score_type in range(1, 3)}
         log.debug(f"Calculated the following distributions: {man_answers_distribution} for question: {question_id}")
 
@@ -167,6 +181,10 @@ if __name__ == "__main__":
         score_types = list(map(int, largest_distribution.split('_')))
         
         _data_writer.add_line(f"Ratio of used answers ai vs. man for question: {question_id}", len(ai_answers_redistributed) / len(man_answers))
+
+        # we require at leased 3200 answers to train the model + 100 to rate
+        ai_answers_redistributed = _adjust_distribution(ai_answers, man_answers_distribution[score_types[0]], score_types[1], 3300)
+
         ai_answers_redistributed_per_question[question_id] = {"score_type": score_types[1], "answers": ai_answers_redistributed, "all_answers": ai_answers}
         man_answers_redistributed_per_question[question_id] = {"score_type": score_types[0], "answers": man_answers, "all_answers": man_answers}
 
