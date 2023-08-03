@@ -53,6 +53,9 @@ class Configuration():
 	def get_man_answers_path(self):
 		return self.get_path_for_datafile(self.config["man_answers"])
 
+	def get_man_answers_src_path(self):
+		return self.get_path_for_datafile(self.config["man_answers_src"])
+
 	def get_key_elements_path(self):
 		return self.get_path_for_datafile(self.config["key_elements"])
 	

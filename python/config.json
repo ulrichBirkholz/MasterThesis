@@ -10,6 +10,7 @@
 	"ai_answers_to_rate": "ai_answers_to_rate.tsv",
 	"ai_unrated_answer_path": "ai_unrated_answer.tsv",
 	"man_answers": "man_answers.tsv",
+	"man_answers_src": "train.tsv",
 	"ai_rated_man_answers": "ai_rated_man_answers.tsv",
 	"man_answers_for_training": "man_answers_for_training.tsv",
 	"man_answers_to_rate": "man_answers_to_rate.tsv",
