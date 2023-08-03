@@ -36,6 +36,7 @@ def _is_too_similar(previous_answer_batches, new_answer_batch, score_type:int) -
             max_similarity = 0.52
 
         if similarity > max_similarity:
+            # log more information for smaller batches
             if len(new_answer_batch) <= 400:
                 log.error(f"The new batch {[answer.answer_id for answer in new_answer_batch]} with len: {len(new_answer_batch)} is to similar: {similarity} compared to the old one: {[answer.answer_id for answer in answer_batch]} with len: {len(answer_batch)}")
             else:
@@ -44,7 +45,9 @@ def _is_too_similar(previous_answer_batches, new_answer_batch, score_type:int) -
             return True
 
     # ensure the presence of at leased one answer per score_type
-    if len(set([getattr(answer, f'score_{score_type}') for answer in new_answer_batch])) == 4:
+    score_types = set([getattr(answer, f'score_{score_type}') for answer in new_answer_batch])
+    if len(score_types) < 4:
+        log.error(f"One answer of each category (0 - 3) must be present: {score_types}")
         return True
     
     return False
