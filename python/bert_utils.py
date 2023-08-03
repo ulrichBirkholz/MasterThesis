@@ -81,14 +81,14 @@ def train_model(sample:AnswersForQuestion, path, epochs, score_type):
         weight_decay=0.01,
         learning_rate=1e-5,
         logging_dir=f"{path}logs",
+        load_best_model_at_end=True
     )
 
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset,
-        eval_dataset=validation_dataset,
-        load_best_model_at_end=True
+        eval_dataset=validation_dataset
     )
 
     # Save data before training, the model will be saved by the trainer (see output_dir)
