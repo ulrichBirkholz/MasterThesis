@@ -63,7 +63,10 @@ def _select_answers_for_category(category_item, factor):
     category_len = len(category_item)
     sample_size = round(category_len * factor)
     log.debug(f"About to pick {sample_size} random answers form {category_len} samples")
-    return random.sample(category_item, sample_size)
+    result = random.sample(category_item, sample_size)
+    for answer in result:
+        category_item.remove(answer)
+    return result
 
 
 def _split_answers(answers:List[Answer], score_type, training_size):
@@ -79,13 +82,17 @@ We need at leased {training_size} answers for training + 100 answers for rating,
     category_items = {category: [answer for answer in answers if getattr(answer, f'score_{score_type}') == category] for category in distribution}
 
     answers_for_training = []
-    answers_for_rating = []
 
     for category, target_percent in distribution.items():
         category_item = category_items[category]
         answers_for_training.extend(_select_answers_for_category(category_item, training_factor))
-        answers_for_rating.extend(_select_answers_for_category(category_item, rating_factor))
 
+    # rounding requires sometimes a fill up
+    if len(answers_for_training) < training_size:
+        unused_answers = [answer for answer in answers if answer not in answers_for_training]
+        answers_for_training.extend(random.sample(unused_answers, training_size - len(answers_for_training)))
+    
+    answers_for_rating = [answer for answer in answers if answer not in answers_for_training]
     return answers_for_training, answers_for_rating
 
 
