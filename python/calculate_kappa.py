@@ -236,7 +236,7 @@ def _print_dual_dataset_boxplot(identifier: str, x_y_model_data_1, x_y_model_dat
         for box in bplot['boxes']:
             box.set_facecolor(color)
 
-    plt.xticks([i for i in range(len(x_values_sorted))], x_values_sorted)
+    plt.xticks(ticks=[i for i in range(len(x_values_sorted))], labels=x_values_sorted, rotation=45, ha='right')
 
     if for_all_boxes_equal_d1 and for_all_boxes_equal_d2 and min_kappa_count_dataset_1 == min_kappa_count_dataset_2:
         figtext = f"Each box represents exactly {min_kappa_count_dataset_1}"
