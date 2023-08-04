@@ -59,7 +59,7 @@ def _kv_pairs(string):
     return key, value
 
 # Setup and parse arguments
-# example: python -m rate_model --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1
+# example: python -m rate_answers --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
 
@@ -68,7 +68,6 @@ def setup_args():
     parser.add_argument('--man_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
                     help='key-value to defining man question_id and the respective score_type to be used')
 
-    parser.add_argument('-epochs', type=int, default=10, help='Number of training iterations')
     return parser.parse_args()
 
 if __name__ == "__main__":
