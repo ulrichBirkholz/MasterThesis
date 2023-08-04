@@ -164,9 +164,9 @@ def _calculate_kappa_for_model(ratings:List[Rating]):
     return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
 
 def _calculate_kappa_for_score_types(ratings_a:List[Rating], score_type_a, ratings_b:List[Rating], score_type_b):
-    if len(ratings) < 100:
-        log.warning(f"Not enough scores: {len(ratings)} to calculate kappa")
-        return -5, len(ratings)
+    if len(ratings_a) < 100:
+        log.warning(f"Not enough scores: {len(ratings_a)} to calculate kappa")
+        return -5, len(ratings_a)
     
     if len(ratings_a) != len(ratings_b):
         log.error(f"We try to compare ratings of different length, a: {len(ratings_a)}, b: {len(ratings_b)}")
