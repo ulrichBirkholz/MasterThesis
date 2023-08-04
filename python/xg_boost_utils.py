@@ -51,13 +51,6 @@ def train_model(sample:AnswersForQuestion, path, score_type):
         assert rating >= 0 and rating < 4, f"Invalid rating {rating} was detected"
         answers.append(answer.answer)
         ratings.append(rating)
-
-    """
-    num_classes = len(set(ratings))
-    if num_classes < 4:
-        label_encoder = LabelEncoder()
-        ratings = label_encoder.fit_transform(ratings)
-    """
     
     model, vectorizer = _load_components(path, len(set(ratings)))
     
@@ -73,7 +66,7 @@ def train_model(sample:AnswersForQuestion, path, score_type):
     _save_model_and_vectorizer(model, vectorizer, path)
 
 
-def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
+def rate_answers(path, answers_for_question:AnswersForQuestion, score_type) -> List[Answer]:
     log.debug(f"rating answers with xgb: {path}")
 
     if not os.path.exists(path):
@@ -93,7 +86,9 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
     predictions = model.predict(vectorizer.transform(answers))
 
     for answer, prediction in zip(answers_for_question.answers, predictions):
+        original_value = int(getattr(answer, f'score_{score_type}'))
         answer.score_1 = prediction
+        answer.score_2 = original_value
 
     cm = confusion_matrix(ratings, predictions)
     return answers_for_question.answers, cm.tolist()

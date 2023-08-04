@@ -101,7 +101,7 @@ def train_model(sample:AnswersForQuestion, path, epochs, score_type):
     tokenizer.save_pretrained(path)
 
 
-def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
+def rate_answers(path, answers_for_question:AnswersForQuestion, score_type) -> List[Answer]:
     log.debug(f"rating answers with bert: {path}")
 
     if not os.path.exists(path):
@@ -120,10 +120,14 @@ def rate_answers(path, answers_for_question:AnswersForQuestion) -> List[Answer]:
         with torch.no_grad():
             outputs = model(input_ids, attention_mask=attention_mask)
         
-        answer.score_1 = torch.argmax(outputs.logits, dim=1).item()
+        result = int(torch.argmax(outputs.logits, dim=1).item())
+        original_value = int(getattr(answer, f'score_{score_type}'))
 
-        predictions.append(int(answer.score_1))
-        true_values.append(int(answer.score_2))
+        answer.score_1 = result
+        answer.score_2 = original_value
+
+        predictions.append(result)
+        true_values.append(original_value)
 
     cm = confusion_matrix(true_values, predictions)
     return answers_for_question.answers, cm.tolist()
