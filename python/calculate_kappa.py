@@ -236,7 +236,7 @@ def _print_dual_dataset_boxplot(identifier: str, x_y_model_data_1, x_y_model_dat
         for box in bplot['boxes']:
             box.set_facecolor(color)
 
-    plt.xticks(ticks=[i for i in range(len(x_values_sorted))], labels=x_values_sorted, rotation=45, ha='right')
+    plt.xticks([i for i in range(len(x_values_sorted))], x_values_sorted)
 
     if for_all_boxes_equal_d1 and for_all_boxes_equal_d2 and min_kappa_count_dataset_1 == min_kappa_count_dataset_2:
         figtext = f"Each box represents exactly {min_kappa_count_dataset_1}"
@@ -331,7 +331,7 @@ if __name__ == "__main__":
     score_1_v_2.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 2))
     score_1_v_2.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 1))
     score_1_v_2.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 2))
-
+    plt.xticks(rotation=45, ha='right')
     score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.")
     ########################
 
