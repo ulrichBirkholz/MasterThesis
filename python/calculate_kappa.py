@@ -48,12 +48,15 @@ class KappaFigure():
                 self.answer_count = answer_count
 
 
-    def save(self, config: Configuration, figtext:str=None):
+    def save(self, config: Configuration, figtext:str=None, compact:bool=False):
         figure = plt.figure()
         plt.title(self.title)
 
         plt.xlabel('Amount of samples the model was trained with')
         plt.ylabel('Kappa')
+
+        if compact:
+            plt.xticks(rotation=45, ha='right')
 
         plt.plot(self.model_sample_sizes, self.kappa_values, 'ro')
 
@@ -323,7 +326,6 @@ if __name__ == "__main__":
     ai_rated_man_answers = _answers_to_rating(get_answers(config.get_ai_rated_man_answers_path()))
 
     score_1_v_2 = KappaFigure("Kappa of score_1 vs. score_2", "score_1_vs_score_2")
-    plt.xlabel('Source')
     score_1_v_2.plot("GPT-Dataset", *_calculate_kappa_for_model(all_ai_answers))
     score_1_v_2.plot("Expert-Dataset", *_calculate_kappa_for_model(all_man_answers))
     score_1_v_2.plot("GPT-Rating-Expert-Dataset", *_calculate_kappa_for_model(ai_rated_man_answers))
@@ -331,8 +333,7 @@ if __name__ == "__main__":
     score_1_v_2.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 2))
     score_1_v_2.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 1))
     score_1_v_2.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 2))
-    plt.xticks(rotation=45, ha='right')
-    score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.")
+    score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.", True)
     ########################
 
     # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)][A-F]
