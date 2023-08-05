@@ -69,30 +69,30 @@ def _select_answers_for_category(category_item, factor):
     return result
 
 
-def _split_answers(answers:List[Answer], score_type, training_size):
-    assert len(answers) >= training_size + 100, f"""The distribution is too small!
-We need at leased {training_size} answers for training + 100 answers for rating, but we have only {len(answers)}"""
+def _split_answers(all_answers:List[Answer], distributed_answers:List[Answer], score_type, training_size):
+    assert len(distributed_answers) >= training_size + 100, f"""The distribution is too small!
+We need at leased {training_size} answers for training + 100 answers for rating, but we have only {len(distributed_answers)}"""
 
     # we split the list of answers based on its current distribution and the defined training_size
-    distribution = _calculate_distribution(answers, score_type)
+    distribution = _calculate_distribution(distributed_answers, score_type)
 
-    training_factor =  training_size / len(answers)
-    rating_factor = 1 - training_factor
+    training_factor =  training_size / len(distributed_answers)
 
-    category_items = {category: [answer for answer in answers if getattr(answer, f'score_{score_type}') == category] for category in distribution}
+    category_items = {category: [answer for answer in distributed_answers if getattr(answer, f'score_{score_type}') == category] for category in distribution}
 
     answers_for_training = []
 
+    # the category fits already to the desired distribution
     for category, target_percent in distribution.items():
         category_item = category_items[category]
         answers_for_training.extend(_select_answers_for_category(category_item, training_factor))
 
     # rounding requires sometimes a fill up
     if len(answers_for_training) < training_size:
-        unused_answers = [answer for answer in answers if answer not in answers_for_training]
+        unused_answers = [answer for answer in distributed_answers if answer not in answers_for_training]
         answers_for_training.extend(random.sample(unused_answers, training_size - len(answers_for_training)))
     
-    answers_for_rating = [answer for answer in answers if answer not in answers_for_training]
+    answers_for_rating = [answer for answer in all_answers if answer not in answers_for_training]
     return answers_for_training, answers_for_rating
 
 
@@ -123,7 +123,7 @@ def _split_answers_for_question(answers_redistributed_per_question, mode:str, co
         _data_writer.add_line(f"Number of all {mode} answers for question: {question_id}", len(all_answers))
         log.debug(f"distribution contains: {len(answers)} answers")
 
-        answers_for_training, answers_for_rating = _split_answers(answers, score_type, training_size)
+        answers_for_training, answers_for_rating = _split_answers(all_answers, answers, score_type, training_size)
         _data_writer.add_line(f"Distribution in % of {mode} answers for rating for question: {question_id}", _calculate_distribution(answers_for_rating, score_type))
         _data_writer.add_line(f"Distribution in % of {mode} answers for training for question: {question_id}", _calculate_distribution(answers_for_training, score_type))
         _data_writer.add_line(f"Number of {mode} answers for rating for question: {question_id}", len(answers_for_rating))
