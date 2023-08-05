@@ -52,20 +52,24 @@ class KappaFigure():
         figure = plt.figure()
         plt.title(self.title)
 
-        plt.xlabel('Amount of samples the model was trained with')
-        plt.ylabel('Kappa')
-
         if compact:
             plt.xticks(rotation=45, ha='right')
 
-        plt.plot(self.model_sample_sizes, self.kappa_values, 'ro')
-
+        x_label = "Amount of samples the model was trained with"
         if figtext is not None:
-            _add_figtext(figure, figtext)
+            #_add_figtext(figure, figtext)
+            x_label += f"\n{figtext}"
         elif self.all_counts_equal is True:
-            _add_figtext(figure, f"Each value represents the agreement of exactly {self.answer_count} ratings")
+            #_add_figtext(figure, f"Each value represents the agreement of exactly {self.answer_count} ratings")
+            x_label += f"\nEach value represents the agreement of exactly {self.answer_count} ratings"
         else:
-            _add_figtext(figure, f"Each value represents the agreement of at leased {self.answer_count} ratings")
+            #_add_figtext(figure, f"Each value represents the agreement of at leased {self.answer_count} ratings")
+            x_label += f"\nEach value represents the agreement of at leased {self.answer_count} ratings"
+
+        plt.xlabel(x_label)
+        plt.ylabel("Kappa")
+
+        plt.plot(self.model_sample_sizes, self.kappa_values, 'ro')
 
         log.debug(f"Save Diagram: {self.filename}")
         figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
