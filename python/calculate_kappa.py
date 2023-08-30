@@ -21,20 +21,21 @@ class KappaFigure():
         self.title = title
 
         self.kappa_values = []
-        self.model_sample_sizes = []
+        self.labels = []
     
 
     def get_values(self):
-        return self.model_sample_sizes, self.kappa_values
+        return self.labels, self.kappa_values
 
 
-    def plot(self, model_sample_size, kappa, answer_count):
+    def plot(self, label, kappa, answer_count):
         if kappa <= -1 or kappa >= 1:
             log.warning(f"Ignore invalid kappa: {kappa}")
             return
 
         self.kappa_values.append(kappa)
-        self.model_sample_sizes.append(model_sample_size)
+        self.labels.append(label)
+        log.debug(f"Extending diagram: {self.filename} with kappa: {kappa} for label: {label}")
 
         if self.answer_count == -1:
             self.answer_count = answer_count
@@ -67,7 +68,7 @@ class KappaFigure():
         plt.xlabel(x_label)
         plt.ylabel("Kappa")
 
-        plt.plot(self.model_sample_sizes, self.kappa_values, 'ro')
+        plt.plot(self.labels, self.kappa_values, 'ro')
 
         log.debug(f"Save Diagram: {self.filename}")
         figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
@@ -295,7 +296,7 @@ if __name__ == "__main__":
     for batch_size in config.get_batch_sizes():
         for id in batch_size.ids:
             log.debug(f"Calculate graph for batch size: {batch_size.size} and id: {id}")
-            ratings = _recursive_default_dict()
+            rating_sets = _recursive_default_dict()
 
             for model in chain.from_iterable(model_sets):
                 for type in training_data + rating_data:
@@ -308,18 +309,20 @@ if __name__ == "__main__":
 
                     # we do not compare data used for training across models
                     if type in rating_data:
-                        ratings[type][model] = model_ratings
+                        rating_sets[type][model] = model_ratings
 
                     _get_figure_for_dataset(diagrams, id, model, type).plot(batch_size.size, *_calculate_kappa_for_model(model_ratings))
             
-            for type, selected_model_ratings in ratings.items():
+            # calculate kappa of score_1 vs score_1
+            for type, selected_model_ratings in rating_sets.items():
                 assert len(selected_model_ratings) == len(list(chain.from_iterable(model_sets))), f"Found inconsistent rating set {type}, {selected_model_ratings.keys()}"
+                # figures for 
                 for model_set in model_sets:
                     ratings, platform = _filter_model_ratings(selected_model_ratings, model_set)
                     kappa, answer_count = _calculate_kappa_for_models(*ratings)
                     log.debug(f"{platform}_ai_v_man - batch_size: {batch_size.size} kappa: {kappa} samples: {answer_count}")
                     if kappa >= -1 and kappa <= 1:
-                        _get_figure_for_dataset(diagrams, id, f"{platform}_ai_v_man", type).plot(batch_size.size, kappa, answer_count)
+                        _get_figure_for_dataset(diagrams, id, f"{platform}_ai_v_man_score_1", type).plot(batch_size.size, kappa, answer_count)
 
 
     # TODO: beautify ######
@@ -327,15 +330,15 @@ if __name__ == "__main__":
     all_man_answers = _answers_to_rating(get_answers(config.get_man_answers_path()))
     ai_rated_man_answers = _answers_to_rating(get_answers(config.get_ai_rated_man_answers_path()))
 
-    score_1_v_2 = KappaFigure("Kappa of score_1 vs. score_2", "score_1_vs_score_2")
-    score_1_v_2.plot("GPT-Dataset", *_calculate_kappa_for_model(all_ai_answers))
-    score_1_v_2.plot("Expert-Dataset", *_calculate_kappa_for_model(all_man_answers))
-    score_1_v_2.plot("GPT-Rating-Expert-Dataset", *_calculate_kappa_for_model(ai_rated_man_answers))
-    score_1_v_2.plot("GPT-VS-Expert score_1 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 1))
-    score_1_v_2.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 2))
-    score_1_v_2.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 1))
-    score_1_v_2.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 2))
-    score_1_v_2.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.", True)
+    chat_gpt_vs_experts = KappaFigure("Kappa of ChatGPT vs Experts", "chat_gpt_vs_experts")
+    chat_gpt_vs_experts.plot("GPT-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_ai_answers))
+    chat_gpt_vs_experts.plot("Expert-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_man_answers))
+    chat_gpt_vs_experts.plot("GPT-Rating-Expert-Dataset  score_1 vs score_2", *_calculate_kappa_for_model(ai_rated_man_answers))
+    chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 1))
+    chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 2))
+    chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 1))
+    chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 2))
+    chat_gpt_vs_experts.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.", True)
     ########################
 
     # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)][A-F]
