@@ -1,5 +1,5 @@
 from tsv_utils import get_questions, write_answers_tsv, get_key_elements_by_question_id
-from generate_base_answers import generate_answers
+from open_ai_utils import generate_samples
 from config import Configuration
 
 
@@ -27,5 +27,5 @@ if __name__ == "__main__":
     for question in questions:
         key_elements = key_elements_per_question[question.question_id]
         # we use yield to iterate over every generated response and save after every performed request
-        write_answers_tsv(unrated_answer_path, generate_answers(args.api_key, question, key_elements), True)
+        write_answers_tsv(unrated_answer_path, generate_samples(args.api_key, question, key_elements), True)
     

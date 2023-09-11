@@ -147,12 +147,6 @@ def _cleanup(config:Configuration):
     _delete_file(config.get_distribution_path())
 
 
-
-# TODO: add - factor of ration ai = n times man to distribution.txt
-
-# TODO: if the distribution is too different in the end, we need to think of something else
-#   - maybe by adding a tolerance to the categories
-#   - we could calculate the ratio and increase the tolerance until we reach a certain value
 if __name__ == "__main__":
     config = Configuration()
     config_logger(log.DEBUG, "pick_answers.log")

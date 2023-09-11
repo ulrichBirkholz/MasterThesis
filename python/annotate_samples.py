@@ -1,5 +1,5 @@
 from tsv_utils import get_questions, write_answers_tsv, get_answers_per_question, get_key_elements_by_question_id
-from generate_base_answers import rate_answers
+from open_ai_utils import annotate_samples
 from config import Configuration
 
 import argparse
@@ -23,10 +23,14 @@ def _chunk(answers, size:int):
 def _process_answers(answers_per_question, questions, key_elements_per_question, answers_path, api_key, chunk_size):
     for question_id, answers in answers_per_question.items():
         key_elements = key_elements_per_question[question_id]
+        
         # find question by id
-        question = next(filter(lambda question: question.question_id == question_id, questions))
-        for chunk in _chunk(answers, chunk_size):
-            write_answers_tsv(answers_path, rate_answers(api_key, question, chunk, key_elements), True)
+        question = next(filter(lambda question: question.question_id == question_id, questions), None)
+        if question:
+            for chunk in _chunk(answers, chunk_size):
+                write_answers_tsv(answers_path, annotate_samples(api_key, question, chunk, key_elements), True)
+        else:
+            log.error(f"no matching question found for Id: {question_id}")
 
 
 if __name__ == "__main__":

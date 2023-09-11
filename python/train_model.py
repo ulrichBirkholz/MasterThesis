@@ -96,6 +96,11 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
 
     answer_batch = random.sample(answers, batch_size.size)
     # NOTE: we observed several similarities of 1.0, which translates to the selection of identical answer batches
+    # We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
+    #   this would be at this point more valuable than pure randomization
+
+    # TODO: try shuffle pick first N entries instead
+    # TODO: remember the purpose of this thesis, to evaluate how well AI generated answers compete with manually generated once when it comes to train an ai
     while _is_too_similar(previous_answer_batches, answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = random.sample(answers, batch_size.size)
@@ -129,7 +134,6 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
 
 if __name__ == "__main__":
     config_logger(log.DEBUG, "train.log")
-
     args = setup_args()
     config = Configuration()
 
