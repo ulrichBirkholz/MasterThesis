@@ -1,0 +1,46 @@
+Distribution in % of ai answers for rating for question: 5: {'0': 0, '1': 2, '2': 3, '3': 95}
+Distribution in % of ai answers for rating for question: 6: {'0': 2, '1': 2, '2': 4, '3': 92}
+Distribution in % of ai answers for training for question: 5: {'0': 1, '1': 15, '2': 20, '3': 64}
+Distribution in % of ai answers for training for question: 6: {'0': 17, '1': 17, '2': 33, '3': 33}
+Distribution in % of all ai answers for question: 5: {'0': 1, '1': 12, '2': 17, '3': 70}
+Distribution in % of all ai answers for question: 6: {'0': 14, '1': 14, '2': 27, '3': 45}
+Distribution in % of all man answers for question: 5: {'0': 77, '1': 18, '2': 2, '3': 2}
+Distribution in % of all man answers for question: 6: {'0': 84, '1': 9, '2': 4, '3': 3}
+Distribution in % of man answers for rating for question: 5: {'0': 77, '1': 18, '2': 3, '3': 2}
+Distribution in % of man answers for rating for question: 6: {'0': 84, '1': 9, '2': 4, '3': 3}
+Distribution in % of man answers for training for question: 5: {'0': 78, '1': 18, '2': 2, '3': 2}
+Distribution in % of man answers for training for question: 6: {'0': 84, '1': 9, '2': 4, '3': 3}
+Distribution in % of used ai answers for question: 5: {'0': 1, '1': 15, '2': 20, '3': 64}
+Distribution in % of used ai answers for question: 6: {'0': 17, '1': 17, '2': 33, '3': 33}
+Distribution in % of used man answers for question: 5: {'0': 77, '1': 18, '2': 2, '3': 2}
+Distribution in % of used man answers for question: 6: {'0': 84, '1': 9, '2': 4, '3': 3}
+Distribution of all ai answers for question: 5: {'0': 25, '1': 488, '2': 673, '3': 2793}
+Distribution of all ai answers for question: 6: {'0': 569, '1': 564, '2': 1081, '3': 1784}
+Distribution of all man answers for question: 5: {'0': 1391, '1': 328, '2': 42, '3': 34}
+Distribution of all man answers for question: 6: {'0': 1515, '1': 160, '2': 71, '3': 51}
+Distribution of used ai answers for question: 5: {'0': 25, '1': 488, '2': 673, '3': 2114}
+Distribution of used ai answers for question: 6: {'0': 569, '1': 564, '2': 1081, '3': 1086}
+Distribution of used man answers for question: 5: {'0': 1391, '1': 328, '2': 42, '3': 34}
+Distribution of used man answers for question: 6: {'0': 1515, '1': 160, '2': 71, '3': 51}
+Number of ai answers for rating for question: 5: 779
+Number of ai answers for rating for question: 6: 798
+Number of ai answers for training for question: 5: 3200
+Number of ai answers for training for question: 6: 3200
+Number of all ai answers for question: 5: 3979
+Number of all ai answers for question: 6: 3998
+Number of all man answers for question: 5: 1795
+Number of all man answers for question: 6: 1797
+Number of dropped ai answers for question: 5: 0
+Number of dropped ai answers for question: 6: 0
+Number of dropped man answers for question: 5: 0
+Number of dropped man answers for question: 6: 0
+Number of man answers for rating for question: 5: 195
+Number of man answers for rating for question: 6: 197
+Number of man answers for training for question: 5: 1600
+Number of man answers for training for question: 6: 1600
+Ratio of used answers ai vs. man for question: 5: 0.0
+Ratio of used answers ai vs. man for question: 6: 0.0
+ai answers for question: 5 use score_type: 1
+ai answers for question: 6 use score_type: 1
+man answers for question: 5 use score_type: 1
+man answers for question: 6 use score_type: 1
