@@ -1,5 +1,6 @@
 from tsv_utils import get_questions, write_answers_tsv, get_answers_per_question, get_key_elements_by_question_id
-from open_ai_utils import annotate_samples
+from open_ai_utils_turbo import annotate_samples_turbo
+from open_ai_utils_davinci import annotate_samples_davinci
 from config import Configuration
 
 import argparse
@@ -20,7 +21,7 @@ def _chunk(answers, size:int):
         yield answers[i:i + size]
 
 
-def _process_answers(answers_per_question, questions, key_elements_per_question, answers_path, api_key, chunk_size):
+def _process_samples(answers_per_question, questions, key_elements_per_question, answers_path, api_key, chunk_size, callback):
     for question_id, answers in answers_per_question.items():
         key_elements = key_elements_per_question[question_id]
         
@@ -28,7 +29,8 @@ def _process_answers(answers_per_question, questions, key_elements_per_question,
         question = next(filter(lambda question: question.question_id == question_id, questions), None)
         if question:
             for chunk in _chunk(answers, chunk_size):
-                write_answers_tsv(answers_path, annotate_samples(api_key, question, chunk, key_elements), True)
+                write_answers_tsv(answers_path, callback(api_key, question, chunk, key_elements), True)
+
         else:
             log.error(f"no matching question found for Id: {question_id}")
 
@@ -41,11 +43,17 @@ if __name__ == "__main__":
     questions = get_questions(config.get_questions_path(), False)
     key_elements_per_question = get_key_elements_by_question_id(config.get_key_elements_path())
 
-    ai_rated_man_answers_path = config.get_ai_rated_man_answers_path()
-    ai_rated_answer_path = config.get_ai_answers_path()
+    davinci_rating_expert_data = config.get_samples_path("davinci_rating_expert_data")
+    davinci_rated_answer_path = config.get_samples_path("davinci")
 
-    unrated_ai_answers_per_question = get_answers_per_question(config.get_ai_unrated_answer_path())
-    man_answers_per_question = get_answers_per_question(config.get_man_answers_path())
+    turbo_rating_expert_data = config.get_samples_path("turbo_rating_expert_data")
+    turbo_rated_answer_path = config.get_samples_path("turbo")
 
-    _process_answers(unrated_ai_answers_per_question, questions, key_elements_per_question, ai_rated_answer_path, args.api_key, args.chunk_size)
-    _process_answers(man_answers_per_question, questions, key_elements_per_question, ai_rated_man_answers_path, args.api_key, args.chunk_size)
+    unrated_davinci_answers_per_question = get_answers_per_question(config.get_unrated_samples_path())
+    expert_answers_per_question = get_answers_per_question(config.get_samples_path("experts"))
+
+    _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, davinci_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_davinci)
+    _process_samples(expert_answers_per_question, questions, key_elements_per_question, davinci_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_davinci)
+    
+    _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_turbo)
+    _process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_turbo)

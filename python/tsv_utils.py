@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import List, Iterator, Any, Dict, Optional
 
 # TODO: refactor, isolate duplicated code, strate up naming (answer, sample, rating score ect.) and such
-# TODO: refactor, consumer must not require knowledge about the tsv files
 
 # Classes
 @dataclass
@@ -13,6 +12,7 @@ class Question:
     question: Optional[str] = None
     sample_answer: Optional[str] = None
     question_id: Optional[str] = None
+    score_offset: Optional[int] = None
 
 @dataclass
 class Answer:
@@ -57,7 +57,7 @@ def get_key_elements_by_question_id(file:str) -> Dict:
 
 
 # Parse a given tsv file and use SampleAnswer depending on the property 'sample'
-# Question | SampleAnswer (Optional) | QuestionId
+# Question | ScoreOffset | SampleAnswer (Optional) | QuestionId
 def get_questions(file:str, use_sample:bool) -> List[Question]:
     questions = []
     with open(file, newline='', encoding='utf-8') as csvfile:
@@ -69,9 +69,13 @@ def get_questions(file:str, use_sample:bool) -> List[Question]:
                 continue
             log.debug(f'Parse Question: {row[0]}')
             parsed_row = Question(row[0])
-            if use_sample and len(row) > 1:
-                log.debug(f'Parse SampleAnswer: {row[1]}')
-                parsed_row.sample_answer = row[1]
+
+            log.debug(f"Parse ScoreOffset: {row[1]}")
+            parsed_row.score_offset = int(row[1])
+
+            if use_sample and len(row[2]) > 1:
+                log.debug(f'Parse SampleAnswer: {row[2]}')
+                parsed_row.sample_answer = row[2]
 
             log.debug(f'Parse QuestionId: {row[-1]}')
             parsed_row.question_id = row[-1]

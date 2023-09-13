@@ -22,10 +22,10 @@ if __name__ == "__main__":
     questions = get_questions(config.get_questions_path(), args.use_sample)
     key_elements_per_question = get_key_elements_by_question_id(config.get_key_elements_path())
 
-    unrated_answer_path = config.get_ai_unrated_answer_path()
+    unrated_samples_path = config.get_unrated_samples_path()
     # We target 4k Answers per Question in total -> batch_size of 7
     for question in questions:
         key_elements = key_elements_per_question[question.question_id]
         # we use yield to iterate over every generated response and save after every performed request
-        write_answers_tsv(unrated_answer_path, generate_samples(args.api_key, question, key_elements), True)
+        write_answers_tsv(unrated_samples_path, generate_samples(args.api_key, question, key_elements), True)
     

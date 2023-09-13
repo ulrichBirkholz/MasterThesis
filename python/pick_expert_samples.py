@@ -5,11 +5,11 @@ from config_logger import config_logger
 import logging as log
 
 if __name__ == "__main__":
-    config_logger(log.DEBUG, 'pick_man_answers.log')
+    config_logger(log.DEBUG, 'pick_expert_samples.log')
     config = Configuration()
 
-    target_file = config.get_man_answers_path()
-    src_file = config.get_man_answers_src_path()
+    target_file = config.get_samples_path("experts")
+    src_file = config.get_all_expert_samples_src_path()
 
     if os.path.exists(target_file):
         os.remove(target_file)

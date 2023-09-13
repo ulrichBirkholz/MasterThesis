@@ -85,12 +85,12 @@ def _recursive_default_dict():
     return defaultdict(_recursive_default_dict)
 
 
-def _get_platform_from_model(model_descriptor: str):
-    return model_descriptor.split("_")[0].upper()
+def _get_platform_from_model(training_data_source: str):
+    return training_data_source.split("_")[0].upper()
 
 
-def _get_diagram_title(model_descriptor: str, answer_descriptor: str):
-    platform = _get_platform_from_model(model_descriptor)
+def _get_diagram_title(training_data_source: str, test_data_source: str):
+    platform = _get_platform_from_model(training_data_source)
     descriptors = {
         "man-training": " ML Model\nrating manually created answers used for training",
         "ai-training": " ML Model\nrating answers created by AI used for training",
@@ -98,35 +98,35 @@ def _get_diagram_title(model_descriptor: str, answer_descriptor: str):
         "ai-rating": " ML Model\nrating answers created by AI"
     }
 
-    refined_type = "AI-Refined" if model_descriptor.endswith("ai") else "Expert-Refined"
+    refined_type = "AI-Refined" if training_data_source.endswith("ai") else "Expert-Refined"
 
-    refined_type = ("AI-Refined compared with Expert-Refined" if model_descriptor.endswith("ai_v_man") 
-                    else "AI-Refined" if model_descriptor.endswith("ai") 
+    refined_type = ("AI-Refined compared with Expert-Refined" if training_data_source.endswith("ai_v_man") 
+                    else "AI-Refined" if training_data_source.endswith("ai") 
                     else "Expert-Refined")
 
     title = f"{platform} {refined_type}"
 
-    if answer_descriptor in descriptors:
-        title += descriptors[answer_descriptor]
+    if test_data_source in descriptors:
+        title += descriptors[test_data_source]
     else:
-        log.warning(f"The answer_descriptor {answer_descriptor} is invalid")
+        log.warning(f"The test_data_source {test_data_source} is invalid")
         return
     
     return title
 
 
-def _get_figure_for_dataset(diagrams:Dict, id:str, model_descriptor:str, answer_descriptor:str) -> KappaFigure:
-    fileLabel = f"{model_descriptor}_model_{answer_descriptor}_answers_{id}"
+def _get_figure_for_dataset(diagrams:Dict, id:str, training_data_source:str, test_data_source:str) -> KappaFigure:
+    fileLabel = f"{training_data_source}_model_{test_data_source}_answers_{id}"
 
-    if model_descriptor not in diagrams or answer_descriptor not in diagrams[model_descriptor] or id not in diagrams[model_descriptor][answer_descriptor]:
-        diagram_title = _get_diagram_title(model_descriptor, answer_descriptor)
+    if training_data_source not in diagrams or test_data_source not in diagrams[training_data_source] or id not in diagrams[training_data_source][test_data_source]:
+        diagram_title = _get_diagram_title(training_data_source, test_data_source)
         
         if diagram_title is None:
             return
         
-        diagrams[model_descriptor][answer_descriptor][id] = KappaFigure(diagram_title, fileLabel)
+        diagrams[training_data_source][test_data_source][id] = KappaFigure(diagram_title, fileLabel)
     
-    return diagrams[model_descriptor][answer_descriptor][id]
+    return diagrams[training_data_source][test_data_source][id]
 
 
 def _get_scores(ratings: List[Rating], score_type:int) -> List[int]:
@@ -287,6 +287,7 @@ if __name__ == "__main__":
     config = Configuration()
     questions_path = config.get_questions_path()
 
+    
     model_sets = [['bert_ai', 'bert_man'], ['xgb_ai', 'xgb_man']]
 
     training_data = ['ai-training', 'man-training']
@@ -300,12 +301,12 @@ if __name__ == "__main__":
 
             for model in chain.from_iterable(model_sets):
                 for type in training_data + rating_data:
-                    rating_path = config.get_rated_answers_path(model, type, batch_size.size, id)
+                    rating_path = config.get_test_results_path(model, type, batch_size.size, id)
                     if not os.path.exists(rating_path):
                         log.info(f"The file {rating_path} does not exist")
                         continue
 
-                    model_ratings = get_ratings(config.get_rated_answers_path(model, type, batch_size.size, id), questions_path)
+                    model_ratings = get_ratings(config.get_test_results_path(model, type, batch_size.size, id), questions_path)
 
                     # we do not compare data used for training across models
                     if type in rating_data:
@@ -326,9 +327,9 @@ if __name__ == "__main__":
 
 
     # TODO: beautify ######
-    all_ai_answers = _answers_to_rating(get_answers(config.get_ai_answers_path()))
-    all_man_answers = _answers_to_rating(get_answers(config.get_man_answers_path()))
-    ai_rated_man_answers = _answers_to_rating(get_answers(config.get_ai_rated_man_answers_path()))
+    all_ai_answers = _answers_to_rating(get_answers(config.get_samples_path("davinci")))
+    all_man_answers = _answers_to_rating(get_answers(config.get_samples_path("experts")))
+    ai_rated_man_answers = _answers_to_rating(get_answers(config.get_samples_path("davinci_rating_expert_data")))
 
     chat_gpt_vs_experts = KappaFigure("Kappa of ChatGPT vs Experts", "chat_gpt_vs_experts")
     chat_gpt_vs_experts.plot("GPT-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_ai_answers))
@@ -342,10 +343,10 @@ if __name__ == "__main__":
     ########################
 
     # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)][A-F]
-    # [model_descriptor][answer_descriptor][id]
+    # [training_data_source][test_data_source][id]
     accumulated_data = _recursive_default_dict()
-    for model_descriptor, answer_descriptor_dict in diagrams.items():
-        for answer_descriptor, batch_id_dict in answer_descriptor_dict.items():
+    for training_data_source, test_data_source_dict in diagrams.items():
+        for test_data_source, batch_id_dict in test_data_source_dict.items():
 
             # x and y for all variants
             x_y_boxplot_data = _recursive_default_dict()
@@ -355,7 +356,7 @@ if __name__ == "__main__":
                 d_x, d_y = diagram.get_values()
 
                 log.debug(f"Adding x: {d_x}, y: {d_y} to boxplot matrix")
-                assert len(d_x) == len(d_y), f"Found inconsistent data for diagram: {model_descriptor} {answer_descriptor} {batch_id}"
+                assert len(d_x) == len(d_y), f"Found inconsistent data for diagram: {training_data_source} {test_data_source} {batch_id}"
 
                 for i, x in enumerate(d_x):
                     if x in x_y_boxplot_data:
@@ -365,24 +366,24 @@ if __name__ == "__main__":
 
                 diagram.save(config)
             
-            title = _get_diagram_title(model_descriptor, answer_descriptor)
-            _print_boxplot(f"{model_descriptor}_{answer_descriptor}", x_y_boxplot_data, title)
+            title = _get_diagram_title(training_data_source, test_data_source)
+            _print_boxplot(f"{training_data_source}_{test_data_source}", x_y_boxplot_data, title)
 
-            if answer_descriptor in rating_data:
+            if test_data_source in rating_data:
                 # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)] = (50 - 3200; A-F)
-                accumulated_data[model_descriptor][answer_descriptor] = x_y_boxplot_data
+                accumulated_data[training_data_source][test_data_source] = x_y_boxplot_data
 
     # boxplots with two datasets (ai vs man)
     for model_set in model_sets:
-        for answer_descriptor in rating_data:
+        for test_data_source in rating_data:
             assert len(model_set) == 2, f"Inconsistent amount of model in set: {model_set}"
             platform = _get_platform_from_model(model_set[0])
 
             # We need to know which model belongs to which dataset
-            data_set_a = (accumulated_data[model_set[0]][answer_descriptor], model_set[0])
-            data_set_b = (accumulated_data[model_set[1]][answer_descriptor], model_set[1])
+            data_set_a = (accumulated_data[model_set[0]][test_data_source], model_set[0])
+            data_set_b = (accumulated_data[model_set[1]][test_data_source], model_set[1])
 
             descriptor = f"{platform}_ai_v_man"
             # it is always ai_vs_man
-            title = _get_diagram_title(descriptor, answer_descriptor)
-            _print_dual_dataset_boxplot(f"{descriptor}_{answer_descriptor}", data_set_a, data_set_b, title)
+            title = _get_diagram_title(descriptor, test_data_source)
+            _print_dual_dataset_boxplot(f"{descriptor}_{test_data_source}", data_set_a, data_set_b, title)

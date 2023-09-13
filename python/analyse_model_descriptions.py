@@ -24,7 +24,7 @@ if __name__ == "__main__":
 	# path to all models
 	base_dir = config._get_base_model_path()
 
-	output_file = config.get_path_for_datafile("model_descriptor_analysis.txt")
+	output_file = config.get_path_for_datafile("model_descriptions_analysis.txt")
 
 	data_frame = {
 		"answer_ids": [],

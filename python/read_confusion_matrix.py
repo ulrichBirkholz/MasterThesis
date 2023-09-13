@@ -1,11 +1,11 @@
 import json
 from config import Configuration
 
-def _print_cm(config, model_descriptor, answer_descriptor):
-	with open(config.get_path_for_datafile(f"{model_descriptor}_{answer_descriptor}_confusion_matrices.json"), "r") as file:
+def _print_cm(config, training_data_source, test_data_source):
+	with open(config.get_path_for_datafile(f"{training_data_source}_{test_data_source}_confusion_matrices.json"), "r") as file:
 		data = json.load(file)
 	
-	with open(config.get_path_for_datafile(f"{model_descriptor}_{answer_descriptor}_confusion_matrices.txt"), 'w') as file:
+	with open(config.get_path_for_datafile(f"{training_data_source}_{test_data_source}_confusion_matrices.txt"), 'w') as file:
 		for key, entry in data.items():
 			file.write(f"Key: {key}\n")
 			file.write(f"Path: {entry['path']}\n")

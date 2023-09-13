@@ -106,8 +106,8 @@ if __name__ == "__main__":
     if os.path.exists(ttr_file_path):
         os.remove(ttr_file_path)
 
-    ai_answers_per_question = get_answers_per_question(config.get_ai_answers_path())
-    man_answers_per_question = get_answers_per_question(config.get_man_answers_path())
+    ai_answers_per_question = get_answers_per_question(config.get_samples_path("davinci"))
+    man_answers_per_question = get_answers_per_question(config.get_samples_path("experts"))
     
     _write_ttrs_to_tsv(ttr_file_path, ai_answers_per_question, "AI")
     _write_ttrs_to_tsv(ttr_file_path, man_answers_per_question, "Manual")

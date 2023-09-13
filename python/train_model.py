@@ -60,10 +60,14 @@ def _kv_pairs(string):
 
 
 # Setup and parse arguments
-# example: python -m train_model --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1
+# example: python -m train_model --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1 --exp --davinci --turbo --gpt4
 def setup_args():
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
 
+    parser.add_argument('--exp', action='store_true', help='Include samples created by human experts')
+    parser.add_argument('--davinci', action='store_true', help='Include samples created by text-davinci-003')
+    parser.add_argument('--turbo', action='store_true', help='Include samples annotated by gpt-3.5-turbo')
+    parser.add_argument('--gpt4', action='store_true', help='Include samples created by gpt4')
     parser.add_argument('--ai_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
                     help='key-value to defining ai question_id and the respective score_type to be used')
     parser.add_argument('--man_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
@@ -87,23 +91,26 @@ def _does_model_exist(paths):
     return True
 
 
-def _train_model_for_question(answers, question, descriptor_args, args, batch_size, id, descriptor, score_type):
-    bert_path = config.get_trained_bert_model_path(*descriptor_args)
-    xgb_path = config.get_trained_xg_boost_model_path(*descriptor_args)
+def _get_random_answers(answers:List[Answer], batch_size:int) -> List[Answer]:
+    random.shuffle(answers)
+    return answers[:batch_size]
+
+
+def _train_model_for_question(answers, question, path_args, args, batch_size, id, base_path, score_type):
+    bert_path = config.get_trained_bert_model_path(*path_args)
+    xgb_path = config.get_trained_xg_boost_model_path(*path_args)
 
     if _does_model_exist([bert_path, xgb_path]):
         return
 
-    answer_batch = random.sample(answers, batch_size.size)
+    answer_batch = _get_random_answers(answers, batch_size)
+
     # NOTE: we observed several similarities of 1.0, which translates to the selection of identical answer batches
     # We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
-    #   this would be at this point more valuable than pure randomization
-
-    # TODO: try shuffle pick first N entries instead
-    # TODO: remember the purpose of this thesis, to evaluate how well AI generated answers compete with manually generated once when it comes to train an ai
+    #   this is at this point considered more valuable than pure randomization
     while _is_too_similar(previous_answer_batches, answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
-        answer_batch = random.sample(answers, batch_size.size)
+        answer_batch = _get_random_answers(answers, batch_size)
 
     previous_answer_batches.append(answer_batch)
 
@@ -127,11 +134,12 @@ def _train_model_for_question(answers, question, descriptor_args, args, batch_si
                 "question": question.question,
                 "batch_size": batch_size.size,
                 "batch_variant_id": id,
-                "descriptor": descriptor,
+                "base_path": base_path,
                 "epochs": args.epochs,
                 "existing_batches": len(previous_answer_batches)
             }, file)
 
+#TODO: refactor score_types
 if __name__ == "__main__":
     config_logger(log.DEBUG, "train.log")
     args = setup_args()
@@ -139,14 +147,41 @@ if __name__ == "__main__":
 
     # samples = [{"question":'...', "answers":[answers]}]
     questions = get_questions(config.get_questions_path(), False)
-    ai_answers = get_answers_per_question(config.get_ai_answers_for_training_path())
-    man_answers = get_answers_per_question(config.get_man_answers_for_training_path())
 
-    total_number_of_modles = 0
+    all_samples = []
+    if args.davinci:
+        all_samples.append({
+            "answers": get_answers_per_question(config.get_samples_for_training_path("davinci")),
+            "source": "davinci",
+            "score_types": {}
+        })
+    
+    if args.turbo:
+        all_samples.append({
+            "answers": get_answers_per_question(config.get_samples_for_training_path("turbo")),
+            "source": "turbo",
+            "score_types": {}
+        })
+    
+    if args.gpt4:
+        all_samples.append({
+            "answers": get_answers_per_question(config.get_samples_for_training_path("gpt4")),
+            "source": "gpt4",
+            "score_types": {}
+        })
+    
+    if args.exp:
+        all_samples.append({
+            "answers": get_answers_per_question(config.get_samples_for_training_path("experts")),
+            "source": "experts",
+            "score_types": {}
+        })
+
+    total_number_of_models = 0
     for question in questions:
         for batch_size in config.get_batch_sizes():
             for id in batch_size.ids:
-                total_number_of_modles += 2
+                total_number_of_models += len(all_samples)
 
     ai_score_types = {question_id: score_type for question_id, score_type in args.ai_score_types}
     man_score_types = {question_id: score_type for question_id, score_type in args.man_score_types}
@@ -155,22 +190,15 @@ if __name__ == "__main__":
     for question in questions:
         for batch_size in config.get_batch_sizes():
             for id in batch_size.ids:
-                log.debug(f"Train model {train_model} of {total_number_of_modles}")
-                if len(ai_answers[question.question_id]) >= batch_size.size:
-                    descriptor_args = (question.question, batch_size.size, id, 'ai')
-                    descriptor = config.get_model_path_descriptor(*descriptor_args)
-                    _train_model_for_question(ai_answers[question.question_id], question,
-                                            descriptor_args, args, batch_size, id, descriptor, ai_score_types[question.question_id])
-                else:
-                    log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(ai_answers[question.question_id])}")
-                train_model += 1
-                
-                log.debug(f"Train model {train_model} of {total_number_of_modles}")
-                if len(man_answers[question.question_id]) >= batch_size.size:
-                    descriptor_args = (question.question, batch_size.size, id, 'man')
-                    descriptor = config.get_model_path_descriptor(*descriptor_args)
-                    _train_model_for_question(man_answers[question.question_id], question,
-                                        descriptor_args, args, batch_size, id, descriptor, man_score_types[question.question_id])
-                else:
-                    log.warning(f"Skip batch size {batch_size.size} for manually created answers, there are not enough: {len(man_answers[question.question_id])}")
-                train_model += 1
+                for samples in all_samples.items():
+                    answers = samples["answers"]
+
+                    log.debug(f"Train model {train_model} of {total_number_of_models}")
+                    if len(answers[question.question_id]) >= batch_size.size:
+                        path_args = (question.question, batch_size.size, id, samples["source"])
+                        base_path = config.get_model_base_path(*path_args)
+                        _train_model_for_question(answers[question.question_id], question,
+                                                path_args, args, batch_size, id, base_path, samples["score_types"][question.question_id])
+                    else:
+                        log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
+                    train_model += 1

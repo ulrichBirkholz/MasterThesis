@@ -86,12 +86,12 @@ def _execute_api_call(messages, max_tokens, temperature, frequency_penalty, pres
     if retries >= max_retries:
         log.error(f"To many retries")
 
-def _add_key_elements(prompt:str, key_elements:List[KeyElement]) -> str:
+def _add_key_elements(key_elements:List[KeyElement]) -> str:
     if len(key_elements) > 0:
-        result = prompt + "\n\nThe key elements for this task are:"
+        result = "The key elements for this task are:"
         for element in key_elements:
             result += f"\n- {element.element}"
-    return result + "\n"
+    return result
 
 def _setup_goal(category:SampleGoal, key_elements:List[KeyElement]):
     line = f"{category.task}"
@@ -445,11 +445,18 @@ def _annotate_samples(api_key, question:Question, answers: Iterator[Answer], key
     )
     log.debug(f"Received the following response '{generated_answers}'")
 
+    """for choice in generated_answers.choices:
+        log.debug(f"generated choice: {choice}")
+
+        message = choice.message['content']
+        log.info(f"generated answer: {message}")"""
     # Extract answers from OpenAI API response
     for choice in generated_answers.choices:
-        log.debug(f"generated rating: {choice.text}")
+        log.debug(f"generated choice: {choice}")
+        message = choice.message['content']
+
         # remove new lines
-        answer = re.sub(r'\n', ' ', choice.text.strip())
+        answer = re.sub(r'\n', ' ', message.strip())
         # find json content
         contains_json = re.search(r'\{.*\}', answer)
 

@@ -10,7 +10,7 @@ if __name__ == "__main__":
     config_logger(log.DEBUG, 'prompt.log')
     config = Configuration()
     key_elements_per_question = get_key_elements_by_question_id(config.get_key_elements_path())
-    answers_per_question = get_answers_per_question(config.get_ai_answers_path())
+    answers_per_question = get_answers_per_question(config.get_samples_path("davinci"))
 
     # We target 4k Answers per Question in total
     for question in get_questions(config.get_questions_path(), False):
