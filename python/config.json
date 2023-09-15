@@ -14,5 +14,5 @@
 	"test_results": "test_results#.tsv",
 	"ttr_calculations": "ttr_calculations.tsv",
 	"distribution": "distribution.txt",
-	"batch_sizes": [{"size":50, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":100, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":200, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":400, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":800, "ids":["A"]}, {"size":1600, "ids":["A"]}, {"size":3200, "ids":["A"]}]
+	"batch_sizes": [{"size":50, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":100, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":200, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":400, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":800, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":1600, "ids":["A"]}, {"size":3200, "ids":["A"]}]
 }

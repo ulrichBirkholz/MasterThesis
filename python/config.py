@@ -47,7 +47,7 @@ class Configuration():
 		return self.get_path_for_datafile(filename)
 	
 	def get_unrated_samples_path(self) -> str:
-		return self.get_path_for_datafile(self.config["ai_unrated_answer_path"])
+		return self.get_path_for_datafile(self.config["unrated_samples_path"])
 
 	def get_all_expert_samples_src_path(self) -> str:
 		return self.get_path_for_datafile(self.config["expert_samples_src"])
@@ -72,12 +72,12 @@ class Configuration():
 		return f"{question}_{batch_size}_{batch_id}_{training_data_source}"
 
 	# AI Model
-	def get_trained_bert_model_path(self, question:str, batch_size:int, batch_id:str, descriptor:str, chat_gpt_model:str) -> str:
-		path_suffix = hashlib.md5(self.get_model_base_path(question, batch_size, batch_id, descriptor, chat_gpt_model).encode()).hexdigest()
+	def get_trained_bert_model_path(self, question:str, batch_size:int, batch_id:str, training_data_source:str) -> str:
+		path_suffix = hashlib.md5(self.get_model_base_path(question, batch_size, batch_id, training_data_source).encode()).hexdigest()
 		return f"{self._get_path_for_model('trained_bert_version')}/{path_suffix}/"
 
-	def get_trained_xg_boost_model_path(self, question:str, batch_size:int, batch_id:str, descriptor:str, chat_gpt_model:str) -> str:
-		path_suffix = hashlib.md5(self.get_model_base_path(question, batch_size, batch_id, descriptor, chat_gpt_model).encode()).hexdigest()
+	def get_trained_xg_boost_model_path(self, question:str, batch_size:int, batch_id:str, training_data_source:str) -> str:
+		path_suffix = hashlib.md5(self.get_model_base_path(question, batch_size, batch_id, training_data_source).encode()).hexdigest()
 		return f"{self._get_path_for_model('trained_xg_boost_version')}/{path_suffix}/"
 
 	def get_alpaca_7B_model_and_path(self) -> str:

@@ -1,6 +1,6 @@
 from config import Configuration
-from tsv_utils import get_ratings, Rating
-from typing import List, Tuple, Dict
+from tsv_utils import get_results, TestResult
+from typing import List, Tuple, Dict, Any
 from tsv_utils import get_answers
 import logging as log
 from config_logger import config_logger
@@ -85,55 +85,54 @@ def _recursive_default_dict():
     return defaultdict(_recursive_default_dict)
 
 
-def _get_platform_from_model(training_data_source: str):
-    return training_data_source.split("_")[0].upper()
-
-
-def _get_diagram_title(training_data_source: str, test_data_source: str):
-    platform = _get_platform_from_model(training_data_source)
-    descriptors = {
-        "man-training": " ML Model\nrating manually created answers used for training",
-        "ai-training": " ML Model\nrating answers created by AI used for training",
-        "man-rating": " ML Model\nrating manually created answers",
-        "ai-rating": " ML Model\nrating answers created by AI"
-    }
-
-    refined_type = "AI-Refined" if training_data_source.endswith("ai") else "Expert-Refined"
-
-    refined_type = ("AI-Refined compared with Expert-Refined" if training_data_source.endswith("ai_v_man") 
-                    else "AI-Refined" if training_data_source.endswith("ai") 
-                    else "Expert-Refined")
-
-    title = f"{platform} {refined_type}"
-
-    if test_data_source in descriptors:
-        title += descriptors[test_data_source]
+def _add_list_entry(dict:defaultdict, name:str, entry:Any) -> None:
+    if name in dict:
+        dict[name].append(entry)
     else:
-        log.warning(f"The test_data_source {test_data_source} is invalid")
-        return
-    
-    return title
+        dict[name] = [entry]
 
 
-def _get_figure_for_dataset(diagrams:Dict, id:str, training_data_source:str, test_data_source:str) -> KappaFigure:
-    fileLabel = f"{training_data_source}_model_{test_data_source}_answers_{id}"
+def _get_diagram_title_model_vs_model(platform:str, training_data_source_a:str, training_data_source_b:str, test_data_source:str):
+    return f"QWK of score_1 assigned to samples created by {test_data_source} by two {platform} Models\nOne trained with samples created by {training_data_source_a} one trained with samples created by {training_data_source_b}.\n"
 
-    if training_data_source not in diagrams or test_data_source not in diagrams[training_data_source] or id not in diagrams[training_data_source][test_data_source]:
-        diagram_title = _get_diagram_title(training_data_source, test_data_source)
+
+def _map_source_to_real_name(data_source:str) -> str:
+    if data_source == "davinci":
+        return "text-davinci-003"
+    if data_source == "gpt4":
+        return "gpt4"
+    if data_source == "turbo":
+        return "text-davinci-003 annotated by gpt-3.5-turbo"
+    if data_source == "expert":
+        return "human Experts"
+
+
+def _get_diagram_title(platform:str, training_data_source: str, test_data_source: str)-> str:
+    # "davinci-training" -> ["davinci", "training"]
+    test_data_info = test_data_source.split("-")
+    return f"{platform} Model trained with samples created by {_map_source_to_real_name(training_data_source)} rating answers created by {_map_source_to_real_name(test_data_info[0])} used for {test_data_info[1]}"
+
+
+def _get_figure_for_dataset(diagrams:defaultdict, batch_id:str, training_data_source:str, test_data_source:str, platform:str, diagram_title:str=None) -> KappaFigure:
+    fileLabel = f"{platform}_{training_data_source}_rated_{test_data_source}_samples_{batch_id}"
+
+    if (platform not in diagrams 
+        or training_data_source not in diagrams[platform] 
+        or test_data_source not in diagrams[platform][training_data_source]
+        or batch_id not in diagrams[platform][training_data_source][test_data_source]):
         
-        if diagram_title is None:
-            return
-        
-        diagrams[training_data_source][test_data_source][id] = KappaFigure(diagram_title, fileLabel)
+        if not diagram_title:
+            diagram_title = _get_diagram_title(platform, training_data_source, test_data_source)
+        diagrams[platform][training_data_source][test_data_source][batch_id] = KappaFigure(diagram_title, fileLabel)
     
-    return diagrams[training_data_source][test_data_source][id]
+    return diagrams[platform][training_data_source][test_data_source][batch_id]
 
 
-def _get_scores(ratings: List[Rating], score_type:int) -> List[int]:
+def _get_scores(ratings: List[TestResult], score_type:int) -> List[int]:
     return [getattr(rating.answer, f'score_{score_type}') for rating in ratings]
 
 
-def _calculate_kappa_for_models(ratings_a:List[Rating], ratings_b:List[Rating]):
+def _calculate_kappa_for_models(ratings_a:List[TestResult], ratings_b:List[TestResult]):
     if len(ratings_a) != len(ratings_b) or len(ratings_a) < 100:
         log.warning(f"Not enough samples or ratings are inconsistent: {len(ratings_a)} vs. {len(ratings_b)}")
         return -5, len(ratings_a)
@@ -159,7 +158,7 @@ def _calculate_kappa_for_models(ratings_a:List[Rating], ratings_b:List[Rating]):
     return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
 
 
-def _calculate_kappa_for_model(ratings:List[Rating]):
+def _calculate_kappa_for_model(ratings:List[TestResult]):
     if len(ratings) < 100:
         log.warning(f"Not enough scores: {len(ratings)} to calculate kappa")
         return -5, len(ratings)
@@ -169,7 +168,7 @@ def _calculate_kappa_for_model(ratings:List[Rating]):
 
     return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
 
-def _calculate_kappa_for_score_types(ratings_a:List[Rating], score_type_a, ratings_b:List[Rating], score_type_b):
+def _calculate_kappa_for_score_types(ratings_a:List[TestResult], score_type_a, ratings_b:List[TestResult], score_type_b):
     if len(ratings_a) < 100:
         log.warning(f"Not enough scores: {len(ratings_a)} to calculate kappa")
         return -5, len(ratings_a)
@@ -184,17 +183,9 @@ def _calculate_kappa_for_score_types(ratings_a:List[Rating], score_type_a, ratin
 
 
 def _answers_to_rating(answers):
-     return [Rating(None, answer) for answer in answers]
+     return [TestResult(None, answer) for answer in answers]
 
-def _filter_model_ratings(modle_dict, model_set):
-    ratings = []
-    for model, rating in modle_dict.items():
-        if model in model_set:
-            platform = _get_platform_from_model(model)
-            ratings.append(rating)
-    
-    return ratings, platform
-
+# Just extracts data for the info line, this does not affect the diagram
 def _get_min_kappa_count(x_y_boxplot_data_sorted):
     # y of 0 will not be rendered as box, y of 1 will reduce a box to a single line
     # both will not just be visible within the diagram it also hardly qualifies as box so we ignore it
@@ -212,7 +203,7 @@ def _get_min_kappa_count(x_y_boxplot_data_sorted):
     return min_kappa_count, all_equal
 
 
-def _print_dual_dataset_boxplot(identifier: str, x_y_model_data_1, x_y_model_data_2, title: str):
+def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1, x_y_model_data_2, title:str):
     figure, ax = plt.subplots()
 
     x_y_dataset_1 = x_y_model_data_1[0]
@@ -256,21 +247,20 @@ def _print_dual_dataset_boxplot(identifier: str, x_y_model_data_1, x_y_model_dat
     ax.set_xlabel('Number of samples')
     ax.set_ylabel('QWK')
 
-    figure.savefig(config.get_path_for_datafile(f"boxplot_kappa_{identifier}.pdf"), bbox_inches='tight')
+    figure.savefig(config.get_path_for_datafile(f"boxplot_kappa_{fileLabel}.pdf"), bbox_inches='tight')
 
 
-def _print_boxplot(identifier: str, x_y_boxplot_data, title: str):
+def _print_boxplot(identifier:str, x_y_boxplot_data, title:str) -> None:
     figure, ax = plt.subplots()
 
     # sort x ascending
     x_y_boxplot_data_sorted = dict(sorted(x_y_boxplot_data.items()))
 
-    min_kappa_count, for_all_boxes_equal = _get_min_kappa_count(x_y_boxplot_data_sorted)
-
     # sort each individual y value ascending
     ax.boxplot([sorted(y) for y in x_y_boxplot_data_sorted.values()])
     ax.set_xticklabels(list(x_y_boxplot_data_sorted.keys()))
 
+    min_kappa_count, for_all_boxes_equal = _get_min_kappa_count(x_y_boxplot_data_sorted)
     if for_all_boxes_equal:
         _add_figtext(figure, f"Each box represents exactly {min_kappa_count} kappa values")
     else:
@@ -282,108 +272,140 @@ def _print_boxplot(identifier: str, x_y_boxplot_data, title: str):
 
     figure.savefig(config.get_path_for_datafile(f"boxplot_kappa_{identifier}.pdf"), bbox_inches='tight')
 
+
+def _diagram_gpt_vs_experts(chat_gpt_model_type:str):
+
+        chat_gpt_sample_path = config.get_samples_path(chat_gpt_model_type)
+        if not os.path.exists(chat_gpt_sample_path):
+            log.info(f"The file {chat_gpt_sample_path} does not exist")
+            return
+
+        all_ai_answers = _answers_to_rating(get_answers(chat_gpt_sample_path))
+        all_expert_answers = _answers_to_rating(get_answers(config.get_samples_path("experts")))
+
+        chat_gpt_rating_expert_data = _answers_to_rating(get_answers(config.get_samples_path(f"{chat_gpt_model_type}_rating_expert_data")))
+
+        chat_gpt_vs_experts = KappaFigure(f"Kappa of ChatGPT {chat_gpt_model_type} vs Experts", f"chat_gpt_{chat_gpt_model_type}_vs_experts")
+        chat_gpt_vs_experts.plot("GPT-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_ai_answers))
+        chat_gpt_vs_experts.plot("Expert-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_expert_answers))
+        chat_gpt_vs_experts.plot("GPT-Rating-Expert-Dataset  score_1 vs score_2", *_calculate_kappa_for_model(chat_gpt_rating_expert_data))
+        chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_1", *_calculate_kappa_for_score_types(chat_gpt_rating_expert_data, 1, all_expert_answers, 1))
+        chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(chat_gpt_rating_expert_data, 1, all_expert_answers, 2))
+        chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(chat_gpt_rating_expert_data, 2, all_expert_answers, 1))
+        chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(chat_gpt_rating_expert_data, 2, all_expert_answers, 2))
+        chat_gpt_vs_experts.save(config, f"The ChatGPT {chat_gpt_model_type}-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_expert_answers)} samples.", True)
+
+def _allocate_results(result_path:str, questions_path:str, training_data_source:str, test_data_source:str, test_result_sets:defaultdict, batch_id:str, model_type:str):
+    if not os.path.exists(result_path):
+        log.info(f"The file {result_path} does not exist")
+        return
+
+    test_results = get_results(result_path, questions_path)
+
+    # we do not compare data used for training across models
+    if test_data_source.endswith("-testing"):
+        _add_list_entry(test_result_sets[model_type], test_data_source, {
+            "results": test_results,
+            "training_data_source": training_data_source
+        })
+
+    _get_figure_for_dataset(diagrams, batch_id, training_data_source, test_data_source, model_type.upper()).plot(batch_size.size, *_calculate_kappa_for_model(test_results))
+
 if __name__ == "__main__":
     config_logger(log.DEBUG, "calculate_kappa.log")
     config = Configuration()
     questions_path = config.get_questions_path()
-
     
-    model_sets = [['bert_ai', 'bert_man'], ['xgb_ai', 'xgb_man']]
-
-    training_data = ['ai-training', 'man-training']
-    rating_data = ['ai-rating', 'man-rating']
+    trained_model_types : ['bert', 'xgb']
+    data_sources = ['experts', 'davinci', 'turbo', 'gpt4']
 
     diagrams = _recursive_default_dict()
     for batch_size in config.get_batch_sizes():
-        for id in batch_size.ids:
+        for batch_id in batch_size.ids:
             log.debug(f"Calculate graph for batch size: {batch_size.size} and id: {id}")
-            rating_sets = _recursive_default_dict()
-
-            for model in chain.from_iterable(model_sets):
-                for type in training_data + rating_data:
-                    rating_path = config.get_test_results_path(model, type, batch_size.size, id)
-                    if not os.path.exists(rating_path):
-                        log.info(f"The file {rating_path} does not exist")
-                        continue
-
-                    model_ratings = get_ratings(config.get_test_results_path(model, type, batch_size.size, id), questions_path)
-
-                    # we do not compare data used for training across models
-                    if type in rating_data:
-                        rating_sets[type][model] = model_ratings
-
-                    _get_figure_for_dataset(diagrams, id, model, type).plot(batch_size.size, *_calculate_kappa_for_model(model_ratings))
+            test_result_sets = _recursive_default_dict()
             
-            # calculate kappa of score_1 vs score_1
-            for type, selected_model_ratings in rating_sets.items():
-                assert len(selected_model_ratings) == len(list(chain.from_iterable(model_sets))), f"Found inconsistent rating set {type}, {selected_model_ratings.keys()}"
-                # figures for 
-                for model_set in model_sets:
-                    ratings, platform = _filter_model_ratings(selected_model_ratings, model_set)
-                    kappa, answer_count = _calculate_kappa_for_models(*ratings)
-                    log.debug(f"{platform}_ai_v_man - batch_size: {batch_size.size} kappa: {kappa} samples: {answer_count}")
-                    if kappa >= -1 and kappa <= 1:
-                        _get_figure_for_dataset(diagrams, id, f"{platform}_ai_v_man_score_1", type).plot(batch_size.size, kappa, answer_count)
+            for model_type in trained_model_types:
 
+                # each model rates its own training and test data sources and the test data sources of all other models
+                for i in range(len(data_sources)):
+                    data_source = data_sources[i]
+                    result_training_path = config.get_test_results_path(f"{model_type}_{data_source}", f"{data_source}-training", batch_size, batch_id)
+                    _allocate_results(result_training_path, questions_path, data_source, f"{data_source}-training", test_result_sets, batch_id, model_type)
+                    
+                    for j in range(i, len(data_sources)):
+                        data_source_j = data_sources[j]
+                        result_path = config.get_test_results_path(f"{model_type}_{data_source}", f"{data_source_j}-testing", batch_size, batch_id)
+                        _allocate_results(result_training_path, questions_path, data_source, f"{data_source_j}-testing", test_result_sets, batch_id, model_type)
 
-    # TODO: beautify ######
-    all_ai_answers = _answers_to_rating(get_answers(config.get_samples_path("davinci")))
-    all_man_answers = _answers_to_rating(get_answers(config.get_samples_path("experts")))
-    ai_rated_man_answers = _answers_to_rating(get_answers(config.get_samples_path("davinci_rating_expert_data")))
+            # calculate kappa of score_1 vs score_1 of all test data result sets
+            for model_type, sub_dict in test_result_sets.items():
+                platform = model_type.upper()
+                for test_data_source, result_sets in sub_dict.items():
+                    for a in range(len(result_sets)):
+                        training_data_source_a = result_sets[a]["training_data_source"]
+                        result_set_a = result_sets[a]["results"]
 
-    chat_gpt_vs_experts = KappaFigure("Kappa of ChatGPT vs Experts", "chat_gpt_vs_experts")
-    chat_gpt_vs_experts.plot("GPT-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_ai_answers))
-    chat_gpt_vs_experts.plot("Expert-Dataset score_1 vs score_2", *_calculate_kappa_for_model(all_man_answers))
-    chat_gpt_vs_experts.plot("GPT-Rating-Expert-Dataset  score_1 vs score_2", *_calculate_kappa_for_model(ai_rated_man_answers))
-    chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 1))
-    chat_gpt_vs_experts.plot("GPT-VS-Expert score_1 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 1, all_man_answers, 2))
-    chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_1", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 1))
-    chat_gpt_vs_experts.plot("GPT-VS-Expert score_2 vs score_2", *_calculate_kappa_for_score_types(ai_rated_man_answers, 2, all_man_answers, 2))
-    chat_gpt_vs_experts.save(config, f"The AI-Dataset consists of {len(all_ai_answers)} samples.\n The Expert-Dataset consists of {len(all_man_answers)} samples.", True)
-    ########################
+                        for b in range(a + 1, len(result_sets)):
+                            training_data_source_b = result_sets[b]["training_data_source"]
+                            result_set_b = result_sets[b]["results"]
 
-    # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)][A-F]
-    # [training_data_source][test_data_source][id]
+                            descriptor = f"{training_data_source_a}_vs_{training_data_source_b}_score_1"
+                            title = _get_diagram_title_model_vs_model(platform, training_data_source_a, training_data_source_b, test_data_source)
+                            kappa, answer_count = _calculate_kappa_for_models(result_set_a, result_set_b)
+                            log.debug(f"{platform}_{descriptor} rated {test_data_source}: - batch_size: {batch_size.size} kappa: {kappa} samples: {answer_count}")
+                            if kappa >= -1 and kappa <= 1:
+                                _get_figure_for_dataset(diagrams, batch_id, descriptor, test_data_source, platform, title).plot(batch_size.size, kappa, answer_count)
+                            else:
+                                log.error(f"Kappa is out of bound: {kappa}")
+
+    _diagram_gpt_vs_experts("davinci")
+    _diagram_gpt_vs_experts("turbo")
+    _diagram_gpt_vs_experts("gpt4")
+
+    # sort data for boxplots
     accumulated_data = _recursive_default_dict()
-    for training_data_source, test_data_source_dict in diagrams.items():
-        for test_data_source, batch_id_dict in test_data_source_dict.items():
+    for platform, sub_dict_a in diagrams.items():
+        for training_data_source, sub_dict_b in diagrams.items():
+            for test_data_source, sub_dict_c in sub_dict_b.items():
 
-            # x and y for all variants
-            x_y_boxplot_data = _recursive_default_dict()
-            for batch_id, diagram in batch_id_dict.items():
+                # x and y for all variants
+                x_y_boxplot_data = _recursive_default_dict()
+                for batch_id, diagram in sub_dict_c.items():
 
-                #[50, .., 3200] [kappa_1, ... kappa_n]
-                d_x, d_y = diagram.get_values()
+                    # all data points for this diagram
+                    x_batch_sizes, y_kappas = diagram.get_values()
 
-                log.debug(f"Adding x: {d_x}, y: {d_y} to boxplot matrix")
-                assert len(d_x) == len(d_y), f"Found inconsistent data for diagram: {training_data_source} {test_data_source} {batch_id}"
+                    log.debug(f"Adding x: {x_batch_sizes}, y: {y_kappas} to boxplot matrix")
+                    assert len(x_batch_sizes) == len(y_kappas), f"Found inconsistent data for diagram: {training_data_source} {test_data_source} {batch_id}; {len(x_batch_sizes)} != {len(y_kappas)}"
 
-                for i, x in enumerate(d_x):
-                    if x in x_y_boxplot_data:
-                        x_y_boxplot_data[x].append(d_y[i])
-                    else:
-                        x_y_boxplot_data[x] = [d_y[i]]
+                    for i, batch_size in enumerate(x_batch_sizes):
+                        _add_list_entry(x_y_boxplot_data, batch_size, y_kappas[i])
 
-                diagram.save(config)
-            
-            title = _get_diagram_title(training_data_source, test_data_source)
-            _print_boxplot(f"{training_data_source}_{test_data_source}", x_y_boxplot_data, title)
+                    # print diagram
+                    diagram.save(config)
+                
+                title = _get_diagram_title(platform, training_data_source, test_data_source)
+                _print_boxplot(f"{platform}_{training_data_source}_model_{test_data_source}", x_y_boxplot_data, title)
 
-            if test_data_source in rating_data:
-                # [(ber|xgb)_(man|ai)][(ai|man)-(rating|training)] = (50 - 3200; A-F)
-                accumulated_data[training_data_source][test_data_source] = x_y_boxplot_data
+                # collect all boxplots displaing the rating of data that was reserved for tests
+                if test_data_source.endswith("-testing"):
+                    _add_list_entry(accumulated_data[platform], test_data_source, {
+                        "training_data_source": training_data_source,
+                        "x_y_boxplot_data": x_y_boxplot_data
+                    })
 
-    # boxplots with two datasets (ai vs man)
-    for model_set in model_sets:
-        for test_data_source in rating_data:
-            assert len(model_set) == 2, f"Inconsistent amount of model in set: {model_set}"
-            platform = _get_platform_from_model(model_set[0])
+    # boxplots with two datasets
+    for platform,  sub_dict_a in accumulated_data.items():
+        for test_data_source, result_sets in sub_dict_a.items():
+            for a in range(len(result_sets)):
+                training_data_source_a = result_sets[a]["training_data_source"]
+                x_y_boxplot_data_a = result_sets[a]["x_y_boxplot_data"]
+                
+                for b in range(a + 1, len(result_sets)):
+                    training_data_source_b = result_sets[b]["training_data_source"]
+                    x_y_boxplot_data_b = result_sets[b]["x_y_boxplot_data"]
 
-            # We need to know which model belongs to which dataset
-            data_set_a = (accumulated_data[model_set[0]][test_data_source], model_set[0])
-            data_set_b = (accumulated_data[model_set[1]][test_data_source], model_set[1])
-
-            descriptor = f"{platform}_ai_v_man"
-            # it is always ai_vs_man
-            title = _get_diagram_title(descriptor, test_data_source)
-            _print_dual_dataset_boxplot(f"{descriptor}_{test_data_source}", data_set_a, data_set_b, title)
+                    title = _get_diagram_title_model_vs_model(platform, training_data_source_a, training_data_source_b, test_data_source)
+                    fileLabel = f"{platform}_{training_data_source_a}_vs_{training_data_source_b}_score_1_rated_{test_data_source}_samples"
+                    _print_dual_dataset_boxplot(fileLabel, x_y_boxplot_data_a, x_y_boxplot_data_b, title)

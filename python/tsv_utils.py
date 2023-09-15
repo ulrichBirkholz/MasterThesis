@@ -23,7 +23,7 @@ class Answer:
     score_2: Optional[int] = None
 
 @dataclass
-class Rating:
+class TestResult:
     question: Optional[Question] = None
     answer: Optional[Answer] = None
 
@@ -123,7 +123,7 @@ def _get_questions_per_question_id(file:str) -> Dict:
     questions = {question.question_id: question.question for question in question_list}
     return questions
 
-def get_ratings(file:str, questions_file:str) -> List[Rating]:
+def get_results(file:str, questions_file:str) -> List[TestResult]:
     ratings = []
     questions = _get_questions_per_question_id(questions_file)
 
@@ -137,7 +137,7 @@ def get_ratings(file:str, questions_file:str) -> List[Rating]:
                 continue
             question = questions[row[0]]
             # NOTE: if we need the answer text or the original annotation use: get_answers_per_question
-            rating = Rating(question, Answer(row[0], None, row[1], row[2], None))
+            rating = TestResult(question, Answer(row[0], None, row[1], row[2], None))
             if len(row) == 4:
                 rating.answer.score_2 = row[3]
             ratings.append(rating)

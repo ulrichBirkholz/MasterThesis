@@ -1,4 +1,4 @@
-from tsv_utils import get_questions, Answer
+from tsv_utils import get_questions, Answer, Question
 from tsv_utils import get_answers_per_question
 from bert_utils import train_model as bert_train_model, AnswersForQuestion
 from xg_boost_utils import train_model as xgb_train_model
@@ -9,15 +9,25 @@ import shutil
 import json
 
 import argparse
+from argparse import Namespace
 import logging as log
 
-from typing import List
+from typing import List, Dict, Tuple, Union
 
 from config_logger import config_logger
 
 previous_answer_batches = []
 
-def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]):
+def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]) -> float:
+    """ Calculates the intersection of two given lists of Answers
+
+    Args:
+        answer_batch_a (List[Answer]): First list
+        answer_batch_b (List[Answer]): Second list
+
+    Returns:
+        float: jaccard_similarity
+    """
     list1 = [answer.answer_id for answer in answer_batch_a]
     list2 = [answer.answer_id for answer in answer_batch_b]
 
@@ -25,7 +35,20 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
     union = len(set(list1) | set(list2))
     return intersection / union
 
-def _is_too_similar(previous_answer_batches, new_answer_batch, score_type:int) -> bool:
+# We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
+#   this is at this point considered more valuable than pure randomization
+def _is_selection_valid(previous_answer_batches:List[List[Answer]], new_answer_batch:List[Answer], score_type:int) -> bool:
+    """ Ensures that the intersection between the newly selected List is above a certain threshold and that each
+    category or possible score is present in the selection.
+
+    Args:
+        previous_answer_batches (List[List[Answer]]): All previouly selected Lists of Answers
+        new_answer_batch (List[Answer]): Newly selected List of Answers
+        score_type (int): The score type to be used for the evaluation (1 or 2)
+
+    Returns:
+        bool: True if the selection is valid, False otherwise
+    """
     for answer_batch in previous_answer_batches:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
 
@@ -52,32 +75,48 @@ def _is_too_similar(previous_answer_batches, new_answer_batch, score_type:int) -
     
     return False
 
-
-def _kv_pairs(string):
-    # Convert "key=value" pairs into pairs
-    key, value = string.split('=')
-    return key, value
-
-
 # Setup and parse arguments
-# example: python -m train_model --ai_score_types 5=1 6=1 --man_score_types 5=1 6=1 --exp --davinci --turbo --gpt4
-def setup_args():
+# example: python -m train_model --score_types_path ./score_types.json --davinci --experts --turbo --gpt4
+def setup_args() -> Namespace:
+    """ Setup of the execution arguments
+
+    Returns:
+        Namespace: arguments to be used
+    """
     parser = argparse.ArgumentParser(description='Train Model with annotated answers')
 
     parser.add_argument('--exp', action='store_true', help='Include samples created by human experts')
     parser.add_argument('--davinci', action='store_true', help='Include samples created by text-davinci-003')
     parser.add_argument('--turbo', action='store_true', help='Include samples annotated by gpt-3.5-turbo')
     parser.add_argument('--gpt4', action='store_true', help='Include samples created by gpt4')
-    parser.add_argument('--ai_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
-                    help='key-value to defining ai question_id and the respective score_type to be used')
-    parser.add_argument('--man_score_types', metavar='key=value', nargs='+', type=_kv_pairs,
-                    help='key-value to defining man question_id and the respective score_type to be used')
 
     parser.add_argument('-epochs', type=int, default=10, help='Number of training iterations')
-    return parser.parse_args()
+    parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
+
+    args = parser.parse_args()
+
+    with open(args.score_types_path, 'r') as score_types:
+        config = json.load(score_types)
+
+    for key, value in config.items():
+        setattr(args, f"score_types_{key}", value)
+
+    return args
 
 
-def _does_model_exist(paths):
+def _does_model_exist(paths:List[str]) -> bool:
+    """ Checks if a given List of model, identified by their paths, are fully trained
+    The decision about this is based on the existence of the 'description.json' file,
+    which is created after the model was trained.
+
+    In case a model is not considered to be fully trained, the folder is deleted.
+
+    Args:
+        paths (List[str]): List of paths leading to the models folders
+
+    Returns:
+        bool: True if all models are fully trained, False otherwise
+    """
     markers = [f"{path}description.json" for path in paths]
     markers_exist = [os.path.exists(marker) for marker in markers]
 
@@ -92,11 +131,32 @@ def _does_model_exist(paths):
 
 
 def _get_random_answers(answers:List[Answer], batch_size:int) -> List[Answer]:
+    """ Select a random Set of Answers from a given List
+
+    Args:
+        answers (List[Answer]): The List of Answers to select form
+        batch_size (int): The number of Answers to be selected
+
+    Returns:
+        List[Answer]: Randomly selected Answers
+    """
     random.shuffle(answers)
     return answers[:batch_size]
 
 
-def _train_model_for_question(answers, question, path_args, args, batch_size, id, base_path, score_type):
+def _train_model_for_question(answers:List[Answer], question:Question, path_args:Tuple[str, int, str, str], args:Namespace, batch_size:int, batch_id:str, base_path:str, score_type:int) -> None:
+    """ Trains an BERT and XG-Boost model based on the given Samples
+
+    Args:
+        answers (List[Answer]): Sample Answers
+        question (Question): Sample Question
+        path_args (Tuple[str, int, str, str]): Arguments to determine the folder path to the trained models
+        args (_type_): Execution Arguments
+        batch_size (int): Number of Sample Answers the model will be trained with
+        batch_id (str): Id of the Variance we Train
+        base_path (str): The internal path to the model
+        score_type (int): The score type to be used for the evaluation (1 or 2)
+    """
     bert_path = config.get_trained_bert_model_path(*path_args)
     xgb_path = config.get_trained_xg_boost_model_path(*path_args)
 
@@ -105,10 +165,7 @@ def _train_model_for_question(answers, question, path_args, args, batch_size, id
 
     answer_batch = _get_random_answers(answers, batch_size)
 
-    # NOTE: we observed several similarities of 1.0, which translates to the selection of identical answer batches
-    # We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
-    #   this is at this point considered more valuable than pure randomization
-    while _is_too_similar(previous_answer_batches, answer_batch, score_type):
+    while _is_selection_valid(previous_answer_batches, answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = _get_random_answers(answers, batch_size)
 
@@ -133,13 +190,30 @@ def _train_model_for_question(answers, question, path_args, args, batch_size, id
                 "question_id": question.question_id,
                 "question": question.question,
                 "batch_size": batch_size.size,
-                "batch_variant_id": id,
+                "batch_variant_id": batch_id,
                 "base_path": base_path,
                 "epochs": args.epochs,
                 "existing_batches": len(previous_answer_batches)
             }, file)
 
-#TODO: refactor score_types
+def _setup_training_for(training_data_source:str, score_types:Dict[str, int], config:Configuration) -> Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]:
+    """ Combines all relevant information about the Samples for one Execution
+
+    Args:
+        training_data_source (str): The source of the Samples, the model will be trained with
+        score_types (Dict[str, int]): The score types (1 or 2) to be used, this is individual per Question
+        config (Configuration): Allows access to the projects central configuration
+
+    Returns:
+        Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]: The combined Information
+    """
+    return {
+        "answers": get_answers_per_question(config.get_samples_for_training_path(training_data_source)),
+        "source": training_data_source,
+        "score_types": score_types
+    }
+    
+
 if __name__ == "__main__":
     config_logger(log.DEBUG, "train.log")
     args = setup_args()
@@ -148,57 +222,39 @@ if __name__ == "__main__":
     # samples = [{"question":'...', "answers":[answers]}]
     questions = get_questions(config.get_questions_path(), False)
 
-    all_samples = []
+    trainings = []
     if args.davinci:
-        all_samples.append({
-            "answers": get_answers_per_question(config.get_samples_for_training_path("davinci")),
-            "source": "davinci",
-            "score_types": {}
-        })
+        trainings.append(_setup_training_for("davinci", args.score_types_davinci, config))
     
     if args.turbo:
-        all_samples.append({
-            "answers": get_answers_per_question(config.get_samples_for_training_path("turbo")),
-            "source": "turbo",
-            "score_types": {}
-        })
+        trainings.append(_setup_training_for("turbo", args.score_types_turbo, config))
     
     if args.gpt4:
-        all_samples.append({
-            "answers": get_answers_per_question(config.get_samples_for_training_path("gpt4")),
-            "source": "gpt4",
-            "score_types": {}
-        })
+        trainings.append(_setup_training_for("gpt4", args.score_types_gpt4, config))
     
     if args.exp:
-        all_samples.append({
-            "answers": get_answers_per_question(config.get_samples_for_training_path("experts")),
-            "source": "experts",
-            "score_types": {}
-        })
+        trainings.append(_setup_training_for("experts", args.score_types_experts, config))
 
     total_number_of_models = 0
     for question in questions:
         for batch_size in config.get_batch_sizes():
             for id in batch_size.ids:
-                total_number_of_models += len(all_samples)
-
-    ai_score_types = {question_id: score_type for question_id, score_type in args.ai_score_types}
-    man_score_types = {question_id: score_type for question_id, score_type in args.man_score_types}
+                total_number_of_models += len(trainings) * 2
 
     train_model = 1
     for question in questions:
         for batch_size in config.get_batch_sizes():
             for id in batch_size.ids:
-                for samples in all_samples.items():
-                    answers = samples["answers"]
+                for training in trainings.items():
+                    answers = training["answers"]
 
                     log.debug(f"Train model {train_model} of {total_number_of_models}")
                     if len(answers[question.question_id]) >= batch_size.size:
-                        path_args = (question.question, batch_size.size, id, samples["source"])
+                        path_args = (question.question, batch_size.size, id, training["source"])
                         base_path = config.get_model_base_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
-                                                path_args, args, batch_size, id, base_path, samples["score_types"][question.question_id])
+                                                path_args, args, batch_size, id, base_path, training["score_types"][question.question_id])
                     else:
                         log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
-                    train_model += 1
+                    # BERT + XG_Boost
+                    train_model += 2
