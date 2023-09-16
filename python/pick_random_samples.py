@@ -151,8 +151,11 @@ def _split_answers(all_answers:List[Answer], distributed_answers:List[Answer], s
         Tuple[List[Answer], List[Answer]]: A tuple containing two lists - the training dataset and the testing dataset
     """    
 
-    assert len(distributed_answers) >= training_size + 100, f"""The distribution is too small!
-We need at leased {training_size} answers for training + 100 answers for rating, but we have only {len(distributed_answers)}"""
+    assert len(distributed_answers) >= training_size, f"""The distribution is too small!
+We need at leased {training_size} answers for training the models, but we have only {len(distributed_answers)}"""
+
+    assert len(all_answers) >= training_size + 100, f"""The distribution is too small!
+We need at leased {training_size} answers for training + 100 answers for testing the models, but we have only {len(distributed_answers)}"""
 
     # we split the list of answers based on its current distribution and the defined training_size
     distribution = _calculate_distribution(distributed_answers, score_type)
@@ -251,6 +254,7 @@ def _cleanup(config:Configuration, args:Namespace) -> None:
     _delete_file(config.get_samples_for_testing_path("experts"))
     _delete_file(config.get_distribution_path())
 
+# example: python -m pick_random_samples --davinci --turbo --gpt4
 def setup_args() -> Namespace:
     """ Setup of the execution arguments
 
@@ -261,6 +265,8 @@ def setup_args() -> Namespace:
     parser.add_argument('--davinci', action='store_true', help='Include samples created by text-davinci-003')
     parser.add_argument('--turbo', action='store_true', help='Include samples annotated by gpt-3.5-turbo')
     parser.add_argument('--gpt4', action='store_true', help='Include samples created by gpt4')
+    return parser.parse_args()
+
 
 def _pick_samples_for(ai_data_source:str, experts_answers_per_question:Dict[str, List[Answer]], config:Configuration) -> None:
     """ Splits samples into two datasets: training and testing.
