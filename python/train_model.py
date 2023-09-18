@@ -37,7 +37,7 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
 
 # We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
 #   this is at this point considered more valuable than pure randomization
-def _is_selection_valid(previous_answer_batches:List[List[Answer]], new_answer_batch:List[Answer], score_type:int) -> bool:
+def _is_selection_invalid(previous_answer_batches:List[List[Answer]], new_answer_batch:List[Answer], score_type:int) -> bool:
     """ Ensures that the intersection between the newly selected List is above a certain threshold and that each
     category or possible score is present in the selection.
 
@@ -166,7 +166,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
 
     answer_batch = _get_random_answers(answers, batch_size)
 
-    while _is_selection_valid(previous_answer_batches, answer_batch, score_type):
+    while _is_selection_invalid(previous_answer_batches, answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
         answer_batch = _get_random_answers(answers, batch_size)
 

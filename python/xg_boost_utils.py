@@ -13,6 +13,11 @@ import os
 import shutil
 import logging as log
 
+def _not_all_categories(answers:List[Answer], score_type:int) -> bool:
+    score_types = set([getattr(answer, f'score_{score_type}') for answer in answers])
+    if len(score_types) < 4:
+        log.error(f"One answer of each category (0 - 3) must be present: {score_types}")
+        return True
 
 def _load_components(path:str, num_class:int=0) -> Tuple[xgb.XGBClassifier, TfidfVectorizer]:
     """ Loads the model and vectorizer.
@@ -86,6 +91,9 @@ def train_model(sample:AnswersForQuestion, path:str, score_type:int) -> None:
     
     # We split the data the same way as for BERT, to keep it comparable
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
+    while _not_all_categories(answers_train, score_type):
+        answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
+
     model.fit(vectorizer.fit_transform(answers_train), ratings_train)
     
     predictions = model.predict(vectorizer.transform(answers_test))
