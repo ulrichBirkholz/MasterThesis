@@ -89,6 +89,7 @@ def train_model(sample:AnswersForQuestion, path:str, score_type:int) -> None:
     model, vectorizer = _load_components(path, len(set(ratings)))
     
     # We split the data the same way as for BERT, to keep it comparable
+    assert _not_all_categories(ratings) == False, f"Not all categories are present: {set(ratings)}"
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
     while _not_all_categories(ratings_train):
         answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
