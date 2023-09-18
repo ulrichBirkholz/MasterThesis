@@ -1,8 +1,0 @@
-2023-07-27 09:03:01,556 - root - INFO - TTR for question: 5 for AI: 0.015065092569782645
-2023-07-27 09:03:01,556 - root - INFO - Average TTR per Answer for question: 5 for AI: 0.7753945332841401
-2023-07-27 09:03:01,615 - root - INFO - TTR for question: 6 for AI: 0.016747502155918203
-2023-07-27 09:03:01,615 - root - INFO - Average TTR per Answer for question: 6 for AI: 0.8082737797815636
-2023-07-27 09:03:01,631 - root - INFO - TTR for question: 5 for MAN: 0.016747502155918203
-2023-07-27 09:03:01,631 - root - INFO - Average TTRs per Answer for question: 5 for MAN: 0.8082737797815636
-2023-07-27 09:03:01,646 - root - INFO - TTR for question: 6 for MAN: 0.016747502155918203
-2023-07-27 09:03:01,646 - root - INFO - Average TTRs per Answer for question: 6 for MAN: 0.8082737797815636
