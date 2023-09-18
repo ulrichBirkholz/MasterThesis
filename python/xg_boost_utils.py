@@ -16,6 +16,7 @@ def _not_all_categories(ratings:List[int]) -> bool:
     if len(categories) < 4:
         log.error(f"One answer of each category (0 - 3) must be present: {categories}")
         return True
+    return False
 
 def _load_components(path:str, num_class:int=0) -> Tuple[xgb.XGBClassifier, TfidfVectorizer]:
     """ Loads the model and vectorizer.
