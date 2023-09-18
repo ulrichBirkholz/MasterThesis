@@ -189,7 +189,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
                 } for answer in answer_batch],
                 "question_id": question.question_id,
                 "question": question.question,
-                "batch_size": batch_size.size,
+                "batch_size": batch_size,
                 "batch_variant_id": batch_id,
                 "base_path": base_path,
                 "epochs": args.epochs,
