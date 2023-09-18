@@ -1,6 +1,5 @@
 import xgboost as xgb
 from typing import List, Tuple, Any
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from bert_utils import AnswersForQuestion
@@ -8,15 +7,14 @@ from sklearn.metrics import confusion_matrix
 from tsv_utils import Answer
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import LabelEncoder
 import os
 import shutil
 import logging as log
 
-def _not_all_categories(answers:List[Answer], score_type:int) -> bool:
-    score_types = set([getattr(answer, f'score_{score_type}') for answer in answers])
-    if len(score_types) < 4:
-        log.error(f"One answer of each category (0 - 3) must be present: {score_types}")
+def _not_all_categories(ratings:List[int]) -> bool:
+    categories = set(ratings)
+    if len(categories) < 4:
+        log.error(f"One answer of each category (0 - 3) must be present: {categories}")
         return True
 
 def _load_components(path:str, num_class:int=0) -> Tuple[xgb.XGBClassifier, TfidfVectorizer]:
@@ -91,7 +89,7 @@ def train_model(sample:AnswersForQuestion, path:str, score_type:int) -> None:
     
     # We split the data the same way as for BERT, to keep it comparable
     answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
-    while _not_all_categories(answers_train, score_type):
+    while _not_all_categories(ratings_train):
         answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
 
     model.fit(vectorizer.fit_transform(answers_train), ratings_train)
