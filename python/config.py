@@ -151,10 +151,12 @@ class Configuration():
         return self.get_path_for_datafile(filename)
 
 
-    def get_test_results_path(self, training_data_source:str, test_data_source:str, batch_size:int, batch_id:str) -> str:
+    def get_test_results_path(self, platform:str, training_data_source:str, test_data_source:str, batch_size:int, batch_id:str) -> str:
         """ Retrieve the path for the file containing annotated answers created by a model trained with specific data
+
         Args:
-            training_data_source (str): Source of the data used to train the model (e.g., davinci, turbo, gpt4, experts)
+            platform (str): The platform of the models, such as 'bert' or 'xgb'
+            training_data_source (str): Source of the data used to train the model and the models platform (e.g., bert_davinci, xgb_turbo)
             test_data_source (str): Source of the data the model was tested with (e.g., davinci, turbo, gpt4, experts)
             batch_size (int): Number of samples used
             batch_id (str): Variant identifier
@@ -162,7 +164,7 @@ class Configuration():
         Returns:
             str: Path to the file containing the results
         """
-        suffix = f"{training_data_source}_model_rated_{test_data_source}_samples_{batch_size}_{batch_id}"
+        suffix = f"{platform}_{training_data_source}_model_rated_{test_data_source}_samples_{batch_size}_{batch_id}"
         filename = Configuration._replace_str(self.config["test_results"], suffix)
         return self.get_path_for_datafile(filename)
     

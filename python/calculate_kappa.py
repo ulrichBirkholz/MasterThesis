@@ -634,12 +634,12 @@ if __name__ == "__main__":
                 # each model rates its own training and test data sources and the test data sources of all other models
                 for i in range(len(data_sources)):
                     data_source = data_sources[i]
-                    result_training_path = config.get_test_results_path(f"{model_type}_{data_source}", f"{data_source}-training", batch.size, batch_id)
+                    result_training_path = config.get_test_results_path(model_type, data_source, f"{data_source}-training", batch.size, batch_id)
                     _allocate_results(result_training_path, data_source, f"{data_source}-training", test_result_sets, batch.size, batch_id, model_type)
                     
                     for j in range(i, len(data_sources)):
                         data_source_j = data_sources[j]
-                        result_path = config.get_test_results_path(f"{model_type}_{data_source}", f"{data_source_j}-testing", batch.size, batch_id)
+                        result_path = config.get_test_results_path(model_type, data_source, f"{data_source_j}-testing", batch.size, batch_id)
                         _allocate_results(result_training_path, data_source, f"{data_source_j}-testing", test_result_sets, batch.size, batch_id, model_type)
 
             # calculate kappa of score_1 vs score_1 of all test data result sets

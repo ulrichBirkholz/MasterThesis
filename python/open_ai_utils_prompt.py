@@ -714,7 +714,7 @@ def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], k
     question, taking into account the associated key elements from the respective ASAP EssaySet
 
     Args:
-        api_key (str):The API key for accessing Open AI's services
+        api_key (str): The API key for accessing Open AI's services
         question (Question): The question for which sample answers are to be rated
         answers (Iterator[Answer]): An iterator containing the answers that need to be rated
         key_elements (List[KeyElement]): List of key elements associated with the question according to the 

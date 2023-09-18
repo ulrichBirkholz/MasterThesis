@@ -1,6 +1,6 @@
 from tsv_utils import get_questions, write_answers_tsv, get_key_elements_by_question_id
-from open_ai_utils_davinci import generate_samples as generate_samples_davinci
-from open_ai_utils_message import generate_samples as generate_samples_message, CHAT_GPT_MODEL
+from open_ai_utils_prompt import generate_samples as generate_samples_prompt, CHAT_GPT_MODEL
+from open_ai_utils_message import generate_samples as generate_samples_message
 from config import Configuration
 
 import argparse
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         key_elements = key_elements_per_question[question.question_id]
         # we use yield to iterate over every generated response and save after every performed request
         # producing answers with gpt-3.5-turbo did not work properly because of its refusal to create incorrect answers
-        write_answers_tsv(unrated_samples_davinci_path, generate_samples_davinci(args.api_key, question, key_elements), True)
+        write_answers_tsv(unrated_samples_davinci_path, generate_samples_prompt(args.api_key, question, key_elements, CHAT_GPT_MODEL.DAVINCI_003), True)
         write_answers_tsv(unrated_samples_gpt4_path, generate_samples_message(args.api_key, question, key_elements, CHAT_GPT_MODEL.GPT4), True)
     
     
