@@ -1,6 +1,6 @@
 from tsv_utils import get_questions, write_answers_tsv, get_answers_per_question, get_key_elements_by_question_id
-from open_ai_utils_message import annotate_samples_message, CHAT_GPT_MODEL
-from open_ai_utils_davinci import annotate_samples_davinci
+from open_ai_utils_message import annotate_samples as annotate_samples_message, CHAT_GPT_MODEL
+from open_ai_utils_davinci import annotate_samples as annotate_samples_davinci
 from config import Configuration
 
 import argparse
@@ -55,7 +55,8 @@ if __name__ == "__main__":
     turbo_rating_expert_data = config.get_samples_path("turbo_rating_expert_data")
     turbo_rated_answer_path = config.get_samples_path("turbo")
 
-    unrated_davinci_answers_per_question = get_answers_per_question(config.get_unrated_samples_path())
+    unrated_davinci_answers_per_question = get_answers_per_question(config.get_unrated_samples_path("davinci"))
+    unrated_gpt4_answers_per_question = get_answers_per_question(config.get_unrated_samples_path("gpt4"))
     expert_answers_per_question = get_answers_per_question(config.get_samples_path("experts"))
 
     _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, davinci_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_davinci)
@@ -64,5 +65,5 @@ if __name__ == "__main__":
     _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.TURBO)
     _process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.TURBO)
 
-    #_process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.GPT4)
+    #_process_samples(unrated_gpt4_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.GPT4)
     #_process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.GPT4)

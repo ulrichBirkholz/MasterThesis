@@ -7,7 +7,7 @@
 	"samples": "samples#.tsv",
 	"samples_for_training": "samples_for_training#.tsv",
 	"samples_for_testing": "samples_for_testing#.tsv",
-	"unrated_samples_path": "unrated_samples.tsv",
+	"unrated_samples_path": "unrated_samples#.tsv",
 	"expert_samples_src": "train.tsv",
 	"key_elements": "key_elements.tsv",
 	"test_results": "test_results#.tsv",

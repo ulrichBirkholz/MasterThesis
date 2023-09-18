@@ -81,23 +81,30 @@ class Configuration():
         return self.get_path_for_datafile(self.config["questions"])
     
 
-    def get_samples_path(self, id) -> str:
-        """ Retrieve the path for the file containing the answers
+    def get_samples_path(self, model_version:str) -> str:
+        """ Retrieve the path for the file containing the answers, based on a specified source
+        
+        Args:
+            model_version (str): Source identifier for the samples (e.g davinci, turbo, gpt4, experts)
 
         Returns:
             str: Path to the file containing the answers
         """
-        filename = Configuration._replace_str(self.config["samples"], id)
+        filename = Configuration._replace_str(self.config["samples"], model_version)
         return self.get_path_for_datafile(filename)
     
 
-    def get_unrated_samples_path(self) -> str:
-        """ Retrieve the path for the file containing the unrated answers or samples
+    def get_unrated_samples_path(self, model_version:str) -> str:
+        """ Retrieve the path for the file containing the unrated answers or samples, based on a specified source
+
+        Args:
+            model_version (str): Source identifier for the samples (e.g davinci, turbo, gpt4, experts)
 
         Returns:
             str: Path to the file containing the unrated answers or samples
         """
-        return self.get_path_for_datafile(self.config["unrated_samples_path"])
+        filename = Configuration._replace_str(self.config["unrated_samples_path"], model_version)
+        return self.get_path_for_datafile(filename)
 
 
     def get_all_expert_samples_src_path(self) -> str:
