@@ -237,7 +237,7 @@ def write_rated_answers_tsv(file:str, answers:List[Answer], extend:bool) -> None
         - If the TSV file does not exist or `extend` is set to False, a new file will be 
           created with headers naming all columns
         - The format for the columns in the file is:
-            Question | ScoreOffset | SampleAnswer (Optional) | QuestionId
+            QuestionId | Answer | AnswerId | Score1 | Score2
     """
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
@@ -251,7 +251,7 @@ def write_rated_answers_tsv(file:str, answers:List[Answer], extend:bool) -> None
 
 
 def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> None:
-    """ Write a list of unannotated answers to the specified TSV file
+    """ Write a list of lists of answers to the specified TSV file
 
     This function writes the provided list of answers to a TSV file, either appending 
     to an existing file or creating a new one based on the `extend` parameter
@@ -266,7 +266,7 @@ def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> 
         - If the TSV file does not exist or `extend` is set to False, a new file will be 
           created with headers naming all columns
         - The format for the columns in the file is:
-            Question | ScoreOffset | SampleAnswer (Optional) | QuestionId
+            QuestionId | Answer | AnswerId | Score1 | Score2
     """
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
@@ -278,5 +278,5 @@ def write_answers_tsv(file:str, answers:Iterator[List[Answer]], extend:bool) -> 
         for answer_list in answers:
             for answer in answer_list:
                 # every answer represents one row
-                writer.writerow([answer.question_id, answer.answer_id, answer.score_1, answer.score_2])
+                writer.writerow([answer.question_id, answer.answer, answer.answer_id, answer.score_1, answer.score_2])
             csvfile.flush()
