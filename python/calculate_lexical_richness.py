@@ -51,7 +51,7 @@ class LRCalculator:
         }
 
 
-    def _safe_calculation(self, calculation:Callable[[], float], method:str) -> Union[float, np.nan]:   
+    def _safe_calculation(self, calculation:Callable[[], float], method:str) -> Union[float, Any]:
         """ Executes the given calculation while handling potential problematic scenarios
 
         Args:
@@ -59,7 +59,7 @@ class LRCalculator:
             method (str): The name of the method being executed to determine which scenarios to check for
 
         Returns:
-            Union[float, np.nan]: Result of the calculation or np.nan if the value is problematic
+            Union[float, Any]: Result of the calculation or np.nan if the value is problematic
         """
         log.info(f"Calculate method: {method}. Words: {self.lex.words}, Terms: {self.lex.terms}")
 
