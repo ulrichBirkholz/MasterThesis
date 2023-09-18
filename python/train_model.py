@@ -245,7 +245,7 @@ if __name__ == "__main__":
     for question in questions:
         for batch in config.get_batches():
             for batch_id in batch.ids:
-                for training in trainings.items():
+                for training in trainings:
                     answers = training["answers"]
 
                     log.debug(f"Train model {train_model} of {total_number_of_models}")
