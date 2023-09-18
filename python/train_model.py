@@ -253,7 +253,7 @@ if __name__ == "__main__":
                         path_args = (question.question, batch.size, batch_id, training["source"])
                         base_path = config.get_relative_model_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
-                                                path_args, args, batch, batch_id, base_path, training["score_types"][question.question_id])
+                                                path_args, args, batch.size, batch_id, base_path, training["score_types"][question.question_id])
                     else:
                         log.warning(f"Skip batch size {batch.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
                     # BERT + XG_Boost
