@@ -1,14 +1,20 @@
 from tsv_utils import get_questions, write_answers_tsv, get_answers_per_question, get_key_elements_by_question_id
-from open_ai_utils_turbo import annotate_samples_turbo
+from open_ai_utils_message import annotate_samples_message, CHAT_GPT_MODEL
 from open_ai_utils_davinci import annotate_samples_davinci
 from config import Configuration
 
 import argparse
+from argparse import Namespace
 import logging as log
 from config_logger import config_logger
 
 # Setup and parse arguments
-def setup_args():
+def setup_args() -> Namespace:
+    """ Setup of the execution arguments
+
+    Returns:
+        Namespace: arguments to be used
+    """
     parser = argparse.ArgumentParser(description='Create annotated Answers')
     parser.add_argument('api_key', help='The API key for the OpenAI API')
     # 2 produces stable results, 5 is unstable, so some responses are unparsable 10 and higher was unusable
@@ -55,5 +61,8 @@ if __name__ == "__main__":
     _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, davinci_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_davinci)
     _process_samples(expert_answers_per_question, questions, key_elements_per_question, davinci_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_davinci)
     
-    _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_turbo)
-    _process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_turbo)
+    _process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.TURBO)
+    _process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.TURBO)
+
+    #_process_samples(unrated_davinci_answers_per_question, questions, key_elements_per_question, turbo_rating_expert_data, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.GPT4)
+    #_process_samples(expert_answers_per_question, questions, key_elements_per_question, turbo_rated_answer_path, args.api_key, args.chunk_size, annotate_samples_message, CHAT_GPT_MODEL.GPT4)

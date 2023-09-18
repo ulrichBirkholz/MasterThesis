@@ -1,66 +1,48 @@
-from typing import List, Iterator, Generator, Any, Dict, Union
-from re import Match
+from typing import List, Iterator, Generator, Dict, Union, Any
 from json.decoder import JSONDecodeError
 import openai
 import time
 from openai.error import OpenAIError, RateLimitError
 import re
 import json
-#import config
 import logging as log
 import re
 from tsv_utils import Answer, Question, KeyElement
 import hashlib
 import tiktoken
 import random
-from dataclasses import dataclass
+from enum import Enum
+from open_ai_utils_davinci import SampleGoal, SampleRole
 
-@dataclass
-class SampleGoal:
-    """ Specifies the intended correctness level of a generated answer and the method to achieve it.
-    
-    This dataclass outlines how a response should be structured by defining the task and determining 
-    the number of key elements to be included in the answer.
-    
-    Attributes:
-        number_of_key_elements (int): The number of key elements chosen at random 
-                                      from all available key elements to be included in the generated answer.
-        task (str): Describes the method or criteria by which the specified level of correctness should be achieved.
-    """
-    number_of_key_elements: int
-    task: str
 
-@dataclass
-class SampleRole:
-    """ Defines the specific role the AI should assume and its associated idiom category.
-    
-    This dataclass represents the role or persona the AI is expected to adopt. Each role 
-    corresponds to a particular category of idioms that the AI should utilize.
+class CHAT_GPT_MODEL(Enum):
+    """ Enumeration defining the GPT models to be used.
+
+    This enum class lists the possible models that can be used. Each member represents a different GPT model variant.
 
     Attributes:
-        role (str): The specific role or persona the AI is expected to take on.
-        idiom_category (str): The category of idioms associated with the given role.
-    """
-    role: str
-    idiom_category: str
+        TURBO (str): Represents the 'gpt-3.5-turbo' model variant. 
+                     Note: This model may encounter difficulties in producing incorrect answers.
+        GPT4 (str): Represents the 'gpt4' model variant.
+    """ 
+    TURBO = "gpt-3.5-turbo"
+    GPT4 = "gpt4"
 
-CHAT_GPT_MODEL = "text-davinci-003"
 
-
-def _count_token(prompt:str) -> int:
-    """ Evaluates the number of token for a given prompt
+def _count_token(messages:List[Dict], model:CHAT_GPT_MODEL) -> int:
+    """ Evaluates the number of token for a given messages
 
     Args:
-        prompt (str): The prompt to be evaluated
+        messages (str): The messages to be evaluated
+        model (CHAT_GPT_MODEL): The model to be used
 
     Returns:
         int: Number of token
     """
-    enc = tiktoken.encoding_for_model(CHAT_GPT_MODEL)
+    enc = tiktoken.encoding_for_model(model.value)
+    return sum([len(enc.encode(message["content"])) for message in messages])
 
-    return len(enc.encode(prompt))
-
-def generate_samples(api_key:str, question:Question, key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+def generate_samples(api_key:str, question:Question, key_elements:List[KeyElement], model:CHAT_GPT_MODEL) -> Generator[List[Answer], None, None]:
     """ Generate unannotated sample answers for a given question using the Open AI API.
 
     This function connects to the Open AI API using the provided key and produces answers for the specified 
@@ -71,6 +53,7 @@ def generate_samples(api_key:str, question:Question, key_elements:List[KeyElemen
         question (Question): The question for which sample answers are to be generated
         key_elements (List[KeyElement]): List of key elements associated with the question according to the 
                                          respective ASAP EssaySet
+        model (CHAT_GPT_MODEL): The model to be used
 
     Yields:
         Generator[List[Answer], None, None]: A generator that produces lists of generated answers. Each iteration yields
@@ -78,12 +61,13 @@ def generate_samples(api_key:str, question:Question, key_elements:List[KeyElemen
     """
     openai.api_key = api_key
 
-    for prompt in generate_answer_prompt(question, key_elements):
+    for messages in generate_answer_messages(question, key_elements):
         retries = 0
         max_retries = 5
         while retries < max_retries:
             try:
-                yield _generate_samples(question, prompt)
+                yield _generate_sample(
+                        question, messages, model)
                 break
             except JSONDecodeError as e:
                 retries += 1
@@ -97,20 +81,21 @@ def generate_samples(api_key:str, question:Question, key_elements:List[KeyElemen
         if retries >= max_retries:
             log.error(f"Exceeded {max_retries} retries, the creation of answers for the question {question.question_id} will be aborted")
 
-def _execute_api_call(prompt:str, max_tokens:int, temperature:float, frequency_penalty:float, presence_penalty:float) -> Any:
-    """ Executes a prompt against the OpenAI completion (legacy) API.
+def _execute_api_call(messages:str, max_tokens:int, temperature:float, frequency_penalty:float, presence_penalty:float, model:CHAT_GPT_MODEL) -> Any:
+    """ Executes a set of massages against the OpenAI chat completion API.
 
-    This private method makes a call to the OpenAI completion API using the specified parameters. In the event of 
+    This private method makes a call to the OpenAI chat completion API using the specified parameters. In the event of 
     `RateLimitError` or `OpenAIError`, the function will pause for a brief period and then retry the request. The 
     method will make up to a predetermined number of retries before logging an error and terminating
 
     Args:
-        prompt (str): The prompt to be executed by the OpenAI model
+        messages (str): The prompt to be executed by the OpenAI model
         max_tokens (int): Maximum number of tokens (words/characters) to be generated in the response
         temperature (float): Determines randomness in the AI's responses. Higher values make the output more random, 
                              while lower values make it more deterministic.
         frequency_penalty (float): Adjusts the likelihood of the AI generating frequent tokens
         presence_penalty (float): Adjusts the likelihood of the AI generating tokens based on their presence in the prompt
+        model (CHAT_GPT_MODEL): The model to be used
 
     Raises:
         Exception: Any unexpected error encountered during the API call. Specific exceptions like `RateLimitError` 
@@ -123,9 +108,9 @@ def _execute_api_call(prompt:str, max_tokens:int, temperature:float, frequency_p
     max_retries = 3600
     while retries < max_retries:
         try:
-            return openai.Completion.create(
-                engine=CHAT_GPT_MODEL,
-                prompt=prompt,
+            return openai.ChatCompletion.create(
+                model=model.value,
+                messages=messages,
                 max_tokens=max_tokens,
                 temperature=temperature,
                 frequency_penalty=frequency_penalty,
@@ -161,10 +146,10 @@ def _get_key_elements(key_elements:List[KeyElement]) -> str:
         str: Listing of key elements
     """
     if len(key_elements) > 0:
-        result = "\n\nThe key elements for this task are:"
+        result = "The key elements for this task are:"
         for element in key_elements:
             result += f"\n- {element.element}"
-    return result + "\n"
+    return result
 
 
 def _setup_goal(goal:SampleGoal, key_elements:List[KeyElement]) -> str:
@@ -216,12 +201,12 @@ def _get_idioms(idioms:Dict[str, List[str]], idiom_category:str) -> str:
     return result
 
 
-# The wording has been enhanced with the assistance of Chat-GPT, optimizing their comprehensibility for text-davinci-003
+# The wording has been enhanced with the assistance of Chat-GPT, optimizing their comprehensibility for text-davinci-003.
 # The elements use a simple phrasing to make them easily understandable
-def generate_answer_prompt(question:Question, key_elements:List[KeyElement]) -> Generator[str, None, None]:
-    """ Generates a series of 4200 AI prompt instructions based on the question, key elements, and predefined configurations.
+def generate_answer_messages(question:Question, key_elements:List[KeyElement]) -> Generator[str, None, None]:
+    """ Generates a series of 4200 AI message sets based on the question, key elements, and predefined configurations.
 
-    This function produces a generator of prompts tailored for the OpenAI model. It incorporates several instructional 
+    This function produces a generator of message sets tailored for the OpenAI model. It incorporates several instructional 
     components such as role, task, style, and format, in the prompt, to guide the AI in generating desired responses. 
     The prompts also have the flexibility to embody various roles, styles, and goals which increases the diversity of 
     potential answers.
@@ -236,16 +221,19 @@ def generate_answer_prompt(question:Question, key_elements:List[KeyElement]) -> 
     
     Notes:
         - The function integrates a vast array of instructions, from idioms, roles, goals to styles to provide varied 
-          AI prompts.
+          AI messages.
         - Certain combinations might seem contradictory, but the focus is more on language-style generation by the AI 
-          rather than the logical coherence of the prompts.
+          rather than the logical coherence of the messages.
     """
     # 10 categories of correctness defined as goals within the prompt
     # NOTE: it does not work to provide a list and instruct the AI to choose a number of entries -> we need to provide just the entries
     # NOTE: it does not work to provide a list and instruct the AI to avoid any of its entries.
     sample_goals = [
-        SampleGoal(0, "The answer must be entirely incorrect and off-topic."),
-        SampleGoal(0, "The answer must be entirely incorrect and contradict established scientific understanding."),
+        # the first two were only used with gpt-3.5-turbo for demonstrative purposes
+        # SampleGoal(0, "Imagine you're playing a character in a play who always gets facts wrong and strays off-topic. How would that character answer the following?"),
+        # SampleGoal(0, "Suppose you had the opposite of your training data — filled with incorrect facts and tangential thoughts. From that perspective, how would you respond to this?"),
+        SampleGoal(0, "Produce the example of an entirely incorrect and off-topic answer"),
+        SampleGoal(0, "Produce the example of an entirely incorrect answer that contradicts established scientific understanding."),
         SampleGoal(0, "The answer must be an analogy or metaphor to demonstrate comprehension."),
         SampleGoal(1 + question.score_offset, "The answer must include a paraphrase of all of the following information in the response."),
         SampleGoal(2 + question.score_offset, "The answer must include a paraphrase of all of the following information in the response."),
@@ -432,96 +420,72 @@ def generate_answer_prompt(question:Question, key_elements:List[KeyElement]) -> 
     for goal in sample_goals:
         for style in styles:
             for role in roles:
-                # we use JSON array for the later possibility of creating multiple answers per prompt
+                # JSON allows to avoid phrases like 'I apologize for any confusion. Here is the correct answer:  '
                 # the prompt is categorized to simplify its interpretation using xml-ish syntax
                 # the Segments need to be enclosed, it has been observe that the AI just extends the prompt, changing the result
-                prompt = f"""
-<Role> As {role.role}, <\Role>
-<Task> develop an answer for the question '{question.question}' in a maximum of two sentences.
-{_get_idioms(idioms, role.idiom_category)}
-<\Task>
-<Style> Use a {style} as communication style.<\Style>
-<Format> Please return your answer as a JSON array: ["answer"]<\Format>"""
+                messages = [
+                    {"role": "system", "content": f"You are {role.role} producing sample answers to train an AI."},
+                    {"role": "user", "content": f"Please develop an answer for the question '{question.question}'."},
+                    {"role": "user", "content": f"{_get_idioms(idioms, role.idiom_category)}"},
+                    {"role": "user", "content": f"Write your answer in a {style} as communication style."},
+                    {"role": "user", "content": f"The answer should not be longer than two sentences."},
+                    {"role": "user", "content": f"Just provide the answer without any additional text."},
+                    #{"role": "user", "content": f"Please return your answer as a JSON array: [\"answer\"]"}
+                ]
 
                 if question.sample_answer is not None:
-                    prompt += f"\n<Sample>Consider '{question.sample_answer}' as sample solution containing all relevant aspects.<\Sample>"
+                    messages.append({"role": "user", "content": f"Consider '{question.sample_answer}' as sample solution containing all relevant aspects."})
 
-                prompt += f"\n<Goal> {_setup_goal(goal, key_elements)}\n<\Goal>"
-
-                yield prompt
-
-
-def _find_json_content(choice:str) -> (Union[Match[str], None]):
-    """ Searches for and extracts JSON elements (specifically, content between square brackets) from a given string.
-
-    This function identifies and returns the content between the first pair of square brackets in the input string, 
-    which represents a JSON element. If no square brackets are found, it wraps the entire input string within them 
-    and extracts it assuming the answer has been returned as plain String
-
-    Args:
-        choice (str): The input string to be searched for JSON content
-
-    Returns:
-        Union[Match[str], None]: A match object containing the identified JSON content if found, otherwise None
-    """    
-    # remove new lines
-    answer = re.sub(r'\n', ' ', choice.strip())
-    if "[" not in answer and "]" not in answer:
-        answer = f"[{answer}]"
-    
-    return re.search(r'\[(.*?)\]', answer)
+                messages.append({"role": "user", "content": f"{_setup_goal(goal, key_elements)}"})
+                yield messages
 
 
-def _generate_samples(question:Question, prompt:str) -> List[Answer]:
-    """ Generates multiple AI-crafted answers for a given question based on a specified prompt.
+def _generate_sample(question:Question, messages:List[Dict[str, str]], model:CHAT_GPT_MODEL) -> List[Answer]:
+    """ Generates an AI-crafted answer for a given question based on the specified messages.
 
-    The function attempts to produce answers by leveraging the OpenAI model. These answers are 
-    extracted from the generated content assuming they are provided in a JSON format. The 
+    The function attempts to produce a single answer by leveraging the OpenAI model. These answer is 
+    extracted from the generated content assuming it is provided as plain text. The 
     function also ensures that the total token count (prompt + answer) does not exceed a set limit
 
     Args:
         question (Question): The primary question for which the AI needs to generate answers
         prompt (str): The OpenAI prompt that instructs the model on how to answer the question
-
-    Raises:
-        JSONDecodeError: Raised if the answer returned by the OpenAI model cannot be parsed as valid JSON
+        model (CHAT_GPT_MODEL): The model to be used
 
     Returns:
-        List[Answer]: A list of generated (unannotated) answers. Each answer is represented 
+        List[Answer]: A list containing one generated (unannotated) answer. The answer is represented 
                       as an `Answer` object with various attributes such as the question Id,
                       the answer text, its unique hash, etc.
     """
-    prompt_size = _count_token(prompt)
-    if prompt_size > 1000:
-        log.warning(f"The prompt is very huge: {prompt_size}")
+    messages_token_count = _count_token(messages, model)
+    if messages_token_count > 1000:
+        log.warning(f"The prompt is very huge: {messages_token_count}")
     
-    log.debug(f"Create sample answers with the following prompt: {prompt}")
+    log.debug(f"Create sample answers with the following prompt: {messages}")
 
     # Set up parameters for generating answers
-    max_tokens = 4000 - prompt_size
+    max_tokens = 4000 - messages_token_count
     temperature = 0.8
     frequency_penalty = 0.2
     presence_penalty = 0.6
 
     # Generate answers
     generated_answers = _execute_api_call(
-        prompt=prompt,
+        messages=messages,
         max_tokens=max_tokens,
         temperature=temperature,
         frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty
+        presence_penalty=presence_penalty,
+        model=model
     )
 
     for choice in generated_answers.choices:
-        log.debug(f"generated answer: {choice.text}")
-        contains_json = _find_json_content(choice.text)
+        log.debug(f"generated choice: {choice}")
 
-        if contains_json:
-            answer_str = contains_json.group(0)
-            json_answers = json.loads(answer_str)
-            return [Answer(question.question_id, answer.strip(), hashlib.md5(answer.strip().encode()).hexdigest(), -1, -1) for answer in json_answers]
-
-        raise JSONDecodeError(f"No valid JSON found in answer: {choice.text}")
+        message = choice.message['content']
+        log.info(f"generated answer: {message}")
+        answer = re.sub('\n+', ' ', message).strip()
+        return [Answer(question.question_id, answer, hashlib.md5(answer.encode()).hexdigest(), -1, -1)]
 
 
 def _validate_rating(rating:Union[str, int]) -> int:
@@ -584,13 +548,13 @@ def _get_scale_element_for(score:int, required_key_elements:int) -> str:
         return f"{score}: The answer includes one of the key element."
     if required_key_elements >= 1:
         return f"{score}: The answer includes {required_key_elements} key elements."
-
+    
 
 # We rate multiple answers at once, this is supposed to make ratings more consistent
-def generate_annotation_prompt(question:Question, numerated_answers:Dict[str, str], key_elements:List[KeyElement]) -> str:
-    """ Constructs a prompt directing the OpenAI model to evaluate a set of answers based on the presence of specific key elements.
+def generate_annotation_messages(question:Question, numerated_answers:Dict[str, str], key_elements:List[KeyElement]) -> str:
+    """ Constructs the messages directing the OpenAI model to evaluate a set of answers based on the presence of specific key elements.
 
-    The function assembles a prompt for the OpenAI model to grade sample answers according to the presence or absence of 
+    The function assembles messages for the OpenAI model to grade sample answers according to the presence or absence of 
     predefined key elements as defined by the respective ASAP EssaySet. The evaluation score ranges from 0 to 3, with the score 
     determined by how many key elements an answer contains.
 
@@ -601,31 +565,26 @@ def generate_annotation_prompt(question:Question, numerated_answers:Dict[str, st
                                          respective ASAP EssaySet
 
     Returns:
-        str: The fully constructed AI prompt, detailing evaluation criteria and instructions for providing scores in JSON format
+        str: The fully constructed set of AI messages, detailing evaluation criteria and instructions for providing scores in JSON format
     """
-
-    prompt = f"""In this task, you will assess answers to a specific question, based on the presence of distinct key elements.
-These elements may not be quoted verbatim, but their central meaning should be clearly conveyed in the response."""
-    prompt += _get_key_elements(key_elements)
-
-    prompt += f"""
-You will classify each answer into categories, depending on the number of key elements it contains from 0 to 3:
+    return [
+        {"role": "system", "content": f"You are expert that assess answers to a specific question, based on the presence of distinct key elements"},
+        {"role": "user", "content": f"These elements may not be quoted verbatim, but their central meaning should be clearly conveyed in the response."},
+        {"role": "user", "content": _get_key_elements(key_elements)},
+        {"role": "user", "content": f"""You will classify each answer into categories, depending on the number of key elements it contains from 0 to 3:
     {_get_scale_element_for(0, 0 + question.score_offset)}
     {_get_scale_element_for(1, 1 + question.score_offset)}
     {_get_scale_element_for(2, 2 + question.score_offset)}
-    {_get_scale_element_for(3, 3 + question.score_offset)}
+    {_get_scale_element_for(3, 3 + question.score_offset)}"""},
+        {"role": "user", "content": "Keep in mind, the punctuation, stylistic choices, or the specific wording used in an answer do not influence its score."},
+        {"role": "user", "content": "The evaluation is solely based on the presence or absence of the key elements."},
+        {"role": "user", "content": "The answers will be provided to you in JSON format, such as {{\"answer_id1\":\"answer1\"}}."},
+        {"role": "user", "content": "After you assess them, you should provide the scores in a similar JSON format: {{\"answer_id1\":\"category\"}}."},
+        {"role": "user", "content": f"Question: \"{question.question}\""},
+        {"role": "user", "content": f"Answers: \"{numerated_answers}\""}
+    ]
 
-Keep in mind, the punctuation, stylistic choices, or the specific wording used in an answer do not influence its score.
-
-The answers will be provided to you in JSON format, such as {{"answer_id1":"answer1"}}.
-After you assess them, you should provide the scores in a similar JSON format: {{"answer_id1":"category"}}.
-
-Question: "{question.question}"
-Answers: "{numerated_answers}"
-"""
-    return prompt
-
-def _annotate_samples(api_key:str, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement], score_type:int) -> List[Answer]:
+def _annotate_samples(api_key, question:Question, answers: Iterator[Answer], key_elements:List[KeyElement], score_type:int, model:CHAT_GPT_MODEL) -> List[Answer]:
     """ Annotates sample answers according to the presence or absence of predefined key elements as defined by the respective ASAP EssaySet.
     
     The evaluation score ranges from 0 to 3, with the score determined by how many key elements an answer contains.
@@ -637,6 +596,7 @@ def _annotate_samples(api_key:str, question:Question, answers: Iterator[Answer],
         key_elements (List[KeyElement]): List of key elements associated with the question according to the 
                                          respective ASAP EssaySet
         score_type (int): The score type to be set by the evaluation (either 1 or 2)
+        model (CHAT_GPT_MODEL): The model to be used
 
     Raises:
         JSONDecodeError: An error raised if the response from the OpenAI model cannot be parsed as valid JSON
@@ -652,8 +612,8 @@ def _annotate_samples(api_key:str, question:Question, answers: Iterator[Answer],
     numerated_answers = {f"{idx}": answer.answer
                          for idx, answer in numerated_rated_answers.items()}
 
-    prompt = generate_annotation_prompt(question, numerated_answers, key_elements)
-    log.debug(f"Annotate sample answers with the following prompt: {prompt}")
+    messages = generate_annotation_messages(question, numerated_answers, key_elements)
+    log.debug(f"Annotate sample answers with the following prompt: {messages}")
 
     # Set up parameters for generating answers
     max_tokens = 10 * len(answers) # < 10 token / answer {"id":"rating"}
@@ -661,21 +621,23 @@ def _annotate_samples(api_key:str, question:Question, answers: Iterator[Answer],
     frequency_penalty = 0.6
     presence_penalty = 0.2
 
-    # Generate answers
     annotated_answers = _execute_api_call(
-        prompt=prompt,
+        messages=messages,
         max_tokens=max_tokens,
         temperature=temperature,
         frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty
+        presence_penalty=presence_penalty,
+        model=model
     )
     log.debug(f"Received the following response '{annotated_answers}'")
 
     # Extract answers from OpenAI API response
     for choice in annotated_answers.choices:
-        log.debug(f"generated rating: {choice.text}")
+        log.debug(f"generated choice: {choice}")
+        message = choice.message['content']
+
         # remove new lines
-        answer = re.sub(r'\n', ' ', choice.text.strip())
+        answer = re.sub(r'\n', ' ', message.strip())
         # find json content
         contains_json = re.search(r'\{.*\}', answer)
 
@@ -685,8 +647,7 @@ def _annotate_samples(api_key:str, question:Question, answers: Iterator[Answer],
             return [_add_rating(numerated_rated_answers, answer_id, rating, score_type) for answer_id, rating in json_answer.items()]
         raise JSONDecodeError(f"No valid JSON found in answer: {answer}")
 
-
-def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], key_elements:List[KeyElement]) -> Generator[List[Answer], None, None]:
+def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], key_elements:List[KeyElement], model:CHAT_GPT_MODEL) -> Generator[List[Answer], None, None]:
     """ Annotates sample answers for a given question using the Open AI API.
 
     This function connects to the Open AI API using the provided key and annotates answers for the specified 
@@ -698,6 +659,7 @@ def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], k
         answers (Iterator[Answer]): An iterator containing the answers that need to be rated
         key_elements (List[KeyElement]): List of key elements associated with the question according to the 
                                          respective ASAP EssaySet
+        model (CHAT_GPT_MODEL): The model to be used
 
     Yields:
         Generator[List[Answer], None, None]: A generator that produces lists of annotated answers. Each iteration yields
@@ -709,8 +671,8 @@ def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], k
         try:
             log.debug(f"Try to rate answers with retry number: {retry}")
             # rate score_1 and score_2
-            rated_answers = _annotate_samples(api_key, question, answers, key_elements, 1)
-            yield _annotate_samples(api_key, question, rated_answers, key_elements, 2)
+            rated_answers = _annotate_samples(api_key, question, answers, key_elements, 1, model)
+            yield _annotate_samples(api_key, question, rated_answers, key_elements, 2, model)
             break
         except JSONDecodeError as e:
             retry += 1
@@ -724,7 +686,6 @@ def annotate_samples(api_key:str, question:Question, answers:Iterator[Answer], k
     if retry >= max_retries: 
         log.error(f"Exceeded {retry} retries, the rating of answers will be aborted")
 
-        
 
 def _add_rating(numerated_rated_answers:Dict[str, Answer], answer_id:str, rating:Union[str, int], score_type:int) -> Answer:
     """ Associates a provided rating with its corresponding answer based on the answer's Is and score type.

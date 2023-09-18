@@ -4,11 +4,17 @@ from config import Configuration
 
 
 import argparse
+from argparse import Namespace
 import logging as log
 from config_logger import config_logger
 
 # Setup and parse arguments
-def setup_args():
+def setup_args() -> Namespace:
+    """ Setup of the execution arguments
+
+    Returns:
+        Namespace: arguments to be used
+    """
     parser = argparse.ArgumentParser(description='Create annotated Answers')
     parser.add_argument('api_key', help='The API key for the OpenAI API')
     parser.add_argument('--use_sample', action='store_true', help='Use SampleAnswer for more context')

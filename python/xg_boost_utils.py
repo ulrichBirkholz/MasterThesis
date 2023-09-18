@@ -68,7 +68,7 @@ def train_model(sample:AnswersForQuestion, path:str, score_type:int) -> None:
         path (str): The directory path where the trained model will be saved
         epochs (int): Specifies the number of times the learning algorithm will work through the entire training dataset. 
                       The more epochs, the more the model will be refined, but care should be taken to avoid overfitting
-        score_type (int): The score type (1 or 2) to be used
+        score_type (int): The score type (either 1 or 2) to be used
     """
     # cleanup
     if os.path.exists(path):
@@ -107,7 +107,7 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
         path (str): The directory path where the trained model is saved
         answers_for_question (AnswersForQuestion): A data structure containing a question and its corresponding 
                                                    answers that are to be rated by the model
-        score_type (int): Indicator for which score type is considered the true value (1 or 2)
+        score_type (int): Indicator for which score type is considered the true value (either 1 or 2)
 
     Returns:
         Tuple[List[Answer], Any]: A tuple containing:

@@ -44,7 +44,7 @@ def _is_selection_valid(previous_answer_batches:List[List[Answer]], new_answer_b
     Args:
         previous_answer_batches (List[List[Answer]]): All previouly selected Lists of Answers
         new_answer_batch (List[Answer]): Newly selected List of Answers
-        score_type (int): The score type to be used for the evaluation (1 or 2)
+        score_type (int): The score type to be used for the evaluation (either 1 or 2)
 
     Returns:
         bool: True if the selection is valid, False otherwise
@@ -76,7 +76,7 @@ def _is_selection_valid(previous_answer_batches:List[List[Answer]], new_answer_b
     return False
 
 # Setup and parse arguments
-# example: python -m train_model --score_types_path ./score_types.json --davinci --experts --turbo --gpt4
+# example: python -m train_model --score_types_path ./score_types.json --davinci --exp --turbo --gpt4
 def setup_args() -> Namespace:
     """ Setup of the execution arguments
 
@@ -95,10 +95,10 @@ def setup_args() -> Namespace:
 
     args = parser.parse_args()
 
-    with open(args.score_types_path, 'r') as score_types:
-        config = json.load(score_types)
+    with open(args.score_types_path, 'r') as json_score_types:
+        score_types = json.load(json_score_types)
 
-    for key, value in config.items():
+    for key, value in score_types.items():
         setattr(args, f"score_types_{key}", value)
 
     return args
@@ -155,7 +155,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
         batch_size (int): Number of Sample Answers the model will be trained with
         batch_id (str): Id of the Variance we Train
         base_path (str): The internal path to the model
-        score_type (int): The score type to be used for the evaluation (1 or 2)
+        score_type (int): The score type to be used for the evaluation (either 1 or 2)
     """
     bert_path = config.get_trained_bert_model_path(*path_args)
     xgb_path = config.get_trained_xg_boost_model_path(*path_args)
@@ -201,7 +201,7 @@ def _setup_training_for(training_data_source:str, score_types:Dict[str, int], co
 
     Args:
         training_data_source (str): The source of the Samples, the model will be trained with
-        score_types (Dict[str, int]): The score types (1 or 2) to be used, this is individual per Question
+        score_types (Dict[str, int]): The score types (either 1 or 2) to be used, this is individual per Question
         config (Configuration): Allows access to the projects central configuration
 
     Returns:
@@ -237,24 +237,24 @@ if __name__ == "__main__":
 
     total_number_of_models = 0
     for question in questions:
-        for batch_size in config.get_batch_sizes():
-            for id in batch_size.ids:
+        for batch in config.get_batches():
+            for batch_id in batch.ids:
                 total_number_of_models += len(trainings) * 2
 
     train_model = 1
     for question in questions:
-        for batch_size in config.get_batch_sizes():
-            for id in batch_size.ids:
+        for batch in config.get_batches():
+            for batch_id in batch.ids:
                 for training in trainings.items():
                     answers = training["answers"]
 
                     log.debug(f"Train model {train_model} of {total_number_of_models}")
-                    if len(answers[question.question_id]) >= batch_size.size:
-                        path_args = (question.question, batch_size.size, id, training["source"])
-                        base_path = config.get_model_base_path(*path_args)
+                    if len(answers[question.question_id]) >= batch.size:
+                        path_args = (question.question, batch.size, batch_id, training["source"])
+                        base_path = config.get_relative_model_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
-                                                path_args, args, batch_size, id, base_path, training["score_types"][question.question_id])
+                                                path_args, args, batch, batch_id, base_path, training["score_types"][question.question_id])
                     else:
-                        log.warning(f"Skip batch size {batch_size.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
+                        log.warning(f"Skip batch size {batch.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
                     # BERT + XG_Boost
                     train_model += 2

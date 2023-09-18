@@ -6,6 +6,7 @@ import random
 import logging as log
 from config_logger import config_logger
 
+# TODO: outdated messages and prompts
 if __name__ == "__main__":
     config_logger(log.DEBUG, 'prompt.log')
     config = Configuration()

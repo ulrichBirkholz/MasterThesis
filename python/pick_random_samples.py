@@ -58,7 +58,7 @@ def _calculate_distribution(samples:List[Answer], score_type:int, total:bool = F
 
     Args:
         samples (List[Answer]): Samples of which the distribution is calculated
-        score_type (int): The score type (1 or 2) of which the distribution is calculated
+        score_type (int): The score type (either 1 or 2) of which the distribution is calculated
         total (bool, optional): False to calculate the distribution in percent, otherwise True. Defaults to False.
 
     Returns:
@@ -79,7 +79,7 @@ def _adjust_distribution(samples:List[Answer], target_distribution:Dict[str, int
     Args:
         samples (List[Answer]): The source list of samples to chose from
         target_distribution (Dict[str, int]): The desired target distribution
-        score_type (int): The score type (1 or 2) of which the distribution is calculated
+        score_type (int): The score type (either 1 or 2) of which the distribution is calculated
         min_size (int, optional): The minimal number of samples contained within the result List. Defaults to 0.
 
     Returns:
@@ -144,7 +144,7 @@ def _split_answers(all_answers:List[Answer], distributed_answers:List[Answer], s
     Args:
         all_answers (List[Answer]): All available samples
         distributed_answers (List[Answer]): A list of answers reflecting the desired distribution of categories
-        score_type (int): The score type (1 or 2) of which the distribution is calculated
+        score_type (int): The score type (either 1 or 2) of which the distribution is calculated
         training_size (int): The desired number of samples in the training dataset
 
     Returns:
@@ -324,7 +324,6 @@ def _pick_samples_for(ai_data_source:str, experts_answers_per_question:Dict[str,
     # All AI sources have up to 3200 samples available to train other models such as BERT and XG-Boost
     _split_samples_for_question(ai_selection_info_per_question, ai_data_source, 3200, config)
     _split_samples_for_question(experts_selection_info_per_question, "experts", 1600, config)
-    _data_writer.write_to_file(config.get_distribution_path())
 
 
 if __name__ == "__main__":
@@ -345,3 +344,5 @@ if __name__ == "__main__":
 
     if args.gpt4:
         _pick_samples_for("gpt4", experts_answers_per_question, config)
+
+    _data_writer.write_to_file(config.get_distribution_path())
