@@ -157,6 +157,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
         base_path (str): The internal path to the model
         score_type (int): The score type to be used for the evaluation (either 1 or 2)
     """
+    assert score_type == 1 or score_type == 2, f"The used score type: {score_type} is invalid"
     bert_path = config.get_trained_bert_model_path(*path_args)
     xgb_path = config.get_trained_xg_boost_model_path(*path_args)
 
