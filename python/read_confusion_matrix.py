@@ -1,7 +1,8 @@
 import json
 from config import Configuration
 
-# TODO: outdated
+# TODO: this is outdated and needs to be reworked
+
 def _print_cm(config, training_data_source, test_data_source):
 	with open(config.get_path_for_datafile(f"{training_data_source}_{test_data_source}_confusion_matrices.json"), "r") as file:
 		data = json.load(file)
