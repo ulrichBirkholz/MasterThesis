@@ -12,6 +12,14 @@ import shutil
 import logging as log
 
 def _not_all_categories(ratings:List[int]) -> bool:
+    """ Ensure that each category is present within the selected dataset
+
+    Args:
+        ratings (List[int]): The selected dataset
+
+    Returns:
+        bool: True if one ore multiple categories are missing, False otherwise
+    """
     categories = set(ratings)
     if len(categories) < 4:
         log.error(f"Four categories (0 - 3) are required: {categories}")

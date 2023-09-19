@@ -189,12 +189,12 @@ def _get_idioms(idioms:Dict[str, List[str]], idiom_category:str) -> str:
 
 # The wording has been enhanced with the assistance of Chat-GPT, optimizing their comprehensibility for text-davinci-003.
 # The elements use a simple phrasing to make them easily understandable
-def generate_answer_messages(question:Question, key_elements:List[KeyElement]) -> Generator[str, None, None]:
+def generate_answer_messages(question:Question, key_elements:List[KeyElement]) -> Generator[List[Dict[str, str]], None, None]:
     """ Generates a series of 4200 AI message sets based on the question, key elements, and predefined configurations
 
     This function produces a generator of message sets tailored for the OpenAI model. It incorporates several instructional 
-    components such as role, task, style, and format, in the prompt, to guide the AI in generating desired responses. 
-    The prompts also have the flexibility to embody various roles, styles, and goals which increases the diversity of 
+    components such as role, task, style, and format, in the messages, to guide the AI in generating desired responses. 
+    The messages also have the flexibility to embody various roles, styles, and goals which increases the diversity of 
     potential answers
 
     Args:
@@ -203,7 +203,7 @@ def generate_answer_messages(question:Question, key_elements:List[KeyElement]) -
                                          respective ASAP EssaySet
 
     Yields:
-        Generator[str, None, None]: A generator that yields the individual AI prompt instructions
+        Generator[List[Dict[str, str]], None, None]: A generator that yields the individual AI instructions
     
     Notes:
         - The function integrates a vast array of instructions, from idioms, roles, goals to styles to provide varied 
@@ -211,7 +211,7 @@ def generate_answer_messages(question:Question, key_elements:List[KeyElement]) -
         - Certain combinations might seem contradictory, but the focus is more on language-style generation by the AI 
           rather than the logical coherence of the messages
     """
-    # 10 categories of correctness defined as goals within the prompt
+    # 10 categories of correctness defined as goals within the messages
     # NOTE: it does not work to provide a list and instruct the AI to choose a number of entries -> we need to provide just the entries
     # NOTE: it does not work to provide a list and instruct the AI to avoid any of its entries.
     sample_goals = [
@@ -537,7 +537,7 @@ def _get_scale_element_for(score:int, required_key_elements:int) -> str:
     
 
 # We rate multiple answers at once, this is supposed to make ratings more consistent
-def generate_annotation_messages(question:Question, numerated_answers:Dict[str, str], key_elements:List[KeyElement]) -> str:
+def generate_annotation_messages(question:Question, numerated_answers:Dict[str, str], key_elements:List[KeyElement]) -> List[Dict[str, str]]:
     """ Constructs the messages directing the OpenAI model to evaluate a set of answers based on the presence of specific key elements
 
     The function assembles messages for the OpenAI model to grade sample answers according to the presence or absence of 
@@ -551,7 +551,7 @@ def generate_annotation_messages(question:Question, numerated_answers:Dict[str, 
                                          respective ASAP EssaySet
 
     Returns:
-        str: The fully constructed set of AI messages, detailing evaluation criteria and instructions for providing scores in JSON format
+        List[Dict[str, str]]: The fully constructed set of AI messages, detailing evaluation criteria and instructions for providing scores in JSON format
     """
     return [
         {"role": "system", "content": f"You are expert that assess answers to a specific question, based on the presence of distinct key elements"},

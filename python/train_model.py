@@ -1,5 +1,4 @@
-from tsv_utils import get_questions, Answer, Question
-from tsv_utils import get_answers_per_question
+from tsv_utils import get_questions, get_answers_per_question, Answer, Question
 from bert_utils import train_model as bert_train_model, AnswersForQuestion
 from xg_boost_utils import train_model as xgb_train_model
 from config import Configuration
@@ -7,13 +6,10 @@ import random
 import os
 import shutil
 import json
-
 import argparse
 from argparse import Namespace
 import logging as log
-
 from typing import List, Dict, Tuple, Union
-
 from config_logger import config_logger
 
 previous_answer_batches = []
