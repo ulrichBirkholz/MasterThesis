@@ -14,7 +14,7 @@ import logging as log
 def _not_all_categories(ratings:List[int]) -> bool:
     categories = set(ratings)
     if len(categories) < 4:
-        log.error(f"One answer of each category (0 - 3) must be present: {categories}")
+        log.error(f"Four categories (0 - 3) are required: {categories}")
         return True
     return False
 
@@ -40,7 +40,7 @@ def _load_components(path:str, num_class:int=0) -> Tuple[xgb.XGBClassifier, Tfid
 
     else:
         # multiclass classification problem (0 - 3), small datasets may not contain all categories
-        model = xgb.XGBClassifier(objective='multi:softmax', num_class=num_class, random_state=42)     
+        model = xgb.XGBClassifier(objective='multi:softmax', num_class=num_class)     
         vectorizer = TfidfVectorizer()
     
     return model, vectorizer
@@ -90,9 +90,9 @@ def train_model(sample:AnswersForQuestion, path:str, score_type:int) -> None:
     
     # We split the data the same way as for BERT, to keep it comparable
     assert _not_all_categories(ratings) == False, f"Not all categories are present: {set(ratings)}"
-    answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
+    answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2)
     while _not_all_categories(ratings_train):
-        answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2, random_state=42)
+        answers_train, answers_test, ratings_train, ratings_test = train_test_split(answers, ratings, test_size=0.2)
 
     model.fit(vectorizer.fit_transform(answers_train), ratings_train)
     

@@ -89,7 +89,7 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
 
 
 # Setup and parse arguments
-# example: python -m test_model --score_types_path ./score_types.json --davinci --experts --turbo --gpt4
+# example: python -m test_model --score_types_path ./score_types.json
 def setup_args() -> Namespace:
     """ Setup of the execution arguments
 
