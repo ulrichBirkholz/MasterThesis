@@ -12,7 +12,7 @@ import logging as log
 from typing import List, Dict, Tuple, Union
 from config_logger import config_logger
 
-previous_answer_batches = []
+previous_answer_variants = []
 
 def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]) -> float:
     """ Calculates the intersection of two given lists of Answers
@@ -33,19 +33,19 @@ def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]
 
 # We want to ensure a certain variance within the datasets to be able to observe how different answers affect the efficiency of the model,
 #   this is at this point considered more valuable than pure randomization
-def _is_selection_invalid(previous_answer_batches:List[List[Answer]], new_answer_batch:List[Answer], score_type:int) -> bool:
+def _is_selection_invalid(previous_answer_variants:List[List[Answer]], new_answer_batch:List[Answer], score_type:int) -> bool:
     """ Ensures that the intersection between the newly selected List is above a certain threshold and that each
     category or possible score is present in the selection.
 
     Args:
-        previous_answer_batches (List[List[Answer]]): All previouly selected Lists of Answers
+        previous_answer_variants (List[List[Answer]]): All previously selected Lists of Answers
         new_answer_batch (List[Answer]): Newly selected List of Answers
         score_type (int): The score type to be used for the evaluation (either 1 or 2)
 
     Returns:
         bool: True if the selection is valid, False otherwise
     """
-    for answer_batch in previous_answer_batches:
+    for answer_batch in previous_answer_variants:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
 
         # larger batches naturally have a higher similarity
@@ -165,11 +165,11 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
 
     answer_batch = _get_random_answers(answers, batch_size)
 
-    while _is_selection_invalid(previous_answer_batches, answer_batch, score_type):
-        log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_batches)}")
+    while _is_selection_invalid(previous_answer_variants, answer_batch, score_type):
+        log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_variants)}")
         answer_batch = _get_random_answers(answers, batch_size)
 
-    previous_answer_batches.append(answer_batch)
+    previous_answer_variants.append(answer_batch)
 
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
 
@@ -193,7 +193,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
                 "batch_variant_id": batch_id,
                 "base_path": base_path,
                 "epochs": args.epochs,
-                "existing_batches": len(previous_answer_batches)
+                "existing_batches": len(previous_answer_variants)
             }, file)
 
 def _setup_training_for(training_data_source:str, score_types:Dict[str, int], config:Configuration) -> Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]:
@@ -244,6 +244,7 @@ if __name__ == "__main__":
     train_model = 1
     for question in questions:
         for batch in config.get_batches():
+            previous_answer_variants.clear()
             for batch_id in batch.ids:
                 for training in trainings:
                     answers = training["answers"]
