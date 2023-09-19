@@ -9,7 +9,7 @@ from config_logger import config_logger
 
 
 if __name__ == "__main__":
-    config_logger(log.DEBUG, 'print_gpt_instructions.log') # TODO: rename logfile in accordance with the module
+    config_logger(log.DEBUG, 'print_gpt_instructions.log')
     config = Configuration()
     key_elements_per_question = get_key_elements_by_question_id(config.get_key_elements_path())
     answers_per_question = get_answers_per_question(config.get_samples_path("davinci"))

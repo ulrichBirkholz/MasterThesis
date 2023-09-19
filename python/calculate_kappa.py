@@ -85,7 +85,7 @@ class KappaFigure():
         Args:
             config (Configuration): Allows access to the projects central configuration
         """
-        file_path = config.get_all_expert_samples_src_path() # TODO: introduce fitting method
+        file_path = config.get_qwk_result_path()
         batches = config.get_batches()
         max_number_of_labels = len(batches)
         mode = 'a' if os.path.exists(file_path) else 'w'
