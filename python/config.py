@@ -36,16 +36,25 @@ class Configuration():
             self.config = json.load(config_file)
 
 
+    def get_datafile_root_path(self) -> str:
+        """ Returns the root path for all data files.
+
+        Returns:
+            str: Relative path to the data file.
+        """
+        return self.config['data_path']
+
+
     def get_path_for_datafile(self, name:str) -> str:
-        """ Returns the absolute path for a specific data file.
+        """ Returns the relative path for a specific data file.
 
         Args:
             name (str): Name of the data file.
 
         Returns:
-            str: Absolute path to the data file.
+            str: Relative path to the data file.
         """
-        return f"{self.config['data_path']}/{name}"
+        return f"{self.get_datafile_root_path()}/{name}"
 
 
     @staticmethod

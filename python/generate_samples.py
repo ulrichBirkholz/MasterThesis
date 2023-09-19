@@ -15,7 +15,7 @@ def setup_args() -> Namespace:
     Returns:
         Namespace: arguments to be used
     """
-    parser = argparse.ArgumentParser(description='Create annotated Answers')
+    parser = argparse.ArgumentParser(description='Create unannotated Answers')
     parser.add_argument('api_key', help='The API key for the OpenAI API')
     parser.add_argument('--use_sample', action='store_true', help='Use SampleAnswer for more context')
     return parser.parse_args()

@@ -15,7 +15,7 @@ def setup_args() -> Namespace:
     Returns:
         Namespace: arguments to be used
     """
-    parser = argparse.ArgumentParser(description='Create annotated Answers')
+    parser = argparse.ArgumentParser(description='Annotate Answers')
     parser.add_argument('api_key', help='The API key for the OpenAI API')
     # 2 produces stable results, 5 is unstable, so some responses are unparsable 10 and higher was unusable
     parser.add_argument('chunk_size', default=2, type=int, help='Maximal amount of simultaneously annotated Answers')

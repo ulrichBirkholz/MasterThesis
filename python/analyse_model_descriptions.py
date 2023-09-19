@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import re
+import argparse
+from argparse import Namespace
 
-# TODO: this is outdated and needs to be reworked
+# TODO: check wording
 
 def _tabs_for_alignment(text:str) -> str:
     """ Adds a certain number of tabs depending on the text length
@@ -25,23 +27,44 @@ def _tabs_for_alignment(text:str) -> str:
     return "\t" * tabs
 
 
-def _generate_model_id(base_path:str, question_id:str, version:str) -> str:
-    """_summary_
+def _generate_model_id(version:str, question_id:str, data_source:str) -> str:
+    """ Retrieves a unique identifier based on the models base path, the question it
+    assesses and the root folder of the internal model version
 
     Args:
-        base_path (str): _description_
-        question_id (str): _description_
-        version (str): _description_
+        version (str): Internal model type and version identifier
+        question_id (str): The id of the associated Essey Set
+        data_source (str): The source of the data the model was trained with
 
     Returns:
         str: _description_
-    """    
-    index = base_path.find('_')
-    return f"{version}_{question_id}{base_path[index:]}"
+    """
+    return f"{version}_{question_id}{data_source}"
+
+
+
+# Setup and parse arguments
+# example: python -m analyse_model_descriptions
+def setup_args() -> Namespace:
+    """ Setup of the execution arguments
+
+    Returns:
+        Namespace: arguments to be used
+    """
+    parser = argparse.ArgumentParser(description='Evaluate model descriptors and print heatmap of answers per model')
+    parser.add_argument("--version_dir", type=str, required=False, help="Restrict the elements represented by the heatmap to a particular version")
+    parser.add_argument("--data_source", type=str, required=False, help="Restrict the elements represented by the heatmap to the source of the training data")
+    parser.add_argument("--variant_id", type=str, required=False, help="Restrict the elements represented by the heatmap to a variant identifier")
+    parser.add_argument("--batch_size", type=int, required=False, help="Restrict the elements represented by the heatmap to a batch size")
+    parser.add_argument("--question_id", type=int, required=False, help="Restrict the elements represented by the heatmap to a particular question")
+
+
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
     config = Configuration()
+    args = setup_args()
 
     # base path to all models
     base_dir = config.get_model_root_path()
@@ -53,11 +76,14 @@ if __name__ == "__main__":
         "model_identifier": []
     }
     with open(output_file, 'w') as file:
+
         print(f"base_dir: {base_dir}")
         for version_dir in os.listdir(base_dir):
+
             version_dir_path = os.path.join(base_dir, version_dir)
             print(f"Version dir: {version_dir_path}")
             for model_dir in os.listdir(version_dir_path):
+
                 model_dir_path = os.path.join(version_dir_path, model_dir)
                 print(f"Model: {model_dir_path}")
 
@@ -72,23 +98,40 @@ if __name__ == "__main__":
                             log.error(f"Unable to parse file: {description_file}, error: {e}")
                             continue
                     
-
-                    model_id = _generate_model_id(data['base_path'], data['question_id'], version_dir)
+                    index = data['base_path'].find('_')
+                    data_source = data['base_path'][index:]
+                    model_id = _generate_model_id(version_dir, data['question_id'], data_source)
 
                     # Write the path and contents of the JSON file to the output file
                     file.write(f"Path: {model_dir_path}\n")
                     file.write(f"Question Id: {data['question_id']} batch size: {data['batch_size']} variant: {data['batch_variant_id']}\n")
                     file.write(f"Base Path: {data['base_path']}\n")
-                    file.write(f"ID: {model_id}\n")
+                    file.write(f"Id: {model_id}\n")
                     file.write(f"\nAnswers: \n")
 
+                    # TODO: refactor this
+                    add_model_to_heatmap = True
+                    if args.version_dir:
+                        if args.version_dir != version_dir:
+                            add_model_to_heatmap = False
+                    
+                    if args.question_id:
+                        if args.question_id != data['question_id']:
+                            add_model_to_heatmap = False
 
-                    # NOTE: Adjust this manually to modify the analyzed dataset
-                    # TODO: parameterise based on batch sizes
-                    # TODO: update _ai to davinci, turbo gpt4 and experts
-                    pattern = r'^bert_v1_5_(50|100|200|400|800)_[B]_ai$'
+                    if args.data_source:
+                        if args.data_source != data_source:
+                            add_model_to_heatmap = False
 
-                    if re.match(pattern, model_id):
+                    if args.variant_id:
+                        if args.variant_id != data['batch_variant_id']:
+                            add_model_to_heatmap = False
+                    
+                    if args.batch_size:
+                        if args.batch_size != data['batch_size']:
+                            add_model_to_heatmap = False
+
+                    if add_model_to_heatmap:
                         for answer in data['answer_batch']:
                             data_frame["answer_ids"].append(answer['answer_id'])
                             data_frame["model_identifier"].append(model_id)
@@ -116,6 +159,7 @@ if __name__ == "__main__":
                 file.write(f"###############################################\n\n")
     
 
+    # Heat map of answers per model
     df = pd.DataFrame({'answer_id': data_frame["answer_ids"], 'model_identifier': data_frame["model_identifier"]})
 
     df['model_num'] = df['model_identifier'].str.extract('_(\d+)_[A-F]_[a-z]*$').astype(int)

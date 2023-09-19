@@ -96,7 +96,7 @@ def setup_args() -> Namespace:
     Returns:
         Namespace: arguments to be used
     """
-    parser = argparse.ArgumentParser(description='Train Model with annotated answers')
+    parser = argparse.ArgumentParser(description='Test Model with annotated answers')
 
     parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
 
