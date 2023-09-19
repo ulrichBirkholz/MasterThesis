@@ -52,10 +52,13 @@ def _is_selection_invalid(previous_answer_batches:List[List[Answer]], new_answer
     for answer_batch in previous_answer_batches:
         similarity = _jaccard_similarity(answer_batch, new_answer_batch)
 
-        if len(new_answer_batch) <= 800:
+        # larger batches naturally have a higher similarity
+        if len(new_answer_batch) <= 400:
             max_similarity = 0.2
+        elif len(new_answer_batch) == 800:
+            max_similarity = 0.325
         else:
-            # larger batches naturally have a higher similarity
+            # 1600, 3200
             max_similarity = 0.52
 
         if similarity > max_similarity:
@@ -157,6 +160,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
         base_path (str): The internal path to the model
         score_type (int): The score type to be used for the evaluation (either 1 or 2)
     """
+    log.train
     assert score_type == 1 or score_type == 2, f"The used score type: {score_type} is invalid"
     bert_path = config.get_trained_bert_model_path(*path_args)
     xgb_path = config.get_trained_xg_boost_model_path(*path_args)
@@ -248,10 +252,10 @@ if __name__ == "__main__":
             for batch_id in batch.ids:
                 for training in trainings:
                     answers = training["answers"]
-
-                    log.debug(f"Train model {train_model} of {total_number_of_models}")
+                    source = training["source"]
+                    log.debug(f"Train model {train_model} with source: {source} for batch size: {batch.size} and variant: {batch_id} of {total_number_of_models}")
                     if len(answers[question.question_id]) >= batch.size:
-                        path_args = (question.question, batch.size, batch_id, training["source"])
+                        path_args = (question.question, batch.size, batch_id, source)
                         base_path = config.get_relative_model_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
                                                 path_args, args, batch.size, batch_id, base_path, training["score_types"][question.question_id])
