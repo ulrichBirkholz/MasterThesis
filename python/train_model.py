@@ -251,7 +251,7 @@ if __name__ == "__main__":
                     source = training["source"]
                     log.debug(f"Train model {train_model} with source: {source} for batch size: {batch.size} and variant: {batch_id} of {total_number_of_models}")
                     if len(answers[question.question_id]) >= batch.size:
-                        path_args = (question.question, batch.size, batch_id, source)
+                        path_args = (question.question_id, batch.size, batch_id, source)
                         base_path = config.get_relative_model_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
                                                 path_args, args, batch.size, batch_id, base_path, training["score_types"][question.question_id])
