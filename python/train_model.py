@@ -12,7 +12,7 @@ import logging as log
 from typing import List, Dict, Tuple, Union
 from config_logger import config_logger
 
-previous_answer_variants = []
+previous_answer_variants = {}
 
 def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]) -> float:
     """ Calculates the intersection of two given lists of Answers
@@ -143,7 +143,7 @@ def _get_random_answers(answers:List[Answer], batch_size:int) -> List[Answer]:
     return answers[:batch_size]
 
 
-def _train_model_for_question(answers:List[Answer], question:Question, path_args:Tuple[str, int, str, str], args:Namespace, batch_size:int, batch_id:str, base_path:str, score_type:int) -> None:
+def _train_model_for_question(answers:List[Answer], question:Question, path_args:Tuple[str, int, str, str], args:Namespace, batch_size:int, batch_id:str, base_path:str, score_type:int, training_data_source:str) -> None:
     """ Trains an BERT and XG-Boost model based on the given Samples
 
     Args:
@@ -155,6 +155,7 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
         batch_id (str): Id of the Variance we Train
         base_path (str): The internal path to the model
         score_type (int): The score type to be used for the evaluation (either 1 or 2)
+        training_data_source (str): The source of the Samples, the model will be trained with
     """
     assert score_type == 1 or score_type == 2, f"The used score type: {score_type} is invalid"
     bert_path = config.get_trained_bert_model_path(*path_args)
@@ -165,11 +166,14 @@ def _train_model_for_question(answers:List[Answer], question:Question, path_args
 
     answer_batch = _get_random_answers(answers, batch_size)
 
-    while _is_selection_invalid(previous_answer_variants, answer_batch, score_type):
+    while _is_selection_invalid(previous_answer_variants[training_data_source], answer_batch, score_type):
         log.error(f"Answer batch is too similar to existing one, number of existing batches: {len(previous_answer_variants)}")
         answer_batch = _get_random_answers(answers, batch_size)
 
-    previous_answer_variants.append(answer_batch)
+    if not previous_answer_variants[training_data_source]:
+        previous_answer_variants[training_data_source] = [answer_batch]
+    else:
+        previous_answer_variants[training_data_source].append(answer_batch)
 
     samples = AnswersForQuestion(question.question_id, question.question, answer_batch)
 
@@ -254,7 +258,7 @@ if __name__ == "__main__":
                         path_args = (question.question_id, batch.size, batch_id, source)
                         base_path = config.get_relative_model_path(*path_args)
                         _train_model_for_question(answers[question.question_id], question,
-                                                path_args, args, batch.size, batch_id, base_path, training["score_types"][question.question_id])
+                                                path_args, args, batch.size, batch_id, base_path, training["score_types"][question.question_id], source)
                     else:
                         log.warning(f"Skip batch size {batch.size} for automatically created answers, there are not enough: {len(answers[question.question_id])}")
                     # BERT + XG_Boost
