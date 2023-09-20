@@ -249,7 +249,7 @@ if __name__ == "__main__":
                     answers = training["answers"]
                     source = training["source"]
 
-                    if not previous_answer_variants[source]:
+                    if source not in previous_answer_variants:
                         previous_answer_variants[source] = []
 
                     log.debug(f"Train model {train_model} with source: {source} for batch size: {batch.size} and variant: {batch_id} of {total_number_of_models}")
