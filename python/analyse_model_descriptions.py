@@ -106,27 +106,12 @@ if __name__ == "__main__":
                     file.write(f"Id: {model_id}\n")
                     file.write(f"\nAnswers: \n")
 
-                    # TODO: refactor this
                     add_model_to_heatmap = True
-                    if args.version_dir:
-                        if args.version_dir != version_dir:
-                            add_model_to_heatmap = False
-                    
-                    if args.question_id:
-                        if args.question_id != data['question_id']:
-                            add_model_to_heatmap = False
-
-                    if args.data_source:
-                        if args.data_source != data_source:
-                            add_model_to_heatmap = False
-
-                    if args.variant_id:
-                        if args.variant_id != data['batch_variant_id']:
-                            add_model_to_heatmap = False
-                    
-                    if args.batch_size:
-                        if args.batch_size != data['batch_size']:
-                            add_model_to_heatmap = False
+                    add_model_to_heatmap &= (not args.version_dir or args.version_dir == version_dir)
+                    add_model_to_heatmap &= (not args.question_id or args.question_id == data['question_id'])
+                    add_model_to_heatmap &= (not args.data_source or args.data_source == data_source)
+                    add_model_to_heatmap &= (not args.variant_id or args.variant_id == data['batch_variant_id'])
+                    add_model_to_heatmap &= (not args.batch_size or args.batch_size == data['batch_size'])
 
                     if add_model_to_heatmap:
                         for answer in data['answer_batch']:

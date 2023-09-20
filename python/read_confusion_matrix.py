@@ -7,7 +7,6 @@ if __name__ == "__main__":
 	config = Configuration()
 	data_root_path = config.get_datafile_root_path()
 
-	# TODO check if list dir lists all files
 	for data_file in os.listdir(data_root_path):
 		if data_file.endswith("_confusion_matrices.json"):
 			text_file_name = data_file.replace(".json", ".txt")
