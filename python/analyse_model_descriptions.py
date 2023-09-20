@@ -9,17 +9,16 @@ import re
 import argparse
 from argparse import Namespace
 
-# TODO: check wording
 
 def _tabs_for_alignment(text:str) -> str:
-    """ Adds a certain number of tabs depending on the text length
+    """ Adds a specific number of tabs to align text based on its length
 
     Args:
-        text (str): Text to evaluate
+        text (str): The input text whose length is to be evaluated
 
     Returns:
-        str: Tabs
-    """    
+        str: A string of tabs. The number of tabs added is determined by the length of the input text
+    """
     if len(text) >= 32:
         tabs = 8
     else:
@@ -28,16 +27,15 @@ def _tabs_for_alignment(text:str) -> str:
 
 
 def _generate_model_id(version:str, question_id:str, data_source:str) -> str:
-    """ Retrieves a unique identifier based on the models base path, the question it
-    assesses and the root folder of the internal model version
+    """ Generates a unique identifier for a model using its version, associated essay set Id, and training data source
 
     Args:
-        version (str): Internal model type and version identifier
-        question_id (str): The id of the associated Essey Set
-        data_source (str): The source of the data the model was trained with
+        version (str): Internal identifier representing the model type and version
+        question_id (str): The Id of the associated Essay Set
+        data_source (str): The origin or source of the training data for the model
 
     Returns:
-        str: _description_
+        str: A concatenated string representing the model's unique identifier
     """
     return f"{version}_{question_id}{data_source}"
 
@@ -57,7 +55,6 @@ def setup_args() -> Namespace:
     parser.add_argument("--variant_id", type=str, required=False, help="Restrict the elements represented by the heatmap to a variant identifier")
     parser.add_argument("--batch_size", type=int, required=False, help="Restrict the elements represented by the heatmap to a batch size")
     parser.add_argument("--question_id", type=int, required=False, help="Restrict the elements represented by the heatmap to a particular question")
-
 
     return parser.parse_args()
 

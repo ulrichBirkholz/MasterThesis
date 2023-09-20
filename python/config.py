@@ -245,7 +245,7 @@ class Configuration():
         Returns:
             str: Path for the BERT model matching the specified criteria
         """
-        path_suffix = hashlib.md5(self.get_relative_model_path(question, batch_size, batch_id, training_data_source).encode()).hexdigest()
+        path_suffix = self.get_relative_model_path(question, batch_size, batch_id, training_data_source)
         return f"{self._get_path_for_model('trained_bert_version')}/{path_suffix}/"
 
 
@@ -261,7 +261,7 @@ class Configuration():
         Returns:
             str: Path for the XG-Boost model matching the specified criteria
         """
-        path_suffix = hashlib.md5(self.get_relative_model_path(question, batch_size, batch_id, training_data_source).encode()).hexdigest()
+        path_suffix = self.get_relative_model_path(question, batch_size, batch_id, training_data_source)
         return f"{self._get_path_for_model('trained_xg_boost_version')}/{path_suffix}/"
 
 
