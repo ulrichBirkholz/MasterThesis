@@ -176,7 +176,7 @@ if __name__ == "__main__":
     available_data_sources = [{"name": key, "score_types": value} for key, value in args.score_types.items()]
     
     test_executions = []
-    for data_source in available_data_sources.items():
+    for data_source in available_data_sources:
         test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
 
     for question in questions:
