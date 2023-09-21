@@ -73,13 +73,13 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
         for batch_id in batch.ids:
             log.debug(f"Rate Answers for question: {question.question_id} with batch size: {batch.size}, batch_id: {batch_id}, training_data_source: {training_data_source}")
             
-            bert_path = config.get_trained_bert_model_path(question.question, batch.size, batch_id, training_data_source)
+            bert_path = config.get_trained_bert_model_path(question.question_id, batch.size, batch_id, training_data_source)
             bert_rated_answers, bert_cm_matrix = bert_test_model(bert_path, AnswersForQuestion(question.question, question.question_id, answers), score_type)
             _add_confusion_matrix(cm_matrices, f"bert_{config.get_relative_model_path(question.question, batch.size, batch_id, training_data_source)}", bert_cm_matrix, bert_path)
 
             write_rated_answers_tsv(config.get_test_results_path("bert", training_data_source, test_data_source, batch.size, batch_id), bert_rated_answers, True)
 
-            xgb_path = config.get_trained_xg_boost_model_path(question.question, batch.size, batch_id, training_data_source)
+            xgb_path = config.get_trained_xg_boost_model_path(question.question_id, batch.size, batch_id, training_data_source)
             xgb_rated_answers, xgb_cm_matrix = xgb_test_model(xgb_path, AnswersForQuestion(question.question, question.question_id, answers), score_type)
             _add_confusion_matrix(cm_matrices, f"xgb_{config.get_relative_model_path(question.question, batch.size, batch_id, training_data_source)}", xgb_cm_matrix, xgb_path)
             
