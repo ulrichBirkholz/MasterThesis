@@ -191,7 +191,8 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
     data_root_path = config.get_datafile_root_path()
     for data_file in os.listdir(data_root_path):
         if data_file.endswith("_confusion_matrices.json"):
-            os.remove(data_file)
+            full_path = os.path.join(data_root_path, data_file)
+            os.remove(full_path)
 
     for batch in config.get_batches():
         for batch_id in batch.ids:

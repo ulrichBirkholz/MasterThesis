@@ -12,7 +12,8 @@ def _cleanup(config:Configuration) -> None:
     data_root_path = config.get_datafile_root_path()
     for data_file in os.listdir(data_root_path):
         if data_file.endswith("_confusion_matrices.txt"):
-            os.remove(data_file)
+            full_path = os.path.join(data_root_path, data_file)
+            os.remove(full_path)
 
 
 if __name__ == "__main__":
