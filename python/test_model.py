@@ -12,6 +12,7 @@ import logging as log
 import json
 import argparse
 from argparse import Namespace
+import os
 
 
 def _add_confusion_matrix(cm_matrices:Dict[str, Dict[str, Union[str, Any]]], key:str, matrix:Any, path:str, iteration=0) -> None:
@@ -167,6 +168,38 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
     
     return test_executions
 
+
+def _delete_file(file:str) -> None:
+    """ Deletes a given file if it exists
+
+    Args:
+        file (str): Path to the file
+    """
+    # cleanup
+    if os.path.exists(file):
+        os.remove(file)
+
+
+def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]) -> None:
+    """ Ensures that none of the files, created by this module, already exist
+
+    Args:
+        config (Configuration): Allows access to the projects central configuration
+        execution (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
+    """
+
+    data_root_path = config.get_datafile_root_path()
+    for data_file in os.listdir(data_root_path):
+        if data_file.endswith("_confusion_matrices.json"):
+            os.remove(data_file)
+
+    for batch in config.get_batches():
+        for batch_id in batch.ids:
+            for execution in executions:
+                _delete_file(config.get_test_results_path("xgb", execution["name"], execution["test_data_sources"], batch.size, batch_id))
+                _delete_file(config.get_test_results_path("bert", execution["name"], execution["test_data_sources"], batch.size, batch_id))
+
+
 if __name__ == "__main__":
     config_logger(log.DEBUG, "test_model.log")
     args = setup_args()
@@ -179,6 +212,7 @@ if __name__ == "__main__":
     for data_source in available_data_sources:
         test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
 
+    _cleanup(config, test_executions)
     for question in questions:
         # the rating datasets were not used for training but we still relay on the same score_type set to be more comparable
         for execution in test_executions:
