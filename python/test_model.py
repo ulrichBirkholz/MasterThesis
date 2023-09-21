@@ -181,5 +181,5 @@ if __name__ == "__main__":
 
     for question in questions:
         # the rating datasets were not used for training but we still relay on the same score_type set to be more comparable
-        for execution in test_executions.items():
+        for execution in test_executions:
             _test_model(question, execution, config)
