@@ -197,8 +197,8 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
     for batch in config.get_batches():
         for batch_id in batch.ids:
             for execution in executions:
-                _delete_file(config.get_test_results_path("xgb", execution["name"], execution["test_data_sources"], batch.size, batch_id))
-                _delete_file(config.get_test_results_path("bert", execution["name"], execution["test_data_sources"], batch.size, batch_id))
+                _delete_file(config.get_test_results_path("xgb", execution["training_data_source"], execution["test_data_sources"], batch.size, batch_id))
+                _delete_file(config.get_test_results_path("bert", execution["training_data_source"], execution["test_data_sources"], batch.size, batch_id))
 
 
 if __name__ == "__main__":
