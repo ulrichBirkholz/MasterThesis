@@ -161,7 +161,7 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
     test_executions = []
     test_executions.append(_get_execution(model_data_source, f"{model_data_source}-training", config.get_samples_for_training_path(model_data_source), model_score_types))
     
-    for data_source_info in available_data_sources.items():
+    for data_source_info in available_data_sources:
         name = data_source_info["name"]
         test_executions.append(_get_execution(model_data_source, f"{name}-testing", config.get_samples_for_testing_path(name), data_source_info["score_types"]))
     
