@@ -1,0 +1,386 @@
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_A_davinci
+Path: ../models/bert_v1/6_50_A_davinci/
+0,0,0,0
+0,0,0,0
+0,0,0,0
+1,5,2,792
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_A_davinci
+Path: ../models/xgb_v1/6_50_A_davinci/
+0,0,0,0
+0,0,0,0
+0,0,0,0
+33,153,347,267
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_B_davinci
+Path: ../models/bert_v1/6_50_B_davinci/
+0,1,32,0
+0,2,151,0
+0,7,340,0
+0,1,266,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_B_davinci
+Path: ../models/xgb_v1/6_50_B_davinci/
+8,2,4,19
+22,1,20,110
+62,2,88,195
+13,1,83,170
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_C_davinci
+Path: ../models/bert_v1/6_50_C_davinci/
+0,1,104,0
+0,0,6,0
+0,1,194,0
+0,8,486,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_C_davinci
+Path: ../models/xgb_v1/6_50_C_davinci/
+3,9,38,55
+1,1,2,2
+4,26,54,111
+17,39,146,292
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_D_davinci
+Path: ../models/bert_v1/6_50_D_davinci/
+0,5,20,0
+0,0,75,0
+0,15,225,0
+1,11,448,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_D_davinci
+Path: ../models/xgb_v1/6_50_D_davinci/
+9,9,3,4
+1,48,9,17
+14,124,18,84
+14,254,26,166
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_E_davinci
+Path: ../models/bert_v1/6_50_E_davinci/
+0,5,33,0
+0,19,416,0
+0,2,54,0
+0,2,269,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_E_davinci
+Path: ../models/xgb_v1/6_50_E_davinci/
+3,3,15,17
+14,11,247,163
+1,2,32,21
+6,3,161,101
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_F_davinci
+Path: ../models/bert_v1/6_50_F_davinci/
+0,3,21,0
+0,1,18,0
+0,5,450,0
+1,3,298,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._50_F_davinci
+Path: ../models/xgb_v1/6_50_F_davinci/
+1,0,8,15
+1,0,13,5
+92,2,166,195
+22,0,152,128
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_A_davinci
+Path: ../models/bert_v1/6_100_A_davinci/
+0,13,103,0
+0,0,2,0
+1,31,307,0
+0,16,327,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_A_davinci
+Path: ../models/xgb_v1/6_100_A_davinci/
+15,2,74,25
+0,0,1,1
+19,13,114,193
+5,5,106,227
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_B_davinci
+Path: ../models/bert_v1/6_100_B_davinci/
+0,0,39,0
+0,0,20,0
+0,5,290,0
+1,3,442,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_B_davinci
+Path: ../models/xgb_v1/6_100_B_davinci/
+6,7,15,11
+1,2,14,3
+24,38,101,132
+8,31,114,293
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_C_davinci
+Path: ../models/bert_v1/6_100_C_davinci/
+0,4,35,0
+0,2,76,0
+0,12,232,0
+1,20,418,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_C_davinci
+Path: ../models/xgb_v1/6_100_C_davinci/
+8,2,7,22
+11,1,33,33
+21,6,95,122
+11,4,113,311
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_D_davinci
+Path: ../models/bert_v1/6_100_D_davinci/
+0,0,51,0
+0,0,13,0
+0,2,246,0
+0,2,486,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_D_davinci
+Path: ../models/xgb_v1/6_100_D_davinci/
+5,19,22,5
+0,3,7,3
+2,27,124,95
+6,42,236,204
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_E_davinci
+Path: ../models/bert_v1/6_100_E_davinci/
+0,0,13,0
+0,0,91,0
+1,2,386,0
+0,5,302,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_E_davinci
+Path: ../models/xgb_v1/6_100_E_davinci/
+2,4,7,0
+0,15,37,39
+5,30,65,289
+2,17,32,256
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_F_davinci
+Path: ../models/bert_v1/6_100_F_davinci/
+0,0,9,0
+0,0,66,0
+1,1,139,0
+0,4,580,0
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._100_F_davinci
+Path: ../models/xgb_v1/6_100_F_davinci/
+2,0,3,4
+31,9,22,4
+45,15,57,24
+57,51,179,297
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_A_davinci
+Path: ../models/bert_v1/6_200_A_davinci/
+0,0,128,7
+0,0,50,25
+0,0,196,65
+0,0,206,123
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_A_davinci
+Path: ../models/xgb_v1/6_200_A_davinci/
+12,4,55,64
+1,3,34,37
+4,4,135,118
+0,7,112,210
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_B_davinci
+Path: ../models/bert_v1/6_200_B_davinci/
+0,0,13,4
+1,0,10,7
+3,1,101,231
+5,0,108,316
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_B_davinci
+Path: ../models/xgb_v1/6_200_B_davinci/
+0,7,9,1
+0,3,6,9
+3,107,130,96
+5,77,111,236
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_C_davinci
+Path: ../models/bert_v1/6_200_C_davinci/
+0,0,8,0
+0,0,174,20
+1,0,235,20
+0,0,301,41
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_C_davinci
+Path: ../models/xgb_v1/6_200_C_davinci/
+0,2,3,3
+24,30,84,56
+14,46,103,93
+7,2,75,258
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_D_davinci
+Path: ../models/bert_v1/6_200_D_davinci/
+0,0,43,2
+0,0,73,7
+0,0,220,45
+0,0,277,133
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_D_davinci
+Path: ../models/xgb_v1/6_200_D_davinci/
+19,10,8,8
+20,6,32,22
+15,29,78,143
+24,8,87,291
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_E_davinci
+Path: ../models/bert_v1/6_200_E_davinci/
+0,0,59,19
+0,0,46,7
+0,0,149,56
+0,0,293,171
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_E_davinci
+Path: ../models/xgb_v1/6_200_E_davinci/
+16,20,15,27
+6,9,16,22
+8,13,56,128
+12,22,69,361
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_F_davinci
+Path: ../models/bert_v1/6_200_F_davinci/
+0,0,37,5
+0,0,62,2
+0,0,135,21
+0,0,448,90
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._200_F_davinci
+Path: ../models/xgb_v1/6_200_F_davinci/
+11,8,9,14
+7,3,8,46
+6,14,40,96
+8,25,116,389
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_A_davinci
+Path: ../models/bert_v1/6_400_A_davinci/
+18,0,9,5
+10,0,14,26
+21,0,42,110
+51,0,80,414
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_A_davinci
+Path: ../models/xgb_v1/6_400_A_davinci/
+10,7,14,1
+6,6,15,23
+8,17,74,74
+16,60,69,400
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_B_davinci
+Path: ../models/bert_v1/6_400_B_davinci/
+23,0,12,5
+35,0,48,7
+44,0,77,51
+17,0,214,267
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_B_davinci
+Path: ../models/xgb_v1/6_400_B_davinci/
+13,3,15,9
+20,22,30,18
+11,23,67,71
+5,26,144,323
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_C_davinci
+Path: ../models/bert_v1/6_400_C_davinci/
+30,0,14,5
+42,0,15,17
+78,0,69,109
+83,0,80,258
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_C_davinci
+Path: ../models/xgb_v1/6_400_C_davinci/
+25,5,13,6
+22,7,41,4
+39,23,133,61
+11,33,161,216
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_D_davinci
+Path: ../models/bert_v1/6_400_D_davinci/
+36,0,59,2
+26,0,41,1
+44,0,283,21
+21,0,235,31
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_D_davinci
+Path: ../models/xgb_v1/6_400_D_davinci/
+46,4,37,10
+6,8,45,9
+12,31,184,121
+4,8,89,186
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_E_davinci
+Path: ../models/bert_v1/6_400_E_davinci/
+10,0,52,6
+1,0,25,25
+35,0,205,115
+10,0,110,206
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_E_davinci
+Path: ../models/xgb_v1/6_400_E_davinci/
+19,3,18,28
+1,3,10,37
+19,11,128,197
+5,0,42,279
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_F_davinci
+Path: ../models/bert_v1/6_400_F_davinci/
+26,0,14,4
+13,0,3,1
+65,0,66,67
+31,0,135,375
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._400_F_davinci
+Path: ../models/xgb_v1/6_400_F_davinci/
+11,7,13,13
+3,9,4,1
+12,17,101,68
+6,12,176,347
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_A_davinci
+Path: ../models/bert_v1/6_800_A_davinci/
+12,0,13,7
+23,1,12,9
+49,0,74,171
+25,0,89,315
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_A_davinci
+Path: ../models/xgb_v1/6_800_A_davinci/
+8,5,14,5
+7,17,18,3
+17,30,157,90
+19,27,148,235
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_B_davinci
+Path: ../models/bert_v1/6_800_B_davinci/
+16,0,13,22
+19,0,20,40
+17,0,46,274
+2,0,17,314
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_B_davinci
+Path: ../models/xgb_v1/6_800_B_davinci/
+21,5,11,14
+25,5,29,20
+40,16,118,163
+7,1,71,254
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_C_davinci
+Path: ../models/bert_v1/6_800_C_davinci/
+5,0,46,42
+3,0,14,10
+2,0,62,165
+1,0,39,411
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_C_davinci
+Path: ../models/xgb_v1/6_800_C_davinci/
+8,5,26,54
+2,2,8,15
+3,7,72,147
+3,1,62,385
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_D_davinci
+Path: ../models/bert_v1/6_800_D_davinci/
+9,0,6,1
+10,0,3,2
+21,0,59,88
+46,0,93,462
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_D_davinci
+Path: ../models/xgb_v1/6_800_D_davinci/
+9,0,3,4
+5,4,3,3
+17,15,64,72
+27,32,109,433
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_E_davinci
+Path: ../models/bert_v1/6_800_E_davinci/
+8,1,26,23
+15,2,21,13
+11,1,53,114
+8,1,80,423
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_E_davinci
+Path: ../models/xgb_v1/6_800_E_davinci/
+7,16,15,20
+2,17,13,19
+2,11,57,109
+1,8,85,418
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_F_davinci
+Path: ../models/bert_v1/6_800_F_davinci/
+5,0,5,2
+26,0,19,7
+28,0,51,91
+33,0,100,433
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._800_F_davinci
+Path: ../models/xgb_v1/6_800_F_davinci/
+5,3,2,2
+16,10,20,6
+15,15,47,93
+16,13,70,467
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._1600_A_davinci
+Path: ../models/bert_v1/6_1600_A_davinci/
+13,1,33,5
+0,0,38,3
+1,0,77,61
+2,0,130,436
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._1600_A_davinci
+Path: ../models/xgb_v1/6_1600_A_davinci/
+13,13,21,5
+2,9,25,5
+4,13,78,44
+4,9,153,402
+Key: bert_List and describe three processes used by cells to control the movement of substances across the cell membrane._3200_A_davinci
+Path: ../models/bert_v1/6_3200_A_davinci/
+7,0,15,1
+7,0,28,9
+25,0,87,165
+3,0,57,396
+Key: xgb_List and describe three processes used by cells to control the movement of substances across the cell membrane._3200_A_davinci
+Path: ../models/xgb_v1/6_3200_A_davinci/
+2,1,12,8
+4,8,26,6
+3,26,123,125
+1,3,65,387
+###################################################
+

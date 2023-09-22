@@ -1,0 +1,386 @@
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_A_davinci
+Path: ../models/bert_v1/5_50_A_davinci/
+0,0,0,0
+0,0,0,0
+107,327,18,1
+134,180,10,1
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_A_davinci
+Path: ../models/xgb_v1/5_50_A_davinci/
+0,0,0,0
+0,0,0,0
+107,107,46,193
+50,74,38,163
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_B_davinci
+Path: ../models/bert_v1/5_50_B_davinci/
+0,119,38,0
+0,138,43,0
+0,57,27,0
+0,251,105,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_B_davinci
+Path: ../models/xgb_v1/5_50_B_davinci/
+31,37,60,29
+9,33,78,61
+1,9,41,33
+14,56,160,126
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_C_davinci
+Path: ../models/bert_v1/5_50_C_davinci/
+0,38,17,0
+0,86,49,0
+0,192,147,0
+0,102,147,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_C_davinci
+Path: ../models/xgb_v1/5_50_C_davinci/
+12,5,19,19
+8,25,63,39
+11,18,206,104
+13,16,140,80
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_D_davinci
+Path: ../models/bert_v1/5_50_D_davinci/
+0,15,29,0
+0,21,43,0
+0,123,305,0
+0,73,169,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_D_davinci
+Path: ../models/xgb_v1/5_50_D_davinci/
+16,5,8,15
+16,9,9,30
+46,53,122,207
+58,27,104,53
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_E_davinci
+Path: ../models/bert_v1/5_50_E_davinci/
+0,53,83,0
+0,33,61,0
+0,57,186,0
+0,65,240,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_E_davinci
+Path: ../models/xgb_v1/5_50_E_davinci/
+56,9,54,17
+21,7,42,24
+16,12,80,135
+13,9,154,129
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_F_davinci
+Path: ../models/bert_v1/5_50_F_davinci/
+0,57,49,0
+0,14,23,0
+0,90,240,0
+0,69,236,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._50_F_davinci
+Path: ../models/xgb_v1/5_50_F_davinci/
+28,51,13,14
+7,10,8,12
+49,29,111,141
+4,13,120,168
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_A_davinci
+Path: ../models/bert_v1/5_100_A_davinci/
+0,73,15,0
+0,83,20,0
+1,176,75,0
+0,252,83,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_A_davinci
+Path: ../models/xgb_v1/5_100_A_davinci/
+18,14,20,36
+24,26,22,31
+12,57,75,108
+38,76,91,130
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_B_davinci
+Path: ../models/bert_v1/5_100_B_davinci/
+1,42,49,0
+1,65,107,0
+3,49,156,0
+3,68,234,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_B_davinci
+Path: ../models/xgb_v1/5_100_B_davinci/
+35,10,22,25
+47,7,56,63
+43,22,65,78
+43,32,73,157
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_C_davinci
+Path: ../models/bert_v1/5_100_C_davinci/
+6,59,103,0
+1,20,49,1
+0,69,146,1
+9,56,255,3
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_C_davinci
+Path: ../models/xgb_v1/5_100_C_davinci/
+46,42,42,38
+5,7,27,32
+4,44,77,91
+18,49,88,168
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_D_davinci
+Path: ../models/bert_v1/5_100_D_davinci/
+1,18,54,0
+0,29,113,0
+2,35,197,0
+1,30,298,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_D_davinci
+Path: ../models/xgb_v1/5_100_D_davinci/
+44,4,12,13
+21,16,84,21
+44,62,92,36
+56,63,148,62
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_E_davinci
+Path: ../models/bert_v1/5_100_E_davinci/
+0,106,59,0
+0,98,47,0
+2,171,163,0
+2,65,65,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_E_davinci
+Path: ../models/xgb_v1/5_100_E_davinci/
+30,68,34,33
+14,41,60,30
+26,66,127,117
+3,24,52,53
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_F_davinci
+Path: ../models/bert_v1/5_100_F_davinci/
+0,44,29,0
+0,135,64,0
+0,139,134,0
+0,90,143,0
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._100_F_davinci
+Path: ../models/xgb_v1/5_100_F_davinci/
+31,16,10,16
+33,60,42,64
+16,26,118,113
+12,20,39,162
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_A_davinci
+Path: ../models/bert_v1/5_200_A_davinci/
+21,10,52,9
+20,17,63,22
+3,9,136,61
+4,7,202,142
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_A_davinci
+Path: ../models/xgb_v1/5_200_A_davinci/
+43,10,14,25
+38,29,34,21
+15,27,65,102
+18,24,141,172
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_B_davinci
+Path: ../models/bert_v1/5_200_B_davinci/
+0,6,98,10
+1,1,66,22
+0,0,138,116
+3,2,157,158
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_B_davinci
+Path: ../models/xgb_v1/5_200_B_davinci/
+24,31,14,45
+8,18,29,35
+9,18,73,154
+5,25,118,172
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_C_davinci
+Path: ../models/bert_v1/5_200_C_davinci/
+0,0,41,5
+0,1,74,17
+0,0,128,106
+2,1,216,187
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_C_davinci
+Path: ../models/xgb_v1/5_200_C_davinci/
+20,7,9,10
+42,9,27,14
+21,17,105,91
+44,35,184,143
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_D_davinci
+Path: ../models/bert_v1/5_200_D_davinci/
+1,2,121,3
+0,0,66,2
+0,1,277,47
+0,3,207,48
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_D_davinci
+Path: ../models/xgb_v1/5_200_D_davinci/
+52,25,33,17
+18,10,25,15
+24,23,141,137
+17,19,103,119
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_E_davinci
+Path: ../models/bert_v1/5_200_E_davinci/
+29,19,58,5
+7,12,46,12
+5,23,198,76
+5,7,189,87
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_E_davinci
+Path: ../models/xgb_v1/5_200_E_davinci/
+57,21,17,16
+16,8,18,35
+28,47,124,103
+17,15,127,129
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_F_davinci
+Path: ../models/bert_v1/5_200_F_davinci/
+8,14,85,11
+0,10,54,27
+0,6,132,148
+0,3,133,147
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._200_F_davinci
+Path: ../models/xgb_v1/5_200_F_davinci/
+61,17,24,16
+20,20,28,23
+5,40,92,149
+21,33,125,104
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_A_davinci
+Path: ../models/bert_v1/5_400_A_davinci/
+91,7,8,1
+43,6,26,35
+66,9,52,142
+47,7,44,194
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_A_davinci
+Path: ../models/xgb_v1/5_400_A_davinci/
+60,18,20,9
+9,20,54,27
+21,38,112,98
+12,25,102,153
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_B_davinci
+Path: ../models/bert_v1/5_400_B_davinci/
+30,45,3,24
+10,28,5,58
+11,34,7,236
+8,14,0,265
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_B_davinci
+Path: ../models/xgb_v1/5_400_B_davinci/
+54,20,9,19
+19,26,19,37
+22,41,96,129
+15,11,70,191
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_C_davinci
+Path: ../models/bert_v1/5_400_C_davinci/
+55,15,10,30
+23,5,16,54
+10,3,22,159
+25,7,32,312
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_C_davinci
+Path: ../models/xgb_v1/5_400_C_davinci/
+48,19,20,23
+17,24,29,28
+10,19,63,102
+9,24,131,212
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_D_davinci
+Path: ../models/bert_v1/5_400_D_davinci/
+35,14,16,19
+12,7,9,58
+11,9,15,208
+7,18,18,322
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_D_davinci
+Path: ../models/xgb_v1/5_400_D_davinci/
+42,14,19,9
+13,23,33,17
+11,26,100,106
+18,43,141,163
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_E_davinci
+Path: ../models/bert_v1/5_400_E_davinci/
+39,21,19,5
+15,13,49,29
+19,12,169,93
+18,11,149,117
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_E_davinci
+Path: ../models/xgb_v1/5_400_E_davinci/
+38,19,17,10
+15,26,33,32
+15,39,159,80
+12,18,132,133
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_F_davinci
+Path: ../models/bert_v1/5_400_F_davinci/
+20,38,22,0
+9,26,66,1
+17,36,268,20
+8,23,202,22
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._400_F_davinci
+Path: ../models/xgb_v1/5_400_F_davinci/
+36,16,12,16
+22,34,26,20
+29,44,159,109
+8,34,101,112
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_A_davinci
+Path: ../models/bert_v1/5_800_A_davinci/
+51,5,22,17
+26,9,47,46
+17,1,98,182
+20,3,78,156
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_A_davinci
+Path: ../models/xgb_v1/5_800_A_davinci/
+34,25,19,17
+17,29,33,49
+12,43,120,123
+14,17,68,158
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_B_davinci
+Path: ../models/bert_v1/5_800_B_davinci/
+44,9,24,0
+20,11,83,0
+23,17,200,0
+17,10,313,7
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_B_davinci
+Path: ../models/xgb_v1/5_800_B_davinci/
+34,19,13,11
+11,24,63,16
+14,27,113,86
+14,20,126,187
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_C_davinci
+Path: ../models/bert_v1/5_800_C_davinci/
+44,7,18,4
+35,6,45,4
+42,5,202,66
+24,6,178,92
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_C_davinci
+Path: ../models/xgb_v1/5_800_C_davinci/
+37,11,12,13
+18,23,28,21
+18,40,146,111
+12,18,111,159
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_D_davinci
+Path: ../models/bert_v1/5_800_D_davinci/
+37,9,38,1
+14,18,59,1
+17,8,226,46
+5,5,190,104
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_D_davinci
+Path: ../models/xgb_v1/5_800_D_davinci/
+36,17,22,10
+12,22,43,15
+15,32,161,89
+11,21,113,159
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_E_davinci
+Path: ../models/bert_v1/5_800_E_davinci/
+36,10,21,7
+12,20,41,19
+19,25,135,160
+6,7,66,194
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_E_davinci
+Path: ../models/xgb_v1/5_800_E_davinci/
+34,19,6,15
+17,29,29,17
+15,54,144,126
+8,14,71,180
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_F_davinci
+Path: ../models/bert_v1/5_800_F_davinci/
+28,13,22,11
+15,11,48,42
+9,2,73,166
+6,9,53,270
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._800_F_davinci
+Path: ../models/xgb_v1/5_800_F_davinci/
+32,26,12,4
+16,45,35,20
+12,47,112,79
+17,41,110,170
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._1600_A_davinci
+Path: ../models/bert_v1/5_1600_A_davinci/
+29,23,16,9
+22,25,82,30
+3,26,109,131
+4,17,45,207
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._1600_A_davinci
+Path: ../models/xgb_v1/5_1600_A_davinci/
+39,9,16,13
+26,37,57,39
+8,26,121,114
+4,20,81,168
+Key: bert_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._3200_A_davinci
+Path: ../models/bert_v1/5_3200_A_davinci/
+17,15,25,20
+2,17,34,39
+1,17,40,217
+0,10,32,292
+Key: xgb_Starting with mRNA leaving the nucleus, list and describe four major steps involved in protein synthesis._3200_A_davinci
+Path: ../models/xgb_v1/5_3200_A_davinci/
+44,15,12,6
+8,45,29,10
+11,29,179,56
+9,20,90,215
+###################################################
+
