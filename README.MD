@@ -44,6 +44,8 @@ For assessing the lexical richness of the generated content, invoke the `calcula
 
 Run the `annotate_samples` module to process and annotate the generated answers. The module will use multiple models for annotations and store the results in corresponding `.tsv` files.
 
+Note: The model `gpt-3.5-turbo` occasionally struggled with accurate categorization. To address this, we introduced the `re_rate_missing_answers` module. It ensures that every answer crafted by human experts is rated and included in the dataset produced by this specific model.
+
 ### Annotations for Unrated Samples:
 
 1. **Source File**: `unrated_samples_davinci.tsv`
