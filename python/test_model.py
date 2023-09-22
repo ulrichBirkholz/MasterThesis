@@ -15,7 +15,7 @@ from argparse import Namespace
 import os
 
 
-def _add_confusion_matrix(cm_matrices:Dict[str, Dict[str, Union[str, Any]]], key:str, matrix:Any, path:str, test_data_source:str, iteration=0) -> None:
+def _add_confusion_matrix(cm_matrices:Dict[str, Dict[str, Union[str, Any]]], key:str, matrix:Any, path:str, iteration=0) -> None:
     """ Safely add a confusion matrix to a dictionary, ensuring there's no key duplication.
 
     This method adds a confusion matrix to a given dictionary using a unique key. If the specified key already exists
@@ -37,12 +37,11 @@ def _add_confusion_matrix(cm_matrices:Dict[str, Dict[str, Union[str, Any]]], key
     if key in cm_matrices:
         # this should not happen but if it does we don't want to loose the data
         log.error(f"Found duplicated key: {key}")
-        _add_confusion_matrix(cm_matrices, key, matrix, path, test_data_source, iteration=iteration + 1)
+        _add_confusion_matrix(cm_matrices, key, matrix, path, iteration=iteration + 1)
     
     cm_matrices[key] = {
         "cm_matrix": matrix,
-        "path": path,
-        "test_data_source": test_data_source
+        "path": path
     }
 
 
@@ -76,13 +75,13 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
             
             bert_path = config.get_trained_bert_model_path(question.question_id, batch.size, batch_id, training_data_source)
             bert_rated_answers, bert_cm_matrix = bert_test_model(bert_path, AnswersForQuestion(question.question, question.question_id, answers), score_type)
-            _add_confusion_matrix(cm_matrices, f"bert_{config.get_relative_model_path(question.question_id, batch.size, batch_id, training_data_source)}", bert_cm_matrix, bert_path, test_data_source)
+            _add_confusion_matrix(cm_matrices, f"bert_{config.get_relative_model_path(question.question_id, batch.size, batch_id, training_data_source)}", bert_cm_matrix, bert_path)
 
             write_rated_answers_tsv(config.get_test_results_path("bert", training_data_source, test_data_source, batch.size, batch_id), bert_rated_answers, True)
 
             xgb_path = config.get_trained_xg_boost_model_path(question.question_id, batch.size, batch_id, training_data_source)
             xgb_rated_answers, xgb_cm_matrix = xgb_test_model(xgb_path, AnswersForQuestion(question.question, question.question_id, answers), score_type)
-            _add_confusion_matrix(cm_matrices, f"xgb_{config.get_relative_model_path(question.question_id, batch.size, batch_id, training_data_source)}", xgb_cm_matrix, xgb_path, test_data_source)
+            _add_confusion_matrix(cm_matrices, f"xgb_{config.get_relative_model_path(question.question_id, batch.size, batch_id, training_data_source)}", xgb_cm_matrix, xgb_path)
             
             write_rated_answers_tsv(config.get_test_results_path("xgb", training_data_source, test_data_source, batch.size, batch_id), xgb_rated_answers, True)
 

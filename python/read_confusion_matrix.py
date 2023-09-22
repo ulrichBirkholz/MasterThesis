@@ -32,7 +32,6 @@ if __name__ == "__main__":
                 for key, entry in data.items():
                     file.write(f"Key: {key}\n")
                     file.write(f"Path: {entry['path']}\n")
-                    file.write(f"Test data source: {entry['test_data_source']}\n")
                     for row in entry["cm_matrix"]:
                         file.write(",".join(map(str, row)) + "\n")
                 file.write("###################################################\n\n")
