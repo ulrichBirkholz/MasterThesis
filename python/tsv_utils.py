@@ -237,7 +237,7 @@ def write_rated_answers_tsv(file:str, answers:List[Answer], extend:bool) -> None
         - If the TSV file does not exist or `extend` is set to False, a new file will be 
           created with headers naming all columns
         - The format for the columns in the file is:
-            QuestionId | Answer | AnswerId | Score1 | Score2
+            QuestionId | AnswerId | Score1 | Score2
     """
     mode = 'a' if extend and os.path.exists(file) else 'w'
 
