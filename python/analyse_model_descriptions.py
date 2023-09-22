@@ -5,7 +5,7 @@ import logging as log
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import re
+from config_logger import config_logger
 import argparse
 from argparse import Namespace
 
@@ -40,7 +40,6 @@ def _generate_model_id(version:str, question_id:str, data_source:str) -> str:
     return f"{version}_{question_id}{data_source}"
 
 
-
 # Setup and parse arguments
 # example: python -m analyse_model_descriptions
 def setup_args() -> Namespace:
@@ -61,6 +60,7 @@ def setup_args() -> Namespace:
 
 if __name__ == "__main__":
     config = Configuration()
+    config_logger(log.DEBUG, "analyse_model_descriptions.log")
     args = setup_args()
 
     # base path to all models
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
                     add_model_to_heatmap = True
                     add_model_to_heatmap &= (not args.version_dir or args.version_dir == version_dir)
-                    add_model_to_heatmap &= (not args.question_id or args.question_id == data['question_id'])
+                    add_model_to_heatmap &= (not args.question_id or int(args.question_id) == int(data['question_id']))
                     add_model_to_heatmap &= (not args.data_source or args.data_source == data_source)
                     add_model_to_heatmap &= (not args.variant_id or args.variant_id == data['batch_variant_id'])
                     add_model_to_heatmap &= (not args.batch_size or args.batch_size == data['batch_size'])
@@ -144,10 +144,7 @@ if __name__ == "__main__":
     # Heat map of answers per model
     df = pd.DataFrame({'answer_id': data_frame["answer_ids"], 'model_identifier': data_frame["model_identifier"]})
 
-    df['model_num'] = df['model_identifier'].str.extract('_(\d+)_[A-F]_[a-z]*$').astype(int)
-    asc_df = df.sort_values('model_num', ascending=True)
-    asc_df = asc_df.drop('model_num', axis=1)
-
+    asc_df = df.sort_values('model_identifier', ascending=True)
     asc_df['model_identifier'] = pd.Categorical(asc_df['model_identifier'], categories=asc_df['model_identifier'].unique(), ordered=True)
 
     print(asc_df)
@@ -156,5 +153,7 @@ if __name__ == "__main__":
     plt.title("Answer distribution across models")
 
     cross_tab = pd.crosstab(asc_df['answer_id'], asc_df['model_identifier'])
+    log.debug(f"About to display {len(asc_df)} elements")
     sns.heatmap(cross_tab, cmap="PuBuGn", cbar=False)
+    plt.xticks(rotation=45, ha='right')
     plt.show()
