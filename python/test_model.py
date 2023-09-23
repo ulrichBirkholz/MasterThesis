@@ -214,6 +214,7 @@ if __name__ == "__main__":
         test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
 
     _cleanup(config, test_executions)
+
     for question in questions:
         # the rating datasets were not used for training but we still relay on the same score_type set to be more comparable
         for execution in test_executions:

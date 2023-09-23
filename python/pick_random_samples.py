@@ -11,39 +11,36 @@ from argparse import Namespace
 
 
 class DataWriter:
-    """
-    A helper class to record and write data distributions to a file.
+    """ A helper class to record and write data distributions to a file
     
     This class facilitates the collection and organization of distribution data, 
-    saving the gathered information to a designated file.
+    saving the gathered information to a designated file
 
     Attributes:
-        lines (List[str]): Accumulates the data distribution details before writing to the file.
+        lines (List[str]): Accumulates the data distribution details before writing to the file
     """
 
     def __init__(self):
-        """Initializes the DataWriter with an empty list of lines."""
+        """Initializes the DataWriter with an empty list of lines"""
         self.lines = []
 
     def add_line(self, description: str, information: str) -> None:
-        """
-        Appends a new data distribution line to the internal list.
+        """ Appends a new data distribution line to the internal list
         
         Args:
-            description (str): Describes the type or nature of the distribution data.
-            information (str): Contains the specific details of the distribution.
+            description (str): Describes the type or nature of the distribution data
+            information (str): Contains the specific details of the distribution
         """
         self.lines.append(f"{description}: {information}")
 
     def write_to_file(self, path: str) -> None:
-        """
-        Writes all accumulated distribution data to a specified file.
+        """ Writes all accumulated distribution data to a specified file
         
         The lines containing the distribution data are sorted alphabetically before writing 
-        to ensure a structured output.
+        to ensure a structured output
         
         Args:
-            path (str): The path to the file where the distribution data will be saved.
+            path (str): The path to the file where the distribution data will be saved
         """
         self.lines.sort()
         with open(path, 'a') as file:
@@ -59,7 +56,7 @@ def _calculate_distribution(samples:List[Answer], score_type:int, total:bool = F
     Args:
         samples (List[Answer]): Samples of which the distribution is calculated
         score_type (int): The score type (either 1 or 2) of which the distribution is calculated
-        total (bool, optional): False to calculate the distribution in percent, otherwise True. Defaults to False.
+        total (bool, optional): False to calculate the distribution in percent, otherwise True. Defaults to False
 
     Returns:
         Dict[str, int]: The calculated distribution
@@ -74,13 +71,13 @@ def _calculate_distribution(samples:List[Answer], score_type:int, total:bool = F
 
 def _adjust_distribution(samples:List[Answer], target_distribution:Dict[str, int], score_type:int, min_size:int=0) -> List[Answer]:
     """ Refines the category distribution of a given sample list. The algorithm continues to modify the distribution 
-    until it meets the specified minimum sample count.
+    until it meets the specified minimum sample count
 
     Args:
         samples (List[Answer]): The source list of samples to chose from
         target_distribution (Dict[str, int]): The desired target distribution
         score_type (int): The score type (either 1 or 2) of which the distribution is calculated
-        min_size (int, optional): The minimal number of samples contained within the result List. Defaults to 0.
+        min_size (int, optional): The minimal number of samples contained within the result List. Defaults to 0
 
     Returns:
         List[Answer]: Redistributed List of Answers
@@ -136,10 +133,10 @@ def _select_answers_for_category(category_item:List[Answer], factor:float) -> Li
 
 
 def _split_answers(all_answers:List[Answer], distributed_answers:List[Answer], score_type:int, training_size:int) -> Tuple[List[Answer], List[Answer]]:
-    """ Splits answers into training and testing datasets based on the provided distribution and specified training size.
+    """ Splits answers into training and testing datasets based on the provided distribution and specified training size
     
     The function creates a training dataset using the desired distribution of categories from `distributed_answers`. 
-    All remaining samples from `all_answers` that aren't part of the training dataset are added to the testing dataset.
+    All remaining samples from `all_answers` that aren't part of the training dataset are added to the testing dataset
 
     Args:
         all_answers (List[Answer]): All available samples
@@ -182,17 +179,20 @@ We need at leased {training_size} answers for training + 100 answers for testing
 
 def _split_samples_for_question(sample_selection_info_per_question:Dict[str, Dict[str, Union[int, List[Answer]]]], data_source:str, training_size:int, config:Configuration) -> None:
     """ Divides samples for each question into training and testing datasets, determined by the specified training_size
-    and the total number of available samples.
+    and the total number of available samples. If the files already exist, they will be deleted first
 
     Args:
         sample_selection_info_per_question (Dict[str, Dict[str, Union[int, List[Answer]]]]): All relevant information to perform the selection of samples for each question
-        data_source (str): The source of generated data.
+        data_source (str): The source of generated data
         training_size (int): The desired number of samples in the training dataset
         config (Configuration): Allows access to the projects central configuration
     """
     training_path = config.get_samples_for_training_path(data_source)
     rating_path = config.get_samples_for_testing_path(data_source)
 
+    log.debug(f"Deleting: {training_path}; and {rating_path}")
+    _delete_file(training_path)
+    _delete_file(rating_path)
     for question_id, distribution in sample_selection_info_per_question.items():
         log.debug(f"Split {data_source} answers for question: {question_id}")
 
@@ -231,27 +231,12 @@ def _delete_file(file:str) -> None:
         os.remove(file)
 
 
-def _cleanup(config:Configuration, args:Namespace) -> None:
+def _cleanup(config:Configuration) -> None:
     """ Ensures that none of the files, created by this module, already exist
 
     Args:
         config (Configuration): Allows access to the projects central configuration
-        args (Namespace): Execution Arguments
     """
-    if args.davinci:
-        _delete_file(config.get_samples_for_training_path("davinci"))
-        _delete_file(config.get_samples_for_testing_path("davinci"))
-    
-    if args.turbo:
-        _delete_file(config.get_samples_for_training_path("turbo"))
-        _delete_file(config.get_samples_for_testing_path("turbo"))
-    
-    if args.gpt4:
-        _delete_file(config.get_samples_for_training_path("gpt4"))
-        _delete_file(config.get_samples_for_testing_path("gpt4"))
-
-    _delete_file(config.get_samples_for_training_path("experts"))
-    _delete_file(config.get_samples_for_testing_path("experts"))
     _delete_file(config.get_distribution_path())
 
 # example: python -m pick_random_samples --davinci --turbo --gpt4
@@ -272,15 +257,15 @@ def _pick_samples_for(ai_data_source:str, experts_answers_per_question:Dict[str,
     """ Splits samples into two datasets: training and testing.
 
     This function aims to create a training dataset from both the provided AI data source and expert-generated samples, 
-    ensuring the category distribution is as consistent as possible between them.
+    ensuring the category distribution is as consistent as possible between them
     
     Note:
-        The training dataset from the AI data source will contain 3200 samples.
-        The training dataset from the experts will consist of 1600 samples.
+        The training dataset from the AI data source will contain 3200 samples
+        The training dataset from the experts will consist of 1600 samples
 
     Args:
-        ai_data_source (str): The source of AI-generated data.
-        experts_answers_per_question (Dict[str, List[Answer]]): A dictionary containing experts' answers per question.
+        ai_data_source (str): The source of AI-generated data
+        experts_answers_per_question (Dict[str, List[Answer]]): A dictionary containing experts' answers per question
         config (Configuration): Allows access to the projects central configuration
     """
 
@@ -331,7 +316,7 @@ if __name__ == "__main__":
     config_logger(log.DEBUG, "pick_random_samples.log")
     args = setup_args()
 
-    _cleanup(config, args)
+    _cleanup(config)
 
     # the distribution is always oriented on the experts dataset
     experts_answers_per_question = get_answers_per_question(config.get_samples_path("experts"))

@@ -162,7 +162,7 @@ def get_answers(file:str) -> List[Answer]:
     Notes:
         - The TSV file should contain a header, which this function will skip
         - The expected format for the columns in the file is: 
-            QuestionId | AnswerId | Answer | Score1 | Score2
+            QuestionId | AnswerId | Answer (Optional) | Score1 | Score2
     """
     answers = []
     with open(file, newline='', encoding='utf-8') as csvfile:
@@ -172,15 +172,13 @@ def get_answers(file:str) -> List[Answer]:
             if len(row) == 0:
                 log.warning(f"Found empty row in file: {file}")
                 continue
-            log.debug(f'Parse Answer: {row[2]}')
-            answer = Answer(row[0], row[1], row[2])
 
-            # Add score if applicable
-            if len(row) == 5:
-                answer.score_1 = row[3]
-                answer.score_2 = row[4]
-
-            answers.append(answer)
+            # Results do not contain the answer as text to reduce redundancy
+            offset = 0
+            if len(row) == 4:
+                offset = 1
+            log.debug(f'Parse Answer: {row[2 - offset]}')
+            answers.append(Answer(row[0], row[1], row[2 - offset], row[3 - offset], row[4 - offset]))
 
     return answers
 

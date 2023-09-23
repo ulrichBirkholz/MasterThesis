@@ -3,7 +3,8 @@ from tsv_utils import get_answers, Answer
 from typing import List, Tuple, Dict, Any
 import logging as log
 from config_logger import config_logger
-
+import csv
+import re
 from sklearn.metrics import cohen_kappa_score
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
@@ -79,6 +80,7 @@ class KappaFigure():
             if self.answer_count > answer_count:
                 self.answer_count = answer_count
 
+
     def _write_to_tsv(self, config:Configuration) -> None:
         """ Store the QWK values into a TSV file for further review
 
@@ -90,10 +92,12 @@ class KappaFigure():
         max_number_of_labels = len(batches)
         mode = 'a' if os.path.exists(file_path) else 'w'
         with open(file_path, mode, newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile, delimiter='\t')
             if mode == 'w':
-                csvfile.writerow(['Source'] + [batch.size for batch in batches])  # Header row
+                writer.writerow(['Source'] + [batch.size for batch in batches])  # Header row
             
-            csvfile.writerow([self.filename] + self.kappa_values + ['N/A']*len(max_number_of_labels - len(self.labels)))
+            writer.writerow([self.filename] + self.kappa_values + ['N/A']*(max_number_of_labels - len(self.labels)))
+
 
     def save(self, config:Configuration, figtext:str=None, compact:bool=False) -> None:
         """ Store the diagram as a PDF file and the labels and QWK values as a TSV file
@@ -176,7 +180,7 @@ def _add_list_entry(dict:defaultdict[str, List[Any]], name:str, entry:Any) -> No
         dict[name] = [entry]
 
 
-def _get_diagram_title_model_vs_model(platform:str, training_data_source_a:str, training_data_source_b:str, test_data_source:str) -> str:
+def _get_diagram_title_model_a_score_1_vs_model_b_score_1(platform:str, training_data_source_a:str, training_data_source_b:str, test_data_source:str) -> str:
     """ Constructs a title for a diagram comparing the QWK (Quadratic Weighted Kappa) of score 1 
     from two different models based on their training and test data sources
 
@@ -230,7 +234,7 @@ def _map_source_to_real_name(data_source:str) -> str:
         "davinci": "text-davinci-003",
         "gpt4": "gpt4",
         "turbo": "text-davinci-003 annotated by gpt-3.5-turbo",
-        "expert": "human Experts"
+        "experts": "human experts"
     }
     if data_source not in mapping:
         raise ValueError(f"Unknown data source identifier: {data_source}")
@@ -287,6 +291,36 @@ def _get_scores(answers:List[Answer], score_type:int) -> List[int]:
     return [getattr(answer, f'score_{score_type}') for answer in answers]
 
 
+def _get_common_answers(answers_a:List[Answer], answers_b:List[Answer]) -> Tuple[List[Answer], List[Answer]]:
+    """ Retrieves common answers from two lists based on their answer Ids
+
+    This function compares the answer Ids of two provided lists of answers 
+    and returns the common answers from both lists. If an answer Id is found 
+    in both lists, the corresponding answer objects from each list are added 
+    to the result
+
+    Args:
+        answers_a (List[Answer]): The first list of answers to be compared
+        answers_b (List[Answer]): The second list of answers to be compared
+
+    Returns:
+        Tuple[List[Answer], List[Answer]]: A tuple containing two lists:
+            1. List of common answers from the first input list
+            2. List of common answers from the second input list
+    """
+    answer_ids_a = set([answer.answer_id for answer in answers_a])
+    answer_ids_b = set([answer.answer_id for answer in answers_b])
+
+    common_answers_a = []
+    common_answers_b = []
+    for id_a in answer_ids_a:
+        if id_a in answer_ids_b:
+            common_answers_a.append(next((answer for answer in answers_a if answer.answer_id == id_a), None))
+            common_answers_b.append(next((answer for answer in answers_b if answer.answer_id == id_a), None))
+    
+    return common_answers_a, common_answers_b
+
+
 def _calculate_kappa_for_models(answers_a:List[Answer], answers_b:List[Answer]) -> Tuple[float, int]:
     """ Calculates the Quadratic Weighted Kappa (QWK) between score_1 of two sets of answers
 
@@ -305,33 +339,11 @@ def _calculate_kappa_for_models(answers_a:List[Answer], answers_b:List[Answer]) 
             - Number of Answers (int): The number of answers considered for the QWK calculation
 
     Notes:
-        - The function expects both lists of answers to have equal length and more than 100 answers to provide a 
+        - The function expects both lists of answers to have more than 100 common answers to provide a 
           valid QWK
         - It also assumes that answer Ids in both lists should match for valid comparison
     """
-    if len(answers_a) != len(answers_b) or len(answers_a) < 100:
-        log.warning(f"Not enough samples or ratings are inconsistent: {len(answers_a)} vs. {len(answers_b)}")
-        return -5, len(answers_a)
-
-    answer_ids_a = set([answer.answer_id for answer in answers_a])
-    answer_ids_b = set([answer.answer_id for answer in answers_b])
-
-    common_ids = answer_ids_a.intersection(answer_ids_b)
-    if len(answer_ids_a) != len(common_ids):
-        a_set = set(answer_ids_a)
-        b_set = set(answer_ids_b)
-
-        a_diff = [item for item in a_set if item not in common_ids]
-        b_diff = [item for item in b_set if item not in common_ids]
-
-        log.warning(f"Ratings are inconsistent: {len(answers_a)} vs. {len(answers_b)}, common_ids: {len(common_ids)}")
-        log.warning(f"diff answers_a to common: {a_diff}, diff answers_b to common: {b_diff}")
-        return -5, len(answers_a)
-
-    scores_a = _get_scores(answers_a, 1)
-    scores_b = _get_scores(answers_b, 1)
-
-    return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
+    return _calculate_kappa_for_score_types(answers_a, 1, answers_b, 1)
 
 
 def _calculate_kappa_for_model(answers:List[Answer]) -> Tuple[float, int]:
@@ -359,7 +371,9 @@ def _calculate_kappa_for_model(answers:List[Answer]) -> Tuple[float, int]:
     scores_a = _get_scores(answers, 1)
     scores_b = _get_scores(answers, 2)
 
-    return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
+    kappa = cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
+    log.debug(f"Calculated QWK: {kappa}")
+    return kappa
 
 
 def _calculate_kappa_for_score_types(answers_a:List[Answer], score_type_a:int, answers_b:List[Answer], score_type_b:int) -> Tuple[float, int]:
@@ -386,15 +400,14 @@ def _calculate_kappa_for_score_types(answers_a:List[Answer], score_type_a:int, a
         - The function expects `answers_a` to have more than 100 answers to provide a valid QWK calculation
         - The function expects `answers_a` and `answers_b` to be of the same length for a valid comparison
     """
-    if len(answers_a) < 100:
-        log.warning(f"Not enough scores: {len(answers_a)} to calculate kappa")
-        return -5, len(answers_a)
-    
-    if len(answers_a) != len(answers_b):
-        log.error(f"We try to compare ratings of different length, a: {len(answers_a)}, b: {len(answers_b)}")
+    common_answers_a, common_answers_b = _get_common_answers(answers_a, answers_b)
 
-    scores_a = _get_scores(answers_a, score_type_a)
-    scores_b = _get_scores(answers_b, score_type_b)
+    if len(common_answers_a) < 100 or len(common_answers_b) < 100:
+        log.warning(f"Not enough common samples: {len(common_answers_a)} from a total of: {len(answers_a)} and {len(common_answers_b)} from a total of: {len(answers_b)}")
+        return -5, len(answers_a)
+
+    scores_a = _get_scores(common_answers_a, score_type_a)
+    scores_b = _get_scores(common_answers_b, score_type_b)
 
     return cohen_kappa_score(scores_a, scores_b, weights='quadratic'), len(scores_a)
 
@@ -440,7 +453,7 @@ def _get_min_kappa_count(x_y_boxplot_data_sorted:Dict[str, List[float]]) -> Tupl
     return min_kappa_count, all_equal
 
 
-def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str, List[float]], x_y_model_data_2:defaultdict[str, List[float]], title:str) -> None:
+def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str, List[float]], data_source_1:str, x_y_model_data_2:defaultdict[str, List[float]], data_source_2:str, title:str) -> None:
     """ Generates a combined boxplot from two datasets and saves the diagram as a PDF
 
     This function visualizes two sets of data in a combined boxplot, where each dataset is represented by
@@ -450,8 +463,10 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
         fileLabel (str): The label that will be used as the filename for the saved boxplot
         x_y_model_data_1 (defaultdict[str, List[float]]): The first dataset to be plotted, with x-values 
                                                           (keys) mapping to a list of y-values (QWKs)
+        data_source_1 (str): Data source of x_y_model_data_1
         x_y_model_data_2 (defaultdict[str, List[float]]): The second dataset to be plotted, with x-values 
                                                           (keys) mapping to a list of y-values (QWKs)
+        data_source_2 (str): Data source of x_y_model_data_2
         title (str): The title to be displayed on the generated boxplot
 
     Notes:
@@ -461,17 +476,15 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
     """
     figure, ax = plt.subplots()
 
-    x_y_dataset_1 = x_y_model_data_1[0]
-    x_y_dataset_2 = x_y_model_data_2[0]
-    for key in set(x_y_dataset_1.keys()).union(x_y_dataset_2.keys()):
-        if key not in x_y_dataset_1:
-            x_y_dataset_1[key] = []
-        if key not in x_y_dataset_2:
-            x_y_dataset_2[key] = []
+    for key in set(x_y_model_data_1.keys()).union(x_y_model_data_2.keys()):
+        if key not in x_y_model_data_1:
+            x_y_model_data_1[key] = []
+        if key not in x_y_model_data_2:
+            x_y_model_data_2[key] = []
 
     # sort x ascending
-    x_y_dataset_1_sorted = dict(sorted(x_y_dataset_1.items()))
-    x_y_dataset_2_sorted = dict(sorted(x_y_dataset_2.items()))
+    x_y_dataset_1_sorted = dict(sorted(x_y_model_data_1.items()))
+    x_y_dataset_2_sorted = dict(sorted(x_y_model_data_2.items()))
 
     min_kappa_count_dataset_1, for_all_boxes_equal_d1 = _get_min_kappa_count(x_y_dataset_1_sorted)
     min_kappa_count_dataset_2, for_all_boxes_equal_d2 = _get_min_kappa_count(x_y_dataset_2_sorted)
@@ -481,6 +494,8 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
     positions_1 = [i - 0.2 for i, key in enumerate(x_y_dataset_1_sorted.keys())]
     positions_2 = [i + 0.2 for i, key in enumerate(x_y_dataset_1_sorted.keys())]
 
+    log.debug(f"About to plot dataset_1: {len(x_y_dataset_1_sorted)} with: {len(positions_1)} positions")
+    log.debug(f"About to plot dataset_2: {len(x_y_dataset_2_sorted)} with: {len(positions_2)} positions")
     boxes_1 = ax.boxplot([sorted(data) for data in x_y_dataset_1_sorted.values()], positions=positions_1, widths=0.4, patch_artist=True)
     boxes_2 = ax.boxplot([sorted(data) for data in x_y_dataset_2_sorted.values()], positions=positions_2, widths=0.4, patch_artist=True)
 
@@ -495,7 +510,7 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
     else:
         figtext = f"Each box represents at leased {min(min_kappa_count_dataset_1, min_kappa_count_dataset_2)}"
     
-    figtext += f" kappa values\n{x_y_model_data_1[1]} is represented by red\n{x_y_model_data_2[1]} is represented by blue"
+    figtext += f" kappa values\n{data_source_1} is represented by red\n{data_source_2} is represented by blue"
     _add_figtext(figure, figtext)
 
     ax.set_title(title)
@@ -612,15 +627,29 @@ def _allocate_results(result_path:str, training_data_source:str, test_data_sourc
             "results": test_results,
             "training_data_source": training_data_source
         })
-
+    log.debug(f"Calculate kappa for: {result_path}")
     _get_figure_for_dataset(diagrams, batch_id, training_data_source, test_data_source, model_type.upper()).plot(batch_size, *_calculate_kappa_for_model(test_results))
+
+
+def _cleanup(config:Configuration) -> None:
+    """ Ensures that none of the files, created by this module, already exist
+
+    Args:
+        config (Configuration): Allows access to the projects central configuration
+    """
+    data_root_path = config.get_datafile_root_path()
+    for data_file in os.listdir(data_root_path):
+        if data_file.endswith(".pdf") and "kappa" in data_file:
+            full_path = os.path.join(data_root_path, data_file)
+            os.remove(full_path)
 
 
 if __name__ == "__main__":
     config_logger(log.DEBUG, "calculate_kappa.log")
     config = Configuration()
-    
-    trained_model_types : ['bert', 'xgb']
+    _cleanup(config)
+
+    trained_model_types = ['bert', 'xgb']
     data_sources = ['experts', 'davinci', 'turbo', 'gpt4']
 
     diagrams = _recursive_default_dict()
@@ -632,37 +661,40 @@ if __name__ == "__main__":
             for model_type in trained_model_types:
 
                 # each model rates its own training and test data sources and the test data sources of all other models
-                for i in range(len(data_sources)):
-                    data_source = data_sources[i]
-                    result_training_path = config.get_test_results_path(model_type, data_source, f"{data_source}-training", batch.size, batch_id)
-                    _allocate_results(result_training_path, data_source, f"{data_source}-training", test_result_sets, batch.size, batch_id, model_type)
+                for data_source_a in data_sources:
+                    result_training_path = config.get_test_results_path(model_type, data_source_a, f"{data_source_a}-training", batch.size, batch_id)
+                    _allocate_results(result_training_path, data_source_a, f"{data_source_a}-training", test_result_sets, batch.size, batch_id, model_type)
                     
-                    for j in range(i, len(data_sources)):
-                        data_source_j = data_sources[j]
-                        result_path = config.get_test_results_path(model_type, data_source, f"{data_source_j}-testing", batch.size, batch_id)
-                        _allocate_results(result_training_path, data_source, f"{data_source_j}-testing", test_result_sets, batch.size, batch_id, model_type)
+                    for data_source_b in data_sources:
+                        result_path = config.get_test_results_path(model_type, data_source_a, f"{data_source_b}-testing", batch.size, batch_id)
+                        _allocate_results(result_path, data_source_a, f"{data_source_b}-testing", test_result_sets, batch.size, batch_id, model_type)
 
             # calculate kappa of score_1 vs score_1 of all test data result sets
             for model_type, sub_dict in test_result_sets.items():
                 platform = model_type.upper()
                 for test_data_source, result_sets in sub_dict.items():
-                    for a in range(len(result_sets)):
-                        training_data_source_a = result_sets[a]["training_data_source"]
-                        result_set_a = result_sets[a]["results"]
+                    for result_set_a in result_sets:
+                        training_data_source_a = result_set_a["training_data_source"]
+                        results_a = result_set_a["results"]
 
-                        for b in range(a + 1, len(result_sets)):
-                            training_data_source_b = result_sets[b]["training_data_source"]
-                            result_set_b = result_sets[b]["results"]
+                        for result_set_b in result_sets:
+                            # Only compare different result sets
+                            if result_set_a == result_set_b:
+                                continue
+    
+                            training_data_source_b = result_set_b["training_data_source"]
+                            results_b = result_set_b["results"]
 
                             descriptor = f"{training_data_source_a}_vs_{training_data_source_b}_score_1"
-                            title = _get_diagram_title_model_vs_model(platform, training_data_source_a, training_data_source_b, test_data_source)
-                            kappa, answer_count = _calculate_kappa_for_models(result_set_a, result_set_b)
+                            title = _get_diagram_title_model_a_score_1_vs_model_b_score_1(platform, training_data_source_a, training_data_source_b, test_data_source)
+                            kappa, answer_count = _calculate_kappa_for_models(results_a, results_b)
                             log.debug(f"{platform}_{descriptor} rated {test_data_source}: - batch: {batch.size} kappa: {kappa} samples: {answer_count}")
                             if kappa >= -1 and kappa <= 1:
                                 _get_figure_for_dataset(diagrams, batch_id, descriptor, test_data_source, platform, title).plot(batch.size, kappa, answer_count)
                             else:
                                 log.error(f"Kappa is out of bound: {kappa}")
 
+    # ChatGPT rated the samples created by human experts, but not the other way around
     _diagram_gpt_vs_experts("davinci")
     _diagram_gpt_vs_experts("turbo")
     _diagram_gpt_vs_experts("gpt4")
@@ -670,7 +702,7 @@ if __name__ == "__main__":
     # sort data for boxplots
     accumulated_data = _recursive_default_dict()
     for platform, sub_dict_a in diagrams.items():
-        for training_data_source, sub_dict_b in diagrams.items():
+        for training_data_source, sub_dict_b in sub_dict_a.items():
             for test_data_source, sub_dict_c in sub_dict_b.items():
 
                 # x and y for all variants
@@ -689,7 +721,14 @@ if __name__ == "__main__":
                     # print diagram
                     diagram.save(config)
                 
-                title = _get_diagram_title(platform, training_data_source, test_data_source)
+                # If we compare different models, both sources are combined
+                if "_vs_" in training_data_source:
+                    sources_str = re.sub('_score_\d+', '', training_data_source)
+                    training_data_sources = sources_str.split("_vs_")
+                    title = _get_diagram_title_model_a_score_1_vs_model_b_score_1(platform, training_data_sources[0], training_data_sources[1], test_data_source)
+                else:
+                    title = _get_diagram_title(platform, training_data_source, test_data_source)
+
                 _print_boxplot(f"{platform}_{training_data_source}_model_{test_data_source}", x_y_boxplot_data, title)
 
                 # collect all boxplots displaing the rating of data that was reserved for tests
@@ -702,14 +741,56 @@ if __name__ == "__main__":
     # boxplots with two datasets
     for platform,  sub_dict_a in accumulated_data.items():
         for test_data_source, result_sets in sub_dict_a.items():
-            for a in range(len(result_sets)):
-                training_data_source_a = result_sets[a]["training_data_source"]
-                x_y_boxplot_data_a = result_sets[a]["x_y_boxplot_data"]
-                
-                for b in range(a + 1, len(result_sets)):
-                    training_data_source_b = result_sets[b]["training_data_source"]
-                    x_y_boxplot_data_b = result_sets[b]["x_y_boxplot_data"]
+            test_data_source_split = test_data_source.split("-")
 
-                    title = _get_diagram_title_model_vs_model(platform, training_data_source_a, training_data_source_b, test_data_source)
-                    fileLabel = f"{platform}_{training_data_source_a}_vs_{training_data_source_b}_score_1_rated_{test_data_source}_samples"
-                    _print_dual_dataset_boxplot(fileLabel, x_y_boxplot_data_a, x_y_boxplot_data_b, title)
+            for result_set_a in result_sets:
+                training_data_source_a = result_set_a["training_data_source"]
+                x_y_boxplot_data_a = result_set_a["x_y_boxplot_data"]
+                
+                for result_set_b in result_sets:
+
+                    if result_set_a == result_set_b:
+                        continue
+
+                    training_data_source_b = result_set_b["training_data_source"]
+                    x_y_boxplot_data_b = result_set_b["x_y_boxplot_data"]
+
+                    if "_vs_" in training_data_source_a:
+                        data_source_a = re.sub('_score_\d+', '', training_data_source_a)
+                        data_sources_a = data_source_a.split("_vs_")
+                        file_name_segment_a = data_source_a
+                        # score_1 of model A vs score_1 of model B compared to score_1 of model C vs score_1 of model D
+                        # this shows which model rate more similar
+                        comparison_type = "model_vs_model_compared_to_model_vs_model"
+                    else:
+                        data_source_a = _map_source_to_real_name(training_data_source_a)
+                        file_name_segment_a = training_data_source_a
+                        # model A vs the data_source of the rated data (gpt4, experts ect.) compared to model B vs the data_source of the rated data (gpt4, experts ect.)
+                        comparison_type = "model_vs_model"
+                    
+                    if "_vs_" in training_data_source_b:
+                        # It doesn't make sense to compare the QWK of one trained model with its data source to the QWK between two other models
+                        if comparison_type == "model_vs_model":
+                            continue
+
+                        data_source_b = re.sub('_score_\d+', '', training_data_source_b)
+                        data_sources_b = data_source_b.split("_vs_")
+                        file_name_segment_b = data_source_b
+
+                        title = f"""The QWK for score_1 when comparing two {platform} models versus the QWK for score_1 between a different pair of {platform} models.
+The first pair was trained with samples created by {_map_source_to_real_name(data_sources_a[0])} and {_map_source_to_real_name(data_sources_a[1])},
+the second pair was trained with samples created by {_map_source_to_real_name(data_sources_b[0])} and {_map_source_to_real_name(data_sources_b[1])}"""
+
+                    else:
+                        # It doesn't make sense to compare the QWK of one trained model with its data source to the QWK between two other models
+                        if comparison_type == "model_vs_model_compared_to_model_vs_model":
+                            continue
+
+                        data_source_b = _map_source_to_real_name(training_data_source_b)
+                        file_name_segment_b = training_data_source_b
+
+                        title = f"""QWK of two {platform} Models with the source of the data. One trained with samples created by {data_source_a} One trained with samples created by {data_source_b}.
+Both rated answers created by {_map_source_to_real_name(test_data_source_split[0])} used for {test_data_source_split[1]}"""
+
+                    fileLabel = f"{platform}_{file_name_segment_a}_compared_to_{file_name_segment_b}_score_1_rated_{test_data_source}_samples"
+                    _print_dual_dataset_boxplot(fileLabel, x_y_boxplot_data_a, data_source_a, x_y_boxplot_data_b, data_source_b, title)
