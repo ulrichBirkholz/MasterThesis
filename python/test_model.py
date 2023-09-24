@@ -15,6 +15,20 @@ from argparse import Namespace
 import os
 
 
+def _get_matrix_filename(training_data_source:str, test_data_source:str, question_id:str) -> str:
+    """ Generate the filename for confusion matrices of a specific question
+
+    Args:
+        training_data_source (str): Source of training samples
+        test_data_source (str): Source of testing samples
+        question_id (str): Identifier for the associated question
+
+    Returns:
+        str: Constructed filename for the confusion matrices
+    """
+    return f"{training_data_source}_{test_data_source}_{question_id}_confusion_matrices.json"
+
+
 def _add_confusion_matrix(cm_matrices:Dict[str, Dict[str, Union[str, Any]]], key:str, matrix:Any, path:str, iteration=0) -> None:
     """ Safely add a confusion matrix to a dictionary, ensuring there's no key duplication.
 
@@ -60,7 +74,7 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
     """
     answers_for_question = execution["answers"]
     training_data_source = execution["training_data_source"]
-    test_data_source = execution["test_data_sources"]
+    test_data_source = execution["test_data_source"]
     score_type = execution["score_types"][question.question_id]
 
     if question.question_id not in answers_for_question:
@@ -85,12 +99,13 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
             
             write_rated_answers_tsv(config.get_test_results_path("xgb", training_data_source, test_data_source, batch.size, batch_id), xgb_rated_answers, True)
 
-    with open(config.get_path_for_datafile(f"{training_data_source}_{test_data_source}_{question.question_id}_confusion_matrices.json"), "w") as file:
+    path_for_matrix = _get_matrix_filename(training_data_source, test_data_source, question.question_id)
+    with open(config.get_path_for_datafile(path_for_matrix), "w") as file:
         json.dump(cm_matrices, file)
 
 
 # Setup and parse arguments
-# example: python -m test_model --score_types_path ./score_types.json
+# example: python -m test_model --score_types_path ./score_types.json  --davinci --experts --turbo --gpt4 --combo
 def setup_args() -> Namespace:
     """ Setup of the execution arguments
 
@@ -98,7 +113,13 @@ def setup_args() -> Namespace:
         Namespace: arguments to be used
     """
     parser = argparse.ArgumentParser(description='Test Model with annotated answers')
-
+    parser.add_argument('--exp', dest='include_experts', action='store_true', help='Include models trained with samples created by human experts')
+    parser.add_argument('--davinci', dest='include_davinci', action='store_true', help='Include models trained with samples created by text-davinci-003')
+    parser.add_argument('--turbo', dest='include_turbo', action='store_true', help='Include models trained with samples annotated by gpt-3.5-turbo')
+    parser.add_argument('--gpt4', dest='include_gpt4', action='store_true', help='Include models trained with samples created by gpt4')
+    # TODO: we use torbo for now but we might need to swap to davinci depending on the final results
+    parser.add_argument('--combo', dest='include_combo', action='store_true', help='Include models trained with a combination of samples created by gpt4 and text-davinci-003 annotated by gpt-3.5-turbo')
+    parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
     parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
 
     args = parser.parse_args()
@@ -111,12 +132,12 @@ def setup_args() -> Namespace:
     return args
 
 
-def _get_execution(training_data_source:str, test_data_sources:str, file_path:str, score_types:Dict[str, int]) -> Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]:
+def _get_execution(training_data_source:str, test_data_source:str, file_path:str, score_types:Dict[str, int]) -> Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]:
     """ Consolidates various pieces of information relevant for a model's execution into a single dictionary
 
     Args:
         training_data_source (str): The source of the Samples, the model has been trained with
-        test_data_sources (str): The source of the Samples, the model will be tested with
+        test_data_source (str): The source of the Samples, the model will be tested with
         file_path (str): Path to the file containing the samples
         score_types (Dict[str, int]): The score types (either 1 or 2) to be used, this is individual per Question
 
@@ -125,7 +146,7 @@ def _get_execution(training_data_source:str, test_data_sources:str, file_path:st
         information. It includes:
             - answers: Grouped answers by their question derived from the file_path
             - training_data_source: Source of the training samples
-            - test_data_sources: Source of the testing samples
+            - test_data_source: Source of the testing samples
             - score_types: Score types per question
     """
     return {
@@ -134,7 +155,7 @@ def _get_execution(training_data_source:str, test_data_sources:str, file_path:st
         # source of the samples the model was trained with
         "training_data_source": training_data_source,
         # source of the samples the is tested with
-        "test_data_sources": test_data_sources,
+        "test_data_source": test_data_source,
         # the score types that will be used according to the calculated distribution
         "score_types": score_types
     }
@@ -180,30 +201,32 @@ def _delete_file(file:str) -> None:
         os.remove(file)
 
 
-def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]) -> None:
+def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]], question_ids:List[str]) -> None:
     """ Ensures that none of the files, created by this module, already exist
 
     Args:
         config (Configuration): Allows access to the projects central configuration
         execution (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
+        question_ids (List[str]): Ids of all questions
     """
+    for execution in executions:
+        training_data_source = execution["training_data_source"]
+        test_data_source = execution["test_data_source"]
 
-    data_root_path = config.get_datafile_root_path()
-    for data_file in os.listdir(data_root_path):
-        if data_file.endswith("_confusion_matrices.json"):
-            full_path = os.path.join(data_root_path, data_file)
-            os.remove(full_path)
+        for question_id in question_ids:
+            path_for_matrix = _get_matrix_filename(training_data_source, test_data_source, question_id)
+            _delete_file(config.get_path_for_datafile(path_for_matrix))
 
-    for batch in config.get_batches():
-        for batch_id in batch.ids:
-            for execution in executions:
-                _delete_file(config.get_test_results_path("xgb", execution["training_data_source"], execution["test_data_sources"], batch.size, batch_id))
-                _delete_file(config.get_test_results_path("bert", execution["training_data_source"], execution["test_data_sources"], batch.size, batch_id))
+        for batch in config.get_batches():
+            for batch_id in batch.ids:
+                _delete_file(config.get_test_results_path("xgb", training_data_source, test_data_source, batch.size, batch_id))
+                _delete_file(config.get_test_results_path("bert", training_data_source, test_data_source, batch.size, batch_id))
 
 
 if __name__ == "__main__":
     config_logger(log.DEBUG, "test_model.log")
     args = setup_args()
+    args_dict = vars(args)
     config = Configuration()
 
     questions = get_questions(config.get_questions_path(), False)
@@ -211,9 +234,11 @@ if __name__ == "__main__":
     
     test_executions = []
     for data_source in available_data_sources:
-        test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
+        name = data_source["name"]
+        if args_dict[f"include_{name}"]:
+            test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
 
-    _cleanup(config, test_executions)
+    _cleanup(config, test_executions, [question.question_id for question in questions])
 
     for question in questions:
         # the rating datasets were not used for training but we still relay on the same score_type set to be more comparable
