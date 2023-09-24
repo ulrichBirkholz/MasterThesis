@@ -120,7 +120,6 @@ def setup_args() -> Namespace:
     # TODO: we use torbo for now but we might need to swap to davinci depending on the final results
     parser.add_argument('--combo', dest='include_combo', action='store_true', help='Include models trained with a combination of samples created by gpt4 and text-davinci-003 annotated by gpt-3.5-turbo')
     parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
-    parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
 
     args = parser.parse_args()
 
