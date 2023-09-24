@@ -100,7 +100,7 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
             write_rated_answers_tsv(config.get_test_results_path("xgb", training_data_source, test_data_source, batch.size, batch_id), xgb_rated_answers, True)
 
     path_for_matrix = _get_matrix_filename(training_data_source, test_data_source, question.question_id)
-    with open(config.get_path_for_datafile(path_for_matrix), "w") as file:
+    with open(config.get_path_for_results_file(path_for_matrix), "w") as file:
         json.dump(cm_matrices, file)
 
 
@@ -208,13 +208,18 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
         execution (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
         question_ids (List[str]): Ids of all questions
     """
+    base_folder = config.get_results_root_path()
+    if not os.path.exists(base_folder):
+        os.makedirs(base_folder, exist_ok=True)
+        return
+
     for execution in executions:
         training_data_source = execution["training_data_source"]
         test_data_source = execution["test_data_source"]
 
         for question_id in question_ids:
             path_for_matrix = _get_matrix_filename(training_data_source, test_data_source, question_id)
-            _delete_file(config.get_path_for_datafile(path_for_matrix))
+            _delete_file(config.get_path_for_results_file(path_for_matrix))
 
         for batch in config.get_batches():
             for batch_id in batch.ids:

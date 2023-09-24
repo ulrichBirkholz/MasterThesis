@@ -103,7 +103,7 @@ class Configuration():
         return self.get_path_for_datafile(filename)
     
 
-    def get_unrated_samples_path(self, model_version:str) -> str:
+    def get_unrated_samples_tsv(self, model_version:str) -> str:
         """ Retrieve the path for the file containing the unrated answers or samples, based on a specified source
 
         Args:
@@ -112,7 +112,7 @@ class Configuration():
         Returns:
             str: Path to the file containing the unrated answers or samples
         """
-        filename = Configuration._replace_str(self.config["unrated_samples_path"], model_version)
+        filename = Configuration._replace_str(self.config["unrated_samples_tsv"], model_version)
         return self.get_path_for_datafile(filename)
 
 
@@ -160,6 +160,17 @@ class Configuration():
         return self.get_path_for_datafile(filename)
 
 
+    # TODO: update docu
+    def get_results_root_path(self) -> str:
+        return self.get_path_for_datafile(self.config["test_results"])
+
+
+     # TODO: update docu
+    def get_path_for_results_file(self, name:str) -> str:
+        return f"{self.get_results_root_path()}/{name}"
+
+    
+
     def get_test_results_path(self, platform:str, training_data_source:str, test_data_source:str, batch_size:int, batch_id:str) -> str:
         """ Retrieve the path for the file containing annotated answers created by a model trained with specific data
 
@@ -175,7 +186,7 @@ class Configuration():
         """
         suffix = f"{platform}_{training_data_source}_model_rated_{test_data_source}_samples_{batch_size}_{batch_id}"
         filename = Configuration._replace_str(self.config["test_results"], suffix)
-        return self.get_path_for_datafile(filename)
+        return self.get_path_for_results_file(filename)
     
 
     def get_relative_model_path(self, question:str, batch_size:int, batch_id:str, training_data_source:str) -> str:
@@ -193,13 +204,53 @@ class Configuration():
         return f"{question}_{batch_size}_{batch_id}_{training_data_source}"
 
 
+     # TODO: update docu
+    def get_lr_root_path(self) -> str:
+        """ Retrieve the path for the lexical diversity analysis results
+
+        Returns:
+            str: Path to the file with lexical diversity analysis results
+        """
+        return self.get_path_for_datafile(self.config["lr_path"])
+
+
+    # TODO: update docu
+    def get_path_for_lr_file(self, name:str) -> str:
+        """ Retrieve the path for the lexical diversity analysis results
+
+        Returns:
+            str: Path to the file with lexical diversity analysis results
+        """
+        return f"{self.get_lr_root_path()}/{name}"
+    
+
     def get_lr_calculations_path(self) -> str:
         """ Retrieve the path for the lexical diversity analysis results
 
         Returns:
             str: Path to the file with lexical diversity analysis results
         """
-        return self.get_path_for_datafile(self.config["lr_calculations"])
+        return self.get_path_for_lr_file(self.config["lr_calculations"])
+
+
+     # TODO: update docu
+    def get_qwk_root_path(self) -> str:
+        """ Retrieve the path for the lexical diversity analysis results
+
+        Returns:
+            str: Path to the file with lexical diversity analysis results
+        """
+        return self.get_path_for_datafile(self.config["qwk_path"])
+
+
+    # TODO: update Docu
+    def get_path_for_qwk_file(self, name:str) -> str:
+        """ Retrieve the path for the file containing the calculated Quadratic Weighted Kappa (QWK)
+
+        Returns:
+            str: Full path to the file containing the calculated QWK
+        """
+        return f"{self.get_qwk_root_path()}/{name}"
 
 
     def get_qwk_result_path(self) -> str:
@@ -208,7 +259,7 @@ class Configuration():
         Returns:
             str: Full path to the file containing the calculated QWK
         """
-        return self.get_path_for_datafile(self.config['qwk_path'])
+        return self.get_path_for_qwk_file(self.config["qwk_tsv"])
 
 
     # AI Model

@@ -1,18 +1,21 @@
 {
 	"data_path": "../data",
 	"model_path": "../models",
+	"lr_path": "lr",
+	"qwk_path": "qwk",
+	"test_results_path": "results",
 	"trained_bert_version": "bert_v1",
 	"trained_xg_boost_version": "xgb_v1",
 	"questions": "questions.tsv",
 	"samples": "samples#.tsv",
 	"samples_for_training": "samples_for_training#.tsv",
 	"samples_for_testing": "samples_for_testing#.tsv",
-	"unrated_samples_path": "unrated_samples#.tsv",
+	"unrated_samples_tsv": "unrated_samples#.tsv",
 	"expert_samples_src": "train.tsv",
 	"key_elements": "key_elements.tsv",
 	"test_results": "test_results#.tsv",
 	"lr_calculations": "lexical_richness_calculations.tsv",
-	"qwk_path": "qwk.tsv",
+	"qwk_tsv": "qwk.tsv",
 	"distribution": "distribution.txt",
 	"batches": [{"size":50, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":100, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":200, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":400, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":800, "ids":["A", "B", "C", "D", "E", "F"]}, {"size":1600, "ids":["A"]}, {"size":3200, "ids":["A"]}]
 }

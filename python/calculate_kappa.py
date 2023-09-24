@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from collections import defaultdict
 import os
+import shutil
 
 
 class KappaFigure():
@@ -129,7 +130,7 @@ class KappaFigure():
         plt.plot(self.labels, self.kappa_values, 'ro')
 
         log.debug(f"Save Diagram: {self.filename}")
-        figure.savefig(config.get_path_for_datafile(self.filename), bbox_inches='tight')
+        figure.savefig(config.get_path_for_qwk_file(self.filename), bbox_inches='tight')
 
 
 def _add_figtext(fig:Figure, figtext:str) -> None:
@@ -517,7 +518,7 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
     ax.set_xlabel('Number of samples')
     ax.set_ylabel('QWK')
 
-    figure.savefig(config.get_path_for_datafile(f"boxplot_kappa_{fileLabel}.pdf"), bbox_inches='tight')
+    figure.savefig(config.get_path_for_qwk_file(f"boxplot_kappa_{fileLabel}.pdf"), bbox_inches='tight')
 
 
 def _print_boxplot(identifier:str, x_y_boxplot_data, title:str) -> None:
@@ -555,7 +556,7 @@ def _print_boxplot(identifier:str, x_y_boxplot_data, title:str) -> None:
     ax.set_xlabel('Number of samples')
     ax.set_ylabel('QWK')
 
-    figure.savefig(config.get_path_for_datafile(f"boxplot_kappa_{identifier}.pdf"), bbox_inches='tight')
+    figure.savefig(config.get_path_for_qwk_file(f"boxplot_kappa_{identifier}.pdf"), bbox_inches='tight')
 
 
 def _diagram_gpt_vs_experts(chat_gpt_model_type:str) -> None:
@@ -637,11 +638,11 @@ def _cleanup(config:Configuration) -> None:
     Args:
         config (Configuration): Allows access to the projects central configuration
     """
-    data_root_path = config.get_datafile_root_path()
-    for data_file in os.listdir(data_root_path):
-        if data_file.endswith(".pdf") and "kappa" in data_file:
-            full_path = os.path.join(data_root_path, data_file)
-            os.remove(full_path)
+    base_folder = config.get_qwk_root_path()
+    if os.path.exists(base_folder):
+        shutil.rmtree(base_folder)
+    
+    os.makedirs(base_folder, exist_ok=True)
 
 
 if __name__ == "__main__":

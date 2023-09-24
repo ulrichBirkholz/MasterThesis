@@ -9,7 +9,7 @@ import os
 import argparse
 from argparse import Namespace
 
-
+# TODO: mix gpt4 and davinci or turbo (depending on final results)
 class DataWriter:
     """ A helper class to record and write data distributions to a file
     
