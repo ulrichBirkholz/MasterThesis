@@ -6,13 +6,13 @@ from typing import List
 
 @dataclass
 class Batch:
-    """ Represents the size and associated variant Ids of a Batch of samples.
+    """ Represents the size and associated variant Ids of a Batch of samples
 
     This class provides a structured way to capture both the number of entities
     in the batch and the unique identifiers for each variant of the batch
 
     Attributes:
-        size (int): The number of samples contained in the batch.
+        size (int): The number of samples contained in the batch
         ids (List[str]): A list of unique identifiers for each variant of the batch
     """
     size: int
@@ -20,39 +20,39 @@ class Batch:
     
 
 class Configuration():
-    """ Provides methods to access and manipulate the project's configuration stored in 'config.json'.
+    """ Provides methods to access and manipulate the project's configuration stored in 'config.json'
     
     This class simplifies access to the projects configuration. It also ensures consistency in the way
     configurations are used and makes it easier to maintain and update it
 
     Attributes:
-        config (dict): A dictionary loaded from the 'config.json' file containing project configurations.
+        config (dict): A dictionary loaded from the 'config.json' file containing project configurations
     """
 
 
     def __init__(self):
-        """Initializes the Configuration object by loading the 'config.json' file."""
+        """Initializes the Configuration object by loading the 'config.json' file"""
         with open('config.json') as config_file:
             self.config = json.load(config_file)
 
 
     def get_datafile_root_path(self) -> str:
-        """ Returns the root path for all data files.
+        """ Returns the root path for all data files
 
         Returns:
-            str: Relative path to the data file.
+            str: Relative path to the data root folder
         """
         return self.config['data_path']
 
 
     def get_path_for_datafile(self, name:str) -> str:
-        """ Returns the relative path for a specific data file.
+        """ Returns the relative path for a specific data file
 
         Args:
-            name (str): Name of the data file.
+            name (str): Name of the data file
 
         Returns:
-            str: Relative path to the data file.
+            str: Relative path to the data file
         """
         return f"{self.get_datafile_root_path()}/{name}"
 
@@ -160,13 +160,24 @@ class Configuration():
         return self.get_path_for_datafile(filename)
 
 
-    # TODO: update docu
     def get_results_root_path(self) -> str:
+        """ Retrieve the base directory path for all model's test results
+
+        Returns:
+            str: Base path for all model's test results
+        """
         return self.get_path_for_datafile(self.config["test_results"])
 
 
-     # TODO: update docu
     def get_path_for_results_file(self, name:str) -> str:
+        """ Returns the relative path for a specific file containing model's test results
+
+        Args:
+            name (str): Name of the file
+
+        Returns:
+            str: Relative path to the file
+        """
         return f"{self.get_results_root_path()}/{name}"
 
     
@@ -204,22 +215,24 @@ class Configuration():
         return f"{question}_{batch_size}_{batch_id}_{training_data_source}"
 
 
-     # TODO: update docu
     def get_lr_root_path(self) -> str:
-        """ Retrieve the path for the lexical diversity analysis results
+        """ Retrieve the base directory path for all lexical diversity analysis results
 
         Returns:
-            str: Path to the file with lexical diversity analysis results
+            str: Base path for all lexical diversity analysis results
         """
         return self.get_path_for_datafile(self.config["lr_path"])
 
 
     # TODO: update docu
     def get_path_for_lr_file(self, name:str) -> str:
-        """ Retrieve the path for the lexical diversity analysis results
+        """ Returns the relative path for a specific file containing diversity analysis results
+
+        Args:
+            name (str): Name of the file
 
         Returns:
-            str: Path to the file with lexical diversity analysis results
+            str: Relative path to the file
         """
         return f"{self.get_lr_root_path()}/{name}"
     
@@ -233,22 +246,25 @@ class Configuration():
         return self.get_path_for_lr_file(self.config["lr_calculations"])
 
 
-     # TODO: update docu
     def get_qwk_root_path(self) -> str:
-        """ Retrieve the path for the lexical diversity analysis results
+        """ Retrieve the base directory path for files with Quadratic Weighted Kappa (QWK) results
+
+        This method fetches the base directory where all the QWK results are stored
 
         Returns:
-            str: Path to the file with lexical diversity analysis results
+            str: The base directory path for QWK result files
         """
         return self.get_path_for_datafile(self.config["qwk_path"])
 
 
-    # TODO: update Docu
     def get_path_for_qwk_file(self, name:str) -> str:
-        """ Retrieve the path for the file containing the calculated Quadratic Weighted Kappa (QWK)
+        """ Returns the relative path for a specific file related to the Quadratic Weighted Kappa (QWK)
+
+        Args:
+            name (str): Name of the file
 
         Returns:
-            str: Full path to the file containing the calculated QWK
+            str: Relative path to the file
         """
         return f"{self.get_qwk_root_path()}/{name}"
 
