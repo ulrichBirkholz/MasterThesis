@@ -10,6 +10,7 @@ import argparse
 from argparse import Namespace
 
 # TODO: mix gpt4 and davinci or turbo (depending on final results)
+
 class DataWriter:
     """ A helper class to record and write data distributions to a file
     
@@ -24,6 +25,7 @@ class DataWriter:
         """Initializes the DataWriter with an empty list of lines"""
         self.lines = []
 
+
     def add_line(self, description: str, information: str) -> None:
         """ Appends a new data distribution line to the internal list
         
@@ -32,6 +34,7 @@ class DataWriter:
             information (str): Contains the specific details of the distribution
         """
         self.lines.append(f"{description}: {information}")
+
 
     def write_to_file(self, path: str) -> None:
         """ Writes all accumulated distribution data to a specified file
@@ -48,6 +51,7 @@ class DataWriter:
 
 
 _data_writer = DataWriter()
+
 
 # {'category', percent} -> {'0': 10, '1': 50, '2': 15, '3': 25}
 def _calculate_distribution(samples:List[Answer], score_type:int, total:bool = False) -> Dict[str, int]:
@@ -250,6 +254,7 @@ def setup_args() -> Namespace:
     parser.add_argument('--davinci', action='store_true', help='Include samples created by text-davinci-003')
     parser.add_argument('--turbo', action='store_true', help='Include samples annotated by gpt-3.5-turbo')
     parser.add_argument('--gpt4', action='store_true', help='Include samples created by gpt4')
+    parser.add_argument('--combo', dest='include_combo', action='store_true', help='Include samples created by gpt4 and text-davinci-003')
     return parser.parse_args()
 
 

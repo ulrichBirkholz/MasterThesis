@@ -11,7 +11,6 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
-# TODO: documentation
 
 def _recursive_default_dict() -> defaultdict:
     """ Create and return a defaultdict that produces further defaultdicts on demand
@@ -26,7 +25,22 @@ def _recursive_default_dict() -> defaultdict:
     return defaultdict(_recursive_default_dict)
 
 
-def _matrix_to_labels(matrix):
+def _matrix_to_labels(matrix) -> Tuple[List[int], List[int]]:
+    """ Convert a confusion matrix into lists of true labels and predicted labels
+
+    This function decomposes a confusion matrix into the original true labels and their corresponding predicted labels. 
+    Each cell in the confusion matrix represents the count of instances where the true label is the row index and the 
+    predicted label is the column index
+
+    Args:
+        matrix (List[List[int]]): The confusion matrix to be converted. Each cell (i, j) indicates the number of times
+            the true label "i" was predicted as label "j"
+
+    Returns:
+        Tuple[List[int], List[int]]: A tuple containing two lists:
+            - The first list represents the true labels
+            - The second list represents the corresponding predicted labels
+    """
     y_true = []
     y_pred = []
     for i, row in enumerate(matrix):
@@ -38,6 +52,27 @@ def _matrix_to_labels(matrix):
 
 
 def _calculate_performance(y_true:List[int], y_pred:List[int], average:str=None) -> Tuple[float, float, float, Union[float, None]]:
+    """ Calculate performance metrics based on true and predicted labels
+
+    Computes precision, recall, accuracy and F1-score for the given true and predicted labels. The function can calculate metrics
+    for each label individually and return their average weighted by support when the 'average' parameter is specified. If
+    'average' is None, the function only returns the weighted scores.
+
+    Args:
+        y_true (List[int]): List of true labels
+        y_pred (List[int]): List of predicted labels
+        average (str, optional): Method to calculate metrics. If None, only the weighted average scores are returned.
+            This parameter is meant to handle label imbalance. Possible values include 'macro', 'micro', 'weighted', etc. 
+            For instance, using 'weighted' alters 'macro' to account for label imbalance and can result in an F-score 
+            that is not between precision and recall. Defaults to None
+
+    Returns:
+        Tuple[float, float, float, Union[float, None]]: A tuple containing:
+            - Precision score
+            - Recall score
+            - F1-score
+            - Accuracy (only if 'average' is specified, otherwise None)
+    """
     if average:
         accuracy = accuracy_score(y_true, y_pred)
     else:
@@ -70,6 +105,19 @@ def _cleanup(config:Configuration) -> None:
 
 
 def _write_matrix(file:str, matrix:List[List[int]]) -> int:
+    """ Write the confusion matrix to a text file in a human-readable format
+
+    This function takes a confusion matrix and writes it to a specified text file, formatted for easy visual inspection. 
+    Alongside the matrix, additional information, such as True Positives (TP), False Negatives (FN), and total 
+    predictions per class, is included to provide more context
+
+    Args:
+        file (str): The name of the file where the matrix will be written
+        matrix (List[List[int]]): The confusion matrix to be written
+
+    Returns:
+        int: The total number of predictions represented in the matrix
+    """
     file.write("-------------------------------------\n")
     file.write(" | 0 | 1 | 2 | 3\n")
     file.write("-------------------\n")
@@ -92,15 +140,47 @@ def _write_matrix(file:str, matrix:List[List[int]]) -> int:
 
 
 def _write_performance_values(precision:float, recall:float, f1:float, accuracy:float=None) -> None:
-    # Accurracy is not calculated per category
+    """  Write the provided performance metrics to a text file
+
+    This function takes precision, recall, F1 score, and optionally, accuracy, and writes them to a text file. 
+    If accuracy is not provided, it will not be written to the file
+
+    Args:
+        precision (float): Precision of the predictions
+        recall (float): Recall of the predictions
+        f1 (float): F1 score of the predictions
+        accuracy (float, optional): Overall accuracy of the predictions. If not provided, it will not be written to the file
+    """
+    # Accuracy is not calculated per category
+    weighted = ""
     if accuracy:
         file.write(f"Accuracy: {accuracy}\n")
-    file.write(f"Precision (Weighted): {precision}\n")
-    file.write(f"Recall (Weighted): {recall}\n")
-    file.write(f"F1 Score (Weighted): {f1}\n")
+        weighted = " (Weighted)"
+
+    file.write(f"Precision{weighted}: {precision}\n")
+    file.write(f"Recall{weighted}: {recall}\n")
+    file.write(f"F1 Score{weighted}: {f1}\n")
 
 
 def _write_to_tsv(config:Configuration, metrics:List[Dict[str, Union[str, float]]], model_identifier:List[str], test_data_source:str, category:str) -> None:
+    """ Write the given performance metrics to a tab-separated values (TSV) file
+
+    This function takes in the metrics, model details, and other associated parameters and writes them into a TSV file.
+    If the TSV file doesn't exist, a new one will be created with headers. Otherwise, the data will be appended
+
+    Args:
+        config (Configuration): Allows access to the projects central configuration
+        metrics (List[Dict[str, Union[str, float]]]): A list of dictionaries where each dictionary contains the label and value for a performance metric
+        model_identifier (List[str]): A list of identifiers providing details about the model. Expected order is:
+                                      - Model type ('bert' for BERT, 'xgb' for XG-Boost)
+                                      - Associated question or essay set ID
+                                      - Variation ID of the model
+                                      - Number of samples used for training
+                                      - Source of the training samples
+        test_data_source (str): Source or type of the test data used for generating the metrics
+        category (str): Category of the test data or evaluation, indicating the type or domain of the test data
+
+    """
     path = config.get_path_for_performance_file("performance.tsv")
 
     mode = 'a' if os.path.exists(path) else 'w'
@@ -115,7 +195,21 @@ def _write_to_tsv(config:Configuration, metrics:List[Dict[str, Union[str, float]
         writer.writerow(model_identifier + [test_data_source, category] + [metric['value'] for metric in metrics])
 
 
-def _to_metric_list(precision:float, recall:float, f1:float, accuracy:Union[float, None]):
+def _to_metric_list(precision:float, recall:float, f1:float, accuracy:Union[float, None]) -> List[Dict[str, str]]:
+    """ Convert the provided performance metrics to a list of dictionaries
+
+    Each metric is represented as a dictionary with two keys: "label" (the name of the metric) and "value" (the corresponding value). 
+    If the accuracy is None, its value will be represented as "N/A"
+
+    Args:
+        precision (float): Precision value of the predictions
+        recall (float): Recall value of the predictions
+        f1 (float): F1 score value of the predictions
+        accuracy (Union[float, None]): Accuracy value of the predictions. If not provided, it is represented as "N/A"
+
+    Returns:
+        List[Dict[str, Union[str, float]]]: A list of dictionaries representing the metrics, with each dictionary containing a label and a value
+    """
     return [
         {
             "label": "Precision",
@@ -137,6 +231,17 @@ def _to_metric_list(precision:float, recall:float, f1:float, accuracy:Union[floa
 
 
 def _add_entry(dictionary:Dict[str, List[float]], name:str, entry:float) -> None:
+    """ Append an entry to a list within a dictionary under a specified key
+    
+    If the key exists in the dictionary, the entry is appended to the list under that key.
+    If the key does not exist, a new list with the entry as the first element is created under that key
+    
+    Args:
+        dictionary (Dict[str, List[float]]): The dictionary to which the entry will be added
+        name (str): The key in the dictionary where the entry will be added. If the key doesn't exist, 
+                    it will be created
+        entry (float): The value to be appended to the list corresponding to the provided key in the dictionary
+    """
     if name in dictionary:
         dictionary[name].append(entry)
     else:
@@ -144,19 +249,28 @@ def _add_entry(dictionary:Dict[str, List[float]], name:str, entry:float) -> None
 
 
 def _print_boxplot(model_type:str, training_data_source:str, test_data_source:str, question_id:str, metric:str, x_y_boxplot_data:Dict[str, List[float]], category:Union[str, None]) -> None:
+    """ Generate and save a Boxplot visualizing the distribution of a specific performance metric
+
+    The Boxplot displays different batch sizes, based on the training and testing data sources, the model type,
+    the associated essay set (question ID), and an optional category
+
+    Args:
+        model_type (str): Type of the model. Examples include 'bert' for BERT and 'xgb' for XG-Boost
+        training_data_source (str): The source of the Samples, the model was trained with
+        test_data_source (str): The source of the Samples, the model was tested with
+        question_id (str): Id of the associated essay set
+        metric (str): The performance metric being visualized (e.g., 'precision', 'recall')
+        x_y_boxplot_data (Dict[str, List[float]]): Mapping of labels (typically batch sizes) to lists of values for the metric
+        category (Union[str, None]): Optional category associated with the metric, if applicable. If not provided, the metric is assumed to be weighted
+
+    Note:
+        The Boxplot is saved as a PDF file. The filename format is determined by the combination of training and testing sources, question Id, model type, metric, and category
+    """
     figure, ax = plt.subplots()
 
-    # sort x ascending
-    #x_y_boxplot_data_sorted = dict(sorted(x_y_boxplot_data.items()))
-
-    # sort each individual y value ascending
-    #ax.boxplot([sorted(y) for y in x_y_boxplot_data_sorted.values()])
-    #ax.set_xticklabels(list(x_y_boxplot_data_sorted.keys()))
-
-    log.error(f"data: {x_y_boxplot_data}")
     labels = list(x_y_boxplot_data.keys())
     box_data = [x_y_boxplot_data[key] for key in labels]
-    log.error(f"box_data: {box_data}")
+
     ax.boxplot(box_data, vert=True, patch_artist=True)
     ax.set_xticklabels(labels)
 

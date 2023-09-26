@@ -12,6 +12,7 @@ import logging as log
 from typing import List, Dict, Tuple, Union
 from config_logger import config_logger
 
+# TODO: mix gpt4 and davinci or turbo (depending on final results)
 
 def _jaccard_similarity(answer_batch_a:List[Answer], answer_batch_b:List[Answer]) -> float:
     """ Calculates the intersection of two given lists of Answers

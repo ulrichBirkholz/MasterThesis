@@ -14,6 +14,8 @@ import argparse
 from argparse import Namespace
 import os
 
+# TODO: mix gpt4 and davinci or turbo (depending on final results)
+# TODO: update score_types
 
 def _get_matrix_filename(training_data_source:str, test_data_source:str, question_id:str) -> str:
     """ Generate the filename for confusion matrices of a specific question
@@ -159,7 +161,28 @@ def _get_execution(training_data_source:str, test_data_source:str, file_path:str
     }
 
 
-def _get_executions_for_data_source(model_data_source:str, model_score_types:Dict[str, int], available_data_sources:List[Dict[str, Union[str, Dict[str, int]]]], config:Configuration) -> List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]:
+def _already_executed(finished_executions:List[Dict[str, str]], training_data_source:str, test_data_source:str) -> bool:
+    """ Determine if a specific training and testing data source combination has already been executed
+
+    This is used to verify if previous executions using the same training and testing data sources have completed,
+    which can be useful in situations where a script may have been interrupted and needs to avoid redundant processing
+
+    Args:
+        finished_executions (List[Dict[str, str]]): A list containing metadata of all finished executions. Each entry is a dictionary
+            with keys "training_data_source" and "test_data_source" indicating sources of training and testing data respectively
+        training_data_source (str): The source of the Samples, the model has been trained with
+        test_data_source (str): The source of the Samples, the model will be tested with
+
+    Returns:
+        bool: True if the specific training and testing data source combination has already been executed, otherwise False
+    """
+    for finished_execution in finished_executions:
+        if finished_execution["training_data_source"] == training_data_source and finished_execution["test_data_source"] == test_data_source:
+            return True
+        return False
+
+
+def _get_executions_for_data_source(finished_executions:List[Dict[str, str]], model_data_source:str, model_score_types:Dict[str, int], available_data_sources:List[Dict[str, Union[str, Dict[str, int]]]], config:Configuration) -> List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]:
     """ Generate a list of consolidated execution configurations for a given model and available data sources.
 
     This function creates a consolidated set of execution details for each available dataset.
@@ -167,6 +190,7 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
     the model has been trained with, and configurations specific to available data sources
 
     Args:
+        finished_executions (List[Dict[str, str]]): Test sets that already have been finished
         model_data_source (str): The source of the Samples, the model has been trained with
         model_score_types (Dict[str, int]): The score type the model has been trained with
         available_data_sources (List[Dict[str, Union[str, Dict[str, int]]]]): 
@@ -179,14 +203,16 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
             A list of consolidated execution configurations for each available data source
     """    
     test_executions = []
-    test_executions.append(_get_execution(model_data_source, f"{model_data_source}-training", config.get_samples_for_training_path(model_data_source), model_score_types))
+    if not _already_executed(finished_executions, model_data_source, f"{model_data_source}-training"):
+        test_executions.append(_get_execution(model_data_source, f"{model_data_source}-training", config.get_samples_for_training_path(model_data_source), model_score_types))
     
-    if model_data_source != "experts":
+    if model_data_source != "experts" and not _already_executed(finished_executions, model_data_source, "experts-training"):
         test_executions.append(_get_execution(model_data_source, "experts-training", config.get_samples_for_training_path(model_data_source), model_score_types))
     
     for data_source_info in available_data_sources:
         name = data_source_info["name"]
-        test_executions.append(_get_execution(model_data_source, f"{name}-testing", config.get_samples_for_testing_path(name), data_source_info["score_types"]))
+        if not _already_executed(finished_executions, model_data_source, f"{name}-testing"):
+            test_executions.append(_get_execution(model_data_source, f"{name}-testing", config.get_samples_for_testing_path(name), data_source_info["score_types"]))
 
     return test_executions
 
@@ -207,7 +233,7 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
 
     Args:
         config (Configuration): Allows access to the projects central configuration
-        execution (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
+        executions (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
         question_ids (List[str]): Ids of all questions
     """
     base_folder = config.get_results_root_path()
@@ -229,11 +255,55 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
                 _delete_file(config.get_test_results_path("bert", training_data_source, test_data_source, batch.size, batch_id))
 
 
+def _update_state(config:Configuration, execution:Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]], filename:str) -> None:
+    """ Append information from a new execution to the specified state file
+
+    This function writes execution details to a results file, consolidating project tracking. Specifically, it logs the 
+    'training_data_source' and the 'test_data_source' from the execution dictionary to the file, facilitating later checks or references.
+
+    Args:
+        config (Configuration): Allows access to the projects central configuration
+        execution (Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]): A dictionary containing details about the execution.
+        filename (str): The name or identifier of the file where the execution details will be appended
+    """
+    with open(config.get_path_for_results_file(filename), 'a') as file:
+        file.write(f"{execution['training_data_source']}:{execution['test_data_source']}\n")
+
+
+def _get_state(config:Configuration, filename:str) -> List[Dict[str, str]]:
+    """ Retrieve a list of finished executions from the specified state file
+
+    This function reads the given file and extracts details of each finished execution, returning them as a list 
+    of dictionaries. Each dictionary contains keys 'training_data_source' and 'test_data_source' representing 
+    the sources used in the execution
+
+    Args:
+        config (Configuration): Allows access to the projects central configuration
+        filename (str): The name or identifier of the file from which finished execution details are to be read
+
+    Returns:
+        List[Dict[str, str]]: A list of dictionaries, where each dictionary represents a finished execution 
+            with details on the training and testing data sources
+    """
+    finished_executions = []
+    with open(config.get_path_for_results_file(filename), 'r') as file:
+        for line in file:
+            training_data_source, test_data_source = line.strip().split(",")  # Split the line by comma
+            finished_executions.append({
+                "training_data_source": training_data_source,
+                "test_data_source": test_data_source
+            })
+    return finished_executions
+
+
 if __name__ == "__main__":
     config_logger(log.DEBUG, "test_model.log")
     args = setup_args()
     args_dict = vars(args)
     config = Configuration()
+    state_file = "test_status.txt"
+
+    finished_executions = _get_state(config, state_file)
 
     questions = get_questions(config.get_questions_path(), False)
     available_data_sources = [{"name": key, "score_types": value} for key, value in args.score_types.items()]
@@ -242,11 +312,12 @@ if __name__ == "__main__":
     for data_source in available_data_sources:
         name = data_source["name"]
         if args_dict[f"include_{name}"]:
-            test_executions.extend(_get_executions_for_data_source(data_source["name"], data_source["score_types"], available_data_sources, config))
+            test_executions.extend(_get_executions_for_data_source(finished_executions, data_source["name"], data_source["score_types"], available_data_sources, config))
 
     _cleanup(config, test_executions, [question.question_id for question in questions])
 
-    for question in questions:
-        # the rating datasets were not used for training but we still relay on the same score_type set to be more comparable
-        for execution in test_executions:
+    for execution in test_executions:
+        for question in questions:
             _test_model(question, execution, config)
+
+        _update_state(config, execution, state_file)
