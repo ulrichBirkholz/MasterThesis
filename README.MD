@@ -11,6 +11,7 @@
 └── data                # Generated samples, diagrams, and analysis results
 	├── lr				# Results and diagrams of the lexical richness calculations
 	├── test_results	# Test results of the trained BERT and XG-Boost models, including confusion matrices
+	├── performance		# Calculations and Visual Representations for Various Performance Metrics, e.g., F1 Score
 	└── qwk				# Results and diagrams of the QWK calculations
 ```
 
@@ -153,7 +154,7 @@ Utilize the `test_model` module to assess the performance of trained models agai
 
 Confusion matrices are stored in the format: `{training_data_source}_{test_data_source}_{question.question_id}_confusion_matrices.json`
 
-To further interpret these matrices, the `read_confusion_matrix` module has been developed. This module processes all the confusion matrices and transcribes them into text files named: `{training_data_source}_{test_data_source}_{question.question_id}_confusion_matrices.txt`.
+To further interpret these matrices, the `analyse_confusion_matrices` module has been developed. This module processes all the confusion matrices and transcribes them into text files named: `{training_data_source}_{test_data_source}_{question.question_id}_confusion_matrices.txt` and calculates all relevant performance metrics. These metrics are then stored in TSV format and visualized as diagrams.
 
 ## Results Evaluation
 

@@ -159,13 +159,34 @@ class Configuration():
         return self.get_path_for_datafile(filename)
 
 
+    def get_performance_root_path(self) -> str:
+        """ Retrieve the base directory path for all model's performance results
+
+        Returns:
+            str: Base path for all model's performance results
+        """
+        return self.get_path_for_datafile(self.config["performance_path"])
+
+
+    def get_path_for_performance_file(self, name:str) -> str:
+        """ Returns the relative path for a specific file containing model's test results
+
+        Args:
+            name (str): Name of the file
+
+        Returns:
+            str: Relative path to the file
+        """
+        return f"{self.get_performance_root_path()}/{name}"
+
+
     def get_results_root_path(self) -> str:
         """ Retrieve the base directory path for all model's test results
 
         Returns:
             str: Base path for all model's test results
         """
-        return self.get_path_for_datafile(self.config["test_results"])
+        return self.get_path_for_datafile(self.config["test_results_path"])
 
 
     def get_path_for_results_file(self, name:str) -> str:

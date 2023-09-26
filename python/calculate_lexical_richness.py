@@ -237,7 +237,8 @@ def _calculate_and_save_lexical_richness(path, answers_per_question:Dict[str, An
         writer = csv.writer(tsvfile, delimiter='\t')
 
         if mode == 'w':
-            writer.writerow(['Question', 'Number of Answers', 'Represents'] + labels + [label + ' Skipped' for label in labels])  # Header row
+            # Header row
+            writer.writerow(['Question', 'Number of Answers', 'Represents'] + labels + [label + ' Skipped' for label in labels])
 
         for question, answers_for_question in answers_per_question.items():
             if number_of_answers:

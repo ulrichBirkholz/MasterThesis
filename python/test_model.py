@@ -105,7 +105,7 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
 
 
 # Setup and parse arguments
-# example: python -m test_model --score_types_path ./score_types.json  --davinci --experts --turbo --gpt4 --combo
+# example: python -m test_model --score_types_path ./score_types.json  --davinci --exp --turbo --gpt4 --combo
 def setup_args() -> Namespace:
     """ Setup of the execution arguments
 
@@ -185,7 +185,7 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
     for data_source_info in available_data_sources:
         name = data_source_info["name"]
         test_executions.append(_get_execution(model_data_source, f"{name}-testing", config.get_samples_for_testing_path(name), data_source_info["score_types"]))
-    
+
     return test_executions
 
 

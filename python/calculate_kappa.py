@@ -95,7 +95,8 @@ class KappaFigure():
         with open(file_path, mode, newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile, delimiter='\t')
             if mode == 'w':
-                writer.writerow(['Source'] + [batch.size for batch in batches])  # Header row
+                # Header row
+                writer.writerow(['Source'] + [batch.size for batch in batches])
             
             writer.writerow([self.filename] + self.kappa_values + ['N/A']*(max_number_of_labels - len(self.labels)))
 
@@ -521,7 +522,7 @@ def _print_dual_dataset_boxplot(fileLabel:str, x_y_model_data_1:defaultdict[str,
     figure.savefig(config.get_path_for_qwk_file(f"boxplot_kappa_{fileLabel}.pdf"), bbox_inches='tight')
 
 
-def _print_boxplot(identifier:str, x_y_boxplot_data, title:str) -> None:
+def _print_boxplot(identifier:str, x_y_boxplot_data:Dict[str, List[float]], title:str) -> None:
     """ Generates a boxplot from the provided dataset and saves the diagram as a PDF
 
     This function visualizes the provided dataset in a boxplot, which is useful for
