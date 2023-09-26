@@ -117,8 +117,7 @@ def setup_args() -> Namespace:
     parser.add_argument('--davinci', dest='include_davinci', action='store_true', help='Include models trained with samples created by text-davinci-003')
     parser.add_argument('--turbo', dest='include_turbo', action='store_true', help='Include models trained with samples annotated by gpt-3.5-turbo')
     parser.add_argument('--gpt4', dest='include_gpt4', action='store_true', help='Include models trained with samples created by gpt4')
-    # TODO: we use torbo for now but we might need to swap to davinci depending on the final results
-    parser.add_argument('--combo', dest='include_combo', action='store_true', help='Include models trained with a combination of samples created by gpt4 and text-davinci-003 annotated by gpt-3.5-turbo')
+    parser.add_argument('--combo', dest='include_combo', action='store_true', help='Include models trained with a combination of samples created by gpt4 and text-davinci-003')
     parser.add_argument("--score_types_path", type=str, required=True, help="Path to the JSON configuration for score types")
 
     args = parser.parse_args()
@@ -181,6 +180,9 @@ def _get_executions_for_data_source(model_data_source:str, model_score_types:Dic
     """    
     test_executions = []
     test_executions.append(_get_execution(model_data_source, f"{model_data_source}-training", config.get_samples_for_training_path(model_data_source), model_score_types))
+    
+    if model_data_source != "experts":
+        test_executions.append(_get_execution(model_data_source, "experts-training", config.get_samples_for_training_path(model_data_source), model_score_types))
     
     for data_source_info in available_data_sources:
         name = data_source_info["name"]
