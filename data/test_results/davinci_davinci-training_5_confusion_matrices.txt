@@ -1,0 +1,2368 @@
+Key: bert_5_50_A_davinci
+Path: ../models/bert_v1/5_50_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|823|000|000 | TP: 1, 0.12%; FN: 823; Total: 824
+1|000|608|000|002 | TP: 608, 99.67%; FN: 2; Total: 610
+2|000|883|000|000 | TP: 0, 0.0%; FN: 883; Total: 883
+3|000|882|000|001 | TP: 1, 0.11%; FN: 882; Total: 883
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.0012135922330097086
+F1 Score (Weighted): 0.0024242424242424242
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.1902377972465582
+Recall (Weighted): 0.9967213114754099
+F1 Score (Weighted): 0.3194955333683657
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.0011325028312570782
+F1 Score (Weighted): 0.002257336343115124
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.190625
+Precision (Weighted): 0.38574324676679184
+Recall (Weighted): 0.190625
+F1 Score (Weighted): 0.062150962219765474
+###################################################
+
+Key: xgb_5_50_A_davinci
+Path: ../models/xgb_v1/5_50_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|514|027|143|140 | TP: 514, 62.38%; FN: 310; Total: 824
+1|158|034|180|238 | TP: 34, 5.57%; FN: 576; Total: 610
+2|124|039|321|399 | TP: 321, 36.35%; FN: 562; Total: 883
+3|160|050|285|388 | TP: 388, 43.94%; FN: 495; Total: 883
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5376569037656904
+Recall (Weighted): 0.6237864077669902
+F1 Score (Weighted): 0.5775280898876404
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.22666666666666666
+Recall (Weighted): 0.05573770491803279
+F1 Score (Weighted): 0.08947368421052632
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3455328310010764
+Recall (Weighted): 0.3635334088335221
+F1 Score (Weighted): 0.3543046357615894
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.33304721030042916
+Recall (Weighted): 0.43941109852774635
+F1 Score (Weighted): 0.37890625
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3928125
+Precision (Weighted): 0.3689006661996328
+Recall (Weighted): 0.3928125
+F1 Score (Weighted): 0.3680897829885376
+###################################################
+
+Key: bert_5_50_B_davinci
+Path: ../models/bert_v1/5_50_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|781|175|000 | TP: 0, 0.0%; FN: 956; Total: 956
+1|000|116|034|000 | TP: 116, 77.33%; FN: 34; Total: 150
+2|000|779|150|000 | TP: 150, 16.15%; FN: 779; Total: 929
+3|001|941|223|000 | TP: 0, 0.0%; FN: 1165; Total: 1165
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.04432556362246848
+Recall (Weighted): 0.7733333333333333
+F1 Score (Weighted): 0.08384531984098301
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.25773195876288657
+Recall (Weighted): 0.16146393972012918
+F1 Score (Weighted): 0.1985440105890139
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.083125
+Precision (Weighted): 0.07690057007315372
+Recall (Weighted): 0.083125
+F1 Score (Weighted): 0.06157005744166917
+###################################################
+
+Key: xgb_5_50_B_davinci
+Path: ../models/xgb_v1/5_50_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|478|321|066|091 | TP: 478, 50.0%; FN: 478; Total: 956
+1|040|057|028|025 | TP: 57, 38.0%; FN: 93; Total: 150
+2|191|287|349|102 | TP: 349, 37.57%; FN: 580; Total: 929
+3|271|478|313|103 | TP: 103, 8.84%; FN: 1062; Total: 1165
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.48775510204081635
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.49380165289256195
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.049868766404199474
+Recall (Weighted): 0.38
+F1 Score (Weighted): 0.08816705336426915
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.46164021164021163
+Recall (Weighted): 0.3756727664155005
+F1 Score (Weighted): 0.4142433234421365
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.32087227414330216
+Recall (Weighted): 0.08841201716738198
+F1 Score (Weighted): 0.13862718707940783
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3084375
+Precision (Weighted): 0.3988919214069856
+Recall (Weighted): 0.3084375
+F1 Score (Weighted): 0.3223850495609952
+###################################################
+
+Key: bert_5_50_C_davinci
+Path: ../models/bert_v1/5_50_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|504|476|000 | TP: 0, 0.0%; FN: 980; Total: 980
+1|000|564|579|000 | TP: 564, 49.34%; FN: 579; Total: 1143
+2|000|261|495|000 | TP: 495, 65.48%; FN: 261; Total: 756
+3|000|071|250|000 | TP: 0, 0.0%; FN: 321; Total: 321
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.40285714285714286
+Recall (Weighted): 0.49343832020997375
+F1 Score (Weighted): 0.4435705859221392
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.275
+Recall (Weighted): 0.6547619047619048
+F1 Score (Weighted): 0.38732394366197187
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3309375
+Precision (Weighted): 0.2088642857142857
+Recall (Weighted): 0.3309375
+F1 Score (Weighted): 0.24994315034920497
+###################################################
+
+Key: xgb_5_50_C_davinci
+Path: ../models/xgb_v1/5_50_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|206|242|336|196 | TP: 206, 21.02%; FN: 774; Total: 980
+1|150|261|446|286 | TP: 261, 22.83%; FN: 882; Total: 1143
+2|013|081|386|276 | TP: 386, 51.06%; FN: 370; Total: 756
+3|004|026|118|173 | TP: 173, 53.89%; FN: 148; Total: 321
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5522788203753352
+Recall (Weighted): 0.21020408163265306
+F1 Score (Weighted): 0.3045084996304509
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.4278688524590164
+Recall (Weighted): 0.2283464566929134
+F1 Score (Weighted): 0.2977752424415288
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3001555209953344
+Recall (Weighted): 0.5105820105820106
+F1 Score (Weighted): 0.3780607247796278
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.1858216970998926
+Recall (Weighted): 0.5389408099688473
+F1 Score (Weighted): 0.2763578274760383
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.320625
+Precision (Weighted): 0.411516775303132
+Recall (Weighted): 0.320625
+F1 Score (Weighted): 0.31665631321928633
+###################################################
+
+Key: bert_5_50_D_davinci
+Path: ../models/bert_v1/5_50_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|222|151|000 | TP: 0, 0.0%; FN: 373; Total: 373
+1|000|277|333|000 | TP: 277, 45.41%; FN: 333; Total: 610
+2|000|450|836|000 | TP: 836, 65.01%; FN: 450; Total: 1286
+3|000|236|695|000 | TP: 0, 0.0%; FN: 931; Total: 931
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.23375527426160336
+Recall (Weighted): 0.4540983606557377
+F1 Score (Weighted): 0.3086350974930362
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4148883374689826
+Recall (Weighted): 0.6500777604976672
+F1 Score (Weighted): 0.5065131778249016
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3478125
+Precision (Weighted): 0.21129284977646554
+Recall (Weighted): 0.3478125
+F1 Score (Weighted): 0.26238854879799234
+###################################################
+
+Key: xgb_5_50_D_davinci
+Path: ../models/xgb_v1/5_50_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|332|019|022|000 | TP: 332, 89.01%; FN: 41; Total: 373
+1|357|059|138|056 | TP: 59, 9.67%; FN: 551; Total: 610
+2|235|133|700|218 | TP: 700, 54.43%; FN: 586; Total: 1286
+3|193|100|461|177 | TP: 177, 19.01%; FN: 754; Total: 931
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.297224709042077
+Recall (Weighted): 0.8900804289544236
+F1 Score (Weighted): 0.44563758389261743
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.18971061093247588
+Recall (Weighted): 0.09672131147540984
+F1 Score (Weighted): 0.1281216069489685
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5299015897047691
+Recall (Weighted): 0.5443234836702955
+F1 Score (Weighted): 0.5370157268891447
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3924611973392461
+Recall (Weighted): 0.19011815252416756
+F1 Score (Weighted): 0.25615050651230103
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.39625
+Precision (Weighted): 0.39794472132021125
+Recall (Weighted): 0.39625
+F1 Score (Weighted): 0.3667047954291279
+###################################################
+
+Key: bert_5_50_E_davinci
+Path: ../models/bert_v1/5_50_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|745|371|000 | TP: 1, 0.09%; FN: 1116; Total: 1117
+1|000|167|144|000 | TP: 167, 53.7%; FN: 144; Total: 311
+2|000|653|668|000 | TP: 668, 50.57%; FN: 653; Total: 1321
+3|000|244|207|000 | TP: 0, 0.0%; FN: 451; Total: 451
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.0008952551477170994
+F1 Score (Weighted): 0.0017889087656529517
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.09231619679380873
+Recall (Weighted): 0.5369774919614148
+F1 Score (Weighted): 0.15754716981132075
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4805755395683453
+Recall (Weighted): 0.5056775170325511
+F1 Score (Weighted): 0.49280708225746955
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.26125
+Precision (Weighted): 0.5564220703039559
+Recall (Weighted): 0.26125000000000004
+F1 Score (Weighted): 0.21937298017646012
+###################################################
+
+Key: xgb_5_50_E_davinci
+Path: ../models/xgb_v1/5_50_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|567|185|315|050 | TP: 567, 50.76%; FN: 550; Total: 1117
+1|112|062|069|068 | TP: 62, 19.94%; FN: 249; Total: 311
+2|071|209|652|389 | TP: 652, 49.36%; FN: 669; Total: 1321
+3|053|064|251|083 | TP: 83, 18.4%; FN: 368; Total: 451
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7061021170610212
+Recall (Weighted): 0.5076096687555953
+F1 Score (Weighted): 0.590625
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.11923076923076924
+Recall (Weighted): 0.19935691318327975
+F1 Score (Weighted): 0.14921780986762936
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5066045066045066
+Recall (Weighted): 0.49356548069644207
+F1 Score (Weighted): 0.5
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.14067796610169492
+Recall (Weighted): 0.18403547671840353
+F1 Score (Weighted): 0.15946205571565802
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.42625
+Precision (Weighted): 0.48702098435135865
+Recall (Weighted): 0.42625
+F1 Score (Weighted): 0.4495475784364358
+###################################################
+
+Key: bert_5_50_F_davinci
+Path: ../models/bert_v1/5_50_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|512|290|000 | TP: 1, 0.12%; FN: 802; Total: 803
+1|000|296|224|000 | TP: 296, 56.92%; FN: 224; Total: 520
+2|000|695|592|000 | TP: 592, 46.0%; FN: 695; Total: 1287
+3|000|215|375|000 | TP: 0, 0.0%; FN: 590; Total: 590
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.0012453300124533001
+F1 Score (Weighted): 0.0024875621890547263
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.17229336437718276
+Recall (Weighted): 0.5692307692307692
+F1 Score (Weighted): 0.2645218945487042
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.399729912221472
+Recall (Weighted): 0.45998445998445997
+F1 Score (Weighted): 0.4277456647398844
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.2778125
+Precision (Weighted): 0.4397015457828654
+Recall (Weighted): 0.2778125
+F1 Score (Weighted): 0.2156429900385526
+###################################################
+
+Key: xgb_5_50_F_davinci
+Path: ../models/xgb_v1/5_50_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|336|106|174|187 | TP: 336, 41.84%; FN: 467; Total: 803
+1|075|156|160|129 | TP: 156, 30.0%; FN: 364; Total: 520
+2|263|295|311|418 | TP: 311, 24.16%; FN: 976; Total: 1287
+3|094|105|158|233 | TP: 233, 39.49%; FN: 357; Total: 590
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.4375
+Recall (Weighted): 0.41843088418430885
+F1 Score (Weighted): 0.42775302355187783
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.23564954682779457
+Recall (Weighted): 0.3
+F1 Score (Weighted): 0.2639593908629442
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.38729763387297633
+Recall (Weighted): 0.24164724164724163
+F1 Score (Weighted): 0.2976076555023923
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.24095139607032057
+Recall (Weighted): 0.3949152542372881
+F1 Score (Weighted): 0.29929351316634556
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.32375
+Precision (Weighted): 0.34826988838326967
+Recall (Weighted): 0.32375
+F1 Score (Weighted): 0.32510899580019115
+###################################################
+
+Key: bert_5_100_A_davinci
+Path: ../models/bert_v1/5_100_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|003|670|095|000 | TP: 3, 0.39%; FN: 765; Total: 768
+1|000|595|067|000 | TP: 595, 89.88%; FN: 67; Total: 662
+2|001|667|135|000 | TP: 135, 16.81%; FN: 668; Total: 803
+3|000|878|089|000 | TP: 0, 0.0%; FN: 967; Total: 967
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.75
+Recall (Weighted): 0.00390625
+F1 Score (Weighted): 0.007772020725388601
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2117437722419929
+Recall (Weighted): 0.8987915407854985
+F1 Score (Weighted): 0.342741935483871
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.34974093264248707
+Recall (Weighted): 0.16811955168119552
+F1 Score (Weighted): 0.2270815811606392
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.2290625
+Precision (Weighted): 0.31156760816753637
+Recall (Weighted): 0.2290625
+F1 Score (Weighted): 0.12975330714981698
+###################################################
+
+Key: xgb_5_100_A_davinci
+Path: ../models/xgb_v1/5_100_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|321|099|105|243 | TP: 321, 41.8%; FN: 447; Total: 768
+1|148|145|218|151 | TP: 145, 21.9%; FN: 517; Total: 662
+2|133|269|237|164 | TP: 237, 29.51%; FN: 566; Total: 803
+3|158|385|165|259 | TP: 259, 26.78%; FN: 708; Total: 967
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.42236842105263156
+Recall (Weighted): 0.41796875
+F1 Score (Weighted): 0.42015706806282727
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16146993318485522
+Recall (Weighted): 0.2190332326283988
+F1 Score (Weighted): 0.18589743589743588
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.32689655172413795
+Recall (Weighted): 0.29514321295143214
+F1 Score (Weighted): 0.31020942408376967
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.31701346389228885
+Recall (Weighted): 0.2678386763185109
+F1 Score (Weighted): 0.29035874439461884
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.300625
+Precision (Weighted): 0.31260062304847536
+Recall (Weighted): 0.300625
+F1 Score (Weighted): 0.30488118881413045
+###################################################
+
+Key: bert_5_100_B_davinci
+Path: ../models/bert_v1/5_100_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|015|588|157|000 | TP: 15, 1.97%; FN: 745; Total: 760
+1|007|632|259|000 | TP: 632, 70.38%; FN: 266; Total: 898
+2|007|460|258|000 | TP: 258, 35.59%; FN: 467; Total: 725
+3|006|465|346|000 | TP: 0, 0.0%; FN: 817; Total: 817
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.019736842105263157
+F1 Score (Weighted): 0.03773584905660377
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.29463869463869463
+Recall (Weighted): 0.7037861915367484
+F1 Score (Weighted): 0.4153795596450871
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2529411764705882
+Recall (Weighted): 0.35586206896551725
+F1 Score (Weighted): 0.2957020057306591
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.2828125
+Precision (Weighted): 0.24177568326281562
+Recall (Weighted): 0.2828125
+F1 Score (Weighted): 0.1925231387496984
+###################################################
+
+Key: xgb_5_100_B_davinci
+Path: ../models/xgb_v1/5_100_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|445|113|127|075 | TP: 445, 58.55%; FN: 315; Total: 760
+1|115|365|172|246 | TP: 365, 40.65%; FN: 533; Total: 898
+2|075|177|218|255 | TP: 218, 30.07%; FN: 507; Total: 725
+3|115|133|171|398 | TP: 398, 48.71%; FN: 419; Total: 817
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5933333333333334
+Recall (Weighted): 0.5855263157894737
+F1 Score (Weighted): 0.5894039735099337
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.4631979695431472
+Recall (Weighted): 0.4064587973273942
+F1 Score (Weighted): 0.43297746144721233
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3168604651162791
+Recall (Weighted): 0.3006896551724138
+F1 Score (Weighted): 0.30856334041047423
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.4086242299794661
+Recall (Weighted): 0.48714810281517745
+F1 Score (Weighted): 0.44444444444444436
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.445625
+Precision (Weighted): 0.44701716971425176
+Recall (Weighted): 0.445625
+F1 Score (Weighted): 0.4448688478612035
+###################################################
+
+Key: bert_5_100_C_davinci
+Path: ../models/bert_v1/5_100_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|447|299|000 | TP: 4, 0.53%; FN: 746; Total: 750
+1|001|294|493|000 | TP: 294, 37.31%; FN: 494; Total: 788
+2|002|168|518|000 | TP: 518, 75.29%; FN: 170; Total: 688
+3|000|176|798|000 | TP: 0, 0.0%; FN: 974; Total: 974
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5714285714285714
+Recall (Weighted): 0.005333333333333333
+F1 Score (Weighted): 0.010568031704095112
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2709677419354839
+Recall (Weighted): 0.3730964467005076
+F1 Score (Weighted): 0.3139348638547785
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.24573055028462998
+Recall (Weighted): 0.752906976744186
+F1 Score (Weighted): 0.3705293276108727
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.255
+Precision (Weighted): 0.2534864461913798
+Recall (Weighted): 0.255
+F1 Score (Weighted): 0.15944714809122412
+###################################################
+
+Key: xgb_5_100_C_davinci
+Path: ../models/xgb_v1/5_100_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|563|078|067|042 | TP: 563, 75.07%; FN: 187; Total: 750
+1|188|123|333|144 | TP: 123, 15.61%; FN: 665; Total: 788
+2|090|088|350|160 | TP: 350, 50.87%; FN: 338; Total: 688
+3|122|112|409|331 | TP: 331, 33.98%; FN: 643; Total: 974
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5846313603322949
+Recall (Weighted): 0.7506666666666667
+F1 Score (Weighted): 0.6573263280793928
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.30673316708229426
+Recall (Weighted): 0.15609137055837563
+F1 Score (Weighted): 0.20689655172413793
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.30198446937014667
+Recall (Weighted): 0.5087209302325582
+F1 Score (Weighted): 0.3789929615592853
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.48892171344165436
+Recall (Weighted): 0.3398357289527721
+F1 Score (Weighted): 0.400969109630527
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4271875
+Precision (Weighted): 0.4262982249152817
+Recall (Weighted): 0.4271875
+F1 Score (Weighted): 0.4085375934847147
+###################################################
+
+Key: bert_5_100_D_davinci
+Path: ../models/bert_v1/5_100_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|002|191|770|000 | TP: 2, 0.21%; FN: 961; Total: 963
+1|000|044|357|000 | TP: 44, 10.97%; FN: 357; Total: 401
+2|000|045|1114|000 | TP: 1114, 96.12%; FN: 45; Total: 1159
+3|000|021|656|000 | TP: 0, 0.0%; FN: 677; Total: 677
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.0020768431983385254
+F1 Score (Weighted): 0.004145077720207254
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.1461794019933555
+Recall (Weighted): 0.10972568578553615
+F1 Score (Weighted): 0.12535612535612534
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.38453572661373836
+Recall (Weighted): 0.9611734253666955
+F1 Score (Weighted): 0.5493096646942801
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3625
+Precision (Weighted): 0.4585296397952057
+Recall (Weighted): 0.3625
+F1 Score (Weighted): 0.2159091929665739
+###################################################
+
+Key: xgb_5_100_D_davinci
+Path: ../models/xgb_v1/5_100_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|569|070|294|030 | TP: 569, 59.09%; FN: 394; Total: 963
+1|098|084|148|071 | TP: 84, 20.95%; FN: 317; Total: 401
+2|102|290|410|357 | TP: 410, 35.38%; FN: 749; Total: 1159
+3|037|183|177|280 | TP: 280, 41.36%; FN: 397; Total: 677
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.705955334987593
+Recall (Weighted): 0.5908618899273105
+F1 Score (Weighted): 0.6433013001695873
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.1339712918660287
+Recall (Weighted): 0.20947630922693267
+F1 Score (Weighted): 0.1634241245136187
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.39844509232264336
+Recall (Weighted): 0.3537532355478861
+F1 Score (Weighted): 0.37477148080438755
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3794037940379404
+Recall (Weighted): 0.413589364844904
+F1 Score (Weighted): 0.39575971731448767
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4196875
+Precision (Weighted): 0.45381615818654963
+Recall (Weighted): 0.4196875
+F1 Score (Weighted): 0.4335380315210834
+###################################################
+
+Key: bert_5_100_E_davinci
+Path: ../models/bert_v1/5_100_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|543|263|000 | TP: 0, 0.0%; FN: 806; Total: 806
+1|000|228|399|000 | TP: 228, 36.36%; FN: 399; Total: 627
+2|000|427|602|000 | TP: 602, 58.5%; FN: 427; Total: 1029
+3|000|131|607|000 | TP: 0, 0.0%; FN: 738; Total: 738
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.17155756207674944
+Recall (Weighted): 0.36363636363636365
+F1 Score (Weighted): 0.2331288343558282
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.32175307322287544
+Recall (Weighted): 0.5850340136054422
+F1 Score (Weighted): 0.41517241379310343
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.259375
+Precision (Weighted): 0.13707828242764397
+Recall (Weighted): 0.259375
+F1 Score (Weighted): 0.1791825602919399
+###################################################
+
+Key: xgb_5_100_E_davinci
+Path: ../models/xgb_v1/5_100_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|493|126|091|096 | TP: 493, 61.17%; FN: 313; Total: 806
+1|040|160|168|259 | TP: 160, 25.52%; FN: 467; Total: 627
+2|182|211|255|381 | TP: 255, 24.78%; FN: 774; Total: 1029
+3|019|115|264|340 | TP: 340, 46.07%; FN: 398; Total: 738
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6716621253405994
+Recall (Weighted): 0.6116625310173698
+F1 Score (Weighted): 0.6402597402597403
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.26143790849673204
+Recall (Weighted): 0.2551834130781499
+F1 Score (Weighted): 0.258272800645682
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3277634961439589
+Recall (Weighted): 0.2478134110787172
+F1 Score (Weighted): 0.2822357498616492
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3159851301115242
+Recall (Weighted): 0.46070460704607047
+F1 Score (Weighted): 0.3748621830209482
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.39
+Precision (Weighted): 0.39867090787700393
+Recall (Weighted): 0.39
+F1 Score (Weighted): 0.38907977322852816
+###################################################
+
+Key: bert_5_100_F_davinci
+Path: ../models/bert_v1/5_100_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|009|646|079|000 | TP: 9, 1.23%; FN: 725; Total: 734
+1|000|549|063|000 | TP: 549, 89.71%; FN: 63; Total: 612
+2|001|727|050|000 | TP: 50, 6.43%; FN: 728; Total: 778
+3|002|985|089|000 | TP: 0, 0.0%; FN: 1076; Total: 1076
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.75
+Recall (Weighted): 0.01226158038147139
+F1 Score (Weighted): 0.02412868632707775
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.18885448916408668
+Recall (Weighted): 0.8970588235294118
+F1 Score (Weighted): 0.3120204603580562
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.17793594306049823
+Recall (Weighted): 0.06426735218508997
+F1 Score (Weighted): 0.09442870632672332
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.19
+Precision (Weighted): 0.25141034720921523
+Recall (Weighted): 0.19
+F1 Score (Weighted): 0.0881664096954363
+###################################################
+
+Key: xgb_5_100_F_davinci
+Path: ../models/xgb_v1/5_100_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|468|171|066|029 | TP: 468, 63.76%; FN: 266; Total: 734
+1|200|180|142|090 | TP: 180, 29.41%; FN: 432; Total: 612
+2|105|261|217|195 | TP: 217, 27.89%; FN: 561; Total: 778
+3|121|324|207|424 | TP: 424, 39.41%; FN: 652; Total: 1076
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5234899328859061
+Recall (Weighted): 0.6376021798365122
+F1 Score (Weighted): 0.5749385749385749
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.19230769230769232
+Recall (Weighted): 0.29411764705882354
+F1 Score (Weighted): 0.23255813953488372
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.34335443037974683
+Recall (Weighted): 0.27892030848329047
+F1 Score (Weighted): 0.3078014184397163
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5745257452574526
+Recall (Weighted): 0.3940520446096654
+F1 Score (Weighted): 0.4674751929437707
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4028125
+Precision (Weighted): 0.4335166772384452
+Recall (Weighted): 0.4028125
+F1 Score (Weighted): 0.40837603329808103
+###################################################
+
+Key: bert_5_200_A_davinci
+Path: ../models/bert_v1/5_200_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|443|192|107|152 | TP: 443, 49.55%; FN: 451; Total: 894
+1|329|138|066|403 | TP: 138, 14.74%; FN: 798; Total: 936
+2|182|057|043|350 | TP: 43, 6.8%; FN: 589; Total: 632
+3|086|036|051|565 | TP: 565, 76.56%; FN: 173; Total: 738
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.42596153846153845
+Recall (Weighted): 0.4955257270693512
+F1 Score (Weighted): 0.4581178903826267
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3262411347517731
+Recall (Weighted): 0.14743589743589744
+F1 Score (Weighted): 0.2030905077262693
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.16104868913857678
+Recall (Weighted): 0.0680379746835443
+F1 Score (Weighted): 0.09566184649610679
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3843537414965986
+Recall (Weighted): 0.7655826558265583
+F1 Score (Weighted): 0.5117753623188406
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3715625
+Precision (Weighted): 0.3348772344601079
+Recall (Weighted): 0.3715625
+F1 Score (Weighted): 0.3243120667533438
+###################################################
+
+Key: xgb_5_200_A_davinci
+Path: ../models/xgb_v1/5_200_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|640|160|028|066 | TP: 640, 71.59%; FN: 254; Total: 894
+1|351|136|190|259 | TP: 136, 14.53%; FN: 800; Total: 936
+2|157|136|148|191 | TP: 148, 23.42%; FN: 484; Total: 632
+3|080|055|205|398 | TP: 398, 53.93%; FN: 340; Total: 738
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5211726384364821
+Recall (Weighted): 0.7158836689038032
+F1 Score (Weighted): 0.6032045240339303
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2792607802874743
+Recall (Weighted): 0.1452991452991453
+F1 Score (Weighted): 0.191145467322558
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2591943957968476
+Recall (Weighted): 0.23417721518987342
+F1 Score (Weighted): 0.2460515378221114
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.43544857768052514
+Recall (Weighted): 0.5392953929539296
+F1 Score (Weighted): 0.4818401937046005
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.413125
+Precision (Weighted): 0.37890260549472693
+Recall (Weighted): 0.413125
+F1 Score (Weighted): 0.38414988648681797
+###################################################
+
+Key: bert_5_200_B_davinci
+Path: ../models/bert_v1/5_200_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|149|1077|002 | TP: 0, 0.0%; FN: 1228; Total: 1228
+1|000|021|465|001 | TP: 21, 4.31%; FN: 466; Total: 487
+2|000|009|562|000 | TP: 562, 98.42%; FN: 9; Total: 571
+3|000|005|906|003 | TP: 3, 0.33%; FN: 911; Total: 914
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.11413043478260869
+Recall (Weighted): 0.043121149897330596
+F1 Score (Weighted): 0.06259314456035768
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.1867109634551495
+Recall (Weighted): 0.9842381786339754
+F1 Score (Weighted): 0.31387880480312763
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5
+Recall (Weighted): 0.0032822757111597373
+F1 Score (Weighted): 0.006521739130434783
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.183125
+Precision (Weighted): 0.1934979630850065
+Recall (Weighted): 0.183125
+F1 Score (Weighted): 0.06739641515896796
+###################################################
+
+Key: xgb_5_200_B_davinci
+Path: ../models/xgb_v1/5_200_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|642|159|325|102 | TP: 642, 52.28%; FN: 586; Total: 1228
+1|069|073|236|109 | TP: 73, 14.99%; FN: 414; Total: 487
+2|015|064|370|122 | TP: 370, 64.8%; FN: 201; Total: 571
+3|013|059|604|238 | TP: 238, 26.04%; FN: 676; Total: 914
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8687415426251691
+Recall (Weighted): 0.5228013029315961
+F1 Score (Weighted): 0.6527707168276563
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2056338028169014
+Recall (Weighted): 0.14989733059548255
+F1 Score (Weighted): 0.17339667458432306
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.24104234527687296
+Recall (Weighted): 0.647985989492119
+F1 Score (Weighted): 0.3513770180436847
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.4168126094570928
+Recall (Weighted): 0.2603938730853392
+F1 Score (Weighted): 0.3205387205387205
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4134375
+Precision (Weighted): 0.52673755641013
+Recall (Weighted): 0.4134375
+F1 Score (Weighted): 0.43114227770695684
+###################################################
+
+Key: bert_5_200_C_davinci
+Path: ../models/bert_v1/5_200_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|279|046|396|018 | TP: 279, 37.75%; FN: 460; Total: 739
+1|064|006|142|143 | TP: 6, 1.69%; FN: 349; Total: 355
+2|187|008|534|806 | TP: 534, 34.79%; FN: 1001; Total: 1535
+3|079|002|216|274 | TP: 274, 47.99%; FN: 297; Total: 571
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.458128078817734
+Recall (Weighted): 0.37753721244925575
+F1 Score (Weighted): 0.41394658753709196
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0967741935483871
+Recall (Weighted): 0.016901408450704224
+F1 Score (Weighted): 0.02877697841726618
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.41459627329192544
+Recall (Weighted): 0.3478827361563518
+F1 Score (Weighted): 0.3783209351753454
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.22078968573730862
+Recall (Weighted): 0.4798598949211909
+F1 Score (Weighted): 0.30242825607064017
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3415625
+Precision (Weighted): 0.35480864969221615
+Recall (Weighted): 0.3415625
+F1 Score (Weighted): 0.334228601637041
+###################################################
+
+Key: xgb_5_200_C_davinci
+Path: ../models/xgb_v1/5_200_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|605|067|046|021 | TP: 605, 81.87%; FN: 134; Total: 739
+1|093|049|134|079 | TP: 49, 13.8%; FN: 306; Total: 355
+2|131|205|615|584 | TP: 615, 40.07%; FN: 920; Total: 1535
+3|074|107|184|206 | TP: 206, 36.08%; FN: 365; Total: 571
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6699889258028793
+Recall (Weighted): 0.8186738836265224
+F1 Score (Weighted): 0.7369062119366626
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.11448598130841121
+Recall (Weighted): 0.13802816901408452
+F1 Score (Weighted): 0.1251596424010217
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.6281920326864147
+Recall (Weighted): 0.4006514657980456
+F1 Score (Weighted): 0.4892601431980907
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.23146067415730337
+Recall (Weighted): 0.3607705779334501
+F1 Score (Weighted): 0.28199863107460643
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4609375
+Precision (Weighted): 0.5100634858282127
+Recall (Weighted): 0.4609375
+F1 Score (Weighted): 0.46907528182069563
+###################################################
+
+Key: bert_5_200_D_davinci
+Path: ../models/bert_v1/5_200_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|377|319|078|129 | TP: 377, 41.75%; FN: 526; Total: 903
+1|085|096|022|225 | TP: 96, 22.43%; FN: 332; Total: 428
+2|046|114|018|801 | TP: 18, 1.84%; FN: 961; Total: 979
+3|039|077|018|756 | TP: 756, 84.94%; FN: 134; Total: 890
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6892138939670932
+Recall (Weighted): 0.4174972314507198
+F1 Score (Weighted): 0.52
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.15841584158415842
+Recall (Weighted): 0.22429906542056074
+F1 Score (Weighted): 0.18568665377176014
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.1323529411764706
+Recall (Weighted): 0.018386108273748723
+F1 Score (Weighted): 0.03228699551569507
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3956043956043956
+Recall (Weighted): 0.849438202247191
+F1 Score (Weighted): 0.5398072117101035
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3896875
+Precision (Weighted): 0.36619486498436926
+Recall (Weighted): 0.3896875
+F1 Score (Weighted): 0.33158477338942843
+###################################################
+
+Key: xgb_5_200_D_davinci
+Path: ../models/xgb_v1/5_200_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|662|096|032|113 | TP: 662, 73.31%; FN: 241; Total: 903
+1|084|074|068|202 | TP: 74, 17.29%; FN: 354; Total: 428
+2|066|142|314|457 | TP: 314, 32.07%; FN: 665; Total: 979
+3|051|073|180|586 | TP: 586, 65.84%; FN: 304; Total: 890
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7670915411355735
+Recall (Weighted): 0.7331118493909191
+F1 Score (Weighted): 0.7497168742921857
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.19220779220779222
+Recall (Weighted): 0.17289719626168223
+F1 Score (Weighted): 0.18204182041820416
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5286195286195287
+Recall (Weighted): 0.32073544433094997
+F1 Score (Weighted): 0.3992371265098538
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.43151693667157587
+Recall (Weighted): 0.6584269662921348
+F1 Score (Weighted): 0.5213523131672597
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.51125
+Precision (Weighted): 0.523911621520806
+Recall (Weighted): 0.51125
+F1 Score (Weighted): 0.5030515444365133
+###################################################
+
+Key: bert_5_200_E_davinci
+Path: ../models/bert_v1/5_200_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|026|068|728|041 | TP: 26, 3.01%; FN: 837; Total: 863
+1|003|008|264|110 | TP: 8, 2.08%; FN: 377; Total: 385
+2|002|005|334|253 | TP: 334, 56.23%; FN: 260; Total: 594
+3|007|006|741|604 | TP: 604, 44.48%; FN: 754; Total: 1358
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6842105263157895
+Recall (Weighted): 0.030127462340672075
+F1 Score (Weighted): 0.05771365149833518
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.09195402298850575
+Recall (Weighted): 0.02077922077922078
+F1 Score (Weighted): 0.033898305084745756
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.16158684083212385
+Recall (Weighted): 0.5622895622895623
+F1 Score (Weighted): 0.25103344607290495
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5992063492063492
+Recall (Weighted): 0.44477172312223856
+F1 Score (Weighted): 0.5105663567202029
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.30375
+Precision (Weighted): 0.4798689964805016
+Recall (Weighted): 0.30375
+F1 Score (Weighted): 0.2829127212793848
+###################################################
+
+Key: xgb_5_200_E_davinci
+Path: ../models/xgb_v1/5_200_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|581|108|111|063 | TP: 581, 67.32%; FN: 282; Total: 863
+1|053|054|150|128 | TP: 54, 14.03%; FN: 331; Total: 385
+2|026|047|359|162 | TP: 359, 60.44%; FN: 235; Total: 594
+3|077|123|583|575 | TP: 575, 42.34%; FN: 783; Total: 1358
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7883310719131614
+Recall (Weighted): 0.6732329084588644
+F1 Score (Weighted): 0.7262500000000001
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16265060240963855
+Recall (Weighted): 0.14025974025974025
+F1 Score (Weighted): 0.1506276150627615
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.29842061512884455
+Recall (Weighted): 0.6043771043771043
+F1 Score (Weighted): 0.39955481357818584
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6196120689655172
+Recall (Weighted): 0.42341678939617083
+F1 Score (Weighted): 0.5030621172353456
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4903125
+Precision (Weighted): 0.5505141350095235
+Recall (Weighted): 0.4903125
+F1 Score (Weighted): 0.5016372800844391
+###################################################
+
+Key: bert_5_200_F_davinci
+Path: ../models/bert_v1/5_200_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|016|054|575|092 | TP: 16, 2.17%; FN: 721; Total: 737
+1|005|008|160|159 | TP: 8, 2.41%; FN: 324; Total: 332
+2|006|002|327|868 | TP: 327, 27.18%; FN: 876; Total: 1203
+3|003|007|238|680 | TP: 680, 73.28%; FN: 248; Total: 928
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5333333333333333
+Recall (Weighted): 0.021709633649932156
+F1 Score (Weighted): 0.04172099087353324
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.11267605633802817
+Recall (Weighted): 0.024096385542168676
+F1 Score (Weighted): 0.03970223325062035
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.25153846153846154
+Recall (Weighted): 0.2718204488778055
+F1 Score (Weighted): 0.26128645625249697
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3779877709838799
+Recall (Weighted): 0.7327586206896551
+F1 Score (Weighted): 0.49871653832049867
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.3221875
+Precision (Weighted): 0.3387026681483444
+Recall (Weighted): 0.3221875
+F1 Score (Weighted): 0.2565831456706802
+###################################################
+
+Key: xgb_5_200_F_davinci
+Path: ../models/xgb_v1/5_200_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|520|113|047|057 | TP: 520, 70.56%; FN: 217; Total: 737
+1|076|054|094|108 | TP: 54, 16.27%; FN: 278; Total: 332
+2|088|103|298|714 | TP: 298, 24.77%; FN: 905; Total: 1203
+3|063|066|325|474 | TP: 474, 51.08%; FN: 454; Total: 928
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6961178045515395
+Recall (Weighted): 0.7055630936227951
+F1 Score (Weighted): 0.7008086253369272
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16071428571428573
+Recall (Weighted): 0.16265060240963855
+F1 Score (Weighted): 0.16167664670658682
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3900523560209424
+Recall (Weighted): 0.24771404821280132
+F1 Score (Weighted): 0.30299949161159123
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.35033259423503327
+Recall (Weighted): 0.5107758620689655
+F1 Score (Weighted): 0.41560718982902234
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.420625
+Precision (Weighted): 0.4252304989234163
+Recall (Weighted): 0.420625
+F1 Score (Weighted): 0.41261389504686846
+###################################################
+
+Key: bert_5_400_A_davinci
+Path: ../models/bert_v1/5_400_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|668|018|060|001 | TP: 668, 89.42%; FN: 79; Total: 747
+1|169|012|154|001 | TP: 12, 3.57%; FN: 324; Total: 336
+2|170|008|497|089 | TP: 497, 65.05%; FN: 267; Total: 764
+3|253|011|950|139 | TP: 139, 10.27%; FN: 1214; Total: 1353
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5301587301587302
+Recall (Weighted): 0.8942436412315931
+F1 Score (Weighted): 0.6656701544593921
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.24489795918367346
+Recall (Weighted): 0.03571428571428571
+F1 Score (Weighted): 0.06233766233766233
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2992173389524383
+Recall (Weighted): 0.650523560209424
+F1 Score (Weighted): 0.40989690721649485
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6043478260869565
+Recall (Weighted): 0.10273466371027347
+F1 Score (Weighted): 0.17561591914087174
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.41125
+Precision (Weighted): 0.4764371691780002
+Recall (Weighted): 0.41125
+F1 Score (Weighted): 0.3340533236367569
+###################################################
+
+Key: xgb_5_400_A_davinci
+Path: ../models/xgb_v1/5_400_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|572|052|051|072 | TP: 572, 76.57%; FN: 175; Total: 747
+1|108|082|074|072 | TP: 82, 24.4%; FN: 254; Total: 336
+2|110|091|355|208 | TP: 355, 46.47%; FN: 409; Total: 764
+3|092|126|669|466 | TP: 466, 34.44%; FN: 887; Total: 1353
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6485260770975056
+Recall (Weighted): 0.7657295850066934
+F1 Score (Weighted): 0.7022713321055862
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2336182336182336
+Recall (Weighted): 0.24404761904761904
+F1 Score (Weighted): 0.23871906841339155
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.308964316797215
+Recall (Weighted): 0.46465968586387435
+F1 Score (Weighted): 0.37114479874542605
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5696821515892421
+Recall (Weighted): 0.344419807834442
+F1 Score (Weighted): 0.429295255642561
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4609375
+Precision (Weighted): 0.490554186006525
+Recall (Weighted): 0.4609375
+F1 Score (Weighted): 0.4591241872486447
+###################################################
+
+Key: bert_5_400_B_davinci
+Path: ../models/bert_v1/5_400_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|559|235|086|002 | TP: 559, 63.38%; FN: 323; Total: 882
+1|104|056|188|003 | TP: 56, 15.95%; FN: 295; Total: 351
+2|139|121|797|092 | TP: 797, 69.36%; FN: 352; Total: 1149
+3|133|082|547|056 | TP: 56, 6.85%; FN: 762; Total: 818
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.597860962566845
+Recall (Weighted): 0.6337868480725624
+F1 Score (Weighted): 0.6152999449642268
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.11336032388663968
+Recall (Weighted): 0.15954415954415954
+F1 Score (Weighted): 0.13254437869822486
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4925834363411619
+Recall (Weighted): 0.6936466492602262
+F1 Score (Weighted): 0.5760751716660643
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3660130718954248
+Recall (Weighted): 0.06845965770171149
+F1 Score (Weighted): 0.11534500514933059
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.45875
+Precision (Weighted): 0.44764996994831885
+Recall (Weighted): 0.45875
+F1 Score (Weighted): 0.42046256713687036
+###################################################
+
+Key: xgb_5_400_B_davinci
+Path: ../models/xgb_v1/5_400_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|615|143|062|062 | TP: 615, 69.73%; FN: 267; Total: 882
+1|096|082|099|074 | TP: 82, 23.36%; FN: 269; Total: 351
+2|108|158|490|393 | TP: 490, 42.65%; FN: 659; Total: 1149
+3|100|065|301|352 | TP: 352, 43.03%; FN: 466; Total: 818
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6692056583242655
+Recall (Weighted): 0.6972789115646258
+F1 Score (Weighted): 0.6829539144919489
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.18303571428571427
+Recall (Weighted): 0.2336182336182336
+F1 Score (Weighted): 0.20525657071339173
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5147058823529411
+Recall (Weighted): 0.42645778938207135
+F1 Score (Weighted): 0.4664445502141837
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3995459704880817
+Recall (Weighted): 0.43031784841075793
+F1 Score (Weighted): 0.41436138905238373
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4809375
+Precision (Weighted): 0.49147205907470876
+Recall (Weighted): 0.4809375
+F1 Score (Weighted): 0.48415712916976444
+###################################################
+
+Key: bert_5_400_C_davinci
+Path: ../models/bert_v1/5_400_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|653|118|006|142 | TP: 653, 71.06%; FN: 266; Total: 919
+1|137|087|000|224 | TP: 87, 19.42%; FN: 361; Total: 448
+2|082|046|007|817 | TP: 7, 0.74%; FN: 945; Total: 952
+3|083|058|007|733 | TP: 733, 83.2%; FN: 148; Total: 881
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6837696335078534
+Recall (Weighted): 0.7105549510337323
+F1 Score (Weighted): 0.6969050160085378
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2815533980582524
+Recall (Weighted): 0.19419642857142858
+F1 Score (Weighted): 0.22985468956406868
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.35
+Recall (Weighted): 0.007352941176470588
+F1 Score (Weighted): 0.014403292181069961
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.3825678496868476
+Recall (Weighted): 0.8320090805902384
+F1 Score (Weighted): 0.5241329996424741
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4625
+Precision (Weighted): 0.4452382784681022
+Recall (Weighted): 0.4625
+F1 Score (Weighted): 0.3809074117118585
+###################################################
+
+Key: xgb_5_400_C_davinci
+Path: ../models/xgb_v1/5_400_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|634|093|078|114 | TP: 634, 68.99%; FN: 285; Total: 919
+1|119|110|116|103 | TP: 110, 24.55%; FN: 338; Total: 448
+2|041|152|307|452 | TP: 307, 32.25%; FN: 645; Total: 952
+3|057|100|168|556 | TP: 556, 63.11%; FN: 325; Total: 881
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.745005875440658
+Recall (Weighted): 0.6898803046789989
+F1 Score (Weighted): 0.7163841807909604
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.24175824175824176
+Recall (Weighted): 0.24553571428571427
+F1 Score (Weighted): 0.24363233665559247
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4588938714499253
+Recall (Weighted): 0.3224789915966387
+F1 Score (Weighted): 0.378778531770512
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.45387755102040817
+Recall (Weighted): 0.6311010215664018
+F1 Score (Weighted): 0.5280151946818613
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5021875
+Precision (Weighted): 0.5092816187209267
+Recall (Weighted): 0.5021875
+F1 Score (Weighted): 0.4979009055402641
+###################################################
+
+Key: bert_5_400_D_davinci
+Path: ../models/bert_v1/5_400_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|635|146|008|062 | TP: 635, 74.62%; FN: 216; Total: 851
+1|141|061|005|248 | TP: 61, 13.41%; FN: 394; Total: 455
+2|112|058|017|482 | TP: 17, 2.54%; FN: 652; Total: 669
+3|150|067|021|987 | TP: 987, 80.57%; FN: 238; Total: 1225
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6117533718689788
+Recall (Weighted): 0.7461809635722679
+F1 Score (Weighted): 0.6723133933298041
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.18373493975903615
+Recall (Weighted): 0.13406593406593406
+F1 Score (Weighted): 0.15501905972045743
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.025411061285500747
+F1 Score (Weighted): 0.04722222222222222
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.554806070826307
+Recall (Weighted): 0.8057142857142857
+F1 Score (Weighted): 0.6571238348868176
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.53125
+Precision (Weighted): 0.4708871730665901
+Recall (Weighted): 0.53125
+F1 Score (Weighted): 0.46226272946859054
+###################################################
+
+Key: xgb_5_400_D_davinci
+Path: ../models/xgb_v1/5_400_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|562|200|034|055 | TP: 562, 66.04%; FN: 289; Total: 851
+1|085|130|135|105 | TP: 130, 28.57%; FN: 325; Total: 455
+2|047|147|234|241 | TP: 234, 34.98%; FN: 435; Total: 669
+3|072|142|373|638 | TP: 638, 52.08%; FN: 587; Total: 1225
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7336814621409922
+Recall (Weighted): 0.6603995299647474
+F1 Score (Weighted): 0.6951144094001237
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.210016155088853
+Recall (Weighted): 0.2857142857142857
+F1 Score (Weighted): 0.24208566108007448
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3015463917525773
+Recall (Weighted): 0.34977578475336324
+F1 Score (Weighted): 0.3238754325259516
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6140519730510106
+Recall (Weighted): 0.5208163265306123
+F1 Score (Weighted): 0.5636042402826855
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.48875
+Precision (Weighted): 0.5230838993491795
+Recall (Weighted): 0.48875
+F1 Score (Weighted): 0.5027434990303408
+###################################################
+
+Key: bert_5_400_E_davinci
+Path: ../models/bert_v1/5_400_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|586|116|004|060 | TP: 586, 76.5%; FN: 180; Total: 766
+1|200|148|025|246 | TP: 148, 23.91%; FN: 471; Total: 619
+2|051|070|024|631 | TP: 24, 3.09%; FN: 752; Total: 776
+3|073|073|024|869 | TP: 869, 83.64%; FN: 170; Total: 1039
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.643956043956044
+Recall (Weighted): 0.7650130548302873
+F1 Score (Weighted): 0.6992840095465394
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.36363636363636365
+Recall (Weighted): 0.23909531502423265
+F1 Score (Weighted): 0.2884990253411306
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3116883116883117
+Recall (Weighted): 0.030927835051546393
+F1 Score (Weighted): 0.05627198124267292
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.48117386489479513
+Recall (Weighted): 0.836381135707411
+F1 Score (Weighted): 0.610896309314587
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5084375
+Precision (Weighted): 0.45630344195533157
+Recall (Weighted): 0.5084375
+F1 Score (Weighted): 0.43519399088155597
+###################################################
+
+Key: xgb_5_400_E_davinci
+Path: ../models/xgb_v1/5_400_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|561|114|031|060 | TP: 561, 73.24%; FN: 205; Total: 766
+1|175|260|073|111 | TP: 260, 42.0%; FN: 359; Total: 619
+2|033|179|252|312 | TP: 252, 32.47%; FN: 524; Total: 776
+3|061|184|213|581 | TP: 581, 55.92%; FN: 458; Total: 1039
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6759036144578313
+Recall (Weighted): 0.7323759791122716
+F1 Score (Weighted): 0.7030075187969925
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.35278154681139756
+Recall (Weighted): 0.420032310177706
+F1 Score (Weighted): 0.3834808259587021
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4428822495606327
+Recall (Weighted): 0.3247422680412371
+F1 Score (Weighted): 0.37472118959107803
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5460526315789473
+Recall (Weighted): 0.559191530317613
+F1 Score (Weighted): 0.5525439847836424
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.516875
+Precision (Weighted): 0.5147310175064159
+Recall (Weighted): 0.516875
+F1 Score (Weighted): 0.5127360106186919
+###################################################
+
+Key: bert_5_400_F_davinci
+Path: ../models/bert_v1/5_400_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|485|241|088|016 | TP: 485, 58.43%; FN: 345; Total: 830
+1|126|174|249|188 | TP: 174, 23.61%; FN: 563; Total: 737
+2|040|042|218|269 | TP: 218, 38.31%; FN: 351; Total: 569
+3|057|080|342|585 | TP: 585, 54.98%; FN: 479; Total: 1064
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6850282485875706
+Recall (Weighted): 0.5843373493975904
+F1 Score (Weighted): 0.6306892067620287
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3240223463687151
+Recall (Weighted): 0.23609226594301222
+F1 Score (Weighted): 0.2731554160125589
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.24303232998885171
+Recall (Weighted): 0.38312829525483305
+F1 Score (Weighted): 0.29740791268758526
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.552930056710775
+Recall (Weighted): 0.549812030075188
+F1 Score (Weighted): 0.5513666352497644
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.456875
+Precision (Weighted): 0.4793690286579212
+Recall (Weighted): 0.456875
+F1 Score (Weighted): 0.46270837044960156
+###################################################
+
+Key: xgb_5_400_F_davinci
+Path: ../models/xgb_v1/5_400_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|557|125|081|067 | TP: 557, 67.11%; FN: 273; Total: 830
+1|135|207|229|166 | TP: 207, 28.09%; FN: 530; Total: 737
+2|013|116|230|210 | TP: 230, 40.42%; FN: 339; Total: 569
+3|041|124|314|585 | TP: 585, 54.98%; FN: 479; Total: 1064
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7466487935656837
+Recall (Weighted): 0.6710843373493975
+F1 Score (Weighted): 0.7068527918781726
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3618881118881119
+Recall (Weighted): 0.2808683853459973
+F1 Score (Weighted): 0.3162719633307869
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2693208430913349
+Recall (Weighted): 0.40421792618629176
+F1 Score (Weighted): 0.3232607167955025
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5690661478599222
+Recall (Weighted): 0.549812030075188
+F1 Score (Weighted): 0.5592734225621414
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4934375
+Precision (Weighted): 0.5141124931759321
+Recall (Weighted): 0.4934375
+F1 Score (Weighted): 0.4996195386551352
+###################################################
+
+Key: bert_5_800_A_davinci
+Path: ../models/bert_v1/5_800_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|580|093|066|007 | TP: 580, 77.75%; FN: 166; Total: 746
+1|133|131|259|049 | TP: 131, 22.9%; FN: 441; Total: 572
+2|116|098|411|229 | TP: 411, 48.13%; FN: 443; Total: 854
+3|080|078|403|467 | TP: 467, 45.43%; FN: 561; Total: 1028
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6380638063806381
+Recall (Weighted): 0.7774798927613941
+F1 Score (Weighted): 0.7009063444108761
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3275
+Recall (Weighted): 0.229020979020979
+F1 Score (Weighted): 0.2695473251028806
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3608428446005268
+Recall (Weighted): 0.4812646370023419
+F1 Score (Weighted): 0.4124435524335174
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6210106382978723
+Recall (Weighted): 0.45428015564202334
+F1 Score (Weighted): 0.5247191011235954
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4965625
+Precision (Weighted): 0.5030888515684433
+Recall (Weighted): 0.4965625
+F1 Score (Weighted): 0.4902172601945754
+###################################################
+
+Key: xgb_5_800_A_davinci
+Path: ../models/xgb_v1/5_800_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|541|090|072|043 | TP: 541, 72.52%; FN: 205; Total: 746
+1|101|189|182|100 | TP: 189, 33.04%; FN: 383; Total: 572
+2|070|140|377|267 | TP: 377, 44.15%; FN: 477; Total: 854
+3|061|085|396|486 | TP: 486, 47.28%; FN: 542; Total: 1028
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6998706338939198
+Recall (Weighted): 0.725201072386059
+F1 Score (Weighted): 0.7123107307439104
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.375
+Recall (Weighted): 0.3304195804195804
+F1 Score (Weighted): 0.3513011152416357
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3670886075949367
+Recall (Weighted): 0.4414519906323185
+F1 Score (Weighted): 0.4008506113769272
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5424107142857143
+Recall (Weighted): 0.4727626459143969
+F1 Score (Weighted): 0.5051975051975052
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.4978125
+Precision (Weighted): 0.5024048056427045
+Recall (Weighted): 0.4978125
+F1 Score (Weighted): 0.49812421891003245
+###################################################
+
+Key: bert_5_800_B_davinci
+Path: ../models/bert_v1/5_800_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|606|116|038|013 | TP: 606, 78.4%; FN: 167; Total: 773
+1|138|141|153|072 | TP: 141, 27.98%; FN: 363; Total: 504
+2|114|132|317|464 | TP: 317, 30.87%; FN: 710; Total: 1027
+3|067|088|156|585 | TP: 585, 65.29%; FN: 311; Total: 896
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6551351351351351
+Recall (Weighted): 0.7839586028460543
+F1 Score (Weighted): 0.7137809187279152
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.29559748427672955
+Recall (Weighted): 0.27976190476190477
+F1 Score (Weighted): 0.2874617737003058
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.47740963855421686
+Recall (Weighted): 0.308666017526777
+F1 Score (Weighted): 0.3749260792430515
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5158730158730159
+Recall (Weighted): 0.6529017857142857
+F1 Score (Weighted): 0.5763546798029557
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5153125
+Precision (Weighted): 0.5024757851726045
+Recall (Weighted): 0.5153125
+F1 Score (Weighted): 0.49940508143990464
+###################################################
+
+Key: xgb_5_800_B_davinci
+Path: ../models/xgb_v1/5_800_B_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|607|109|033|024 | TP: 607, 78.53%; FN: 166; Total: 773
+1|130|178|097|099 | TP: 178, 35.32%; FN: 326; Total: 504
+2|093|160|381|393 | TP: 381, 37.1%; FN: 646; Total: 1027
+3|054|075|229|538 | TP: 538, 60.04%; FN: 358; Total: 896
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6866515837104072
+Recall (Weighted): 0.7852522639068564
+F1 Score (Weighted): 0.7326493663246831
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.34099616858237547
+Recall (Weighted): 0.3531746031746032
+F1 Score (Weighted): 0.3469785575048733
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5148648648648648
+Recall (Weighted): 0.37098344693281404
+F1 Score (Weighted): 0.4312393887945671
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5104364326375711
+Recall (Weighted): 0.6004464285714286
+F1 Score (Weighted): 0.5517948717948717
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5325
+Precision (Weighted): 0.5277378134478569
+Recall (Weighted): 0.5325
+F1 Score (Weighted): 0.5245331908036444
+###################################################
+
+Key: bert_5_800_C_davinci
+Path: ../models/bert_v1/5_800_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|634|091|139|020 | TP: 634, 71.72%; FN: 250; Total: 884
+1|129|069|262|062 | TP: 69, 13.22%; FN: 453; Total: 522
+2|067|026|338|309 | TP: 338, 45.68%; FN: 402; Total: 740
+3|059|045|367|583 | TP: 583, 55.31%; FN: 471; Total: 1054
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7131608548931384
+Recall (Weighted): 0.7171945701357466
+F1 Score (Weighted): 0.7151720248166948
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2987012987012987
+Recall (Weighted): 0.13218390804597702
+F1 Score (Weighted): 0.1832669322709163
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.30560578661844484
+Recall (Weighted): 0.45675675675675675
+F1 Score (Weighted): 0.36619718309859156
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5985626283367557
+Recall (Weighted): 0.5531309297912713
+F1 Score (Weighted): 0.5749506903353058
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5075
+Precision (Weighted): 0.5135592393788131
+Recall (Weighted): 0.5075
+F1 Score (Weighted): 0.5015191724030459
+###################################################
+
+Key: xgb_5_800_C_davinci
+Path: ../models/xgb_v1/5_800_C_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|620|102|097|065 | TP: 620, 70.14%; FN: 264; Total: 884
+1|109|164|153|096 | TP: 164, 31.42%; FN: 358; Total: 522
+2|049|089|357|245 | TP: 357, 48.24%; FN: 383; Total: 740
+3|048|095|313|598 | TP: 598, 56.74%; FN: 456; Total: 1054
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7506053268765133
+Recall (Weighted): 0.7013574660633484
+F1 Score (Weighted): 0.7251461988304092
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.36444444444444446
+Recall (Weighted): 0.31417624521072796
+F1 Score (Weighted): 0.33744855967078186
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.38804347826086955
+Recall (Weighted): 0.48243243243243245
+F1 Score (Weighted): 0.43012048192771085
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5956175298804781
+Recall (Weighted): 0.5673624288425048
+F1 Score (Weighted): 0.5811467444120506
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5434375
+Precision (Weighted): 0.5527212998018454
+Recall (Weighted): 0.5434375
+F1 Score (Weighted): 0.5462485041096992
+###################################################
+
+Key: bert_5_800_D_davinci
+Path: ../models/bert_v1/5_800_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|625|093|094|014 | TP: 625, 75.67%; FN: 201; Total: 826
+1|092|100|219|039 | TP: 100, 22.22%; FN: 350; Total: 450
+2|063|067|493|297 | TP: 493, 53.59%; FN: 427; Total: 920
+3|050|029|353|572 | TP: 572, 56.97%; FN: 432; Total: 1004
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7530120481927711
+Recall (Weighted): 0.7566585956416465
+F1 Score (Weighted): 0.7548309178743962
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3460207612456747
+Recall (Weighted): 0.2222222222222222
+F1 Score (Weighted): 0.2706359945872801
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4253666954270923
+Recall (Weighted): 0.5358695652173913
+F1 Score (Weighted): 0.4742664742664743
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6203904555314533
+Recall (Weighted): 0.5697211155378487
+F1 Score (Weighted): 0.5939771547248183
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.559375
+Precision (Weighted): 0.5599708348482146
+Recall (Weighted): 0.559375
+F1 Score (Weighted): 0.5556108610616879
+###################################################
+
+Key: xgb_5_800_D_davinci
+Path: ../models/xgb_v1/5_800_D_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|595|102|067|062 | TP: 595, 72.03%; FN: 231; Total: 826
+1|085|165|128|072 | TP: 165, 36.67%; FN: 285; Total: 450
+2|060|180|456|224 | TP: 456, 49.57%; FN: 464; Total: 920
+3|075|099|313|517 | TP: 517, 51.49%; FN: 487; Total: 1004
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7300613496932515
+Recall (Weighted): 0.7203389830508474
+F1 Score (Weighted): 0.7251675807434491
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3021978021978022
+Recall (Weighted): 0.36666666666666664
+F1 Score (Weighted): 0.33132530120481923
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4730290456431535
+Recall (Weighted): 0.4956521739130435
+F1 Score (Weighted): 0.4840764331210191
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5908571428571429
+Recall (Weighted): 0.5149402390438247
+F1 Score (Weighted): 0.5502927088877062
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5415625
+Precision (Weighted): 0.5523209310174717
+Recall (Weighted): 0.5415625
+F1 Score (Weighted): 0.5456028141971413
+###################################################
+
+Key: bert_5_800_E_davinci
+Path: ../models/bert_v1/5_800_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|512|164|114|025 | TP: 512, 62.82%; FN: 303; Total: 815
+1|063|133|273|077 | TP: 133, 24.36%; FN: 413; Total: 546
+2|033|096|461|374 | TP: 461, 47.82%; FN: 503; Total: 964
+3|024|045|295|511 | TP: 511, 58.4%; FN: 364; Total: 875
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.810126582278481
+Recall (Weighted): 0.6282208588957056
+F1 Score (Weighted): 0.7076710435383553
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3036529680365297
+Recall (Weighted): 0.24358974358974358
+F1 Score (Weighted): 0.2703252032520325
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.40332458442694663
+Recall (Weighted): 0.4782157676348548
+F1 Score (Weighted): 0.4375889890840057
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5177304964539007
+Recall (Weighted): 0.584
+F1 Score (Weighted): 0.5488721804511278
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5053125
+Precision (Weighted): 0.5212083652780146
+Recall (Weighted): 0.5053125
+F1 Score (Weighted): 0.5082651265097149
+###################################################
+
+Key: xgb_5_800_E_davinci
+Path: ../models/xgb_v1/5_800_E_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|558|150|048|059 | TP: 558, 68.47%; FN: 257; Total: 815
+1|105|201|147|093 | TP: 201, 36.81%; FN: 345; Total: 546
+2|064|112|479|309 | TP: 479, 49.69%; FN: 485; Total: 964
+3|049|096|249|481 | TP: 481, 54.97%; FN: 394; Total: 875
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7190721649484536
+Recall (Weighted): 0.6846625766871166
+F1 Score (Weighted): 0.7014456316781897
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3595706618962433
+Recall (Weighted): 0.36813186813186816
+F1 Score (Weighted): 0.36380090497737555
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5189599133261105
+Recall (Weighted): 0.49688796680497926
+F1 Score (Weighted): 0.5076841547429782
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5106157112526539
+Recall (Weighted): 0.5497142857142857
+F1 Score (Weighted): 0.5294441386901486
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5371875
+Precision (Weighted): 0.5404485936314941
+Recall (Weighted): 0.5371875
+F1 Score (Weighted): 0.5384326970192133
+###################################################
+
+Key: bert_5_800_F_davinci
+Path: ../models/bert_v1/5_800_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|595|108|066|007 | TP: 595, 76.68%; FN: 181; Total: 776
+1|175|159|206|019 | TP: 159, 28.44%; FN: 400; Total: 559
+2|056|106|618|143 | TP: 618, 66.96%; FN: 305; Total: 923
+3|045|076|481|340 | TP: 340, 36.09%; FN: 602; Total: 942
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6831228473019518
+Recall (Weighted): 0.7667525773195877
+F1 Score (Weighted): 0.7225258044930176
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.35412026726057905
+Recall (Weighted): 0.2844364937388193
+F1 Score (Weighted): 0.3154761904761905
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.45076586433260396
+Recall (Weighted): 0.6695557963163596
+F1 Score (Weighted): 0.5387968613775065
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6679764243614931
+Recall (Weighted): 0.3609341825902335
+F1 Score (Weighted): 0.46864231564438313
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.535
+Precision (Weighted): 0.5541710135726557
+Recall (Weighted): 0.535
+F1 Score (Weighted): 0.5236880559847561
+###################################################
+
+Key: xgb_5_800_F_davinci
+Path: ../models/xgb_v1/5_800_F_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|584|100|050|042 | TP: 584, 75.26%; FN: 192; Total: 776
+1|161|197|109|092 | TP: 197, 35.24%; FN: 362; Total: 559
+2|062|185|389|287 | TP: 389, 42.15%; FN: 534; Total: 923
+3|061|083|302|496 | TP: 496, 52.65%; FN: 446; Total: 942
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6728110599078341
+Recall (Weighted): 0.7525773195876289
+F1 Score (Weighted): 0.7104622871046228
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3486725663716814
+Recall (Weighted): 0.35241502683363146
+F1 Score (Weighted): 0.35053380782918153
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4576470588235294
+Recall (Weighted): 0.42145178764897073
+F1 Score (Weighted): 0.43880428652002257
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5408942202835333
+Recall (Weighted): 0.5265392781316348
+F1 Score (Weighted): 0.5336202259279182
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.520625
+Precision (Weighted): 0.5152937305910796
+Recall (Weighted): 0.520625
+F1 Score (Weighted): 0.5171730445786811
+###################################################
+
+Key: bert_5_1600_A_davinci
+Path: ../models/bert_v1/5_1600_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|582|126|146|014 | TP: 582, 67.05%; FN: 286; Total: 868
+1|114|127|298|026 | TP: 127, 22.48%; FN: 438; Total: 565
+2|044|073|456|277 | TP: 456, 53.65%; FN: 394; Total: 850
+3|031|053|416|417 | TP: 417, 45.47%; FN: 500; Total: 917
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.754863813229572
+Recall (Weighted): 0.6705069124423964
+F1 Score (Weighted): 0.7101891397193411
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.33509234828496043
+Recall (Weighted): 0.2247787610619469
+F1 Score (Weighted): 0.26906779661016955
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3465045592705167
+Recall (Weighted): 0.5364705882352941
+F1 Score (Weighted): 0.4210526315789474
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5681198910081744
+Recall (Weighted): 0.4547437295528899
+F1 Score (Weighted): 0.5051483949121744
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.494375
+Precision (Weighted): 0.5187636819058458
+Recall (Weighted): 0.494375
+F1 Score (Weighted): 0.49674477916803217
+###################################################
+
+Key: xgb_5_1600_A_davinci
+Path: ../models/xgb_v1/5_1600_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|640|117|054|057 | TP: 640, 73.73%; FN: 228; Total: 868
+1|120|212|158|075 | TP: 212, 37.52%; FN: 353; Total: 565
+2|059|151|346|294 | TP: 346, 40.71%; FN: 504; Total: 850
+3|048|106|262|501 | TP: 501, 54.63%; FN: 416; Total: 917
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7381776239907728
+Recall (Weighted): 0.7373271889400922
+F1 Score (Weighted): 0.7377521613832853
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.36177474402730375
+Recall (Weighted): 0.3752212389380531
+F1 Score (Weighted): 0.36837532580364896
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4219512195121951
+Recall (Weighted): 0.40705882352941175
+F1 Score (Weighted): 0.4143712574850299
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.540453074433657
+Recall (Weighted): 0.5463467829880043
+F1 Score (Weighted): 0.5433839479392625
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5309375
+Precision (Weighted): 0.5310609105751395
+Recall (Weighted): 0.5309375
+F1 Score (Weighted): 0.5309373700882288
+###################################################
+
+Key: bert_5_3200_A_davinci
+Path: ../models/bert_v1/5_3200_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|565|102|164|036 | TP: 565, 65.17%; FN: 302; Total: 867
+1|071|097|287|131 | TP: 97, 16.55%; FN: 489; Total: 586
+2|011|038|262|509 | TP: 262, 31.95%; FN: 558; Total: 820
+3|012|027|169|719 | TP: 719, 77.56%; FN: 208; Total: 927
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8573596358118362
+Recall (Weighted): 0.6516724336793541
+F1 Score (Weighted): 0.7404980340760158
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.36742424242424243
+Recall (Weighted): 0.16552901023890784
+F1 Score (Weighted): 0.22823529411764704
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.29705215419501135
+Recall (Weighted): 0.3195121951219512
+F1 Score (Weighted): 0.3078730904817862
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5154121863799284
+Recall (Weighted): 0.7756202804746494
+F1 Score (Weighted): 0.6192937123169682
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.5134375
+Precision (Weighted): 0.525003522976116
+Recall (Weighted): 0.5134375
+F1 Score (Weighted): 0.500718401065544
+###################################################
+
+Key: xgb_5_3200_A_davinci
+Path: ../models/xgb_v1/5_3200_A_davinci/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|674|096|049|048 | TP: 674, 77.74%; FN: 193; Total: 867
+1|071|324|123|068 | TP: 324, 55.29%; FN: 262; Total: 586
+2|035|104|487|194 | TP: 487, 59.39%; FN: 333; Total: 820
+3|046|059|216|606 | TP: 606, 65.37%; FN: 321; Total: 927
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8159806295399515
+Recall (Weighted): 0.7773933102652826
+F1 Score (Weighted): 0.7962197282929709
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.5557461406518011
+Recall (Weighted): 0.552901023890785
+F1 Score (Weighted): 0.5543199315654405
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5565714285714286
+Recall (Weighted): 0.5939024390243902
+F1 Score (Weighted): 0.5746312684365782
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6615720524017468
+Recall (Weighted): 0.6537216828478964
+F1 Score (Weighted): 0.6576234400434076
+------------------------------------------
+Number of Samples: 3200
+Accuracy: 0.6534375
+Precision (Weighted): 0.6571213463244012
+Recall (Weighted): 0.6534375
+F1 Score (Weighted): 0.654990172926746
+###################################################
+

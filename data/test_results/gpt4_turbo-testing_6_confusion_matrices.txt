@@ -1,0 +1,2356 @@
+Key: bert_6_50_A_gpt4
+Path: ../models/bert_v1/6_50_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|002|098|052|000 | TP: 52, 34.21%; FN: 100; Total: 152
+3|005|327|314|000 | TP: 0, 0.0%; FN: 646; Total: 646
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.14207650273224043
+Recall (Weighted): 0.34210526315789475
+F1 Score (Weighted): 0.20077220077220076
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.06516290726817042
+Precision (Weighted): 0.027062190996617226
+Recall (Weighted): 0.06516290726817042
+F1 Score (Weighted): 0.03824232395660967
+###################################################
+
+Key: xgb_6_50_A_gpt4
+Path: ../models/xgb_v1/6_50_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000
+1|022|003|127 | TP: 3, 1.97%; FN: 149; Total: 152
+2|058|015|573 | TP: 573, 88.7%; FN: 73; Total: 646
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.019736842105263157
+F1 Score (Weighted): 0.03529411764705882
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.8185714285714286
+Recall (Weighted): 0.8869969040247678
+F1 Score (Weighted): 0.8514115898959883
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7218045112781954
+Precision (Weighted): 0.6943990929705216
+Recall (Weighted): 0.7218045112781954
+F1 Score (Weighted): 0.6959606428009542
+###################################################
+
+Key: bert_6_50_B_gpt4
+Path: ../models/bert_v1/6_50_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|054|025|000 | TP: 1, 1.25%; FN: 79; Total: 80
+1|000|000|000|000
+2|000|005|013|000 | TP: 13, 72.22%; FN: 5; Total: 18
+3|001|312|387|000 | TP: 0, 0.0%; FN: 700; Total: 700
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5
+Recall (Weighted): 0.0125
+F1 Score (Weighted): 0.02439024390243903
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.03058823529411765
+Recall (Weighted): 0.7222222222222222
+F1 Score (Weighted): 0.05869074492099323
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.017543859649122806
+Precision (Weighted): 0.05081527347781217
+Recall (Weighted): 0.017543859649122806
+F1 Score (Weighted): 0.0037689886225225565
+###################################################
+
+Key: xgb_6_50_B_gpt4
+Path: ../models/xgb_v1/6_50_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|024|000|056 | TP: 24, 30.0%; FN: 56; Total: 80
+1|001|000|017 | TP: 0, 0.0%; FN: 18; Total: 18
+2|001|003|696 | TP: 696, 99.43%; FN: 4; Total: 700
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9230769230769231
+Recall (Weighted): 0.3
+F1 Score (Weighted): 0.4528301886792453
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.9050715214564369
+Recall (Weighted): 0.9942857142857143
+F1 Score (Weighted): 0.9475833900612661
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.9022556390977443
+Precision (Weighted): 0.8864614271499495
+Recall (Weighted): 0.9022556390977443
+F1 Score (Weighted): 0.8766100101970249
+###################################################
+
+Key: bert_6_50_C_gpt4
+Path: ../models/bert_v1/6_50_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|020|006|000 | TP: 0, 0.0%; FN: 26; Total: 26
+1|000|000|000|000
+2|000|001|002|000 | TP: 2, 66.67%; FN: 1; Total: 3
+3|000|399|370|000 | TP: 0, 0.0%; FN: 769; Total: 769
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.005291005291005291
+Recall (Weighted): 0.6666666666666666
+F1 Score (Weighted): 0.010498687664041996
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 1.9890997334606358e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 3.946875061669924e-05
+###################################################
+
+Key: xgb_6_50_C_gpt4
+Path: ../models/xgb_v1/6_50_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|026|000|000|000 | TP: 26, 100.0%; FN: 0; Total: 26
+1|000|000|000|000
+2|000|000|000|003 | TP: 0, 0.0%; FN: 3; Total: 3
+3|065|031|206|467 | TP: 467, 60.73%; FN: 302; Total: 769
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.2857142857142857
+Recall (Weighted): 1.0
+F1 Score (Weighted): 0.4444444444444445
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9936170212765958
+Recall (Weighted): 0.6072821846553966
+F1 Score (Weighted): 0.7538337368845843
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6177944862155389
+Precision (Weighted): 0.966817118784804
+Recall (Weighted): 0.6177944862155389
+F1 Score (Weighted): 0.7409194225812041
+###################################################
+
+Key: bert_6_50_D_gpt4
+Path: ../models/bert_v1/6_50_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|002|062|027|000 | TP: 2, 2.2%; FN: 89; Total: 91
+1|000|019|012|000 | TP: 19, 61.29%; FN: 12; Total: 31
+2|001|148|057|000 | TP: 57, 27.67%; FN: 149; Total: 206
+3|000|192|278|000 | TP: 0, 0.0%; FN: 470; Total: 470
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.02197802197802198
+F1 Score (Weighted): 0.0425531914893617
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.04513064133016627
+Recall (Weighted): 0.6129032258064516
+F1 Score (Weighted): 0.08407079646017698
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.15240641711229946
+Recall (Weighted): 0.2766990291262136
+F1 Score (Weighted): 0.19655172413793104
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.09774436090225563
+Precision (Weighted): 0.1171195970840044
+Recall (Weighted): 0.09774436090225563
+F1 Score (Weighted): 0.058857381313547855
+###################################################
+
+Key: xgb_6_50_D_gpt4
+Path: ../models/xgb_v1/6_50_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|089|000|001|001 | TP: 89, 97.8%; FN: 2; Total: 91
+1|010|000|000|021 | TP: 0, 0.0%; FN: 31; Total: 31
+2|063|000|003|140 | TP: 3, 1.46%; FN: 203; Total: 206
+3|058|000|021|391 | TP: 391, 83.19%; FN: 79; Total: 470
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.40454545454545454
+Recall (Weighted): 0.978021978021978
+F1 Score (Weighted): 0.572347266881029
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.12
+Recall (Weighted): 0.014563106796116505
+F1 Score (Weighted): 0.025974025974025976
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.7070524412296564
+Recall (Weighted): 0.8319148936170213
+F1 Score (Weighted): 0.7644183773216031
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6052631578947368
+Precision (Weighted): 0.4935442152150061
+Recall (Weighted): 0.6052631578947368
+F1 Score (Weighted): 0.5221940952104968
+###################################################
+
+Key: bert_6_50_E_gpt4
+Path: ../models/bert_v1/6_50_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|150|069|000 | TP: 1, 0.45%; FN: 219; Total: 220
+1|000|000|000|000
+2|000|009|016|000 | TP: 16, 64.0%; FN: 9; Total: 25
+3|001|240|312|000 | TP: 0, 0.0%; FN: 553; Total: 553
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5
+Recall (Weighted): 0.004545454545454545
+F1 Score (Weighted): 0.009009009009009009
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.04030226700251889
+Recall (Weighted): 0.64
+F1 Score (Weighted): 0.07582938388625592
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.021303258145363407
+Precision (Weighted): 0.13910721387852504
+Recall (Weighted): 0.021303258145363407
+F1 Score (Weighted): 0.004859293958820025
+###################################################
+
+Key: xgb_6_50_E_gpt4
+Path: ../models/xgb_v1/6_50_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|154|000|031|035 | TP: 154, 70.0%; FN: 66; Total: 220
+1|000|000|000|000
+2|007|000|002|016 | TP: 2, 8.0%; FN: 23; Total: 25
+3|167|001|037|348 | TP: 348, 62.93%; FN: 205; Total: 553
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.4695121951219512
+Recall (Weighted): 0.7
+F1 Score (Weighted): 0.5620437956204379
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.02857142857142857
+Recall (Weighted): 0.08
+F1 Score (Weighted): 0.04210526315789474
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8721804511278195
+Recall (Weighted): 0.6292947558770343
+F1 Score (Weighted): 0.7310924369747899
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.631578947368421
+Precision (Weighted): 0.7347402983894726
+Recall (Weighted): 0.631578947368421
+F1 Score (Weighted): 0.6629027371710557
+###################################################
+
+Key: bert_6_50_F_gpt4
+Path: ../models/bert_v1/6_50_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|213|114|000 | TP: 1, 0.3%; FN: 327; Total: 328
+1|000|000|001|000 | TP: 0, 0.0%; FN: 1; Total: 1
+2|000|047|023|000 | TP: 23, 32.86%; FN: 47; Total: 70
+3|000|163|236|000 | TP: 0, 0.0%; FN: 399; Total: 399
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.003048780487804878
+F1 Score (Weighted): 0.006079027355623101
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.06149732620320856
+Recall (Weighted): 0.32857142857142857
+F1 Score (Weighted): 0.1036036036036036
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.03007518796992481
+Precision (Weighted): 0.41642207122083286
+Recall (Weighted): 0.03007518796992481
+F1 Score (Weighted): 0.011586683239218834
+###################################################
+
+Key: xgb_6_50_F_gpt4
+Path: ../models/xgb_v1/6_50_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|076|003|064|185 | TP: 76, 23.17%; FN: 252; Total: 328
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|004|001|008|057 | TP: 8, 11.43%; FN: 62; Total: 70
+3|016|002|029|352 | TP: 352, 88.22%; FN: 47; Total: 399
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7916666666666666
+Recall (Weighted): 0.23170731707317074
+F1 Score (Weighted): 0.3584905660377358
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.07920792079207921
+Recall (Weighted): 0.11428571428571428
+F1 Score (Weighted): 0.0935672514619883
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5915966386554622
+Recall (Weighted): 0.8822055137844611
+F1 Score (Weighted): 0.7082494969818913
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.5463659147869674
+Precision (Weighted): 0.6281432079519319
+Recall (Weighted): 0.5463659147869674
+F1 Score (Weighted): 0.509681907968034
+###################################################
+
+Key: bert_6_100_A_gpt4
+Path: ../models/bert_v1/6_100_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|005|056|035|000 | TP: 5, 5.21%; FN: 91; Total: 96
+1|000|002|004|000 | TP: 2, 33.33%; FN: 4; Total: 6
+2|006|064|031|000 | TP: 31, 30.69%; FN: 70; Total: 101
+3|014|187|380|014 | TP: 14, 2.35%; FN: 581; Total: 595
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.2
+Recall (Weighted): 0.052083333333333336
+F1 Score (Weighted): 0.08264462809917357
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.006472491909385114
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.012698412698412698
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.06888888888888889
+Recall (Weighted): 0.3069306930693069
+F1 Score (Weighted): 0.11252268602540835
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 1.0
+Recall (Weighted): 0.023529411764705882
+F1 Score (Weighted): 0.04597701149425288
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.06516290726817042
+Precision (Weighted): 0.7784418705880126
+Recall (Weighted): 0.06516290726817042
+F1 Score (Weighted): 0.05856038584130056
+###################################################
+
+Key: xgb_6_100_A_gpt4
+Path: ../models/xgb_v1/6_100_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|054|004|004|034 | TP: 54, 56.25%; FN: 42; Total: 96
+1|000|000|000|006 | TP: 0, 0.0%; FN: 6; Total: 6
+2|040|001|001|059 | TP: 1, 0.99%; FN: 100; Total: 101
+3|062|007|011|515 | TP: 515, 86.55%; FN: 80; Total: 595
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.34615384615384615
+Recall (Weighted): 0.5625
+F1 Score (Weighted): 0.4285714285714286
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0625
+Recall (Weighted): 0.009900990099009901
+F1 Score (Weighted): 0.017094017094017096
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8387622149837134
+Recall (Weighted): 0.865546218487395
+F1 Score (Weighted): 0.8519437551695616
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7142857142857143
+Precision (Weighted): 0.6749458485539833
+Recall (Weighted): 0.7142857142857143
+F1 Score (Weighted): 0.6889422145303785
+###################################################
+
+Key: bert_6_100_B_gpt4
+Path: ../models/bert_v1/6_100_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|133|023|000 | TP: 0, 0.0%; FN: 156; Total: 156
+1|000|011|001|000 | TP: 11, 91.67%; FN: 1; Total: 12
+2|000|015|001|000 | TP: 1, 6.25%; FN: 15; Total: 16
+3|000|362|200|052 | TP: 52, 8.47%; FN: 562; Total: 614
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.02111324376199616
+Recall (Weighted): 0.9166666666666666
+F1 Score (Weighted): 0.04127579737335835
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0044444444444444444
+Recall (Weighted): 0.0625
+F1 Score (Weighted): 0.008298755186721992
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 1.0
+Recall (Weighted): 0.08469055374592833
+F1 Score (Weighted): 0.15615615615615613
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.08020050125313283
+Precision (Weighted): 0.7698301629527006
+Recall (Weighted): 0.08020050125313283
+F1 Score (Weighted): 0.12093730517712746
+###################################################
+
+Key: xgb_6_100_B_gpt4
+Path: ../models/xgb_v1/6_100_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|060|000|018|078 | TP: 60, 38.46%; FN: 96; Total: 156
+1|007|000|000|005 | TP: 0, 0.0%; FN: 12; Total: 12
+2|005|000|003|008 | TP: 3, 18.75%; FN: 13; Total: 16
+3|005|001|047|561 | TP: 561, 91.37%; FN: 53; Total: 614
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7792207792207793
+Recall (Weighted): 0.38461538461538464
+F1 Score (Weighted): 0.5150214592274678
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.04411764705882353
+Recall (Weighted): 0.1875
+F1 Score (Weighted): 0.07142857142857142
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8604294478527608
+Recall (Weighted): 0.9136807817589576
+F1 Score (Weighted): 0.8862559241706162
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7819548872180451
+Precision (Weighted): 0.815248126432303
+Recall (Weighted): 0.7819548872180451
+F1 Score (Weighted): 0.7840192258434844
+###################################################
+
+Key: bert_6_100_C_gpt4
+Path: ../models/bert_v1/6_100_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|002|031|044|000 | TP: 2, 2.6%; FN: 75; Total: 77
+1|000|000|001|000 | TP: 0, 0.0%; FN: 1; Total: 1
+2|000|027|041|000 | TP: 41, 60.29%; FN: 27; Total: 68
+3|001|138|488|025 | TP: 25, 3.83%; FN: 627; Total: 652
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.025974025974025976
+F1 Score (Weighted): 0.05
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.07142857142857142
+Recall (Weighted): 0.6029411764705882
+F1 Score (Weighted): 0.1277258566978193
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 1.0
+Recall (Weighted): 0.03834355828220859
+F1 Score (Weighted): 0.07385524372230427
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.08521303258145363
+Precision (Weighted): 0.8874567370807972
+Recall (Weighted): 0.08521303258145363
+F1 Score (Weighted): 0.07605134982756152
+###################################################
+
+Key: xgb_6_100_C_gpt4
+Path: ../models/xgb_v1/6_100_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|057|004|005|011 | TP: 57, 74.03%; FN: 20; Total: 77
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|027|006|012|023 | TP: 12, 17.65%; FN: 56; Total: 68
+3|094|017|093|448 | TP: 448, 68.71%; FN: 204; Total: 652
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.3202247191011236
+Recall (Weighted): 0.7402597402597403
+F1 Score (Weighted): 0.44705882352941184
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.10909090909090909
+Recall (Weighted): 0.17647058823529413
+F1 Score (Weighted): 0.1348314606741573
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.927536231884058
+Recall (Weighted): 0.6871165644171779
+F1 Score (Weighted): 0.7894273127753304
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6478696741854637
+Precision (Weighted): 0.7980314641320476
+Recall (Weighted): 0.6478696741854637
+F1 Score (Weighted): 0.6996224018384998
+###################################################
+
+Key: bert_6_100_D_gpt4
+Path: ../models/bert_v1/6_100_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|159|017|002 | TP: 0, 0.0%; FN: 178; Total: 178
+1|000|026|001|000 | TP: 26, 96.3%; FN: 1; Total: 27
+2|000|086|022|002 | TP: 22, 20.0%; FN: 88; Total: 110
+3|000|251|141|091 | TP: 91, 18.84%; FN: 392; Total: 483
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.04980842911877394
+Recall (Weighted): 0.9629629629629629
+F1 Score (Weighted): 0.09471766848816028
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.12154696132596685
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.1512027491408935
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9578947368421052
+Recall (Weighted): 0.18840579710144928
+F1 Score (Weighted): 0.314878892733564
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.17418546365914786
+Precision (Weighted): 0.5982182346200503
+Recall (Weighted): 0.17418546365914786
+F1 Score (Weighted): 0.2146318103320677
+###################################################
+
+Key: xgb_6_100_D_gpt4
+Path: ../models/xgb_v1/6_100_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|083|008|006|081 | TP: 83, 46.63%; FN: 95; Total: 178
+1|014|000|000|013 | TP: 0, 0.0%; FN: 27; Total: 27
+2|013|000|004|093 | TP: 4, 3.64%; FN: 106; Total: 110
+3|055|005|022|401 | TP: 401, 83.02%; FN: 82; Total: 483
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.503030303030303
+Recall (Weighted): 0.46629213483146065
+F1 Score (Weighted): 0.48396501457725943
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.125
+Recall (Weighted): 0.03636363636363636
+F1 Score (Weighted): 0.05633802816901408
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6819727891156463
+Recall (Weighted): 0.8302277432712215
+F1 Score (Weighted): 0.7488328664799253
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6115288220551378
+Precision (Weighted): 0.5422083346895378
+Recall (Weighted): 0.6115288220551378
+F1 Score (Weighted): 0.5689589350916637
+###################################################
+
+Key: bert_6_100_E_gpt4
+Path: ../models/bert_v1/6_100_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|015|128|022|000 | TP: 15, 9.09%; FN: 150; Total: 165
+1|001|010|002|000 | TP: 10, 76.92%; FN: 3; Total: 13
+2|002|018|012|000 | TP: 12, 37.5%; FN: 20; Total: 32
+3|019|284|275|010 | TP: 10, 1.7%; FN: 578; Total: 588
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.40540540540540543
+Recall (Weighted): 0.09090909090909091
+F1 Score (Weighted): 0.14851485148514854
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.022727272727272728
+Recall (Weighted): 0.7692307692307693
+F1 Score (Weighted): 0.04415011037527594
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.03858520900321544
+Recall (Weighted): 0.375
+F1 Score (Weighted): 0.06997084548104957
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 1.0
+Recall (Weighted): 0.017006802721088437
+F1 Score (Weighted): 0.03344481605351171
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.05889724310776942
+Precision (Weighted): 0.8225840515356507
+Recall (Weighted): 0.05889724310776942
+F1 Score (Weighted): 0.05887659251226387
+###################################################
+
+Key: xgb_6_100_E_gpt4
+Path: ../models/xgb_v1/6_100_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|045|082|001|037 | TP: 45, 27.27%; FN: 120; Total: 165
+1|007|001|001|004 | TP: 1, 7.69%; FN: 12; Total: 13
+2|004|003|000|025 | TP: 0, 0.0%; FN: 32; Total: 32
+3|034|046|016|492 | TP: 492, 83.67%; FN: 96; Total: 588
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5
+Recall (Weighted): 0.2727272727272727
+F1 Score (Weighted): 0.3529411764705882
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.007575757575757576
+Recall (Weighted): 0.07692307692307693
+F1 Score (Weighted): 0.013793103448275862
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8817204301075269
+Recall (Weighted): 0.8367346938775511
+F1 Score (Weighted): 0.8586387434554974
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6741854636591479
+Precision (Weighted): 0.7531956112176826
+Recall (Weighted): 0.6741854636591479
+F1 Score (Weighted): 0.7058824381131669
+###################################################
+
+Key: bert_6_100_F_gpt4
+Path: ../models/bert_v1/6_100_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|077|013|000 | TP: 0, 0.0%; FN: 90; Total: 90
+1|000|117|015|000 | TP: 117, 88.64%; FN: 15; Total: 132
+2|000|013|004|001 | TP: 4, 22.22%; FN: 14; Total: 18
+3|000|293|153|112 | TP: 112, 20.07%; FN: 446; Total: 558
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.234
+Recall (Weighted): 0.8863636363636364
+F1 Score (Weighted): 0.37025316455696206
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.021621621621621623
+Recall (Weighted): 0.2222222222222222
+F1 Score (Weighted): 0.03940886699507389
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9911504424778761
+Recall (Weighted): 0.2007168458781362
+F1 Score (Weighted): 0.33383010432190763
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.29197994987468673
+Precision (Weighted): 0.7322545565060703
+Recall (Weighted): 0.29197994987468673
+F1 Score (Weighted): 0.2955638791216226
+###################################################
+
+Key: xgb_6_100_F_gpt4
+Path: ../models/xgb_v1/6_100_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|033|000|023|034 | TP: 33, 36.67%; FN: 57; Total: 90
+1|015|000|039|078 | TP: 0, 0.0%; FN: 132; Total: 132
+2|005|000|001|012 | TP: 1, 5.56%; FN: 17; Total: 18
+3|002|001|047|508 | TP: 508, 91.04%; FN: 50; Total: 558
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6
+Recall (Weighted): 0.36666666666666664
+F1 Score (Weighted): 0.4551724137931034
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.00909090909090909
+Recall (Weighted): 0.05555555555555555
+F1 Score (Weighted): 0.015625
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8037974683544303
+Recall (Weighted): 0.910394265232975
+F1 Score (Weighted): 0.8537815126050421
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6791979949874687
+Precision (Weighted): 0.6299280998814643
+Recall (Weighted): 0.6791979949874687
+F1 Score (Weighted): 0.6486927960839509
+###################################################
+
+Key: bert_6_200_A_gpt4
+Path: ../models/bert_v1/6_200_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|001|001|049 | TP: 4, 7.27%; FN: 51; Total: 55
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|002|002|000|106 | TP: 0, 0.0%; FN: 110; Total: 110
+3|000|004|003|625 | TP: 625, 98.89%; FN: 7; Total: 632
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.07272727272727272
+F1 Score (Weighted): 0.13114754098360654
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8002560819462228
+Recall (Weighted): 0.9889240506329114
+F1 Score (Weighted): 0.8846426043878273
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7882205513784462
+Precision (Weighted): 0.6797349755096234
+Recall (Weighted): 0.7882205513784462
+F1 Score (Weighted): 0.7096581964000066
+###################################################
+
+Key: xgb_6_200_A_gpt4
+Path: ../models/xgb_v1/6_200_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|046|000|002|007 | TP: 46, 83.64%; FN: 9; Total: 55
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|023|000|009|078 | TP: 9, 8.18%; FN: 101; Total: 110
+3|036|001|023|572 | TP: 572, 90.51%; FN: 60; Total: 632
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.4380952380952381
+Recall (Weighted): 0.8363636363636363
+F1 Score (Weighted): 0.5750000000000001
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2647058823529412
+Recall (Weighted): 0.08181818181818182
+F1 Score (Weighted): 0.12499999999999999
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8693009118541033
+Recall (Weighted): 0.9050632911392406
+F1 Score (Weighted): 0.8868217054263566
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7857142857142857
+Precision (Weighted): 0.7551517060724999
+Recall (Weighted): 0.7857142857142857
+F1 Score (Weighted): 0.7592059120669892
+###################################################
+
+Key: bert_6_200_B_gpt4
+Path: ../models/bert_v1/6_200_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|000|001|100 | TP: 4, 3.81%; FN: 101; Total: 105
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|001|001|000|032 | TP: 0, 0.0%; FN: 34; Total: 34
+3|002|005|003|648 | TP: 648, 98.48%; FN: 10; Total: 658
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5714285714285714
+Recall (Weighted): 0.0380952380952381
+F1 Score (Weighted): 0.07142857142857144
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8297055057618438
+Recall (Weighted): 0.9848024316109423
+F1 Score (Weighted): 0.9006254343293955
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8170426065162907
+Precision (Weighted): 0.7593311062547533
+Recall (Weighted): 0.8170426065162907
+F1 Score (Weighted): 0.7520194684069451
+###################################################
+
+Key: xgb_6_200_B_gpt4
+Path: ../models/xgb_v1/6_200_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|073|000|001|031 | TP: 73, 69.52%; FN: 32; Total: 105
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|005|000|000|029 | TP: 0, 0.0%; FN: 34; Total: 34
+3|029|000|003|626 | TP: 626, 95.14%; FN: 32; Total: 658
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6822429906542056
+Recall (Weighted): 0.6952380952380952
+F1 Score (Weighted): 0.6886792452830188
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9112081513828238
+Recall (Weighted): 0.9513677811550152
+F1 Score (Weighted): 0.9308550185873605
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8759398496240601
+Precision (Weighted): 0.8411158867526186
+Recall (Weighted): 0.8759398496240601
+F1 Score (Weighted): 0.8581628107583962
+###################################################
+
+Key: bert_6_200_C_gpt4
+Path: ../models/bert_v1/6_200_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|002|001|100 | TP: 4, 3.74%; FN: 103; Total: 107
+1|000|000|000|000
+2|001|000|000|003 | TP: 0, 0.0%; FN: 4; Total: 4
+3|005|006|003|673 | TP: 673, 97.96%; FN: 14; Total: 687
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.4
+Recall (Weighted): 0.037383177570093455
+F1 Score (Weighted): 0.06837606837606837
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8672680412371134
+Recall (Weighted): 0.9796215429403202
+F1 Score (Weighted): 0.9200273410799727
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8483709273182958
+Precision (Weighted): 0.8002670981577654
+Recall (Weighted): 0.8483709273182958
+F1 Score (Weighted): 0.8012218328799255
+###################################################
+
+Key: xgb_6_200_C_gpt4
+Path: ../models/xgb_v1/6_200_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|085|000|008|014 | TP: 85, 79.44%; FN: 22; Total: 107
+1|000|000|000|000
+2|000|000|000|004 | TP: 0, 0.0%; FN: 4; Total: 4
+3|017|002|021|647 | TP: 647, 94.18%; FN: 40; Total: 687
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8333333333333334
+Recall (Weighted): 0.794392523364486
+F1 Score (Weighted): 0.8133971291866029
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9729323308270676
+Recall (Weighted): 0.9417758369723436
+F1 Score (Weighted): 0.9571005917159763
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.9172932330827067
+Precision (Weighted): 0.9493373157203786
+Recall (Weighted): 0.9172932330827067
+F1 Score (Weighted): 0.933034585628875
+###################################################
+
+Key: bert_6_200_D_gpt4
+Path: ../models/bert_v1/6_200_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|005|002|001|094 | TP: 5, 4.9%; FN: 97; Total: 102
+1|000|000|000|002 | TP: 0, 0.0%; FN: 2; Total: 2
+2|000|000|000|029 | TP: 0, 0.0%; FN: 29; Total: 29
+3|004|005|003|653 | TP: 653, 98.2%; FN: 12; Total: 665
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5555555555555556
+Recall (Weighted): 0.049019607843137254
+F1 Score (Weighted): 0.09009009009009009
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8393316195372751
+Recall (Weighted): 0.9819548872180451
+F1 Score (Weighted): 0.9050589050589051
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8245614035087719
+Precision (Weighted): 0.7704538767656073
+Recall (Weighted): 0.8245614035087719
+F1 Score (Weighted): 0.7657310288889236
+###################################################
+
+Key: xgb_6_200_D_gpt4
+Path: ../models/xgb_v1/6_200_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|074|000|009|019 | TP: 74, 72.55%; FN: 28; Total: 102
+1|000|000|002|000 | TP: 0, 0.0%; FN: 2; Total: 2
+2|004|000|005|020 | TP: 5, 17.24%; FN: 24; Total: 29
+3|022|000|046|597 | TP: 597, 89.77%; FN: 68; Total: 665
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.74
+Recall (Weighted): 0.7254901960784313
+F1 Score (Weighted): 0.7326732673267328
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.08064516129032258
+Recall (Weighted): 0.1724137931034483
+F1 Score (Weighted): 0.1098901098901099
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9386792452830188
+Recall (Weighted): 0.8977443609022556
+F1 Score (Weighted): 0.9177555726364335
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8471177944862155
+Precision (Weighted): 0.8797498844494072
+Recall (Weighted): 0.8471177944862155
+F1 Score (Weighted): 0.8624397772648723
+###################################################
+
+Key: bert_6_200_E_gpt4
+Path: ../models/bert_v1/6_200_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|007|004|088 | TP: 1, 1.0%; FN: 99; Total: 100
+1|000|000|000|000
+2|000|003|000|059 | TP: 0, 0.0%; FN: 62; Total: 62
+3|000|007|009|620 | TP: 620, 97.48%; FN: 16; Total: 636
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.01
+F1 Score (Weighted): 0.019801980198019802
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8083441981747066
+Recall (Weighted): 0.9748427672955975
+F1 Score (Weighted): 0.8838203848895224
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7781954887218046
+Precision (Weighted): 0.7695575313773351
+Recall (Weighted): 0.7781954887218046
+F1 Score (Weighted): 0.7068796526435316
+###################################################
+
+Key: xgb_6_200_E_gpt4
+Path: ../models/xgb_v1/6_200_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|048|007|032|013 | TP: 48, 48.0%; FN: 52; Total: 100
+1|000|000|000|000
+2|001|002|043|016 | TP: 43, 69.35%; FN: 19; Total: 62
+3|011|020|146|459 | TP: 459, 72.17%; FN: 177; Total: 636
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8
+Recall (Weighted): 0.48
+F1 Score (Weighted): 0.6
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.19457013574660634
+Recall (Weighted): 0.6935483870967742
+F1 Score (Weighted): 0.303886925795053
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9405737704918032
+Recall (Weighted): 0.7216981132075472
+F1 Score (Weighted): 0.8167259786476868
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6892230576441103
+Precision (Weighted): 0.8649978276304217
+Recall (Weighted): 0.6892230576441103
+F1 Score (Weighted): 0.7497226965153159
+###################################################
+
+Key: bert_6_200_F_gpt4
+Path: ../models/bert_v1/6_200_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|002|001|056 | TP: 1, 1.67%; FN: 59; Total: 60
+1|002|000|003|024 | TP: 0, 0.0%; FN: 29; Total: 29
+2|002|010|005|204 | TP: 5, 2.26%; FN: 216; Total: 221
+3|001|000|001|486 | TP: 486, 99.59%; FN: 2; Total: 488
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.016666666666666666
+F1 Score (Weighted): 0.0303030303030303
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5
+Recall (Weighted): 0.02262443438914027
+F1 Score (Weighted): 0.04329004329004329
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6311688311688312
+Recall (Weighted): 0.9959016393442623
+F1 Score (Weighted): 0.7726550079491257
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6165413533834586
+Precision (Weighted): 0.5369804381082577
+Recall (Weighted): 0.6165413533834586
+F1 Score (Weighted): 0.4867680767724996
+###################################################
+
+Key: xgb_6_200_F_gpt4
+Path: ../models/xgb_v1/6_200_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|045|002|003|010 | TP: 45, 75.0%; FN: 15; Total: 60
+1|020|001|000|008 | TP: 1, 3.45%; FN: 28; Total: 29
+2|046|001|027|147 | TP: 27, 12.22%; FN: 194; Total: 221
+3|016|001|007|464 | TP: 464, 95.08%; FN: 24; Total: 488
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.3543307086614173
+Recall (Weighted): 0.75
+F1 Score (Weighted): 0.481283422459893
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2
+Recall (Weighted): 0.034482758620689655
+F1 Score (Weighted): 0.0588235294117647
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.7297297297297297
+Recall (Weighted): 0.12217194570135746
+F1 Score (Weighted): 0.20930232558139533
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.7376788553259142
+Recall (Weighted): 0.9508196721311475
+F1 Score (Weighted): 0.8307967770814682
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6729323308270677
+Precision (Weighted): 0.6871145290588989
+Recall (Weighted): 0.6729323308270677
+F1 Score (Weighted): 0.6043452742729067
+###################################################
+
+Key: bert_6_400_A_gpt4
+Path: ../models/bert_v1/6_400_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|021|000|000|106 | TP: 21, 16.54%; FN: 106; Total: 127
+1|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
+2|004|000|000|033 | TP: 0, 0.0%; FN: 37; Total: 37
+3|008|000|000|621 | TP: 621, 98.73%; FN: 8; Total: 629
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6176470588235294
+Recall (Weighted): 0.16535433070866143
+F1 Score (Weighted): 0.2608695652173913
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.81282722513089
+Recall (Weighted): 0.9872813990461049
+F1 Score (Weighted): 0.8916008614501076
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8045112781954887
+Precision (Weighted): 0.7389843371903735
+Recall (Weighted): 0.8045112781954887
+F1 Score (Weighted): 0.7442949581888803
+###################################################
+
+Key: xgb_6_400_A_gpt4
+Path: ../models/xgb_v1/6_400_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|077|003|025|022 | TP: 77, 60.63%; FN: 50; Total: 127
+1|001|000|003|001 | TP: 0, 0.0%; FN: 5; Total: 5
+2|005|002|013|017 | TP: 13, 35.14%; FN: 24; Total: 37
+3|059|006|033|531 | TP: 531, 84.42%; FN: 98; Total: 629
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5422535211267606
+Recall (Weighted): 0.6062992125984252
+F1 Score (Weighted): 0.5724907063197026
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.17567567567567569
+Recall (Weighted): 0.35135135135135137
+F1 Score (Weighted): 0.23423423423423423
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9299474605954466
+Recall (Weighted): 0.8441971383147854
+F1 Score (Weighted): 0.885
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7781954887218046
+Precision (Weighted): 0.8274475562626998
+Recall (Weighted): 0.7781954887218046
+F1 Score (Weighted): 0.7995463488336703
+###################################################
+
+Key: bert_6_400_B_gpt4
+Path: ../models/bert_v1/6_400_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|021|000|000|121 | TP: 21, 14.79%; FN: 121; Total: 142
+1|001|000|000|010 | TP: 0, 0.0%; FN: 11; Total: 11
+2|017|000|000|057 | TP: 0, 0.0%; FN: 74; Total: 74
+3|006|000|000|565 | TP: 565, 98.95%; FN: 6; Total: 571
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.4666666666666667
+Recall (Weighted): 0.14788732394366197
+F1 Score (Weighted): 0.22459893048128343
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.750332005312085
+Recall (Weighted): 0.989492119089317
+F1 Score (Weighted): 0.8534743202416918
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7343358395989975
+Precision (Weighted): 0.6199326337091068
+Recall (Weighted): 0.7343358395989975
+F1 Score (Weighted): 0.6506602568751232
+###################################################
+
+Key: xgb_6_400_B_gpt4
+Path: ../models/xgb_v1/6_400_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|071|002|010|059 | TP: 71, 50.0%; FN: 71; Total: 142
+1|003|000|000|008 | TP: 0, 0.0%; FN: 11; Total: 11
+2|001|000|031|042 | TP: 31, 41.89%; FN: 43; Total: 74
+3|007|001|042|521 | TP: 521, 91.24%; FN: 50; Total: 571
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8658536585365854
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.6339285714285715
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.37349397590361444
+Recall (Weighted): 0.4189189189189189
+F1 Score (Weighted): 0.39490445859872614
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8269841269841269
+Recall (Weighted): 0.9124343257443083
+F1 Score (Weighted): 0.8676103247293921
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7807017543859649
+Precision (Weighted): 0.7804482584423548
+Recall (Weighted): 0.7807017543859649
+F1 Score (Weighted): 0.7702334367163481
+###################################################
+
+Key: bert_6_400_C_gpt4
+Path: ../models/bert_v1/6_400_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|009|000|000|073 | TP: 9, 10.98%; FN: 73; Total: 82
+1|001|000|000|002 | TP: 0, 0.0%; FN: 3; Total: 3
+2|007|000|000|076 | TP: 0, 0.0%; FN: 83; Total: 83
+3|011|000|000|619 | TP: 619, 98.25%; FN: 11; Total: 630
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.32142857142857145
+Recall (Weighted): 0.10975609756097561
+F1 Score (Weighted): 0.16363636363636364
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8038961038961039
+Recall (Weighted): 0.9825396825396825
+F1 Score (Weighted): 0.8842857142857143
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7869674185463659
+Precision (Weighted): 0.667683819939459
+Recall (Weighted): 0.7869674185463659
+F1 Score (Weighted): 0.7149350649350649
+###################################################
+
+Key: xgb_6_400_C_gpt4
+Path: ../models/xgb_v1/6_400_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|041|001|011|029 | TP: 41, 50.0%; FN: 41; Total: 82
+1|002|000|001|000 | TP: 0, 0.0%; FN: 3; Total: 3
+2|001|000|023|059 | TP: 23, 27.71%; FN: 60; Total: 83
+3|012|000|020|598 | TP: 598, 94.92%; FN: 32; Total: 630
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7321428571428571
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.5942028985507246
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.41818181818181815
+Recall (Weighted): 0.27710843373493976
+F1 Score (Weighted): 0.33333333333333337
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8717201166180758
+Recall (Weighted): 0.9492063492063492
+F1 Score (Weighted): 0.9088145896656535
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8295739348370927
+Precision (Weighted): 0.806927918125555
+Recall (Weighted): 0.8295739348370927
+F1 Score (Weighted): 0.8132136539313132
+###################################################
+
+Key: bert_6_400_D_gpt4
+Path: ../models/bert_v1/6_400_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|012|000|000|044 | TP: 12, 21.43%; FN: 44; Total: 56
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|001|000|000|054 | TP: 0, 0.0%; FN: 55; Total: 55
+3|023|000|000|663 | TP: 663, 96.65%; FN: 23; Total: 686
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.21428571428571427
+F1 Score (Weighted): 0.2608695652173913
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8700787401574803
+Recall (Weighted): 0.9664723032069971
+F1 Score (Weighted): 0.9157458563535912
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8458646616541353
+Precision (Weighted): 0.7713542386149099
+Recall (Weighted): 0.8458646616541353
+F1 Score (Weighted): 0.8055267582841321
+###################################################
+
+Key: xgb_6_400_D_gpt4
+Path: ../models/xgb_v1/6_400_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|040|002|003|011 | TP: 40, 71.43%; FN: 16; Total: 56
+1|001|000|000|000 | TP: 0, 0.0%; FN: 1; Total: 1
+2|006|000|022|027 | TP: 22, 40.0%; FN: 33; Total: 55
+3|010|002|043|631 | TP: 631, 91.98%; FN: 55; Total: 686
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7017543859649122
+Recall (Weighted): 0.7142857142857143
+F1 Score (Weighted): 0.7079646017699114
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3235294117647059
+Recall (Weighted): 0.4
+F1 Score (Weighted): 0.35772357723577236
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9431988041853513
+Recall (Weighted): 0.9198250728862973
+F1 Score (Weighted): 0.9313653136531365
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.868421052631579
+Precision (Weighted): 0.8823643395140914
+Recall (Weighted): 0.868421052631579
+F1 Score (Weighted): 0.874984235104178
+###################################################
+
+Key: bert_6_400_E_gpt4
+Path: ../models/bert_v1/6_400_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|021|000|000|036 | TP: 21, 36.84%; FN: 36; Total: 57
+1|000|000|000|004 | TP: 0, 0.0%; FN: 4; Total: 4
+2|013|000|000|055 | TP: 0, 0.0%; FN: 68; Total: 68
+3|027|000|000|642 | TP: 642, 95.96%; FN: 27; Total: 669
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.3442622950819672
+Recall (Weighted): 0.3684210526315789
+F1 Score (Weighted): 0.35593220338983045
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8710990502035278
+Recall (Weighted): 0.9596412556053812
+F1 Score (Weighted): 0.9132290184921765
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8308270676691729
+Precision (Weighted): 0.7548724503832485
+Recall (Weighted): 0.8308270676691729
+F1 Score (Weighted): 0.7910254999554966
+###################################################
+
+Key: xgb_6_400_E_gpt4
+Path: ../models/xgb_v1/6_400_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|054|001|001|001 | TP: 54, 94.74%; FN: 3; Total: 57
+1|004|000|000|000 | TP: 0, 0.0%; FN: 4; Total: 4
+2|022|001|012|033 | TP: 12, 17.65%; FN: 56; Total: 68
+3|119|003|039|508 | TP: 508, 75.93%; FN: 161; Total: 669
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.271356783919598
+Recall (Weighted): 0.9473684210526315
+F1 Score (Weighted): 0.42187500000000006
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.23076923076923078
+Recall (Weighted): 0.17647058823529413
+F1 Score (Weighted): 0.20000000000000004
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9372693726937269
+Recall (Weighted): 0.7593423019431988
+F1 Score (Weighted): 0.8389760528488852
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7192982456140351
+Precision (Weighted): 0.8248030760749725
+Recall (Weighted): 0.7192982456140351
+F1 Score (Weighted): 0.7505286395437396
+###################################################
+
+Key: bert_6_400_F_gpt4
+Path: ../models/bert_v1/6_400_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|054|000|000|145 | TP: 54, 27.14%; FN: 145; Total: 199
+1|000|000|000|005 | TP: 0, 0.0%; FN: 5; Total: 5
+2|003|000|000|049 | TP: 0, 0.0%; FN: 52; Total: 52
+3|019|000|000|523 | TP: 523, 96.49%; FN: 19; Total: 542
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7105263157894737
+Recall (Weighted): 0.271356783919598
+F1 Score (Weighted): 0.39272727272727276
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.724376731301939
+Recall (Weighted): 0.9649446494464945
+F1 Score (Weighted): 0.8275316455696203
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7230576441102757
+Precision (Weighted): 0.6691816105360354
+Recall (Weighted): 0.7230576441102757
+F1 Score (Weighted): 0.6599935829216309
+###################################################
+
+Key: xgb_6_400_F_gpt4
+Path: ../models/xgb_v1/6_400_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|041|019|022|117 | TP: 41, 20.6%; FN: 158; Total: 199
+1|002|000|001|002 | TP: 0, 0.0%; FN: 5; Total: 5
+2|004|000|006|042 | TP: 6, 11.54%; FN: 46; Total: 52
+3|004|008|021|509 | TP: 509, 93.91%; FN: 33; Total: 542
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.803921568627451
+Recall (Weighted): 0.20603015075376885
+F1 Score (Weighted): 0.32799999999999996
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.12
+Recall (Weighted): 0.11538461538461539
+F1 Score (Weighted): 0.11764705882352941
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.7597014925373134
+Recall (Weighted): 0.9391143911439115
+F1 Score (Weighted): 0.83993399339934
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6967418546365914
+Precision (Weighted): 0.7242839612933416
+Recall (Weighted): 0.6967418546365914
+F1 Score (Weighted): 0.659942194838679
+###################################################
+
+Key: bert_6_800_A_gpt4
+Path: ../models/bert_v1/6_800_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|000|016|031 | TP: 4, 7.84%; FN: 47; Total: 51
+1|000|000|004|023 | TP: 0, 0.0%; FN: 27; Total: 27
+2|000|000|011|039 | TP: 11, 22.0%; FN: 39; Total: 50
+3|001|000|012|657 | TP: 657, 98.06%; FN: 13; Total: 670
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8
+Recall (Weighted): 0.0784313725490196
+F1 Score (Weighted): 0.14285714285714285
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2558139534883721
+Recall (Weighted): 0.22
+F1 Score (Weighted): 0.23655913978494625
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.876
+Recall (Weighted): 0.9805970149253731
+F1 Score (Weighted): 0.9253521126760562
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8421052631578947
+Precision (Weighted): 0.8026449845544092
+Recall (Weighted): 0.8421052631578947
+F1 Score (Weighted): 0.8008766751477685
+###################################################
+
+Key: xgb_6_800_A_gpt4
+Path: ../models/xgb_v1/6_800_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|036|005|006|004 | TP: 36, 70.59%; FN: 15; Total: 51
+1|001|000|005|021 | TP: 0, 0.0%; FN: 27; Total: 27
+2|000|000|012|038 | TP: 12, 24.0%; FN: 38; Total: 50
+3|017|005|057|591 | TP: 591, 88.21%; FN: 79; Total: 670
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.7058823529411765
+F1 Score (Weighted): 0.6857142857142857
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.15
+Recall (Weighted): 0.24
+F1 Score (Weighted): 0.1846153846153846
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9036697247706422
+Recall (Weighted): 0.8820895522388059
+F1 Score (Weighted): 0.8927492447129909
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8007518796992481
+Precision (Weighted): 0.8107252075141984
+Recall (Weighted): 0.8007518796992481
+F1 Score (Weighted): 0.804942596190353
+###################################################
+
+Key: bert_6_800_B_gpt4
+Path: ../models/bert_v1/6_800_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|007|000|021|026 | TP: 7, 12.96%; FN: 47; Total: 54
+1|001|000|003|006 | TP: 0, 0.0%; FN: 10; Total: 10
+2|000|000|016|064 | TP: 16, 20.0%; FN: 64; Total: 80
+3|000|000|073|581 | TP: 581, 88.84%; FN: 73; Total: 654
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.875
+Recall (Weighted): 0.12962962962962962
+F1 Score (Weighted): 0.22580645161290322
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.1415929203539823
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.16580310880829016
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8581979320531757
+Recall (Weighted): 0.8883792048929664
+F1 Score (Weighted): 0.8730277986476334
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7568922305764411
+Precision (Weighted): 0.7767404526204204
+Recall (Weighted): 0.7568922305764411
+F1 Score (Weighted): 0.7473909491319701
+###################################################
+
+Key: xgb_6_800_B_gpt4
+Path: ../models/xgb_v1/6_800_B_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|041|008|000|005 | TP: 41, 75.93%; FN: 13; Total: 54
+1|004|000|001|005 | TP: 0, 0.0%; FN: 10; Total: 10
+2|014|005|009|052 | TP: 9, 11.25%; FN: 71; Total: 80
+3|004|007|010|633 | TP: 633, 96.79%; FN: 21; Total: 654
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6507936507936508
+Recall (Weighted): 0.7592592592592593
+F1 Score (Weighted): 0.7008547008547008
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.45
+Recall (Weighted): 0.1125
+F1 Score (Weighted): 0.18000000000000002
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9107913669064748
+Recall (Weighted): 0.9678899082568807
+F1 Score (Weighted): 0.938472942920682
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8558897243107769
+Precision (Weighted): 0.8355894875935985
+Recall (Weighted): 0.8558897243107769
+F1 Score (Weighted): 0.8345958126770425
+###################################################
+
+Key: bert_6_800_C_gpt4
+Path: ../models/bert_v1/6_800_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|007|000|036|020 | TP: 7, 11.11%; FN: 56; Total: 63
+1|003|000|009|008 | TP: 0, 0.0%; FN: 20; Total: 20
+2|000|000|008|012 | TP: 8, 40.0%; FN: 12; Total: 20
+3|004|000|110|581 | TP: 581, 83.6%; FN: 114; Total: 695
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5
+Recall (Weighted): 0.1111111111111111
+F1 Score (Weighted): 0.1818181818181818
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.049079754601226995
+Recall (Weighted): 0.4
+F1 Score (Weighted): 0.08743169398907104
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9355877616747182
+Recall (Weighted): 0.8359712230215828
+F1 Score (Weighted): 0.8829787234042553
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7468671679197995
+Precision (Weighted): 0.8555326935538267
+Recall (Weighted): 0.7468671679197995
+F1 Score (Weighted): 0.7855556291983512
+###################################################
+
+Key: xgb_6_800_C_gpt4
+Path: ../models/xgb_v1/6_800_C_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|047|001|003|012 | TP: 47, 74.6%; FN: 16; Total: 63
+1|011|000|003|006 | TP: 0, 0.0%; FN: 20; Total: 20
+2|000|000|015|005 | TP: 15, 75.0%; FN: 5; Total: 20
+3|021|000|077|597 | TP: 597, 85.9%; FN: 98; Total: 695
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5949367088607594
+Recall (Weighted): 0.746031746031746
+F1 Score (Weighted): 0.6619718309859155
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.15306122448979592
+Recall (Weighted): 0.75
+F1 Score (Weighted): 0.2542372881355932
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9629032258064516
+Recall (Weighted): 0.8589928057553957
+F1 Score (Weighted): 0.9079847908745248
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8258145363408521
+Precision (Weighted): 0.8894235326860999
+Recall (Weighted): 0.8258145363408521
+F1 Score (Weighted): 0.8494215548529064
+###################################################
+
+Key: bert_6_800_D_gpt4
+Path: ../models/bert_v1/6_800_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|017|000|004|058 | TP: 17, 21.52%; FN: 62; Total: 79
+1|000|000|000|001 | TP: 0, 0.0%; FN: 1; Total: 1
+2|005|000|006|087 | TP: 6, 6.12%; FN: 92; Total: 98
+3|001|000|004|615 | TP: 615, 99.19%; FN: 5; Total: 620
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7391304347826086
+Recall (Weighted): 0.21518987341772153
+F1 Score (Weighted): 0.3333333333333333
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.061224489795918366
+F1 Score (Weighted): 0.10714285714285714
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8081471747700394
+Recall (Weighted): 0.9919354838709677
+F1 Score (Weighted): 0.890658942795076
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7994987468671679
+Precision (Weighted): 0.7536874094050758
+Recall (Weighted): 0.7994987468671679
+F1 Score (Weighted): 0.7381477166244117
+###################################################
+
+Key: xgb_6_800_D_gpt4
+Path: ../models/xgb_v1/6_800_D_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|063|003|006|007 | TP: 63, 79.75%; FN: 16; Total: 79
+1|000|000|001|000 | TP: 0, 0.0%; FN: 1; Total: 1
+2|013|004|030|051 | TP: 30, 30.61%; FN: 68; Total: 98
+3|015|003|024|578 | TP: 578, 93.23%; FN: 42; Total: 620
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6923076923076923
+Recall (Weighted): 0.7974683544303798
+F1 Score (Weighted): 0.7411764705882353
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4918032786885246
+Recall (Weighted): 0.30612244897959184
+F1 Score (Weighted): 0.37735849056603776
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.9088050314465409
+Recall (Weighted): 0.932258064516129
+F1 Score (Weighted): 0.9203821656050956
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8408521303258145
+Precision (Weighted): 0.835022742482003
+Recall (Weighted): 0.8408521303258145
+F1 Score (Weighted): 0.8348007718384731
+###################################################
+
+Key: bert_6_800_E_gpt4
+Path: ../models/bert_v1/6_800_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|005|000|014|072 | TP: 5, 5.49%; FN: 86; Total: 91
+1|000|000|001|009 | TP: 0, 0.0%; FN: 10; Total: 10
+2|002|000|005|054 | TP: 5, 8.2%; FN: 56; Total: 61
+3|000|000|005|631 | TP: 631, 99.21%; FN: 5; Total: 636
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7142857142857143
+Recall (Weighted): 0.054945054945054944
+F1 Score (Weighted): 0.1020408163265306
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2
+Recall (Weighted): 0.08196721311475409
+F1 Score (Weighted): 0.11627906976744187
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8237597911227154
+Recall (Weighted): 0.9921383647798742
+F1 Score (Weighted): 0.9001426533523537
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.8032581453634086
+Precision (Weighted): 0.7532722144787557
+Recall (Weighted): 0.8032581453634086
+F1 Score (Weighted): 0.7379316604932646
+###################################################
+
+Key: xgb_6_800_E_gpt4
+Path: ../models/xgb_v1/6_800_E_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|035|025|014|017 | TP: 35, 38.46%; FN: 56; Total: 91
+1|001|003|003|003 | TP: 3, 30.0%; FN: 7; Total: 10
+2|006|003|027|025 | TP: 27, 44.26%; FN: 34; Total: 61
+3|003|020|056|557 | TP: 557, 87.58%; FN: 79; Total: 636
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7777777777777778
+Recall (Weighted): 0.38461538461538464
+F1 Score (Weighted): 0.5147058823529412
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.058823529411764705
+Recall (Weighted): 0.3
+F1 Score (Weighted): 0.09836065573770492
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.27
+Recall (Weighted): 0.4426229508196721
+F1 Score (Weighted): 0.3354037267080745
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.925249169435216
+Recall (Weighted): 0.8757861635220126
+F1 Score (Weighted): 0.89983844911147
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7794486215538847
+Precision (Weighted): 0.8474868230986125
+Recall (Weighted): 0.7794486215538847
+F1 Score (Weighted): 0.8027302290922083
+###################################################
+
+Key: bert_6_800_F_gpt4
+Path: ../models/bert_v1/6_800_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|017|000|014|014 | TP: 17, 37.78%; FN: 28; Total: 45
+1|006|000|026|019 | TP: 0, 0.0%; FN: 51; Total: 51
+2|011|000|032|057 | TP: 32, 32.0%; FN: 68; Total: 100
+3|010|000|085|507 | TP: 507, 84.22%; FN: 95; Total: 602
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.38636363636363635
+Recall (Weighted): 0.37777777777777777
+F1 Score (Weighted): 0.38202247191011235
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.20382165605095542
+Recall (Weighted): 0.32
+F1 Score (Weighted): 0.24902723735408563
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8492462311557789
+Recall (Weighted): 0.8421926910299004
+F1 Score (Weighted): 0.8457047539616348
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.6967418546365914
+Precision (Weighted): 0.6879884215504237
+Recall (Weighted): 0.6967418546365914
+F1 Score (Weighted): 0.690736838165749
+###################################################
+
+Key: xgb_6_800_F_gpt4
+Path: ../models/xgb_v1/6_800_F_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|036|002|004|003 | TP: 36, 80.0%; FN: 9; Total: 45
+1|016|002|012|021 | TP: 2, 3.92%; FN: 49; Total: 51
+2|008|002|055|035 | TP: 55, 55.0%; FN: 45; Total: 100
+3|009|002|067|524 | TP: 524, 87.04%; FN: 78; Total: 602
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5217391304347826
+Recall (Weighted): 0.8
+F1 Score (Weighted): 0.6315789473684211
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.25
+Recall (Weighted): 0.0392156862745098
+F1 Score (Weighted): 0.06779661016949153
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.39855072463768115
+Recall (Weighted): 0.55
+F1 Score (Weighted): 0.4621848739495798
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8987993138936535
+Recall (Weighted): 0.8704318936877077
+F1 Score (Weighted): 0.8843881856540085
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7731829573934837
+Precision (Weighted): 0.7733841106482616
+Recall (Weighted): 0.7731829573934837
+F1 Score (Weighted): 0.7650361590337019
+###################################################
+
+Key: bert_6_1600_A_gpt4
+Path: ../models/bert_v1/6_1600_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|016|000|017|036 | TP: 16, 23.19%; FN: 53; Total: 69
+1|000|000|001|007 | TP: 0, 0.0%; FN: 8; Total: 8
+2|000|000|032|106 | TP: 32, 23.19%; FN: 106; Total: 138
+3|000|000|021|562 | TP: 562, 96.4%; FN: 21; Total: 583
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.2318840579710145
+F1 Score (Weighted): 0.37647058823529417
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4507042253521127
+Recall (Weighted): 0.2318840579710145
+F1 Score (Weighted): 0.30622009569377995
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.790436005625879
+Recall (Weighted): 0.9639794168096055
+F1 Score (Weighted): 0.8686244204018546
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7644110275689223
+Precision (Weighted): 0.7418814215269162
+Recall (Weighted): 0.7644110275689223
+F1 Score (Weighted): 0.7201038607622282
+###################################################
+
+Key: xgb_6_1600_A_gpt4
+Path: ../models/xgb_v1/6_1600_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|034|003|018|014 | TP: 34, 49.28%; FN: 35; Total: 69
+1|000|005|002|001 | TP: 5, 62.5%; FN: 3; Total: 8
+2|001|001|081|055 | TP: 81, 58.7%; FN: 57; Total: 138
+3|001|006|062|514 | TP: 514, 88.16%; FN: 69; Total: 583
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9444444444444444
+Recall (Weighted): 0.4927536231884058
+F1 Score (Weighted): 0.6476190476190476
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.625
+F1 Score (Weighted): 0.43478260869565216
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.49693251533742333
+Recall (Weighted): 0.5869565217391305
+F1 Score (Weighted): 0.5382059800664452
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8801369863013698
+Recall (Weighted): 0.8816466552315609
+F1 Score (Weighted): 0.8808911739502999
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7944862155388471
+Precision (Weighted): 0.813947222385459
+Recall (Weighted): 0.7944862155388471
+F1 Score (Weighted): 0.7969874120519722
+###################################################
+
+Key: bert_6_3200_A_gpt4
+Path: ../models/bert_v1/6_3200_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|011|000|018|007 | TP: 11, 30.56%; FN: 25; Total: 36
+1|000|000|003|012 | TP: 0, 0.0%; FN: 15; Total: 15
+2|001|000|028|134 | TP: 28, 17.18%; FN: 135; Total: 163
+3|001|000|022|561 | TP: 561, 96.06%; FN: 23; Total: 584
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8461538461538461
+Recall (Weighted): 0.3055555555555556
+F1 Score (Weighted): 0.44897959183673475
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.39436619718309857
+Recall (Weighted): 0.17177914110429449
+F1 Score (Weighted): 0.2393162393162393
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.7857142857142857
+Recall (Weighted): 0.9606164383561644
+F1 Score (Weighted): 0.8644067796610169
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7518796992481203
+Precision (Weighted): 0.6937348013277274
+Recall (Weighted): 0.7518796992481203
+F1 Score (Weighted): 0.7017360546825855
+###################################################
+
+Key: xgb_6_3200_A_gpt4
+Path: ../models/xgb_v1/6_3200_A_gpt4/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|029|003|004|000 | TP: 29, 80.56%; FN: 7; Total: 36
+1|001|003|002|009 | TP: 3, 20.0%; FN: 12; Total: 15
+2|010|007|075|071 | TP: 75, 46.01%; FN: 88; Total: 163
+3|005|010|046|523 | TP: 523, 89.55%; FN: 61; Total: 584
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6444444444444445
+Recall (Weighted): 0.8055555555555556
+F1 Score (Weighted): 0.7160493827160493
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.13043478260869565
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.15789473684210528
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5905511811023622
+Recall (Weighted): 0.4601226993865031
+F1 Score (Weighted): 0.5172413793103449
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.867330016583748
+Recall (Weighted): 0.8955479452054794
+F1 Score (Weighted): 0.8812131423757371
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.7894736842105263
+Precision (Weighted): 0.7868885889019102
+Recall (Weighted): 0.7894736842105263
+F1 Score (Weighted): 0.7858208255707093
+###################################################
+

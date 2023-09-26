@@ -1,0 +1,2368 @@
+Key: bert_5_50_A_turbo
+Path: ../models/bert_v1/5_50_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|067|083|000 | TP: 0, 0.0%; FN: 150; Total: 150
+1|000|019|017|000 | TP: 19, 52.78%; FN: 17; Total: 36
+2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
+3|000|001|003|000 | TP: 0, 0.0%; FN: 4; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.21839080459770116
+Recall (Weighted): 0.5277777777777778
+F1 Score (Weighted): 0.3089430894308943
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.046296296296296294
+Recall (Weighted): 1.0
+F1 Score (Weighted): 0.08849557522123894
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.12307692307692308
+Precision (Weighted): 0.04150538690768576
+Recall (Weighted): 0.12307692307692308
+F1 Score (Weighted): 0.059304764592914824
+###################################################
+
+Key: xgb_5_50_A_turbo
+Path: ../models/xgb_v1/5_50_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|113|011|022 | TP: 4, 2.67%; FN: 146; Total: 150
+1|001|016|010|009 | TP: 16, 44.44%; FN: 20; Total: 36
+2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
+3|000|000|003|001 | TP: 1, 25.0%; FN: 3; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8
+Recall (Weighted): 0.02666666666666667
+F1 Score (Weighted): 0.05161290322580646
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.12307692307692308
+Recall (Weighted): 0.4444444444444444
+F1 Score (Weighted): 0.1927710843373494
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.1111111111111111
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.18750000000000003
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.030303030303030304
+Recall (Weighted): 0.25
+F1 Score (Weighted): 0.054054054054054064
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.12307692307692308
+Precision (Weighted): 0.6415771123463432
+Recall (Weighted): 0.12307692307692308
+F1 Score (Weighted): 0.08120723454477827
+###################################################
+
+Key: bert_5_50_B_turbo
+Path: ../models/bert_v1/5_50_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|003|002|000 | TP: 0, 0.0%; FN: 5; Total: 5
+1|001|067|062|000 | TP: 67, 51.54%; FN: 63; Total: 130
+2|000|006|021|000 | TP: 21, 77.78%; FN: 6; Total: 27
+3|000|022|011|000 | TP: 0, 0.0%; FN: 33; Total: 33
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6836734693877551
+Recall (Weighted): 0.5153846153846153
+F1 Score (Weighted): 0.587719298245614
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.21875
+Recall (Weighted): 0.7777777777777778
+F1 Score (Weighted): 0.34146341463414637
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.4512820512820513
+Precision (Weighted): 0.4860707744636316
+Recall (Weighted): 0.4512820512820513
+F1 Score (Weighted): 0.4390924152156501
+###################################################
+
+Key: xgb_5_50_B_turbo
+Path: ../models/xgb_v1/5_50_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|004|000|000|001 | TP: 4, 80.0%; FN: 1; Total: 5
+1|103|005|006|016 | TP: 5, 3.85%; FN: 125; Total: 130
+2|009|002|007|009 | TP: 7, 25.93%; FN: 20; Total: 27
+3|021|003|005|004 | TP: 4, 12.12%; FN: 29; Total: 33
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.029197080291970802
+Recall (Weighted): 0.8
+F1 Score (Weighted): 0.056338028169014086
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.5
+Recall (Weighted): 0.038461538461538464
+F1 Score (Weighted): 0.07142857142857144
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3888888888888889
+Recall (Weighted): 0.25925925925925924
+F1 Score (Weighted): 0.3111111111111111
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.13333333333333333
+Recall (Weighted): 0.12121212121212122
+F1 Score (Weighted): 0.126984126984127
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.10256410256410256
+Precision (Weighted): 0.4104922328279993
+Recall (Weighted): 0.10256410256410256
+F1 Score (Weighted): 0.11363015701043869
+###################################################
+
+Key: bert_5_50_C_turbo
+Path: ../models/bert_v1/5_50_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|060|077|000 | TP: 0, 0.0%; FN: 137; Total: 137
+1|000|003|007|000 | TP: 3, 30.0%; FN: 7; Total: 10
+2|000|006|012|000 | TP: 12, 66.67%; FN: 6; Total: 18
+3|000|014|016|000 | TP: 0, 0.0%; FN: 30; Total: 30
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.03614457831325301
+Recall (Weighted): 0.3
+F1 Score (Weighted): 0.06451612903225806
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.10714285714285714
+Recall (Weighted): 0.6666666666666666
+F1 Score (Weighted): 0.18461538461538463
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.07692307692307693
+Precision (Weighted): 0.011743678008738248
+Recall (Weighted): 0.07692307692307693
+F1 Score (Weighted): 0.02034993955589489
+###################################################
+
+Key: xgb_5_50_C_turbo
+Path: ../models/xgb_v1/5_50_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|103|000|034|000 | TP: 103, 75.18%; FN: 34; Total: 137
+1|006|001|003|000 | TP: 1, 10.0%; FN: 9; Total: 10
+2|003|006|009|000 | TP: 9, 50.0%; FN: 9; Total: 18
+3|004|005|020|001 | TP: 1, 3.33%; FN: 29; Total: 30
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8879310344827587
+Recall (Weighted): 0.7518248175182481
+F1 Score (Weighted): 0.8142292490118578
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.08333333333333333
+Recall (Weighted): 0.1
+F1 Score (Weighted): 0.0909090909090909
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.13636363636363635
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.21428571428571427
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 1.0
+Recall (Weighted): 0.03333333333333333
+F1 Score (Weighted): 0.06451612903225806
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5846153846153846
+Precision (Weighted): 0.7945355410872652
+Recall (Weighted): 0.5846153846153846
+F1 Score (Weighted): 0.6064160243683386
+###################################################
+
+Key: bert_5_50_D_turbo
+Path: ../models/bert_v1/5_50_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|078|037|000 | TP: 1, 0.86%; FN: 115; Total: 116
+1|000|011|001|000 | TP: 11, 91.67%; FN: 1; Total: 12
+2|001|054|011|000 | TP: 11, 16.67%; FN: 55; Total: 66
+3|000|000|001|000 | TP: 0, 0.0%; FN: 1; Total: 1
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5
+Recall (Weighted): 0.008620689655172414
+F1 Score (Weighted): 0.01694915254237288
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.07692307692307693
+Recall (Weighted): 0.9166666666666666
+F1 Score (Weighted): 0.14193548387096774
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.22
+Recall (Weighted): 0.16666666666666666
+F1 Score (Weighted): 0.18965517241379312
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.11794871794871795
+Precision (Weighted): 0.37663116370808675
+Recall (Weighted): 0.11794871794871795
+F1 Score (Weighted): 0.08300804554193443
+###################################################
+
+Key: xgb_5_50_D_turbo
+Path: ../models/xgb_v1/5_50_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|052|060|003|001 | TP: 52, 44.83%; FN: 64; Total: 116
+1|002|004|002|004 | TP: 4, 33.33%; FN: 8; Total: 12
+2|003|049|004|010 | TP: 4, 6.06%; FN: 62; Total: 66
+3|000|000|001|000 | TP: 0, 0.0%; FN: 1; Total: 1
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9122807017543859
+Recall (Weighted): 0.4482758620689655
+F1 Score (Weighted): 0.6011560693641619
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.035398230088495575
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.064
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4
+Recall (Weighted): 0.06060606060606061
+F1 Score (Weighted): 0.10526315789473685
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3076923076923077
+Precision (Weighted): 0.680253026484978
+Recall (Weighted): 0.3076923076923077
+F1 Score (Weighted): 0.3971767818835662
+###################################################
+
+Key: bert_5_50_E_turbo
+Path: ../models/bert_v1/5_50_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|024|033|000 | TP: 0, 0.0%; FN: 57; Total: 57
+1|000|062|051|000 | TP: 62, 54.87%; FN: 51; Total: 113
+2|000|004|006|000 | TP: 6, 60.0%; FN: 4; Total: 10
+3|000|007|008|000 | TP: 0, 0.0%; FN: 15; Total: 15
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6391752577319587
+Recall (Weighted): 0.5486725663716814
+F1 Score (Weighted): 0.5904761904761904
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.061224489795918366
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.1111111111111111
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3487179487179487
+Precision (Weighted): 0.3735335847265155
+Recall (Weighted): 0.3487179487179487
+F1 Score (Weighted): 0.3478713878713878
+###################################################
+
+Key: xgb_5_50_E_turbo
+Path: ../models/xgb_v1/5_50_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|040|001|011|005 | TP: 40, 70.18%; FN: 17; Total: 57
+1|013|008|045|047 | TP: 8, 7.08%; FN: 105; Total: 113
+2|000|003|004|003 | TP: 4, 40.0%; FN: 6; Total: 10
+3|000|006|003|006 | TP: 6, 40.0%; FN: 9; Total: 15
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7547169811320755
+Recall (Weighted): 0.7017543859649122
+F1 Score (Weighted): 0.7272727272727273
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.4444444444444444
+Recall (Weighted): 0.07079646017699115
+F1 Score (Weighted): 0.12213740458015265
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.06349206349206349
+Recall (Weighted): 0.4
+F1 Score (Weighted): 0.1095890410958904
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.09836065573770492
+Recall (Weighted): 0.4
+F1 Score (Weighted): 0.15789473684210528
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.29743589743589743
+Precision (Weighted): 0.4889816441935218
+Recall (Weighted): 0.29743589743589743
+F1 Score (Weighted): 0.3011301724907343
+###################################################
+
+Key: bert_5_50_F_turbo
+Path: ../models/bert_v1/5_50_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|022|031|000 | TP: 0, 0.0%; FN: 53; Total: 53
+1|000|010|008|000 | TP: 10, 55.56%; FN: 8; Total: 18
+2|000|034|029|000 | TP: 29, 46.03%; FN: 34; Total: 63
+3|000|042|019|000 | TP: 0, 0.0%; FN: 61; Total: 61
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.09259259259259259
+Recall (Weighted): 0.5555555555555556
+F1 Score (Weighted): 0.15873015873015875
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.4603174603174603
+F1 Score (Weighted): 0.38666666666666666
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.2
+Precision (Weighted): 0.11623931623931624
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.13957509157509157
+###################################################
+
+Key: xgb_5_50_F_turbo
+Path: ../models/xgb_v1/5_50_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|053|000|000|000 | TP: 53, 100.0%; FN: 0; Total: 53
+1|009|002|004|003 | TP: 2, 11.11%; FN: 16; Total: 18
+2|045|007|008|003 | TP: 8, 12.7%; FN: 55; Total: 63
+3|051|004|004|002 | TP: 2, 3.28%; FN: 59; Total: 61
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.33544303797468356
+Recall (Weighted): 1.0
+F1 Score (Weighted): 0.5023696682464455
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.15384615384615385
+Recall (Weighted): 0.1111111111111111
+F1 Score (Weighted): 0.12903225806451615
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5
+Recall (Weighted): 0.12698412698412698
+F1 Score (Weighted): 0.20253164556962025
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.03278688524590164
+F1 Score (Weighted): 0.05797101449275363
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3333333333333333
+Precision (Weighted): 0.34511647067635387
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.23201999290854847
+###################################################
+
+Key: bert_5_100_A_turbo
+Path: ../models/bert_v1/5_100_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|068|089|000 | TP: 1, 0.63%; FN: 157; Total: 158
+1|002|003|008|000 | TP: 3, 23.08%; FN: 10; Total: 13
+2|000|004|012|000 | TP: 12, 75.0%; FN: 4; Total: 16
+3|001|003|004|000 | TP: 0, 0.0%; FN: 8; Total: 8
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.25
+Recall (Weighted): 0.006329113924050633
+F1 Score (Weighted): 0.01234567901234568
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.038461538461538464
+Recall (Weighted): 0.23076923076923078
+F1 Score (Weighted): 0.06593406593406592
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.10619469026548672
+Recall (Weighted): 0.75
+F1 Score (Weighted): 0.18604651162790697
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.08205128205128205
+Precision (Weighted): 0.21384161561152712
+Recall (Weighted): 0.08205128205128205
+F1 Score (Weighted): 0.029664124754564033
+###################################################
+
+Key: xgb_5_100_A_turbo
+Path: ../models/xgb_v1/5_100_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|056|083|014|005 | TP: 56, 35.44%; FN: 102; Total: 158
+1|003|002|003|005 | TP: 2, 15.38%; FN: 11; Total: 13
+2|000|008|005|003 | TP: 5, 31.25%; FN: 11; Total: 16
+3|000|006|000|002 | TP: 2, 25.0%; FN: 6; Total: 8
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9491525423728814
+Recall (Weighted): 0.35443037974683544
+F1 Score (Weighted): 0.5161290322580645
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.020202020202020204
+Recall (Weighted): 0.15384615384615385
+F1 Score (Weighted): 0.03571428571428572
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.22727272727272727
+Recall (Weighted): 0.3125
+F1 Score (Weighted): 0.2631578947368421
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.13333333333333333
+Recall (Weighted): 0.25
+F1 Score (Weighted): 0.1739130434782609
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3333333333333333
+Precision (Weighted): 0.7945218372337016
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.4493051460239768
+###################################################
+
+Key: bert_5_100_B_turbo
+Path: ../models/bert_v1/5_100_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|020|039|000 | TP: 0, 0.0%; FN: 59; Total: 59
+1|000|028|071|000 | TP: 28, 28.28%; FN: 71; Total: 99
+2|000|003|019|000 | TP: 19, 86.36%; FN: 3; Total: 22
+3|000|001|014|000 | TP: 0, 0.0%; FN: 15; Total: 15
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.5384615384615384
+Recall (Weighted): 0.2828282828282828
+F1 Score (Weighted): 0.3708609271523179
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.13286713286713286
+Recall (Weighted): 0.8636363636363636
+F1 Score (Weighted): 0.23030303030303031
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.24102564102564103
+Precision (Weighted): 0.2883629191321499
+Recall (Weighted): 0.24102564102564103
+F1 Score (Weighted): 0.2142661459217751
+###################################################
+
+Key: xgb_5_100_B_turbo
+Path: ../models/xgb_v1/5_100_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|052|006|001|000 | TP: 52, 88.14%; FN: 7; Total: 59
+1|048|032|017|002 | TP: 32, 32.32%; FN: 67; Total: 99
+2|009|008|003|002 | TP: 3, 13.64%; FN: 19; Total: 22
+3|000|006|006|003 | TP: 3, 20.0%; FN: 12; Total: 15
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.47706422018348627
+Recall (Weighted): 0.8813559322033898
+F1 Score (Weighted): 0.6190476190476191
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6153846153846154
+Recall (Weighted): 0.32323232323232326
+F1 Score (Weighted): 0.423841059602649
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.1111111111111111
+Recall (Weighted): 0.13636363636363635
+F1 Score (Weighted): 0.12244897959183673
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.27272727272727276
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.46153846153846156
+Precision (Weighted): 0.5022711886508641
+Recall (Weighted): 0.46153846153846156
+F1 Score (Weighted): 0.4372762105969296
+###################################################
+
+Key: bert_5_100_C_turbo
+Path: ../models/bert_v1/5_100_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|039|070|000 | TP: 0, 0.0%; FN: 109; Total: 109
+1|000|010|042|000 | TP: 10, 19.23%; FN: 42; Total: 52
+2|000|011|016|000 | TP: 16, 59.26%; FN: 11; Total: 27
+3|000|001|006|000 | TP: 0, 0.0%; FN: 7; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16393442622950818
+Recall (Weighted): 0.19230769230769232
+F1 Score (Weighted): 0.17699115044247787
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.11940298507462686
+Recall (Weighted): 0.5925925925925926
+F1 Score (Weighted): 0.19875776397515527
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.13333333333333333
+Precision (Weighted): 0.06024856800486847
+Recall (Weighted): 0.13333333333333333
+F1 Score (Weighted): 0.07471794589916944
+###################################################
+
+Key: xgb_5_100_C_turbo
+Path: ../models/xgb_v1/5_100_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|086|008|014|001 | TP: 86, 78.9%; FN: 23; Total: 109
+1|012|006|027|007 | TP: 6, 11.54%; FN: 46; Total: 52
+2|005|007|014|001 | TP: 14, 51.85%; FN: 13; Total: 27
+3|000|000|007|000 | TP: 0, 0.0%; FN: 7; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8349514563106796
+Recall (Weighted): 0.7889908256880734
+F1 Score (Weighted): 0.8113207547169812
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2857142857142857
+Recall (Weighted): 0.11538461538461539
+F1 Score (Weighted): 0.1643835616438356
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.22580645161290322
+Recall (Weighted): 0.5185185185185185
+F1 Score (Weighted): 0.3146067415730337
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5435897435897435
+Precision (Weighted): 0.5741724399413093
+Recall (Weighted): 0.5435897435897435
+F1 Score (Weighted): 0.5409040486774478
+###################################################
+
+Key: bert_5_100_D_turbo
+Path: ../models/bert_v1/5_100_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|031|072|000 | TP: 0, 0.0%; FN: 103; Total: 103
+1|000|005|016|000 | TP: 5, 23.81%; FN: 16; Total: 21
+2|000|009|053|000 | TP: 53, 85.48%; FN: 9; Total: 62
+3|000|001|008|000 | TP: 0, 0.0%; FN: 9; Total: 9
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.10869565217391304
+Recall (Weighted): 0.23809523809523808
+F1 Score (Weighted): 0.1492537313432836
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.35570469798657717
+Recall (Weighted): 0.8548387096774194
+F1 Score (Weighted): 0.5023696682464455
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.29743589743589743
+Precision (Weighted): 0.12480153831189722
+Recall (Weighted): 0.29743589743589743
+F1 Score (Weighted): 0.17580127071532603
+###################################################
+
+Key: xgb_5_100_D_turbo
+Path: ../models/xgb_v1/5_100_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|008|075|012|008 | TP: 8, 7.77%; FN: 95; Total: 103
+1|000|010|007|004 | TP: 10, 47.62%; FN: 11; Total: 21
+2|007|012|014|029 | TP: 14, 22.58%; FN: 48; Total: 62
+3|000|004|003|002 | TP: 2, 22.22%; FN: 7; Total: 9
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.5333333333333333
+Recall (Weighted): 0.07766990291262135
+F1 Score (Weighted): 0.13559322033898305
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.09900990099009901
+Recall (Weighted): 0.47619047619047616
+F1 Score (Weighted): 0.1639344262295082
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3888888888888889
+Recall (Weighted): 0.22580645161290322
+F1 Score (Weighted): 0.2857142857142857
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.046511627906976744
+Recall (Weighted): 0.2222222222222222
+F1 Score (Weighted): 0.07692307692307693
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.17435897435897435
+Precision (Weighted): 0.4181654205969196
+Recall (Weighted): 0.17435897435897435
+F1 Score (Weighted): 0.1836682977042479
+###################################################
+
+Key: bert_5_100_E_turbo
+Path: ../models/bert_v1/5_100_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|003|012|000 | TP: 0, 0.0%; FN: 15; Total: 15
+1|001|055|045|000 | TP: 55, 54.46%; FN: 46; Total: 101
+2|001|014|021|000 | TP: 21, 58.33%; FN: 15; Total: 36
+3|001|017|025|000 | TP: 0, 0.0%; FN: 43; Total: 43
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6179775280898876
+Recall (Weighted): 0.5445544554455446
+F1 Score (Weighted): 0.5789473684210527
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.20388349514563106
+Recall (Weighted): 0.5833333333333334
+F1 Score (Weighted): 0.302158273381295
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.38974358974358975
+Precision (Weighted): 0.3577206982683147
+Recall (Weighted): 0.38974358974358975
+F1 Score (Weighted): 0.35564811308847655
+###################################################
+
+Key: xgb_5_100_E_turbo
+Path: ../models/xgb_v1/5_100_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|011|000|000|004 | TP: 11, 73.33%; FN: 4; Total: 15
+1|080|007|000|014 | TP: 7, 6.93%; FN: 94; Total: 101
+2|016|007|001|012 | TP: 1, 2.78%; FN: 35; Total: 36
+3|008|005|000|030 | TP: 30, 69.77%; FN: 13; Total: 43
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.09565217391304348
+Recall (Weighted): 0.7333333333333333
+F1 Score (Weighted): 0.16923076923076924
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3684210526315789
+Recall (Weighted): 0.06930693069306931
+F1 Score (Weighted): 0.11666666666666667
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 1.0
+Recall (Weighted): 0.027777777777777776
+F1 Score (Weighted): 0.05405405405405406
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5
+Recall (Weighted): 0.6976744186046512
+F1 Score (Weighted): 0.5825242718446603
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.2512820512820513
+Precision (Weighted): 0.49305286627941086
+Recall (Weighted): 0.2512820512820513
+F1 Score (Weighted): 0.2118783820874934
+###################################################
+
+Key: bert_5_100_F_turbo
+Path: ../models/bert_v1/5_100_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|049|066|000 | TP: 0, 0.0%; FN: 115; Total: 115
+1|000|005|014|000 | TP: 5, 26.32%; FN: 14; Total: 19
+2|000|001|000|000 | TP: 0, 0.0%; FN: 1; Total: 1
+3|000|024|036|000 | TP: 0, 0.0%; FN: 60; Total: 60
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.06329113924050633
+Recall (Weighted): 0.2631578947368421
+F1 Score (Weighted): 0.10204081632653061
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.02564102564102564
+Precision (Weighted): 0.006166828951639079
+Recall (Weighted): 0.02564102564102564
+F1 Score (Weighted): 0.009942438513867086
+###################################################
+
+Key: xgb_5_100_F_turbo
+Path: ../models/xgb_v1/5_100_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|023|003|088|001 | TP: 23, 20.0%; FN: 92; Total: 115
+1|000|002|017|000 | TP: 2, 10.53%; FN: 17; Total: 19
+2|000|000|001|000 | TP: 1, 100.0%; FN: 0; Total: 1
+3|000|009|044|007 | TP: 7, 11.67%; FN: 53; Total: 60
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.33333333333333337
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.14285714285714285
+Recall (Weighted): 0.10526315789473684
+F1 Score (Weighted): 0.12121212121212122
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.006666666666666667
+Recall (Weighted): 1.0
+F1 Score (Weighted): 0.013245033112582783
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.875
+Recall (Weighted): 0.11666666666666667
+F1 Score (Weighted): 0.20588235294117646
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.16923076923076924
+Precision (Weighted): 0.872927960927961
+Recall (Weighted): 0.16923076923076924
+F1 Score (Weighted): 0.27180794792793234
+###################################################
+
+Key: bert_5_200_A_turbo
+Path: ../models/bert_v1/5_200_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|002|008|011|002 | TP: 2, 8.7%; FN: 21; Total: 23
+1|001|008|002|003 | TP: 8, 57.14%; FN: 6; Total: 14
+2|003|077|054|016 | TP: 54, 36.0%; FN: 96; Total: 150
+3|000|003|001|004 | TP: 4, 50.0%; FN: 4; Total: 8
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.08695652173913043
+F1 Score (Weighted): 0.13793103448275862
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.08333333333333333
+Recall (Weighted): 0.5714285714285714
+F1 Score (Weighted): 0.14545454545454545
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.7941176470588235
+Recall (Weighted): 0.36
+F1 Score (Weighted): 0.49541284403669716
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.16
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.24242424242424243
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3487179487179487
+Precision (Weighted): 0.6627229763700352
+Recall (Weighted): 0.3487179487179487
+F1 Score (Weighted): 0.41774409217623387
+###################################################
+
+Key: xgb_5_200_A_turbo
+Path: ../models/xgb_v1/5_200_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|014|007|002|000 | TP: 14, 60.87%; FN: 9; Total: 23
+1|006|001|004|003 | TP: 1, 7.14%; FN: 13; Total: 14
+2|082|018|036|014 | TP: 36, 24.0%; FN: 114; Total: 150
+3|000|000|006|002 | TP: 2, 25.0%; FN: 6; Total: 8
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.13725490196078433
+Recall (Weighted): 0.6086956521739131
+F1 Score (Weighted): 0.22400000000000006
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.038461538461538464
+Recall (Weighted): 0.07142857142857142
+F1 Score (Weighted): 0.05
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.75
+Recall (Weighted): 0.24
+F1 Score (Weighted): 0.36363636363636365
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.10526315789473684
+Recall (Weighted): 0.25
+F1 Score (Weighted): 0.14814814814814814
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.2717948717948718
+Precision (Weighted): 0.6001919463934229
+Recall (Weighted): 0.2717948717948718
+F1 Score (Weighted): 0.31580840887507555
+###################################################
+
+Key: bert_5_200_B_turbo
+Path: ../models/bert_v1/5_200_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|036|064|002 | TP: 0, 0.0%; FN: 102; Total: 102
+1|000|005|021|000 | TP: 5, 19.23%; FN: 21; Total: 26
+2|000|008|033|007 | TP: 33, 68.75%; FN: 15; Total: 48
+3|000|001|015|003 | TP: 3, 15.79%; FN: 16; Total: 19
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.1
+Recall (Weighted): 0.19230769230769232
+F1 Score (Weighted): 0.13157894736842105
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.24812030075187969
+Recall (Weighted): 0.6875
+F1 Score (Weighted): 0.3646408839779005
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.15789473684210525
+F1 Score (Weighted): 0.1935483870967742
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.21025641025641026
+Precision (Weighted): 0.09876807403123193
+Recall (Weighted): 0.21025641025641026
+F1 Score (Weighted): 0.12616017649926606
+###################################################
+
+Key: xgb_5_200_B_turbo
+Path: ../models/xgb_v1/5_200_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|067|011|005|019 | TP: 67, 65.69%; FN: 35; Total: 102
+1|014|004|002|006 | TP: 4, 15.38%; FN: 22; Total: 26
+2|010|004|007|027 | TP: 7, 14.58%; FN: 41; Total: 48
+3|002|005|000|012 | TP: 12, 63.16%; FN: 7; Total: 19
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7204301075268817
+Recall (Weighted): 0.6568627450980392
+F1 Score (Weighted): 0.6871794871794871
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.15384615384615385
+F1 Score (Weighted): 0.16
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5
+Recall (Weighted): 0.14583333333333334
+F1 Score (Weighted): 0.22580645161290322
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.1875
+Recall (Weighted): 0.631578947368421
+F1 Score (Weighted): 0.2891566265060241
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.46153846153846156
+Precision (Weighted): 0.5404087400055142
+Recall (Weighted): 0.46153846153846156
+F1 Score (Weighted): 0.4645384270427769
+###################################################
+
+Key: bert_5_200_C_turbo
+Path: ../models/bert_v1/5_200_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|003|024|065|001 | TP: 3, 3.23%; FN: 90; Total: 93
+1|001|007|014|002 | TP: 7, 29.17%; FN: 17; Total: 24
+2|000|001|010|003 | TP: 10, 71.43%; FN: 4; Total: 14
+3|004|013|037|010 | TP: 10, 15.62%; FN: 54; Total: 64
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.375
+Recall (Weighted): 0.03225806451612903
+F1 Score (Weighted): 0.05940594059405941
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.15555555555555556
+Recall (Weighted): 0.2916666666666667
+F1 Score (Weighted): 0.2028985507246377
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.07936507936507936
+Recall (Weighted): 0.7142857142857143
+F1 Score (Weighted): 0.14285714285714282
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.625
+Recall (Weighted): 0.15625
+F1 Score (Weighted): 0.25
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.15384615384615385
+Precision (Weighted): 0.4088176638176638
+Recall (Weighted): 0.15384615384615385
+F1 Score (Weighted): 0.14561188560327604
+###################################################
+
+Key: xgb_5_200_C_turbo
+Path: ../models/xgb_v1/5_200_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|088|001|000|004 | TP: 88, 94.62%; FN: 5; Total: 93
+1|010|005|002|007 | TP: 5, 20.83%; FN: 19; Total: 24
+2|002|003|004|005 | TP: 4, 28.57%; FN: 10; Total: 14
+3|011|016|005|032 | TP: 32, 50.0%; FN: 32; Total: 64
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7927927927927928
+Recall (Weighted): 0.946236559139785
+F1 Score (Weighted): 0.8627450980392158
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2
+Recall (Weighted): 0.20833333333333334
+F1 Score (Weighted): 0.20408163265306126
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.36363636363636365
+Recall (Weighted): 0.2857142857142857
+F1 Score (Weighted): 0.32
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.5714285714285715
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6615384615384615
+Precision (Weighted): 0.6476272076272076
+Recall (Weighted): 0.6615384615384615
+F1 Score (Weighted): 0.6471009326807646
+###################################################
+
+Key: bert_5_200_D_turbo
+Path: ../models/bert_v1/5_200_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|022|089|000 | TP: 0, 0.0%; FN: 111; Total: 111
+1|000|001|024|000 | TP: 1, 4.0%; FN: 24; Total: 25
+2|000|000|010|001 | TP: 10, 90.91%; FN: 1; Total: 11
+3|000|004|041|003 | TP: 3, 6.25%; FN: 45; Total: 48
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.037037037037037035
+Recall (Weighted): 0.04
+F1 Score (Weighted): 0.03846153846153846
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.06097560975609756
+Recall (Weighted): 0.9090909090909091
+F1 Score (Weighted): 0.11428571428571428
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.75
+Recall (Weighted): 0.0625
+F1 Score (Weighted): 0.11538461538461539
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.07179487179487179
+Precision (Weighted): 0.19280337247816923
+Recall (Weighted): 0.07179487179487179
+F1 Score (Weighted): 0.03978021978021978
+###################################################
+
+Key: xgb_5_200_D_turbo
+Path: ../models/xgb_v1/5_200_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|089|008|013|001 | TP: 89, 80.18%; FN: 22; Total: 111
+1|015|000|010|000 | TP: 0, 0.0%; FN: 25; Total: 25
+2|001|001|009|000 | TP: 9, 81.82%; FN: 2; Total: 11
+3|017|008|022|001 | TP: 1, 2.08%; FN: 47; Total: 48
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7295081967213115
+Recall (Weighted): 0.8018018018018018
+F1 Score (Weighted): 0.7639484978540773
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.8181818181818182
+F1 Score (Weighted): 0.2769230769230769
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.5
+Recall (Weighted): 0.020833333333333332
+F1 Score (Weighted): 0.039999999999999994
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5076923076923077
+Precision (Weighted): 0.5477371444584559
+Recall (Weighted): 0.5076923076923077
+F1 Score (Weighted): 0.46033044670746887
+###################################################
+
+Key: bert_5_200_E_turbo
+Path: ../models/bert_v1/5_200_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|001|020|099|002 | TP: 1, 0.82%; FN: 121; Total: 122
+1|000|001|014|002 | TP: 1, 5.88%; FN: 16; Total: 17
+2|000|002|041|011 | TP: 41, 75.93%; FN: 13; Total: 54
+3|000|001|001|000 | TP: 0, 0.0%; FN: 2; Total: 2
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.00819672131147541
+F1 Score (Weighted): 0.016260162601626018
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.041666666666666664
+Recall (Weighted): 0.058823529411764705
+F1 Score (Weighted): 0.048780487804878044
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2645161290322581
+Recall (Weighted): 0.7592592592592593
+F1 Score (Weighted): 0.39234449760765555
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.2205128205128205
+Precision (Weighted): 0.7025241246208989
+Recall (Weighted): 0.2205128205128205
+F1 Score (Weighted): 0.12307492820971641
+###################################################
+
+Key: xgb_5_200_E_turbo
+Path: ../models/xgb_v1/5_200_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|083|012|022|005 | TP: 83, 68.03%; FN: 39; Total: 122
+1|002|003|011|001 | TP: 3, 17.65%; FN: 14; Total: 17
+2|001|016|031|006 | TP: 31, 57.41%; FN: 23; Total: 54
+3|001|000|001|000 | TP: 0, 0.0%; FN: 2; Total: 2
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9540229885057471
+Recall (Weighted): 0.680327868852459
+F1 Score (Weighted): 0.7942583732057416
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0967741935483871
+Recall (Weighted): 0.17647058823529413
+F1 Score (Weighted): 0.125
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.47692307692307695
+Recall (Weighted): 0.5740740740740741
+F1 Score (Weighted): 0.5210084033613446
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6
+Precision (Weighted): 0.7373836514967687
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.6520973092954517
+###################################################
+
+Key: bert_5_200_F_turbo
+Path: ../models/bert_v1/5_200_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|028|058|001 | TP: 0, 0.0%; FN: 87; Total: 87
+1|000|002|027|002 | TP: 2, 6.45%; FN: 29; Total: 31
+2|000|002|056|007 | TP: 56, 86.15%; FN: 9; Total: 65
+3|000|001|009|002 | TP: 2, 16.67%; FN: 10; Total: 12
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.06060606060606061
+Recall (Weighted): 0.06451612903225806
+F1 Score (Weighted): 0.0625
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.37333333333333335
+Recall (Weighted): 0.8615384615384616
+F1 Score (Weighted): 0.5209302325581395
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.16666666666666666
+F1 Score (Weighted): 0.16666666666666666
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3076923076923077
+Precision (Weighted): 0.14433566433566436
+Recall (Weighted): 0.3076923076923077
+F1 Score (Weighted): 0.19383571854502085
+###################################################
+
+Key: xgb_5_200_F_turbo
+Path: ../models/xgb_v1/5_200_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|079|004|002|002 | TP: 79, 90.8%; FN: 8; Total: 87
+1|014|008|003|006 | TP: 8, 25.81%; FN: 23; Total: 31
+2|026|018|010|011 | TP: 10, 15.38%; FN: 55; Total: 65
+3|001|006|002|003 | TP: 3, 25.0%; FN: 9; Total: 12
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6583333333333333
+Recall (Weighted): 0.9080459770114943
+F1 Score (Weighted): 0.7632850241545893
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2222222222222222
+Recall (Weighted): 0.25806451612903225
+F1 Score (Weighted): 0.2388059701492537
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5882352941176471
+Recall (Weighted): 0.15384615384615385
+F1 Score (Weighted): 0.24390243902439027
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.13636363636363635
+Recall (Weighted): 0.25
+F1 Score (Weighted): 0.1764705882352941
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5128205128205128
+Precision (Weighted): 0.5335156238097415
+Recall (Weighted): 0.5128205128205128
+F1 Score (Weighted): 0.4706671167768463
+###################################################
+
+Key: bert_5_400_A_turbo
+Path: ../models/bert_v1/5_400_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|042|060|013|005 | TP: 42, 35.0%; FN: 78; Total: 120
+1|010|012|005|009 | TP: 12, 33.33%; FN: 24; Total: 36
+2|000|005|002|010 | TP: 2, 11.76%; FN: 15; Total: 17
+3|001|009|005|007 | TP: 7, 31.82%; FN: 15; Total: 22
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7924528301886793
+Recall (Weighted): 0.35
+F1 Score (Weighted): 0.4855491329479769
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.13953488372093023
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.19672131147540986
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.08
+Recall (Weighted): 0.11764705882352941
+F1 Score (Weighted): 0.09523809523809526
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.22580645161290322
+Recall (Weighted): 0.3181818181818182
+F1 Score (Weighted): 0.2641509433962264
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.3230769230769231
+Precision (Weighted): 0.5458735249850198
+Recall (Weighted): 0.3230769230769231
+F1 Score (Weighted): 0.3732217002083928
+###################################################
+
+Key: xgb_5_400_A_turbo
+Path: ../models/xgb_v1/5_400_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|092|007|009|012 | TP: 92, 76.67%; FN: 28; Total: 120
+1|012|005|011|008 | TP: 5, 13.89%; FN: 31; Total: 36
+2|003|001|004|009 | TP: 4, 23.53%; FN: 13; Total: 17
+3|002|004|004|012 | TP: 12, 54.55%; FN: 10; Total: 22
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8440366972477065
+Recall (Weighted): 0.7666666666666667
+F1 Score (Weighted): 0.8034934497816594
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.29411764705882354
+Recall (Weighted): 0.1388888888888889
+F1 Score (Weighted): 0.18867924528301885
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.14285714285714285
+Recall (Weighted): 0.23529411764705882
+F1 Score (Weighted): 0.17777777777777778
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2926829268292683
+Recall (Weighted): 0.5454545454545454
+F1 Score (Weighted): 0.3809523809523809
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5794871794871795
+Precision (Weighted): 0.6191806911931167
+Recall (Weighted): 0.5794871794871795
+F1 Score (Weighted): 0.5877684174726278
+###################################################
+
+Key: bert_5_400_B_turbo
+Path: ../models/bert_v1/5_400_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|023|024|058|004 | TP: 23, 21.1%; FN: 86; Total: 109
+1|001|002|004|010 | TP: 2, 11.76%; FN: 15; Total: 17
+2|000|005|017|006 | TP: 17, 60.71%; FN: 11; Total: 28
+3|002|003|021|015 | TP: 15, 36.59%; FN: 26; Total: 41
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8846153846153846
+Recall (Weighted): 0.21100917431192662
+F1 Score (Weighted): 0.34074074074074073
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.058823529411764705
+Recall (Weighted): 0.11764705882352941
+F1 Score (Weighted): 0.07843137254901962
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.17
+Recall (Weighted): 0.6071428571428571
+F1 Score (Weighted): 0.265625
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.36585365853658536
+F1 Score (Weighted): 0.39473684210526316
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.2923076923076923
+Precision (Weighted): 0.6141256692025923
+Recall (Weighted): 0.2923076923076923
+F1 Score (Weighted): 0.3184399210276403
+###################################################
+
+Key: xgb_5_400_B_turbo
+Path: ../models/xgb_v1/5_400_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|099|006|004|000 | TP: 99, 90.83%; FN: 10; Total: 109
+1|006|005|004|002 | TP: 5, 29.41%; FN: 12; Total: 17
+2|006|010|010|002 | TP: 10, 35.71%; FN: 18; Total: 28
+3|011|009|014|007 | TP: 7, 17.07%; FN: 34; Total: 41
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8114754098360656
+Recall (Weighted): 0.908256880733945
+F1 Score (Weighted): 0.8571428571428572
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.16666666666666666
+Recall (Weighted): 0.29411764705882354
+F1 Score (Weighted): 0.21276595744680848
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3125
+Recall (Weighted): 0.35714285714285715
+F1 Score (Weighted): 0.3333333333333333
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.6363636363636364
+Recall (Weighted): 0.17073170731707318
+F1 Score (Weighted): 0.2692307692307692
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6205128205128205
+Precision (Weighted): 0.6467951902378132
+Recall (Weighted): 0.6205128205128205
+F1 Score (Weighted): 0.6021404491126259
+###################################################
+
+Key: bert_5_400_C_turbo
+Path: ../models/bert_v1/5_400_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|061|017|038|006 | TP: 61, 50.0%; FN: 61; Total: 122
+1|008|000|019|003 | TP: 0, 0.0%; FN: 30; Total: 30
+2|004|000|023|005 | TP: 23, 71.88%; FN: 9; Total: 32
+3|000|000|009|002 | TP: 2, 18.18%; FN: 9; Total: 11
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8356164383561644
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.6256410256410256
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.25842696629213485
+Recall (Weighted): 0.71875
+F1 Score (Weighted): 0.3801652892561984
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.125
+Recall (Weighted): 0.18181818181818182
+F1 Score (Weighted): 0.14814814814814814
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.441025641025641
+Precision (Weighted): 0.5722557353887199
+Recall (Weighted): 0.441025641025641
+F1 Score (Weighted): 0.4621698667386313
+###################################################
+
+Key: xgb_5_400_C_turbo
+Path: ../models/xgb_v1/5_400_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|110|008|001|003 | TP: 110, 90.16%; FN: 12; Total: 122
+1|010|008|007|005 | TP: 8, 26.67%; FN: 22; Total: 30
+2|008|006|012|006 | TP: 12, 37.5%; FN: 20; Total: 32
+3|000|002|005|004 | TP: 4, 36.36%; FN: 7; Total: 11
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.859375
+Recall (Weighted): 0.9016393442622951
+F1 Score (Weighted): 0.88
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3333333333333333
+Recall (Weighted): 0.26666666666666666
+F1 Score (Weighted): 0.2962962962962963
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.48
+Recall (Weighted): 0.375
+F1 Score (Weighted): 0.42105263157894735
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2222222222222222
+Recall (Weighted): 0.36363636363636365
+F1 Score (Weighted): 0.27586206896551724
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6871794871794872
+Precision (Weighted): 0.6802471509971512
+Recall (Weighted): 0.6871794871794872
+F1 Score (Weighted): 0.6808054146565944
+###################################################
+
+Key: bert_5_400_D_turbo
+Path: ../models/bert_v1/5_400_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|020|044|059|005 | TP: 20, 15.62%; FN: 108; Total: 128
+1|002|006|013|003 | TP: 6, 25.0%; FN: 18; Total: 24
+2|000|006|013|006 | TP: 13, 52.0%; FN: 12; Total: 25
+3|000|001|012|005 | TP: 5, 27.78%; FN: 13; Total: 18
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9090909090909091
+Recall (Weighted): 0.15625
+F1 Score (Weighted): 0.2666666666666666
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.10526315789473684
+Recall (Weighted): 0.25
+F1 Score (Weighted): 0.14814814814814814
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.13402061855670103
+Recall (Weighted): 0.52
+F1 Score (Weighted): 0.21311475409836064
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2631578947368421
+Recall (Weighted): 0.2777777777777778
+F1 Score (Weighted): 0.27027027027027023
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.22564102564102564
+Precision (Weighted): 0.6511656908835421
+Recall (Weighted): 0.22564102564102564
+F1 Score (Weighted): 0.2455467825959629
+###################################################
+
+Key: xgb_5_400_D_turbo
+Path: ../models/xgb_v1/5_400_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|093|023|008|004 | TP: 93, 72.66%; FN: 35; Total: 128
+1|006|011|005|002 | TP: 11, 45.83%; FN: 13; Total: 24
+2|001|008|015|001 | TP: 15, 60.0%; FN: 10; Total: 25
+3|003|003|007|005 | TP: 5, 27.78%; FN: 13; Total: 18
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9029126213592233
+Recall (Weighted): 0.7265625
+F1 Score (Weighted): 0.8051948051948051
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.24444444444444444
+Recall (Weighted): 0.4583333333333333
+F1 Score (Weighted): 0.31884057971014496
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.5
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.4166666666666667
+Recall (Weighted): 0.2777777777777778
+F1 Score (Weighted): 0.33333333333333337
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6358974358974359
+Precision (Weighted): 0.716173168794528
+Recall (Weighted): 0.6358974358974359
+F1 Score (Weighted): 0.6626518409127105
+###################################################
+
+Key: bert_5_400_E_turbo
+Path: ../models/bert_v1/5_400_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|015|027|061|000 | TP: 15, 14.56%; FN: 88; Total: 103
+1|004|002|038|001 | TP: 2, 4.44%; FN: 43; Total: 45
+2|000|000|030|005 | TP: 30, 85.71%; FN: 5; Total: 35
+3|001|002|008|001 | TP: 1, 8.33%; FN: 11; Total: 12
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.75
+Recall (Weighted): 0.14563106796116504
+F1 Score (Weighted): 0.24390243902439024
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.06451612903225806
+Recall (Weighted): 0.044444444444444446
+F1 Score (Weighted): 0.05263157894736842
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.21897810218978103
+Recall (Weighted): 0.8571428571428571
+F1 Score (Weighted): 0.34883720930232553
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.14285714285714285
+Recall (Weighted): 0.08333333333333333
+F1 Score (Weighted): 0.10526315789473685
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.24615384615384617
+Precision (Weighted): 0.4591371543455367
+Recall (Weighted): 0.24615384615384617
+F1 Score (Weighted): 0.21006580765365132
+###################################################
+
+Key: xgb_5_400_E_turbo
+Path: ../models/xgb_v1/5_400_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|100|002|001|000 | TP: 100, 97.09%; FN: 3; Total: 103
+1|030|011|003|001 | TP: 11, 24.44%; FN: 34; Total: 45
+2|012|010|011|002 | TP: 11, 31.43%; FN: 24; Total: 35
+3|003|007|001|001 | TP: 1, 8.33%; FN: 11; Total: 12
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6896551724137931
+Recall (Weighted): 0.970873786407767
+F1 Score (Weighted): 0.8064516129032258
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.36666666666666664
+Recall (Weighted): 0.24444444444444444
+F1 Score (Weighted): 0.29333333333333333
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.6875
+Recall (Weighted): 0.3142857142857143
+F1 Score (Weighted): 0.43137254901960786
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.08333333333333333
+F1 Score (Weighted): 0.125
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6307692307692307
+Precision (Weighted): 0.5876768346595933
+Recall (Weighted): 0.6307692307692307
+F1 Score (Weighted): 0.5787823351011206
+###################################################
+
+Key: bert_5_400_F_turbo
+Path: ../models/bert_v1/5_400_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|008|069|066|002 | TP: 8, 5.52%; FN: 137; Total: 145
+1|000|010|019|001 | TP: 10, 33.33%; FN: 20; Total: 30
+2|000|002|009|005 | TP: 9, 56.25%; FN: 7; Total: 16
+3|000|000|004|000 | TP: 0, 0.0%; FN: 4; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 1.0
+Recall (Weighted): 0.05517241379310345
+F1 Score (Weighted): 0.1045751633986928
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.12345679012345678
+Recall (Weighted): 0.3333333333333333
+F1 Score (Weighted): 0.18018018018018017
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.09183673469387756
+Recall (Weighted): 0.5625
+F1 Score (Weighted): 0.15789473684210528
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.13846153846153847
+Precision (Weighted): 0.7701184177374654
+Recall (Weighted): 0.13846153846153847
+F1 Score (Weighted): 0.11843651224456177
+###################################################
+
+Key: xgb_5_400_F_turbo
+Path: ../models/xgb_v1/5_400_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|087|049|009|000 | TP: 87, 60.0%; FN: 58; Total: 145
+1|005|014|008|003 | TP: 14, 46.67%; FN: 16; Total: 30
+2|001|003|007|005 | TP: 7, 43.75%; FN: 9; Total: 16
+3|000|001|001|002 | TP: 2, 50.0%; FN: 2; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9354838709677419
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.73109243697479
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.208955223880597
+Recall (Weighted): 0.4666666666666667
+F1 Score (Weighted): 0.28865979381443296
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.28
+Recall (Weighted): 0.4375
+F1 Score (Weighted): 0.34146341463414637
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.28571428571428575
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5641025641025641
+Precision (Weighted): 0.7548400923422589
+Recall (Weighted): 0.5641025641025641
+F1 Score (Weighted): 0.6219203536040052
+###################################################
+
+Key: bert_5_800_A_turbo
+Path: ../models/bert_v1/5_800_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|072|018|002|001 | TP: 72, 77.42%; FN: 21; Total: 93
+1|010|016|037|004 | TP: 16, 23.88%; FN: 51; Total: 67
+2|003|003|011|008 | TP: 11, 44.0%; FN: 14; Total: 25
+3|000|003|005|002 | TP: 2, 20.0%; FN: 8; Total: 10
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8470588235294118
+Recall (Weighted): 0.7741935483870968
+F1 Score (Weighted): 0.8089887640449439
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.4
+Recall (Weighted): 0.23880597014925373
+F1 Score (Weighted): 0.29906542056074764
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2
+Recall (Weighted): 0.44
+F1 Score (Weighted): 0.275
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.13333333333333333
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.16
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.517948717948718
+Precision (Weighted): 0.5738964303670185
+Recall (Weighted): 0.517948717948718
+F1 Score (Weighted): 0.5320427601730763
+###################################################
+
+Key: xgb_5_800_A_turbo
+Path: ../models/xgb_v1/5_800_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|088|002|003|000 | TP: 88, 94.62%; FN: 5; Total: 93
+1|038|014|012|003 | TP: 14, 20.9%; FN: 53; Total: 67
+2|007|004|012|002 | TP: 12, 48.0%; FN: 13; Total: 25
+3|001|001|006|002 | TP: 2, 20.0%; FN: 8; Total: 10
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.6567164179104478
+Recall (Weighted): 0.946236559139785
+F1 Score (Weighted): 0.7753303964757708
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6666666666666666
+Recall (Weighted): 0.208955223880597
+F1 Score (Weighted): 0.3181818181818181
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.36363636363636365
+Recall (Weighted): 0.48
+F1 Score (Weighted): 0.41379310344827586
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2857142857142857
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.23529411764705882
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5948717948717949
+Precision (Weighted): 0.6035351050276424
+Recall (Weighted): 0.5948717948717949
+F1 Score (Weighted): 0.5442137305287487
+###################################################
+
+Key: bert_5_800_B_turbo
+Path: ../models/bert_v1/5_800_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|070|027|031|006 | TP: 70, 52.24%; FN: 64; Total: 134
+1|002|006|010|003 | TP: 6, 28.57%; FN: 15; Total: 21
+2|002|004|019|008 | TP: 19, 57.58%; FN: 14; Total: 33
+3|000|001|001|005 | TP: 5, 71.43%; FN: 2; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9459459459459459
+Recall (Weighted): 0.5223880597014925
+F1 Score (Weighted): 0.673076923076923
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.15789473684210525
+Recall (Weighted): 0.2857142857142857
+F1 Score (Weighted): 0.2033898305084746
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3114754098360656
+Recall (Weighted): 0.5757575757575758
+F1 Score (Weighted): 0.4042553191489362
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.22727272727272727
+Recall (Weighted): 0.7142857142857143
+F1 Score (Weighted): 0.3448275862068965
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5128205128205128
+Precision (Weighted): 0.7279084299791806
+Recall (Weighted): 0.5128205128205128
+F1 Score (Weighted): 0.5652190398376862
+###################################################
+
+Key: xgb_5_800_B_turbo
+Path: ../models/xgb_v1/5_800_B_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|116|007|010|001 | TP: 116, 86.57%; FN: 18; Total: 134
+1|005|006|008|002 | TP: 6, 28.57%; FN: 15; Total: 21
+2|005|010|016|002 | TP: 16, 48.48%; FN: 17; Total: 33
+3|000|004|001|002 | TP: 2, 28.57%; FN: 5; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9206349206349206
+Recall (Weighted): 0.8656716417910447
+F1 Score (Weighted): 0.8923076923076922
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.2222222222222222
+Recall (Weighted): 0.2857142857142857
+F1 Score (Weighted): 0.25
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.45714285714285713
+Recall (Weighted): 0.48484848484848486
+F1 Score (Weighted): 0.4705882352941177
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2857142857142857
+Recall (Weighted): 0.2857142857142857
+F1 Score (Weighted): 0.2857142857142857
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.717948717948718
+Precision (Weighted): 0.7441921041921041
+Recall (Weighted): 0.717948717948718
+F1 Score (Weighted): 0.7299930386355725
+###################################################
+
+Key: bert_5_800_C_turbo
+Path: ../models/bert_v1/5_800_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|070|005|035|016 | TP: 70, 55.56%; FN: 56; Total: 126
+1|002|003|013|009 | TP: 3, 11.11%; FN: 24; Total: 27
+2|002|000|017|016 | TP: 17, 48.57%; FN: 18; Total: 35
+3|000|000|001|006 | TP: 6, 85.71%; FN: 1; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9459459459459459
+Recall (Weighted): 0.5555555555555556
+F1 Score (Weighted): 0.7000000000000001
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.375
+Recall (Weighted): 0.1111111111111111
+F1 Score (Weighted): 0.17142857142857143
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.25757575757575757
+Recall (Weighted): 0.4857142857142857
+F1 Score (Weighted): 0.3366336633663366
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.1276595744680851
+Recall (Weighted): 0.8571428571428571
+F1 Score (Weighted): 0.2222222222222222
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.49230769230769234
+Precision (Weighted): 0.7139638857723964
+Recall (Weighted): 0.49230769230769234
+F1 Score (Weighted): 0.5444425907792245
+###################################################
+
+Key: xgb_5_800_C_turbo
+Path: ../models/xgb_v1/5_800_C_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|094|031|000|001 | TP: 94, 74.6%; FN: 32; Total: 126
+1|008|006|006|007 | TP: 6, 22.22%; FN: 21; Total: 27
+2|004|017|007|007 | TP: 7, 20.0%; FN: 28; Total: 35
+3|001|001|000|005 | TP: 5, 71.43%; FN: 2; Total: 7
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8785046728971962
+Recall (Weighted): 0.746031746031746
+F1 Score (Weighted): 0.8068669527896996
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.10909090909090909
+Recall (Weighted): 0.2222222222222222
+F1 Score (Weighted): 0.14634146341463414
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5384615384615384
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.2916666666666667
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.7142857142857143
+F1 Score (Weighted): 0.37037037037037035
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5743589743589743
+Precision (Weighted): 0.6883753701366929
+Recall (Weighted): 0.5743589743589743
+F1 Score (Weighted): 0.6072686230237087
+###################################################
+
+Key: bert_5_800_D_turbo
+Path: ../models/bert_v1/5_800_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|074|010|016|007 | TP: 74, 69.16%; FN: 33; Total: 107
+1|008|011|017|019 | TP: 11, 20.0%; FN: 44; Total: 55
+2|000|000|002|011 | TP: 2, 15.38%; FN: 11; Total: 13
+3|000|002|004|014 | TP: 14, 70.0%; FN: 6; Total: 20
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9024390243902439
+Recall (Weighted): 0.6915887850467289
+F1 Score (Weighted): 0.7830687830687831
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.4782608695652174
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.28205128205128205
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.05128205128205128
+Recall (Weighted): 0.15384615384615385
+F1 Score (Weighted): 0.07692307692307693
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.27450980392156865
+Recall (Weighted): 0.7
+F1 Score (Weighted): 0.3943661971830986
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.517948717948718
+Precision (Weighted): 0.661652236825339
+Recall (Weighted): 0.517948717948718
+F1 Score (Weighted): 0.5548128422812425
+###################################################
+
+Key: xgb_5_800_D_turbo
+Path: ../models/xgb_v1/5_800_D_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|093|003|011|000 | TP: 93, 86.92%; FN: 14; Total: 107
+1|021|019|014|001 | TP: 19, 34.55%; FN: 36; Total: 55
+2|002|005|006|000 | TP: 6, 46.15%; FN: 7; Total: 13
+3|000|003|013|004 | TP: 4, 20.0%; FN: 16; Total: 20
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8017241379310345
+Recall (Weighted): 0.8691588785046729
+F1 Score (Weighted): 0.8340807174887892
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6333333333333333
+Recall (Weighted): 0.34545454545454546
+F1 Score (Weighted): 0.4470588235294118
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.13636363636363635
+Recall (Weighted): 0.46153846153846156
+F1 Score (Weighted): 0.21052631578947364
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.8
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.32000000000000006
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6256410256410256
+Precision (Weighted): 0.7096950941778526
+Recall (Weighted): 0.6256410256410256
+F1 Score (Weighted): 0.6306241752342628
+###################################################
+
+Key: bert_5_800_E_turbo
+Path: ../models/bert_v1/5_800_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|037|043|033|003 | TP: 37, 31.9%; FN: 79; Total: 116
+1|000|008|020|002 | TP: 8, 26.67%; FN: 22; Total: 30
+2|004|006|025|009 | TP: 25, 56.82%; FN: 19; Total: 44
+3|000|000|002|003 | TP: 3, 60.0%; FN: 2; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9024390243902439
+Recall (Weighted): 0.31896551724137934
+F1 Score (Weighted): 0.4713375796178344
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.14035087719298245
+Recall (Weighted): 0.26666666666666666
+F1 Score (Weighted): 0.1839080459770115
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.3125
+Recall (Weighted): 0.5681818181818182
+F1 Score (Weighted): 0.40322580645161293
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.17647058823529413
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.2727272727272727
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.37435897435897436
+Precision (Weighted): 0.6334656722370987
+Recall (Weighted): 0.37435897435897436
+F1 Score (Weighted): 0.40665626903839214
+###################################################
+
+Key: xgb_5_800_E_turbo
+Path: ../models/xgb_v1/5_800_E_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|103|009|004|000 | TP: 103, 88.79%; FN: 13; Total: 116
+1|010|012|008|000 | TP: 12, 40.0%; FN: 18; Total: 30
+2|017|006|017|004 | TP: 17, 38.64%; FN: 27; Total: 44
+3|000|001|003|001 | TP: 1, 20.0%; FN: 4; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7923076923076923
+Recall (Weighted): 0.8879310344827587
+F1 Score (Weighted): 0.8373983739837397
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.42857142857142855
+Recall (Weighted): 0.4
+F1 Score (Weighted): 0.4137931034482759
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.53125
+Recall (Weighted): 0.38636363636363635
+F1 Score (Weighted): 0.4473684210526316
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.2
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.20000000000000004
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.6820512820512821
+Precision (Weighted): 0.6622555649478727
+Recall (Weighted): 0.6820512820512821
+F1 Score (Weighted): 0.6678780257019378
+###################################################
+
+Key: bert_5_800_F_turbo
+Path: ../models/bert_v1/5_800_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|088|004|034|004 | TP: 88, 67.69%; FN: 42; Total: 130
+1|008|000|018|002 | TP: 0, 0.0%; FN: 28; Total: 28
+2|003|000|025|004 | TP: 25, 78.12%; FN: 7; Total: 32
+3|000|000|004|001 | TP: 1, 20.0%; FN: 4; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.8888888888888888
+Recall (Weighted): 0.676923076923077
+F1 Score (Weighted): 0.7685589519650655
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.30864197530864196
+Recall (Weighted): 0.78125
+F1 Score (Weighted): 0.44247787610619466
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.09090909090909091
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.12500000000000003
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.5846153846153846
+Precision (Weighted): 0.6455725344614233
+Recall (Weighted): 0.5846153846153846
+F1 Score (Weighted): 0.5881895168761884
+###################################################
+
+Key: xgb_5_800_F_turbo
+Path: ../models/xgb_v1/5_800_F_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|123|004|003|000 | TP: 123, 94.62%; FN: 7; Total: 130
+1|024|001|001|002 | TP: 1, 3.57%; FN: 27; Total: 28
+2|011|005|013|003 | TP: 13, 40.62%; FN: 19; Total: 32
+3|001|001|003|000 | TP: 0, 0.0%; FN: 5; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.7735849056603774
+Recall (Weighted): 0.9461538461538461
+F1 Score (Weighted): 0.8512110726643598
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.09090909090909091
+Recall (Weighted): 0.03571428571428571
+F1 Score (Weighted): 0.05128205128205127
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.65
+Recall (Weighted): 0.40625
+F1 Score (Weighted): 0.5000000000000001
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.0
+Recall (Weighted): 0.0
+F1 Score (Weighted): 0.0
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.7025641025641025
+Precision (Weighted): 0.6354435501605313
+Recall (Weighted): 0.7025641025641025
+F1 Score (Weighted): 0.6568889070885345
+###################################################
+
+Key: bert_5_1600_A_turbo
+Path: ../models/bert_v1/5_1600_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|082|036|025|016 | TP: 82, 51.57%; FN: 77; Total: 159
+1|001|002|003|005 | TP: 2, 18.18%; FN: 9; Total: 11
+2|000|000|007|013 | TP: 7, 35.0%; FN: 13; Total: 20
+3|000|002|000|003 | TP: 3, 60.0%; FN: 2; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9879518072289156
+Recall (Weighted): 0.5157232704402516
+F1 Score (Weighted): 0.6776859504132231
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.05
+Recall (Weighted): 0.18181818181818182
+F1 Score (Weighted): 0.07843137254901962
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2
+Recall (Weighted): 0.35
+F1 Score (Weighted): 0.2545454545454545
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.08108108108108109
+Recall (Weighted): 0.6
+F1 Score (Weighted): 0.14285714285714288
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.48205128205128206
+Precision (Weighted): 0.8309730397682206
+Recall (Weighted): 0.48205128205128206
+F1 Score (Weighted): 0.5867692616355717
+###################################################
+
+Key: xgb_5_1600_A_turbo
+Path: ../models/xgb_v1/5_1600_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|122|027|008|002 | TP: 122, 76.73%; FN: 37; Total: 159
+1|002|004|004|001 | TP: 4, 36.36%; FN: 7; Total: 11
+2|001|009|010|000 | TP: 10, 50.0%; FN: 10; Total: 20
+3|000|001|003|001 | TP: 1, 20.0%; FN: 4; Total: 5
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.976
+Recall (Weighted): 0.7672955974842768
+F1 Score (Weighted): 0.8591549295774649
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.0975609756097561
+Recall (Weighted): 0.36363636363636365
+F1 Score (Weighted): 0.15384615384615385
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.4
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.4444444444444445
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.2
+F1 Score (Weighted): 0.22222222222222224
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.7025641025641025
+Precision (Weighted): 0.8487547217010631
+Recall (Weighted): 0.7025641025641025
+F1 Score (Weighted): 0.760502264077562
+###################################################
+
+Key: bert_5_3200_A_turbo
+Path: ../models/bert_v1/5_3200_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|068|030|014|013 | TP: 68, 54.4%; FN: 57; Total: 125
+1|003|017|001|020 | TP: 17, 41.46%; FN: 24; Total: 41
+2|000|005|004|016 | TP: 4, 16.0%; FN: 21; Total: 25
+3|000|000|001|003 | TP: 3, 75.0%; FN: 1; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9577464788732394
+Recall (Weighted): 0.544
+F1 Score (Weighted): 0.693877551020408
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.3269230769230769
+Recall (Weighted): 0.4146341463414634
+F1 Score (Weighted): 0.3655913978494624
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.2
+Recall (Weighted): 0.16
+F1 Score (Weighted): 0.17777777777777778
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.057692307692307696
+Recall (Weighted): 0.75
+F1 Score (Weighted): 0.10714285714285714
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.4717948717948718
+Precision (Weighted): 0.7095021807372835
+Recall (Weighted): 0.4717948717948718
+F1 Score (Weighted): 0.546651061858435
+###################################################
+
+Key: xgb_5_3200_A_turbo
+Path: ../models/xgb_v1/5_3200_A_turbo/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|114|006|004|001 | TP: 114, 91.2%; FN: 11; Total: 125
+1|006|026|006|003 | TP: 26, 63.41%; FN: 15; Total: 41
+2|001|010|012|002 | TP: 12, 48.0%; FN: 13; Total: 25
+3|001|000|001|002 | TP: 2, 50.0%; FN: 2; Total: 4
+-------------------------------------
+Performance for category: 0
+Precision (Weighted): 0.9344262295081968
+Recall (Weighted): 0.912
+F1 Score (Weighted): 0.9230769230769231
+------------------------------------------
+Performance for category: 1
+Precision (Weighted): 0.6190476190476191
+Recall (Weighted): 0.6341463414634146
+F1 Score (Weighted): 0.6265060240963854
+------------------------------------------
+Performance for category: 2
+Precision (Weighted): 0.5217391304347826
+Recall (Weighted): 0.48
+F1 Score (Weighted): 0.4999999999999999
+------------------------------------------
+Performance for category: 3
+Precision (Weighted): 0.25
+Recall (Weighted): 0.5
+F1 Score (Weighted): 0.3333333333333333
+------------------------------------------
+Number of Samples: 195
+Accuracy: 0.7897435897435897
+Precision (Weighted): 0.8011677401556234
+Recall (Weighted): 0.7897435897435897
+F1 Score (Weighted): 0.7943830549020541
+###################################################
+
