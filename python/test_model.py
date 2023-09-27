@@ -266,7 +266,9 @@ def _update_state(config:Configuration, execution:Dict[str, Union[AnswersForQues
         execution (Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]): A dictionary containing details about the execution.
         filename (str): The name or identifier of the file where the execution details will be appended
     """
-    with open(config.get_path_for_results_file(filename), 'a') as file:
+    path = config.get_path_for_results_file(filename)
+    mode = 'a' if os.path.exists(path) else 'w'
+    with open(path, mode) as file:
         file.write(f"{execution['training_data_source']}:{execution['test_data_source']}\n")
 
 
