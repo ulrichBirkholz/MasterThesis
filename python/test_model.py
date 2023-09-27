@@ -236,11 +236,6 @@ def _cleanup(config:Configuration, executions:List[Dict[str, Union[AnswersForQue
         executions (List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]): Consolidations of various pieces of information relevant for the model's executions
         question_ids (List[str]): Ids of all questions
     """
-    base_folder = config.get_results_root_path()
-    if not os.path.exists(base_folder):
-        os.makedirs(base_folder, exist_ok=True)
-        return
-
     for execution in executions:
         training_data_source = execution["training_data_source"]
         test_data_source = execution["test_data_source"]
@@ -266,9 +261,7 @@ def _update_state(config:Configuration, execution:Dict[str, Union[AnswersForQues
         execution (Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]): A dictionary containing details about the execution.
         filename (str): The name or identifier of the file where the execution details will be appended
     """
-    path = config.get_path_for_results_file(filename)
-    mode = 'a' if os.path.exists(path) else 'w'
-    with open(path, mode) as file:
+    with open(config.get_path_for_results_file(filename), 'a') as file:
         file.write(f"{execution['training_data_source']}:{execution['test_data_source']}\n")
 
 
@@ -287,8 +280,13 @@ def _get_state(config:Configuration, filename:str) -> List[Dict[str, str]]:
         List[Dict[str, str]]: A list of dictionaries, where each dictionary represents a finished execution 
             with details on the training and testing data sources
     """
+
+    path = config.get_path_for_results_file(filename)
+    if not os.path.exists(path):
+        return []
+
     finished_executions = []
-    with open(config.get_path_for_results_file(filename), 'r') as file:
+    with open(path, 'r') as file:
         for line in file:
             training_data_source, test_data_source = line.strip().split(",")  # Split the line by comma
             finished_executions.append({
@@ -303,8 +301,10 @@ if __name__ == "__main__":
     args = setup_args()
     args_dict = vars(args)
     config = Configuration()
-    state_file = "test_status.txt"
 
+    os.makedirs(config.get_results_root_path(), exist_ok=True)
+    
+    state_file = "test_status.txt"
     finished_executions = _get_state(config, state_file)
 
     questions = get_questions(config.get_questions_path(), False)
