@@ -182,7 +182,7 @@ def _already_executed(finished_executions:List[Dict[str, str]], training_data_so
     for finished_execution in finished_executions:
         if finished_execution["training_data_source"] == training_data_source and finished_execution["test_data_source"] == test_data_source:
             return True
-        return False
+    return False
 
 
 def _get_executions_for_data_source(finished_executions:List[Dict[str, str]], model_data_source:str, model_score_types:Dict[str, int], available_data_sources:List[Dict[str, Union[str, Dict[str, int]]]], config:Configuration) -> List[Dict[str, Union[AnswersForQuestion, str, Dict[str, int]]]]:
