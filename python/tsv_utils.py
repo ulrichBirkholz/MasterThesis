@@ -162,7 +162,7 @@ def get_answers(file:str) -> List[Answer]:
     Notes:
         - The TSV file should contain a header, which this function will skip
         - The expected format for the columns in the file is: 
-            QuestionId | AnswerId | Answer (Optional) | Score1 | Score2
+            QuestionId | Answer (Optional) | AnswerId | Score1 | Score2
     """
     answers = []
     with open(file, newline='', encoding='utf-8') as csvfile:

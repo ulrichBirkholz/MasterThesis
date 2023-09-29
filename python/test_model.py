@@ -82,7 +82,9 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
     if question.question_id not in answers_for_question:
             log.info(f"No answers to rate for question: {question}")
             return
+    
     answers = answers_for_question[question.question_id]
+    log.debug(f"Testing model {training_data_source} with {test_data_source} and {len(answers)} samples")
  
     cm_matrices = {}
     for batch in config.get_batches():
@@ -102,6 +104,7 @@ def _test_model(question: Question, execution:Dict[str, Union[AnswersForQuestion
             write_rated_answers_tsv(config.get_test_results_path("xgb", training_data_source, test_data_source, batch.size, batch_id), xgb_rated_answers, True)
 
     path_for_matrix = _get_matrix_filename(training_data_source, test_data_source, question.question_id)
+    log.debug(f"Update confusion matrix at: {path_for_matrix}")
     with open(config.get_path_for_results_file(path_for_matrix), "w") as file:
         json.dump(cm_matrices, file)
 
@@ -207,7 +210,7 @@ def _get_executions_for_data_source(finished_executions:List[Dict[str, str]], mo
         test_executions.append(_get_execution(model_data_source, f"{model_data_source}-training", config.get_samples_for_training_path(model_data_source), model_score_types))
     
     if model_data_source != "experts" and not _already_executed(finished_executions, model_data_source, "experts-training"):
-        test_executions.append(_get_execution(model_data_source, "experts-training", config.get_samples_for_training_path(model_data_source), model_score_types))
+        test_executions.append(_get_execution(model_data_source, "experts-training", config.get_samples_for_training_path("experts"), model_score_types))
     
     for data_source_info in available_data_sources:
         name = data_source_info["name"]
@@ -288,7 +291,7 @@ def _get_state(config:Configuration, filename:str) -> List[Dict[str, str]]:
     finished_executions = []
     with open(path, 'r') as file:
         for line in file:
-            training_data_source, test_data_source = line.strip().split(",")  # Split the line by comma
+            training_data_source, test_data_source = line.strip().split(":")
             finished_executions.append({
                 "training_data_source": training_data_source,
                 "test_data_source": test_data_source
