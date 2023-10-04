@@ -141,12 +141,12 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
     model, vectorizer = _load_components(path)
 
     answers = []
-    ratings = []
+    true_values = []
     for answer in answers_for_question.answers:
-        rating = int(answer.score_2)
-        assert rating >= 0 and rating < 4, f"Invalid rating {rating} was detected"
+        original_value = int(getattr(answer, f'score_{score_type}'))
+        assert original_value >= 0 and original_value < 4, f"Invalid rating {original_value} was detected"
         answers.append(answer.answer)
-        ratings.append(rating)
+        true_values.append(original_value)
 
     predictions = model.predict(vectorizer.transform(answers))
 
@@ -155,5 +155,5 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
         original_value = int(getattr(answer, f'score_{score_type}'))
         results.append(Answer(answer.question_id, answer.answer, answer.answer_id, prediction, original_value))
 
-    cm = confusion_matrix(ratings, predictions)
+    cm = confusion_matrix(true_values, predictions)
     return results, cm.tolist()
