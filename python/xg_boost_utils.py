@@ -150,10 +150,10 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
 
     predictions = model.predict(vectorizer.transform(answers))
 
+    results = []
     for answer, prediction in zip(answers_for_question.answers, predictions):
         original_value = int(getattr(answer, f'score_{score_type}'))
-        answer.score_1 = prediction
-        answer.score_2 = original_value
+        results.append(Answer(answer.question_id, answer.answer, answer.answer_id, prediction, original_value))
 
     cm = confusion_matrix(ratings, predictions)
-    return answers_for_question.answers, cm.tolist()
+    return results, cm.tolist()

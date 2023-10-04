@@ -86,57 +86,60 @@ if __name__ == "__main__":
 
                 description_file = os.path.join(model_dir_path, "description.json")
 
-                if os.path.exists(description_file):    
-                    # Open and read the JSON file
-                    with open(description_file, 'r') as json_file:
-                        try:
-                            data = json.load(json_file)
-                        except Exception as e:
-                            log.error(f"Unable to parse file: {description_file}, error: {e}")
-                            continue
+                if not os.path.exists(description_file):
+                    continue
+
+                log.debug(f"Analyse description file: {description_file}")
+                # Open and read the JSON file
+                with open(description_file, 'r') as json_file:
+                    try:
+                        data = json.load(json_file)
+                    except Exception as e:
+                        log.error(f"Unable to parse file: {description_file}, error: {e}")
+                        continue
+                
+                index = data['base_path'].find('_')
+                data_source = data['base_path'][index:]
+                model_id = _generate_model_id(version_dir, data['question_id'], data_source)
+
+                # Write the path and contents of the JSON file to the output file
+                file.write(f"Path: {model_dir_path}\n")
+                file.write(f"Question Id: {data['question_id']} batch size: {data['batch_size']} variant: {data['batch_variant_id']}\n")
+                file.write(f"Base Path: {data['base_path']}\n")
+                file.write(f"Id: {model_id}\n")
+                file.write(f"\nAnswers: \n")
+
+                add_model_to_heatmap = True
+                add_model_to_heatmap &= (not args.version_dir or args.version_dir == version_dir)
+                add_model_to_heatmap &= (not args.question_id or int(args.question_id) == int(data['question_id']))
+                add_model_to_heatmap &= (not args.data_source or args.data_source == data_source)
+                add_model_to_heatmap &= (not args.variant_id or args.variant_id == data['batch_variant_id'])
+                add_model_to_heatmap &= (not args.batch_size or args.batch_size == data['batch_size'])
+
+                if add_model_to_heatmap:
+                    for answer in data['answer_batch']:
+                        data_frame["answer_ids"].append(answer['answer_id'])
+                        data_frame["model_identifier"].append(model_id)
+
+                for i in range(0, len(data['answer_batch']), 4):
+                    group = data['answer_batch'][i:i+4]
+
+                    # Write ids side by side
+                    for answer in group:
+                        file.write(f"id: {answer['answer_id']}\t")
+                    file.write("\n")
                     
-                    index = data['base_path'].find('_')
-                    data_source = data['base_path'][index:]
-                    model_id = _generate_model_id(version_dir, data['question_id'], data_source)
+                    # Write score_1 side by side
+                    for answer in group:
+                        file.write(f"score_1: {answer['score_1']}{_tabs_for_alignment(answer['answer_id'])}")
+                    file.write("\n")
 
-                    # Write the path and contents of the JSON file to the output file
-                    file.write(f"Path: {model_dir_path}\n")
-                    file.write(f"Question Id: {data['question_id']} batch size: {data['batch_size']} variant: {data['batch_variant_id']}\n")
-                    file.write(f"Base Path: {data['base_path']}\n")
-                    file.write(f"Id: {model_id}\n")
-                    file.write(f"\nAnswers: \n")
+                    # Write score_2 side by side
+                    for answer in group:
+                        file.write(f"score_2: {answer['score_2']}{_tabs_for_alignment(answer['answer_id'])}")
+                    file.write("\n")
 
-                    add_model_to_heatmap = True
-                    add_model_to_heatmap &= (not args.version_dir or args.version_dir == version_dir)
-                    add_model_to_heatmap &= (not args.question_id or int(args.question_id) == int(data['question_id']))
-                    add_model_to_heatmap &= (not args.data_source or args.data_source == data_source)
-                    add_model_to_heatmap &= (not args.variant_id or args.variant_id == data['batch_variant_id'])
-                    add_model_to_heatmap &= (not args.batch_size or args.batch_size == data['batch_size'])
-
-                    if add_model_to_heatmap:
-                        for answer in data['answer_batch']:
-                            data_frame["answer_ids"].append(answer['answer_id'])
-                            data_frame["model_identifier"].append(model_id)
-
-                    for i in range(0, len(data['answer_batch']), 4):
-                        group = data['answer_batch'][i:i+4]
-
-                        # Write ids side by side
-                        for answer in group:
-                            file.write(f"id: {answer['answer_id']}\t")
-                        file.write("\n")
-                        
-                        # Write score_1 side by side
-                        for answer in group:
-                            file.write(f"score_1: {answer['score_1']}{_tabs_for_alignment(answer['answer_id'])}")
-                        file.write("\n")
-
-                        # Write score_2 side by side
-                        for answer in group:
-                            file.write(f"score_2: {answer['score_2']}{_tabs_for_alignment(answer['answer_id'])}")
-                        file.write("\n")
-
-                        file.write("\n")
+                    file.write("\n")
 
                 file.write(f"###############################################\n\n")
     

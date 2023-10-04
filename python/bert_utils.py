@@ -168,6 +168,7 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
 
     predictions = []
     true_values = []
+    results = []
     for answer in answers_for_question.answers:
         encodings = tokenizer(answers_for_question.question, answer.answer, truncation=True, padding='max_length', max_length=MAX_TOKEN_LENGTH, return_tensors='pt')
         input_ids = encodings['input_ids'].to(device)
@@ -179,11 +180,10 @@ def test_model(path:str, answers_for_question:AnswersForQuestion, score_type:int
         result = int(torch.argmax(outputs.logits, dim=1).item())
         original_value = int(getattr(answer, f'score_{score_type}'))
 
-        answer.score_1 = result
-        answer.score_2 = original_value
+        results.append(Answer(answer.question_id, answer.answer, answer.answer_id, result, original_value))
 
         predictions.append(result)
         true_values.append(original_value)
 
     cm = confusion_matrix(true_values, predictions)
-    return answers_for_question.answers, cm.tolist()
+    return results, cm.tolist()
