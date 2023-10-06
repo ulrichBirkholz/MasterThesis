@@ -1,0 +1,2285 @@
+Key: bert_6_50_A_experts
+Path: ../models/bert_v1/6_50_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|025|422|346|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.005747126436781609
+Recall: 0.4
+F1 Score: 0.011331444759206798
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 3.6009564140235645e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 7.09990273133258e-05
+###################################################
+
+Key: xgb_6_50_A_experts
+Path: ../models/xgb_v1/6_50_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|496|293|001|003 | TP: 3, 0.38%; FN: 790; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.0037831021437578815
+F1 Score: 0.007537688442211054
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.0037593984962406013
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.0037593984962406013
+F1 Score (Weighted): 0.007490459817886423
+###################################################
+
+Key: bert_6_50_B_experts
+Path: ../models/bert_v1/6_50_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|026|477|290|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.00684931506849315
+Recall: 0.4
+F1 Score: 0.013468013468013466
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 4.291550794795207e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 8.438604929832999e-05
+###################################################
+
+Key: xgb_6_50_B_experts
+Path: ../models/xgb_v1/6_50_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|516|189|045|043 | TP: 43, 5.42%; FN: 750; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.05422446406052964
+F1 Score: 0.1028708133971292
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.05388471177944862
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.05388471177944862
+F1 Score (Weighted): 0.10222625942847549
+###################################################
+
+Key: bert_6_50_C_experts
+Path: ../models/bert_v1/6_50_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|025|431|337|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0058997050147492625
+Recall: 0.4
+F1 Score: 0.011627906976744186
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 3.696557026785252e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 7.285656000466282e-05
+###################################################
+
+Key: xgb_6_50_C_experts
+Path: ../models/xgb_v1/6_50_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|643|051|090|009 | TP: 9, 1.13%; FN: 784; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.011349306431273645
+F1 Score: 0.022443890274314215
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.011278195488721804
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.011278195488721804
+F1 Score (Weighted): 0.02230326439540247
+###################################################
+
+Key: bert_6_50_D_experts
+Path: ../models/bert_v1/6_50_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|002|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
+3|063|338|392|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.007594936708860759
+Recall: 0.6
+F1 Score: 0.014999999999999998
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.0037593984962406013
+Precision (Weighted): 4.758732273722281e-05
+Recall (Weighted): 0.0037593984962406013
+F1 Score (Weighted): 9.398496240601502e-05
+###################################################
+
+Key: xgb_6_50_D_experts
+Path: ../models/xgb_v1/6_50_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|644|049|013|087 | TP: 87, 10.97%; FN: 706; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.10970996216897856
+F1 Score: 0.19772727272727272
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.10902255639097744
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.10902255639097744
+F1 Score (Weighted): 0.1964883800410116
+###################################################
+
+Key: bert_6_50_E_experts
+Path: ../models/bert_v1/6_50_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|002|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
+3|078|303|412|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.007228915662650603
+Recall: 0.6
+F1 Score: 0.014285714285714287
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.0037593984962406013
+Precision (Weighted): 4.529395778603134e-05
+Recall (Weighted): 0.0037593984962406013
+F1 Score (Weighted): 8.950948800572861e-05
+###################################################
+
+Key: xgb_6_50_E_experts
+Path: ../models/xgb_v1/6_50_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|631|002|160|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: bert_6_50_F_experts
+Path: ../models/bert_v1/6_50_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|019|452|322|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.006172839506172839
+Recall: 0.4
+F1 Score: 0.012158054711246199
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 3.867693926173458e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 7.617828766444987e-05
+###################################################
+
+Key: xgb_6_50_F_experts
+Path: ../models/xgb_v1/6_50_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|000|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|602|191|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: bert_6_100_A_experts
+Path: ../models/bert_v1/6_100_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|660|118|015|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_100_A_experts
+Path: ../models/xgb_v1/6_100_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|459|200|012|122 | TP: 122, 15.38%; FN: 671; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.15384615384615385
+F1 Score: 0.2666666666666667
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.15288220551378445
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.15288220551378445
+F1 Score (Weighted): 0.2649958228905598
+###################################################
+
+Key: bert_6_100_B_experts
+Path: ../models/bert_v1/6_100_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|540|230|023|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_100_B_experts
+Path: ../models/xgb_v1/6_100_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|348|179|055|211 | TP: 211, 26.61%; FN: 582; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.266078184110971
+F1 Score: 0.4203187250996016
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.2644110275689223
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.2644110275689223
+F1 Score (Weighted): 0.41768514912779964
+###################################################
+
+Key: bert_6_100_C_experts
+Path: ../models/bert_v1/6_100_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|590|191|012|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_100_C_experts
+Path: ../models/xgb_v1/6_100_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|001|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|551|044|001|197 | TP: 197, 24.84%; FN: 596; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.9949494949494949
+Recall: 0.2484237074401009
+F1 Score: 0.3975782038345106
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.24686716791979949
+Precision (Weighted): 0.9887154755575808
+Recall (Weighted): 0.24686716791979949
+F1 Score (Weighted): 0.39508711233178806
+###################################################
+
+Key: bert_6_100_D_experts
+Path: ../models/bert_v1/6_100_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|642|133|018|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_100_D_experts
+Path: ../models/xgb_v1/6_100_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|519|188|001|085 | TP: 85, 10.72%; FN: 708; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.10718789407313997
+F1 Score: 0.19362186788154898
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.10651629072681704
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.10651629072681704
+F1 Score (Weighted): 0.19240869828329363
+###################################################
+
+Key: bert_6_100_E_experts
+Path: ../models/bert_v1/6_100_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|603|180|010|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_100_E_experts
+Path: ../models/xgb_v1/6_100_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|280|508|001|004 | TP: 4, 0.5%; FN: 789; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.005044136191677175
+F1 Score: 0.010037641154328734
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.005012531328320802
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.005012531328320802
+F1 Score (Weighted): 0.00997474866589309
+###################################################
+
+Key: bert_6_100_F_experts
+Path: ../models/bert_v1/6_100_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|000|001|000 | TP: 1, 20.0%; FN: 4; Total: 5
+3|699|045|049|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.02
+Recall: 0.2
+F1 Score: 0.03636363636363636
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.0012531328320802004
+Precision (Weighted): 0.00012531328320802005
+Recall (Weighted): 0.0012531328320802004
+F1 Score (Weighted): 0.00022784233310549102
+###################################################
+
+Key: xgb_6_100_F_experts
+Path: ../models/xgb_v1/6_100_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|651|034|021|087 | TP: 87, 10.97%; FN: 706; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.10970996216897856
+F1 Score: 0.19772727272727272
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.10902255639097744
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.10902255639097744
+F1 Score (Weighted): 0.1964883800410116
+###################################################
+
+Key: bert_6_200_A_experts
+Path: ../models/bert_v1/6_200_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|788|005|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_A_experts
+Path: ../models/xgb_v1/6_200_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|002|002|001|000 | TP: 1, 20.0%; FN: 4; Total: 5
+3|408|272|105|008 | TP: 8, 1.01%; FN: 785; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.009433962264150943
+Recall: 0.2
+F1 Score: 0.018018018018018018
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.01008827238335435
+F1 Score: 0.019975031210986267
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.011278195488721804
+Precision (Weighted): 0.993793445878848
+Recall (Weighted): 0.011278195488721804
+F1 Score (Weighted): 0.019962769223561654
+###################################################
+
+Key: bert_6_200_B_experts
+Path: ../models/bert_v1/6_200_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|792|001|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_B_experts
+Path: ../models/xgb_v1/6_200_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|435|284|001|073 | TP: 73, 9.21%; FN: 720; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.09205548549810845
+F1 Score: 0.16859122401847576
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.09147869674185463
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.09147869674185463
+F1 Score (Weighted): 0.16753488802838506
+###################################################
+
+Key: bert_6_200_C_experts
+Path: ../models/bert_v1/6_200_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|781|012|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_C_experts
+Path: ../models/xgb_v1/6_200_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|504|063|023|203 | TP: 203, 25.6%; FN: 590; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.25598991172761665
+F1 Score: 0.40763052208835343
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.2543859649122807
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.2543859649122807
+F1 Score (Weighted): 0.4050764461354189
+###################################################
+
+Key: bert_6_200_D_experts
+Path: ../models/bert_v1/6_200_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|792|001|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_D_experts
+Path: ../models/xgb_v1/6_200_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|000|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|397|048|136|212 | TP: 212, 26.73%; FN: 581; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.9953051643192489
+Recall: 0.2673392181588903
+F1 Score: 0.4214711729622266
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.2656641604010025
+Precision (Weighted): 0.9890689164225118
+Recall (Weighted): 0.2656641604010025
+F1 Score (Weighted): 0.418830376139155
+###################################################
+
+Key: bert_6_200_E_experts
+Path: ../models/bert_v1/6_200_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|792|001|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_E_experts
+Path: ../models/xgb_v1/6_200_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|520|187|034|052 | TP: 52, 6.56%; FN: 741; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.06557377049180328
+F1 Score: 0.12307692307692307
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.06516290726817042
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.06516290726817042
+F1 Score (Weighted): 0.12230576441102756
+###################################################
+
+Key: bert_6_200_F_experts
+Path: ../models/bert_v1/6_200_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|791|002|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_200_F_experts
+Path: ../models/xgb_v1/6_200_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|586|127|008|072 | TP: 72, 9.08%; FN: 721; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.09079445145018916
+F1 Score: 0.1664739884393064
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.09022556390977443
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.09022556390977443
+F1 Score (Weighted): 0.16543091833630322
+###################################################
+
+Key: bert_6_400_A_experts
+Path: ../models/bert_v1/6_400_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000
+1|005|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+2|793|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_400_A_experts
+Path: ../models/xgb_v1/6_400_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|001|002|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|373|146|267|007 | TP: 7, 0.88%; FN: 786; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.007434944237918215
+Recall: 0.4
+F1 Score: 0.0145985401459854
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.008827238335435058
+F1 Score: 0.0175
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.011278195488721804
+Precision (Weighted): 0.9937809207032451
+Recall (Weighted): 0.011278195488721804
+F1 Score (Weighted): 0.01748182042697986
+###################################################
+
+Key: bert_6_400_B_experts
+Path: ../models/bert_v1/6_400_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|542|021|012|218 | TP: 218, 27.49%; FN: 575; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.27490542244640603
+F1 Score: 0.43125618199802174
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.2731829573934837
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.2731829573934837
+F1 Score (Weighted): 0.4285540755945254
+###################################################
+
+Key: xgb_6_400_B_experts
+Path: ../models/xgb_v1/6_400_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|401|276|029|087 | TP: 87, 10.97%; FN: 706; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.10970996216897856
+F1 Score: 0.19772727272727272
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.10902255639097744
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.10902255639097744
+F1 Score (Weighted): 0.1964883800410116
+###################################################
+
+Key: bert_6_400_C_experts
+Path: ../models/bert_v1/6_400_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|628|164|001|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_400_C_experts
+Path: ../models/xgb_v1/6_400_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|517|098|041|137 | TP: 137, 17.28%; FN: 656; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.17276166456494324
+F1 Score: 0.2946236559139785
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.17167919799498746
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.17167919799498746
+F1 Score (Weighted): 0.29277764303231196
+###################################################
+
+Key: bert_6_400_D_experts
+Path: ../models/bert_v1/6_400_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000
+1|005|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+2|793|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_400_D_experts
+Path: ../models/xgb_v1/6_400_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|002|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|535|131|040|087 | TP: 87, 10.97%; FN: 706; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.10970996216897856
+F1 Score: 0.19772727272727272
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.10902255639097744
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.10902255639097744
+F1 Score (Weighted): 0.1964883800410116
+###################################################
+
+Key: bert_6_400_E_experts
+Path: ../models/bert_v1/6_400_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000
+1|005|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+2|793|000|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+###################################################
+
+Key: xgb_6_400_E_experts
+Path: ../models/xgb_v1/6_400_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|359|331|032|071 | TP: 71, 8.95%; FN: 722; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.08953341740226986
+F1 Score: 0.16435185185185183
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.08897243107769423
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.08897243107769423
+F1 Score (Weighted): 0.16332207834400816
+###################################################
+
+Key: bert_6_400_F_experts
+Path: ../models/bert_v1/6_400_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|005|000|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|674|054|000|065 | TP: 65, 8.2%; FN: 728; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.08196721311475409
+F1 Score: 0.1515151515151515
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.08145363408521303
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.08145363408521303
+F1 Score (Weighted): 0.15056580846054526
+###################################################
+
+Key: xgb_6_400_F_experts
+Path: ../models/xgb_v1/6_400_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|002|002|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|291|233|110|159 | TP: 159, 20.05%; FN: 634; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.99375
+Recall: 0.2005044136191677
+F1 Score: 0.3336831059811123
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.19924812030075187
+Precision (Weighted): 0.9875234962406015
+Recall (Weighted): 0.19924812030075187
+F1 Score (Weighted): 0.33159235970303513
+###################################################
+
+Key: bert_6_800_A_experts
+Path: ../models/bert_v1/6_800_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|001|002|000|002 | TP: 0, 0.0%; FN: 5; Total: 5
+3|171|238|097|287 | TP: 287, 36.19%; FN: 506; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.9930795847750865
+Recall: 0.3619167717528373
+F1 Score: 0.5304990757855822
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.35964912280701755
+Precision (Weighted): 0.9868572816123354
+Recall (Weighted): 0.35964912280701755
+F1 Score (Weighted): 0.5271751467393067
+###################################################
+
+Key: xgb_6_800_A_experts
+Path: ../models/xgb_v1/6_800_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|390|059|149|195 | TP: 195, 24.59%; FN: 598; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.2459016393442623
+F1 Score: 0.3947368421052631
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.24436090225563908
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.24436090225563908
+F1 Score (Weighted): 0.39226355362089427
+###################################################
+
+Key: bert_6_800_B_experts
+Path: ../models/bert_v1/6_800_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|001|002|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|110|234|414|035 | TP: 35, 4.41%; FN: 758; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.004807692307692308
+Recall: 0.4
+F1 Score: 0.009501187648456057
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.044136191677175286
+F1 Score: 0.08454106280193238
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.046365914786967416
+Precision (Weighted): 0.9937644592249856
+Recall (Weighted): 0.046365914786967416
+F1 Score (Weighted): 0.08407088814558229
+###################################################
+
+Key: xgb_6_800_B_experts
+Path: ../models/xgb_v1/6_800_B_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|392|033|236|132 | TP: 132, 16.65%; FN: 661; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.1664564943253468
+F1 Score: 0.2854054054054054
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.16541353383458646
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.16541353383458646
+F1 Score (Weighted): 0.283617150985572
+###################################################
+
+Key: bert_6_800_C_experts
+Path: ../models/bert_v1/6_800_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|001|003|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|202|299|000|292 | TP: 292, 36.82%; FN: 501; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.9965870307167235
+Recall: 0.3682219419924338
+F1 Score: 0.5377532228360958
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.3659147869674185
+Precision (Weighted): 0.9903427510756413
+Recall (Weighted): 0.3659147869674185
+F1 Score (Weighted): 0.5343838417406316
+###################################################
+
+Key: xgb_6_800_C_experts
+Path: ../models/xgb_v1/6_800_C_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|440|078|038|237 | TP: 237, 29.89%; FN: 556; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.2988650693568726
+F1 Score: 0.4601941747572815
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.29699248120300753
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.29699248120300753
+F1 Score (Weighted): 0.4573107526096795
+###################################################
+
+Key: bert_6_800_D_experts
+Path: ../models/bert_v1/6_800_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|066|403|324|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.006134969325153374
+Recall: 0.4
+F1 Score: 0.012084592145015106
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.002506265664160401
+Precision (Weighted): 3.843965742577302e-05
+Recall (Weighted): 0.002506265664160401
+F1 Score (Weighted): 7.571799589608461e-05
+###################################################
+
+Key: xgb_6_800_D_experts
+Path: ../models/xgb_v1/6_800_D_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|002|002|000|001 | TP: 0, 0.0%; FN: 5; Total: 5
+3|319|183|149|142 | TP: 142, 17.91%; FN: 651; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 0.993006993006993
+Recall: 0.17906683480453972
+F1 Score: 0.3034188034188034
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.17794486215538846
+Precision (Weighted): 0.9867851446798815
+Recall (Weighted): 0.17794486215538846
+F1 Score (Weighted): 0.3015176830966304
+###################################################
+
+Key: bert_6_800_E_experts
+Path: ../models/bert_v1/6_800_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|003|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
+3|021|495|104|173 | TP: 173, 21.82%; FN: 620; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.018867924528301886
+Recall: 0.4
+F1 Score: 0.036036036036036036
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.21815889029003782
+F1 Score: 0.35817805383022777
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.21929824561403508
+Precision (Weighted): 0.9938525559180972
+Recall (Weighted): 0.21929824561403508
+F1 Score (Weighted): 0.3561596201347754
+###################################################
+
+Key: xgb_6_800_E_experts
+Path: ../models/xgb_v1/6_800_E_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|415|110|111|157 | TP: 157, 19.8%; FN: 636; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.19798234552332913
+F1 Score: 0.33052631578947367
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.19674185463659147
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.19674185463659147
+F1 Score (Weighted): 0.3284553488985622
+###################################################
+
+Key: bert_6_800_F_experts
+Path: ../models/bert_v1/6_800_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|000|001|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
+3|033|159|601|000 | TP: 0, 0.0%; FN: 793; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.006611570247933884
+Recall: 0.8
+F1 Score: 0.013114754098360656
+------------------------------------------
+Performance for category: 3
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.005012531328320802
+Precision (Weighted): 4.1425878746452913e-05
+Recall (Weighted): 0.005012531328320802
+F1 Score (Weighted): 8.217264472657052e-05
+###################################################
+
+Key: xgb_6_800_F_experts
+Path: ../models/xgb_v1/6_800_F_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|003|001|001|000 | TP: 1, 20.0%; FN: 4; Total: 5
+3|458|042|266|027 | TP: 27, 3.4%; FN: 766; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.003745318352059925
+Recall: 0.2
+F1 Score: 0.007352941176470588
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.034047919293820936
+F1 Score: 0.06585365853658537
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.03508771929824561
+Precision (Weighted): 0.9937578027465669
+Recall (Weighted): 0.03508771929824562
+F1 Score (Weighted): 0.06548711268846436
+###################################################
+
+Key: bert_6_1600_A_experts
+Path: ../models/bert_v1/6_1600_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|002|003|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|275|229|135|154 | TP: 154, 19.42%; FN: 639; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.19419924337957126
+F1 Score: 0.3252375923970433
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.19298245614035087
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.19298245614035087
+F1 Score (Weighted): 0.3231997628707461
+###################################################
+
+Key: xgb_6_1600_A_experts
+Path: ../models/xgb_v1/6_1600_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+0|000|000|000|000
+1|000|000|000|000
+2|004|001|000|000 | TP: 0, 0.0%; FN: 5; Total: 5
+3|328|154|211|100 | TP: 100, 12.61%; FN: 693; Total: 793
+-------------------------------------
+Performance for category: 0
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 1
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 2
+Precision: 0.0
+Recall: 0.0
+F1 Score: 0.0
+------------------------------------------
+Performance for category: 3
+Precision: 1.0
+Recall: 0.12610340479192939
+F1 Score: 0.22396416573348266
+------------------------------------------
+Number of Samples: 798
+Accuracy: 0.12531328320802004
+Precision (Weighted): 0.993734335839599
+Recall (Weighted): 0.12531328320802004
+F1 Score (Weighted): 0.22256088148703226
+###################################################
+
+Key: bert_6_3200_A_experts
+Path: ../models/bert_v1/6_3200_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+-------------------------------------
+Number of Samples: 0
+Accuracy: nan
+Precision (Weighted): nan
+Recall (Weighted): nan
+F1 Score (Weighted): nan
+###################################################
+
+Key: xgb_6_3200_A_experts
+Path: ../models/xgb_v1/6_3200_A_experts/
+-------------------------------------
+ | 0 | 1 | 2 | 3
+-------------------
+-------------------------------------
+Number of Samples: 0
+Accuracy: nan
+Precision (Weighted): nan
+Recall (Weighted): nan
+F1 Score (Weighted): nan
+###################################################
+
