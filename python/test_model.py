@@ -1,10 +1,7 @@
-from tsv_utils import get_questions
-from tsv_utils import get_answers_per_question
-from tsv_utils import write_rated_answers_tsv
+from tsv_utils import get_questions, get_answers_per_question, write_rated_answers_tsv, Question
 from bert_utils import test_model as bert_test_model, AnswersForQuestion
 from xg_boost_utils import test_model as xgb_test_model
 from config import Configuration
-from tsv_utils import Question
 from typing import Dict, Any, List, Union
 from config_logger import config_logger
 
