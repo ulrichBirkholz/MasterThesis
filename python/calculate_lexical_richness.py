@@ -201,7 +201,7 @@ class LRFigures:
                 log.debug(f"Plot color: {color} for question: {question_id} with i: {i}")
 
                 plt.plot(metric["labels"], metric["values"], f"{color}o")
-                x_label += f"\nEssey Set {question_id} is represented as {self._COLOR_NAMES[i]}"
+                x_label += f"\nEssay Set {question_id} is represented as {self._COLOR_NAMES[i]}"
                 i += 1
 
             plt.xlabel(x_label)
