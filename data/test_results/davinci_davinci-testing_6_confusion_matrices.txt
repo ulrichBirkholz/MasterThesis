@@ -8,6 +8,21 @@ Path: ../models/bert_v1/6_50_A_davinci/
 2|000|000|000|005 | TP: 0, 0.0%; FN: 5; Total: 5
 3|001|003|001|788 | TP: 788, 99.37%; FN: 5; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 000 & 005 \\
+    \hline
+    3 & 001 & 003 & 001 & 788 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -45,6 +60,21 @@ Path: ../models/xgb_v1/6_50_A_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|039|045|616|093 | TP: 93, 11.73%; FN: 700; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 039 & 045 & 616 & 093 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -81,6 +111,19 @@ Path: ../models/bert_v1/6_50_B_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|104|689|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 104 & 689 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -112,6 +155,21 @@ Path: ../models/xgb_v1/6_50_B_davinci/
 1|000|000|000|000
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|048|003|408|334 | TP: 334, 42.12%; FN: 459; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 048 & 003 & 408 & 334 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -149,6 +207,19 @@ Path: ../models/bert_v1/6_50_C_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|084|709|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 084 & 709 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -180,6 +251,21 @@ Path: ../models/xgb_v1/6_50_C_davinci/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|063|025|446|259 | TP: 259, 32.66%; FN: 534; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 063 & 025 & 446 & 259 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -218,6 +304,21 @@ Path: ../models/bert_v1/6_50_D_davinci/
 2|000|002|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
 3|001|303|489|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 002 & 003 & 000 \\
+    \hline
+    3 & 001 & 303 & 489 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -255,6 +356,21 @@ Path: ../models/xgb_v1/6_50_D_davinci/
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|046|078|119|550 | TP: 550, 69.36%; FN: 243; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 046 & 078 & 119 & 550 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -291,6 +407,19 @@ Path: ../models/bert_v1/6_50_E_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|145|648|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 145 & 648 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -322,6 +451,21 @@ Path: ../models/xgb_v1/6_50_E_davinci/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|028|034|372|359 | TP: 359, 45.27%; FN: 434; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 028 & 034 & 372 & 359 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -360,6 +504,21 @@ Path: ../models/bert_v1/6_50_F_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|004|107|682|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 004 & 107 & 682 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -396,6 +555,21 @@ Path: ../models/xgb_v1/6_50_F_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|212|008|267|306 | TP: 306, 38.59%; FN: 487; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 212 & 008 & 267 & 306 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -434,6 +608,21 @@ Path: ../models/bert_v1/6_100_A_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|001|332|460|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 001 & 332 & 460 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -471,6 +660,21 @@ Path: ../models/xgb_v1/6_100_A_davinci/
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|058|086|158|491 | TP: 491, 61.92%; FN: 302; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 058 & 086 & 158 & 491 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -507,6 +711,19 @@ Path: ../models/bert_v1/6_100_B_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|041|752|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 041 & 752 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -538,6 +755,21 @@ Path: ../models/xgb_v1/6_100_B_davinci/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|040|027|309|417 | TP: 417, 52.59%; FN: 376; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 040 & 027 & 309 & 417 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -575,6 +807,19 @@ Path: ../models/bert_v1/6_100_C_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|163|630|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 163 & 630 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -606,6 +851,21 @@ Path: ../models/xgb_v1/6_100_C_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|037|053|304|399 | TP: 399, 50.32%; FN: 394; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 037 & 053 & 304 & 399 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -643,6 +903,19 @@ Path: ../models/bert_v1/6_100_D_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|041|752|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 041 & 752 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -674,6 +947,21 @@ Path: ../models/xgb_v1/6_100_D_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|056|031|396|310 | TP: 310, 39.09%; FN: 483; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 056 & 031 & 396 & 310 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -711,6 +999,19 @@ Path: ../models/bert_v1/6_100_E_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|034|759|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 034 & 759 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -742,6 +1043,21 @@ Path: ../models/xgb_v1/6_100_E_davinci/
 1|000|000|000|000
 2|000|001|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|031|031|281|450 | TP: 450, 56.75%; FN: 343; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 001 & 003 \\
+    \hline
+    3 & 031 & 031 & 281 & 450 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -780,6 +1096,21 @@ Path: ../models/bert_v1/6_100_F_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|004|048|741|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 004 & 048 & 741 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -817,6 +1148,21 @@ Path: ../models/xgb_v1/6_100_F_davinci/
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|054|044|179|516 | TP: 516, 65.07%; FN: 277; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 054 & 044 & 179 & 516 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -853,6 +1199,19 @@ Path: ../models/bert_v1/6_200_A_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|014|693|086 | TP: 86, 10.84%; FN: 707; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 014 & 693 & 086 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -884,6 +1243,21 @@ Path: ../models/xgb_v1/6_200_A_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|031|027|315|420 | TP: 420, 52.96%; FN: 373; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 031 & 027 & 315 & 420 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -922,6 +1296,21 @@ Path: ../models/bert_v1/6_200_B_davinci/
 2|000|000|003|002 | TP: 3, 60.0%; FN: 2; Total: 5
 3|012|025|203|553 | TP: 553, 69.74%; FN: 240; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 003 & 002 \\
+    \hline
+    3 & 012 & 025 & 203 & 553 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -958,6 +1347,21 @@ Path: ../models/xgb_v1/6_200_B_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|049|068|200|476 | TP: 476, 60.03%; FN: 317; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 049 & 068 & 200 & 476 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -996,6 +1400,21 @@ Path: ../models/bert_v1/6_200_C_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|001|039|705|048 | TP: 48, 6.05%; FN: 745; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 001 & 039 & 705 & 048 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1033,6 +1452,21 @@ Path: ../models/xgb_v1/6_200_C_davinci/
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|022|068|312|391 | TP: 391, 49.31%; FN: 402; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 022 & 068 & 312 & 391 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1069,6 +1503,19 @@ Path: ../models/bert_v1/6_200_D_davinci/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|001|705|087 | TP: 87, 10.97%; FN: 706; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 001 & 705 & 087 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1100,6 +1547,21 @@ Path: ../models/xgb_v1/6_200_D_davinci/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|027|041|258|467 | TP: 467, 58.89%; FN: 326; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 027 & 041 & 258 & 467 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1138,6 +1600,21 @@ Path: ../models/bert_v1/6_200_E_davinci/
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|001|008|462|322 | TP: 322, 40.61%; FN: 471; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 001 & 008 & 462 & 322 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1174,6 +1651,21 @@ Path: ../models/xgb_v1/6_200_E_davinci/
 1|000|000|000|000
 2|001|001|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
 3|024|041|267|461 | TP: 461, 58.13%; FN: 332; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 001 & 003 & 000 \\
+    \hline
+    3 & 024 & 041 & 267 & 461 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1212,6 +1704,21 @@ Path: ../models/bert_v1/6_200_F_davinci/
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|003|008|603|179 | TP: 179, 22.57%; FN: 614; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 003 & 008 & 603 & 179 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1248,6 +1755,21 @@ Path: ../models/xgb_v1/6_200_F_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|054|020|298|421 | TP: 421, 53.09%; FN: 372; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 054 & 020 & 298 & 421 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1286,6 +1808,21 @@ Path: ../models/bert_v1/6_400_A_davinci/
 2|001|000|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|052|004|142|595 | TP: 595, 75.03%; FN: 198; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 001 & 003 \\
+    \hline
+    3 & 052 & 004 & 142 & 595 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1323,6 +1860,21 @@ Path: ../models/xgb_v1/6_400_A_davinci/
 2|001|000|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 3|037|039|254|463 | TP: 463, 58.39%; FN: 330; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 004 & 000 \\
+    \hline
+    3 & 037 & 039 & 254 & 463 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1359,6 +1911,19 @@ Path: ../models/bert_v1/6_400_B_davinci/
 1|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 2|081|324|388 | TP: 388, 48.93%; FN: 405; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 001 & 003 & 001 \\
+    \hline
+    2 & 081 & 324 & 388 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1390,6 +1955,21 @@ Path: ../models/xgb_v1/6_400_B_davinci/
 1|000|000|000|000
 2|001|001|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
 3|052|015|324|402 | TP: 402, 50.69%; FN: 391; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 001 & 003 & 000 \\
+    \hline
+    3 & 052 & 015 & 324 & 402 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1428,6 +2008,21 @@ Path: ../models/bert_v1/6_400_C_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|084|009|242|458 | TP: 458, 57.76%; FN: 335; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 084 & 009 & 242 & 458 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1465,6 +2060,21 @@ Path: ../models/xgb_v1/6_400_C_davinci/
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|041|023|246|483 | TP: 483, 60.91%; FN: 310; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 041 & 023 & 246 & 483 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1501,6 +2111,19 @@ Path: ../models/bert_v1/6_400_D_davinci/
 1|001|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 2|065|709|019 | TP: 19, 2.4%; FN: 774; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 001 & 004 & 000 \\
+    \hline
+    2 & 065 & 709 & 019 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1532,6 +2155,21 @@ Path: ../models/xgb_v1/6_400_D_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|033|015|375|370 | TP: 370, 46.66%; FN: 423; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 033 & 015 & 375 & 370 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1569,6 +2207,19 @@ Path: ../models/bert_v1/6_400_E_davinci/
 1|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 2|082|428|283 | TP: 283, 35.69%; FN: 510; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 001 & 003 & 001 \\
+    \hline
+    2 & 082 & 428 & 283 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1600,6 +2251,21 @@ Path: ../models/xgb_v1/6_400_E_davinci/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|029|048|288|428 | TP: 428, 53.97%; FN: 365; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 029 & 048 & 288 & 428 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1638,6 +2304,21 @@ Path: ../models/bert_v1/6_400_F_davinci/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|065|002|506|220 | TP: 220, 27.74%; FN: 573; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 065 & 002 & 506 & 220 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1674,6 +2355,21 @@ Path: ../models/xgb_v1/6_400_F_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|040|028|305|420 | TP: 420, 52.96%; FN: 373; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 040 & 028 & 305 & 420 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1712,6 +2408,21 @@ Path: ../models/bert_v1/6_800_A_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|045|021|331|396 | TP: 396, 49.94%; FN: 397; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 045 & 021 & 331 & 396 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1748,6 +2459,21 @@ Path: ../models/xgb_v1/6_800_A_davinci/
 1|000|000|000|000
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|044|026|254|469 | TP: 469, 59.14%; FN: 324; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 044 & 026 & 254 & 469 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1786,6 +2512,21 @@ Path: ../models/bert_v1/6_800_B_davinci/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|035|012|330|416 | TP: 416, 52.46%; FN: 377; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 035 & 012 & 330 & 416 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1822,6 +2563,21 @@ Path: ../models/xgb_v1/6_800_B_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|030|029|292|442 | TP: 442, 55.74%; FN: 351; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 030 & 029 & 292 & 442 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1860,6 +2616,21 @@ Path: ../models/bert_v1/6_800_C_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|075|012|185|521 | TP: 521, 65.7%; FN: 272; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 075 & 012 & 185 & 521 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1896,6 +2667,21 @@ Path: ../models/xgb_v1/6_800_C_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|034|028|286|445 | TP: 445, 56.12%; FN: 348; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 034 & 028 & 286 & 445 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1934,6 +2720,21 @@ Path: ../models/bert_v1/6_800_D_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|056|015|224|498 | TP: 498, 62.8%; FN: 295; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 056 & 015 & 224 & 498 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1970,6 +2771,21 @@ Path: ../models/xgb_v1/6_800_D_davinci/
 1|000|000|000|000
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|044|033|244|472 | TP: 472, 59.52%; FN: 321; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 044 & 033 & 244 & 472 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2008,6 +2824,21 @@ Path: ../models/bert_v1/6_800_E_davinci/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|045|004|307|437 | TP: 437, 55.11%; FN: 356; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 045 & 004 & 307 & 437 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2044,6 +2875,21 @@ Path: ../models/xgb_v1/6_800_E_davinci/
 1|000|000|000|000
 2|001|000|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 3|039|033|242|479 | TP: 479, 60.4%; FN: 314; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 004 & 000 \\
+    \hline
+    3 & 039 & 033 & 242 & 479 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2082,6 +2928,21 @@ Path: ../models/bert_v1/6_800_F_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|051|007|182|553 | TP: 553, 69.74%; FN: 240; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 051 & 007 & 182 & 553 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2118,6 +2979,21 @@ Path: ../models/xgb_v1/6_800_F_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|041|035|235|482 | TP: 482, 60.78%; FN: 311; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 041 & 035 & 235 & 482 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2156,6 +3032,21 @@ Path: ../models/bert_v1/6_1600_A_davinci/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|062|004|238|489 | TP: 489, 61.66%; FN: 304; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 062 & 004 & 238 & 489 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2192,6 +3083,21 @@ Path: ../models/xgb_v1/6_1600_A_davinci/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|035|029|253|476 | TP: 476, 60.03%; FN: 317; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 035 & 029 & 253 & 476 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2230,6 +3136,21 @@ Path: ../models/bert_v1/6_3200_A_davinci/
 2|001|000|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|035|009|157|592 | TP: 592, 74.65%; FN: 201; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 001 & 003 \\
+    \hline
+    3 & 035 & 009 & 157 & 592 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2266,6 +3187,21 @@ Path: ../models/xgb_v1/6_3200_A_davinci/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|028|029|273|463 | TP: 463, 58.39%; FN: 330; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 028 & 029 & 273 & 463 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0

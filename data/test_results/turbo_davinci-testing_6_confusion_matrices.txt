@@ -7,6 +7,19 @@ Path: ../models/bert_v1/6_50_A_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|155|638|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 155 & 638 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -38,6 +51,21 @@ Path: ../models/xgb_v1/6_50_A_turbo/
 1|000|000|000|000
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|068|122|364|239 | TP: 239, 30.14%; FN: 554; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 068 & 122 & 364 & 239 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -75,6 +103,19 @@ Path: ../models/bert_v1/6_50_B_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|120|673|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 120 & 673 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -106,6 +147,21 @@ Path: ../models/xgb_v1/6_50_B_turbo/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|038|023|366|366 | TP: 366, 46.15%; FN: 427; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 038 & 023 & 366 & 366 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -143,6 +199,19 @@ Path: ../models/bert_v1/6_50_C_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|157|636|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 157 & 636 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -174,6 +243,21 @@ Path: ../models/xgb_v1/6_50_C_turbo/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|065|043|390|295 | TP: 295, 37.2%; FN: 498; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 065 & 043 & 390 & 295 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -211,6 +295,19 @@ Path: ../models/bert_v1/6_50_D_turbo/
 1|002|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
 2|335|458|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 002 & 003 & 000 \\
+    \hline
+    2 & 335 & 458 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -242,6 +339,21 @@ Path: ../models/xgb_v1/6_50_D_turbo/
 1|000|000|000|000
 2|000|003|001|001 | TP: 1, 20.0%; FN: 4; Total: 5
 3|052|119|167|455 | TP: 455, 57.38%; FN: 338; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 003 & 001 & 001 \\
+    \hline
+    3 & 052 & 119 & 167 & 455 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -279,6 +391,19 @@ Path: ../models/bert_v1/6_50_E_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|181|612|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 181 & 612 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -310,6 +435,21 @@ Path: ../models/xgb_v1/6_50_E_turbo/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|012|081|390|310 | TP: 310, 39.09%; FN: 483; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 012 & 081 & 390 & 310 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -347,6 +487,19 @@ Path: ../models/bert_v1/6_50_F_turbo/
 1|001|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 2|156|637|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 001 & 004 & 000 \\
+    \hline
+    2 & 156 & 637 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -378,6 +531,21 @@ Path: ../models/xgb_v1/6_50_F_turbo/
 1|000|000|000|000
 2|003|000|001|001 | TP: 1, 20.0%; FN: 4; Total: 5
 3|062|046|361|324 | TP: 324, 40.86%; FN: 469; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 003 & 000 & 001 & 001 \\
+    \hline
+    3 & 062 & 046 & 361 & 324 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -415,6 +583,19 @@ Path: ../models/bert_v1/6_100_A_turbo/
 1|002|003|000 | TP: 3, 60.0%; FN: 2; Total: 5
 2|372|421|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 002 & 003 & 000 \\
+    \hline
+    2 & 372 & 421 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -446,6 +627,21 @@ Path: ../models/xgb_v1/6_100_A_turbo/
 1|000|000|000|000
 2|000|001|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|038|076|177|502 | TP: 502, 63.3%; FN: 291; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 001 & 003 \\
+    \hline
+    3 & 038 & 076 & 177 & 502 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -483,6 +679,19 @@ Path: ../models/bert_v1/6_100_B_turbo/
 1|001|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 2|391|402|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 001 & 004 & 000 \\
+    \hline
+    2 & 391 & 402 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -514,6 +723,21 @@ Path: ../models/xgb_v1/6_100_B_turbo/
 1|000|000|000|000
 2|000|000|003|002 | TP: 3, 60.0%; FN: 2; Total: 5
 3|026|066|266|435 | TP: 435, 54.85%; FN: 358; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 003 & 002 \\
+    \hline
+    3 & 026 & 066 & 266 & 435 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -551,6 +775,19 @@ Path: ../models/bert_v1/6_100_C_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|207|586|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 207 & 586 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -582,6 +819,21 @@ Path: ../models/xgb_v1/6_100_C_turbo/
 1|000|000|000|000
 2|001|001|002|001 | TP: 2, 40.0%; FN: 3; Total: 5
 3|027|031|323|412 | TP: 412, 51.95%; FN: 381; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 001 & 002 & 001 \\
+    \hline
+    3 & 027 & 031 & 323 & 412 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -619,6 +871,19 @@ Path: ../models/bert_v1/6_100_D_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|079|714|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 079 & 714 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -650,6 +915,21 @@ Path: ../models/xgb_v1/6_100_D_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|028|036|355|374 | TP: 374, 47.16%; FN: 419; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 028 & 036 & 355 & 374 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -687,6 +967,19 @@ Path: ../models/bert_v1/6_100_E_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|081|712|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 081 & 712 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -718,6 +1011,21 @@ Path: ../models/xgb_v1/6_100_E_turbo/
 1|000|000|000|000
 2|000|000|002|003 | TP: 2, 40.0%; FN: 3; Total: 5
 3|032|116|268|377 | TP: 377, 47.54%; FN: 416; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 002 & 003 \\
+    \hline
+    3 & 032 & 116 & 268 & 377 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -755,6 +1063,19 @@ Path: ../models/bert_v1/6_100_F_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|174|619|000 | TP: 0, 0.0%; FN: 793; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 174 & 619 & 000 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -786,6 +1107,21 @@ Path: ../models/xgb_v1/6_100_F_turbo/
 1|000|000|000|000
 2|000|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 3|021|124|291|357 | TP: 357, 45.02%; FN: 436; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 005 & 000 \\
+    \hline
+    3 & 021 & 124 & 291 & 357 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -823,6 +1159,19 @@ Path: ../models/bert_v1/6_200_A_turbo/
 1|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 2|062|472|259 | TP: 259, 32.66%; FN: 534; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 004 & 001 \\
+    \hline
+    2 & 062 & 472 & 259 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -854,6 +1203,21 @@ Path: ../models/xgb_v1/6_200_A_turbo/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|011|055|301|426 | TP: 426, 53.72%; FN: 367; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 011 & 055 & 301 & 426 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -892,6 +1256,21 @@ Path: ../models/bert_v1/6_200_B_turbo/
 2|000|000|002|003 | TP: 2, 40.0%; FN: 3; Total: 5
 3|004|075|261|453 | TP: 453, 57.12%; FN: 340; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 002 & 003 \\
+    \hline
+    3 & 004 & 075 & 261 & 453 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -929,6 +1308,21 @@ Path: ../models/xgb_v1/6_200_B_turbo/
 2|001|002|001|001 | TP: 1, 20.0%; FN: 4; Total: 5
 3|014|096|237|446 | TP: 446, 56.24%; FN: 347; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 002 & 001 & 001 \\
+    \hline
+    3 & 014 & 096 & 237 & 446 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -965,6 +1359,19 @@ Path: ../models/bert_v1/6_200_C_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|076|689|028 | TP: 28, 3.53%; FN: 765; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 076 & 689 & 028 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -996,6 +1403,21 @@ Path: ../models/xgb_v1/6_200_C_turbo/
 1|000|000|000|000
 2|001|002|002|000 | TP: 2, 40.0%; FN: 3; Total: 5
 3|015|119|374|285 | TP: 285, 35.94%; FN: 508; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 002 & 002 & 000 \\
+    \hline
+    3 & 015 & 119 & 374 & 285 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1033,6 +1455,19 @@ Path: ../models/bert_v1/6_200_D_turbo/
 1|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 2|007|515|271 | TP: 271, 34.17%; FN: 522; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 004 & 001 \\
+    \hline
+    2 & 007 & 515 & 271 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1064,6 +1499,21 @@ Path: ../models/xgb_v1/6_200_D_turbo/
 1|000|000|000|000
 2|001|000|004|000 | TP: 4, 80.0%; FN: 1; Total: 5
 3|023|038|222|510 | TP: 510, 64.31%; FN: 283; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 004 & 000 \\
+    \hline
+    3 & 023 & 038 & 222 & 510 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1101,6 +1551,19 @@ Path: ../models/bert_v1/6_200_E_turbo/
 1|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 2|027|462|304 | TP: 304, 38.34%; FN: 489; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 004 & 001 \\
+    \hline
+    2 & 027 & 462 & 304 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1132,6 +1595,21 @@ Path: ../models/xgb_v1/6_200_E_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|019|077|280|417 | TP: 417, 52.59%; FN: 376; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 019 & 077 & 280 & 417 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1169,6 +1647,19 @@ Path: ../models/bert_v1/6_200_F_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|055|524|214 | TP: 214, 26.99%; FN: 579; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 055 & 524 & 214 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1200,6 +1691,21 @@ Path: ../models/xgb_v1/6_200_F_turbo/
 1|000|000|000|000
 2|000|001|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|021|080|222|470 | TP: 470, 59.27%; FN: 323; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 001 & 003 \\
+    \hline
+    3 & 021 & 080 & 222 & 470 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1238,6 +1744,21 @@ Path: ../models/bert_v1/6_400_A_turbo/
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|037|100|049|607 | TP: 607, 76.54%; FN: 186; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 037 & 100 & 049 & 607 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1274,6 +1795,21 @@ Path: ../models/xgb_v1/6_400_A_turbo/
 1|000|000|000|000
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|027|062|264|440 | TP: 440, 55.49%; FN: 353; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 027 & 062 & 264 & 440 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1312,6 +1848,21 @@ Path: ../models/bert_v1/6_400_B_turbo/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|045|012|298|438 | TP: 438, 55.23%; FN: 355; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 045 & 012 & 298 & 438 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1348,6 +1899,21 @@ Path: ../models/xgb_v1/6_400_B_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|023|064|317|389 | TP: 389, 49.05%; FN: 404; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 023 & 064 & 317 & 389 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1386,6 +1952,21 @@ Path: ../models/bert_v1/6_400_C_turbo/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|040|055|224|474 | TP: 474, 59.77%; FN: 319; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 040 & 055 & 224 & 474 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1423,6 +2004,21 @@ Path: ../models/xgb_v1/6_400_C_turbo/
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|018|074|268|433 | TP: 433, 54.6%; FN: 360; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 018 & 074 & 268 & 433 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1459,6 +2055,19 @@ Path: ../models/bert_v1/6_400_D_turbo/
 1|000|005|000 | TP: 5, 100.0%; FN: 0; Total: 5
 2|064|580|149 | TP: 149, 18.79%; FN: 644; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 005 & 000 \\
+    \hline
+    2 & 064 & 580 & 149 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1490,6 +2099,21 @@ Path: ../models/xgb_v1/6_400_D_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|007|067|308|411 | TP: 411, 51.83%; FN: 382; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 007 & 067 & 308 & 411 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1528,6 +2152,21 @@ Path: ../models/bert_v1/6_400_E_turbo/
 2|000|000|004|001 | TP: 4, 80.0%; FN: 1; Total: 5
 3|007|031|418|337 | TP: 337, 42.5%; FN: 456; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 004 & 001 \\
+    \hline
+    3 & 007 & 031 & 418 & 337 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1564,6 +2203,21 @@ Path: ../models/xgb_v1/6_400_E_turbo/
 1|000|000|000|000
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|016|060|261|456 | TP: 456, 57.5%; FN: 337; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 016 & 060 & 261 & 456 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1602,6 +2256,21 @@ Path: ../models/bert_v1/6_400_F_turbo/
 2|000|000|001|004 | TP: 1, 20.0%; FN: 4; Total: 5
 3|010|036|134|613 | TP: 613, 77.3%; FN: 180; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 000 & 001 & 004 \\
+    \hline
+    3 & 010 & 036 & 134 & 613 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1638,6 +2307,21 @@ Path: ../models/xgb_v1/6_400_F_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|021|062|313|397 | TP: 397, 50.06%; FN: 396; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 021 & 062 & 313 & 397 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1676,6 +2360,21 @@ Path: ../models/bert_v1/6_800_A_turbo/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|023|041|404|325 | TP: 325, 40.98%; FN: 468; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 023 & 041 & 404 & 325 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1712,6 +2411,21 @@ Path: ../models/xgb_v1/6_800_A_turbo/
 1|000|000|000|000
 2|001|000|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|013|085|245|450 | TP: 450, 56.75%; FN: 343; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 001 & 003 \\
+    \hline
+    3 & 013 & 085 & 245 & 450 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1750,6 +2464,21 @@ Path: ../models/bert_v1/6_800_B_turbo/
 2|001|000|001|003 | TP: 1, 20.0%; FN: 4; Total: 5
 3|012|061|148|572 | TP: 572, 72.13%; FN: 221; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 001 & 003 \\
+    \hline
+    3 & 012 & 061 & 148 & 572 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1786,6 +2515,21 @@ Path: ../models/xgb_v1/6_800_B_turbo/
 1|000|000|000|000
 2|000|001|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|009|069|256|459 | TP: 459, 57.88%; FN: 334; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 003 & 001 \\
+    \hline
+    3 & 009 & 069 & 256 & 459 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1824,6 +2568,21 @@ Path: ../models/bert_v1/6_800_C_turbo/
 2|001|000|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|019|061|259|454 | TP: 454, 57.25%; FN: 339; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 002 & 002 \\
+    \hline
+    3 & 019 & 061 & 259 & 454 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1860,6 +2619,21 @@ Path: ../models/xgb_v1/6_800_C_turbo/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|009|066|271|447 | TP: 447, 56.37%; FN: 346; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 009 & 066 & 271 & 447 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1898,6 +2672,21 @@ Path: ../models/bert_v1/6_800_D_turbo/
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|008|010|083|692 | TP: 692, 87.26%; FN: 101; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 008 & 010 & 083 & 692 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -1934,6 +2723,21 @@ Path: ../models/xgb_v1/6_800_D_turbo/
 1|000|000|000|000
 2|001|002|001|001 | TP: 1, 20.0%; FN: 4; Total: 5
 3|020|060|280|433 | TP: 433, 54.6%; FN: 360; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 002 & 001 & 001 \\
+    \hline
+    3 & 020 & 060 & 280 & 433 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -1972,6 +2776,21 @@ Path: ../models/bert_v1/6_800_E_turbo/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|040|020|447|286 | TP: 286, 36.07%; FN: 507; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 040 & 020 & 447 & 286 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2008,6 +2827,21 @@ Path: ../models/xgb_v1/6_800_E_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|022|047|279|445 | TP: 445, 56.12%; FN: 348; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 022 & 047 & 279 & 445 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2046,6 +2880,21 @@ Path: ../models/bert_v1/6_800_F_turbo/
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|046|024|220|503 | TP: 503, 63.43%; FN: 290; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 046 & 024 & 220 & 503 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2082,6 +2931,21 @@ Path: ../models/xgb_v1/6_800_F_turbo/
 1|000|000|000|000
 2|000|001|002|002 | TP: 2, 40.0%; FN: 3; Total: 5
 3|021|054|257|461 | TP: 461, 58.13%; FN: 332; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 000 & 001 & 002 & 002 \\
+    \hline
+    3 & 021 & 054 & 257 & 461 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2120,6 +2984,21 @@ Path: ../models/bert_v1/6_1600_A_turbo/
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|016|080|110|587 | TP: 587, 74.02%; FN: 206; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 016 & 080 & 110 & 587 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2156,6 +3035,21 @@ Path: ../models/xgb_v1/6_1600_A_turbo/
 1|000|000|000|000
 2|001|000|000|004 | TP: 0, 0.0%; FN: 5; Total: 5
 3|007|065|255|466 | TP: 466, 58.76%; FN: 327; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 000 & 004 \\
+    \hline
+    3 & 007 & 065 & 255 & 466 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
@@ -2194,6 +3088,21 @@ Path: ../models/bert_v1/6_3200_A_turbo/
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|004|089|284|416 | TP: 416, 52.46%; FN: 377; Total: 793
 -------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 004 & 089 & 284 & 416 \\
+    \hline
+\end{tabular}
+-------------------------------------
 Performance for category: 0
 Precision: 0.0
 Recall: 0.0
@@ -2230,6 +3139,21 @@ Path: ../models/xgb_v1/6_3200_A_turbo/
 1|000|000|000|000
 2|001|000|003|001 | TP: 3, 60.0%; FN: 2; Total: 5
 3|007|056|254|476 | TP: 476, 60.03%; FN: 317; Total: 793
+-------------------------------------
+LaTeX:
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+        & 0 & 1 & 2 & 3 \\
+    \hline
+    0 & 000 & 000 & 000 & 000 \\
+    \hline
+    1 & 000 & 000 & 000 & 000 \\
+    \hline
+    2 & 001 & 000 & 003 & 001 \\
+    \hline
+    3 & 007 & 056 & 254 & 476 \\
+    \hline
+\end{tabular}
 -------------------------------------
 Performance for category: 0
 Precision: 0.0
