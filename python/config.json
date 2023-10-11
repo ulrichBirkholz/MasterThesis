@@ -4,6 +4,7 @@
 	"lr_path": "lr",
 	"qwk_path": "qwk",
 	"performance_path": "performance",
+	"chat_gpt_cm_path": "chat_gpt_cm",
 	"test_results_path": "test_results",
 	"trained_bert_version": "bert_v1",
 	"trained_xg_boost_version": "xgb_v1",

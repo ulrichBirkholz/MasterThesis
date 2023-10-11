@@ -70,21 +70,42 @@ class Configuration():
         return config.replace('#', f"_{replacement}" if replacement else "")
 
 
+    def get_chat_gpt_cm_path(self) -> str:
+        """ Retrieve the path for the confusion matrices from ChatGPT ratings
+
+        Returns:
+            str: Path to the folder containing the confusion matrices
+        """
+        return self.get_path_for_datafile(self.config["chat_gpt_cm_path"])
+
+
+    def get_path_for_chat_gpt_cm_file(self, name:str) -> str:
+        """ Returns the relative path for a specific file containing the confusion matrices from ChatGPT ratings
+
+        Args:
+            name (str): Name of the file
+
+        Returns:
+            str: Relative path to the file
+        """
+        return f"{self.get_chat_gpt_cm_path()}/{name}"
+
+
     def get_distribution_path(self) -> str:
         """ Retrieve the path for the distribution of categories analysis results
 
         Returns:
-            str: Path to the file with distribution of categories analysis results
+            str: Path to the folder with distribution of categories analysis results
         """
         return self.get_path_for_datafile(self.config["distribution"])
 
 
     # tsv files
     def get_questions_path(self) -> str:
-        """ Retrieve the path for the file containing the questions
+        """ Retrieve the path for the folder containing the questions
 
             Returns:
-                str: Path to the file containing the questions
+                str: Path to the folder containing the questions
         """
         return self.get_path_for_datafile(self.config["questions"])
     
