@@ -9,6 +9,7 @@
 ├── thesis_tex          # LaTeX source files for the thesis
 ├── python              # Python code utilized in the research
 └── data                # Generated samples, diagrams, and analysis results
+	├── chat_gpt_cm		# ChatGPT's confusion matrices and benchmarks
 	├── lr				# Results and diagrams of the lexical richness calculations
 	├── test_results	# Test results of the trained BERT and XG-Boost models, including confusion matrices
 	├── performance		# Calculations and Visual Representations for Various Performance Metrics, e.g., F1 Score
@@ -46,7 +47,7 @@ For assessing the lexical richness of the generated content, invoke the `calcula
 
 ## Sample Annotation
 
-Run the `annotate_samples` module to process and annotate the generated answers. The module will use multiple models for annotations and store the results in corresponding `.tsv` files.
+Run the `annotate_samples` module to process and annotate the generated answers. The module will use multiple models for annotations and store the results in corresponding `.tsv` files. To calculate the corresponding confusion matrices and benchmarks execute the module `results_to_confustion_matrix`.
 
 Note: The model `gpt-3.5-turbo` occasionally struggled with accurate categorization. To address this, we introduced the `re_rate_missing_answers` module. It ensures that every answer crafted by human experts is rated and included in the dataset produced by this specific model.
 
