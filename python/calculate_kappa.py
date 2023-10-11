@@ -620,11 +620,12 @@ def _allocate_results(result_path:str, training_data_source:str, test_data_sourc
     if not os.path.exists(result_path):
         log.info(f"The file {result_path} does not exist")
         return
+    log.debug(f"Load results for file: {result_path}")
 
     test_results = get_answers(result_path)
 
     # we do not compare data used for training across models
-    if test_data_source.endswith("-testing"):
+    if test_data_source.endswith("-testing") or test_data_source == "experts-training":
         _add_list_entry(test_result_sets[model_type], test_data_source, {
             "results": test_results,
             "training_data_source": training_data_source
@@ -666,6 +667,10 @@ if __name__ == "__main__":
                 for data_source_a in data_sources:
                     result_training_path = config.get_test_results_path(model_type, data_source_a, f"{data_source_a}-training", batch.size, batch_id)
                     _allocate_results(result_training_path, data_source_a, f"{data_source_a}-training", test_result_sets, batch.size, batch_id, model_type)
+
+                    if data_source_a != "experts":
+                        result_training_path = config.get_test_results_path(model_type, data_source_a, "experts-training", batch.size, batch_id)
+                        _allocate_results(result_training_path, data_source_a, "experts-training", test_result_sets, batch.size, batch_id, model_type)
                     
                     for data_source_b in data_sources:
                         result_path = config.get_test_results_path(model_type, data_source_a, f"{data_source_b}-testing", batch.size, batch_id)
@@ -734,7 +739,7 @@ if __name__ == "__main__":
                 _print_boxplot(f"{platform}_{training_data_source}_model_{test_data_source}", x_y_boxplot_data, title)
 
                 # collect all boxplots displaing the rating of data that was reserved for tests
-                if test_data_source.endswith("-testing"):
+                if test_data_source.endswith("-testing") or test_data_source == "experts-training":
                     _add_list_entry(accumulated_data[platform], test_data_source, {
                         "training_data_source": training_data_source,
                         "x_y_boxplot_data": x_y_boxplot_data
