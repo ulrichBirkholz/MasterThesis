@@ -2,6 +2,7 @@ import logging as log
 from typing import List, Dict, Tuple, Any, Callable, Union
 
 import numpy as np
+from numpy.typing import NDArray
 import os
 from tsv_utils import Answer, get_answers_per_question
 from lexicalrichness import LexicalRichness
@@ -12,6 +13,7 @@ import csv
 import random
 import shutil
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
 
 
 # Source: https://lexicalrichness.readthedocs.io/en/latest/#lexicalrichness.LexicalRichness.ttr
@@ -178,6 +180,173 @@ class LRFigures:
                 }
 
 
+    @staticmethod
+    def _filter(x:NDArray[Any], y:NDArray[Any], y_pred:NDArray[Any], tolerance:int=1) -> Tuple[NDArray[Any], NDArray[Any]]:
+        """ Filters data points based on their distance from the predicted graph
+
+        This static method filters out data points that are too distant from the
+        predicted graph within a specified tolerance level. The distance is calculated
+        based on the difference between actual y values and predicted y values. Points
+        that fall within the acceptable distance (defined by the tolerance level) from
+        the predicted graph are retained
+
+        Args:
+            x (NDArray[Any]): An array representing the x-coordinates of the data points
+            y (NDArray[Any]): An array representing the actual y-coordinates of the data points
+            y_pred (NDArray[Any]): An array representing the predicted y-coordinates of the graph
+            tolerance (int, optional): The maximum acceptable distance from the graph,
+                expressed as a percentage. Defaults to 1
+
+        Returns:
+            Tuple[NDArray[Any], NDArray[Any]]:  A tuple containing arrays of filtered x and y
+                coordinates, determined based on the provided predictions and tolerance level
+        """
+        y_diff_pred = np.diff(y_pred)
+        y_diff = np.diff(y - y_pred)
+        y_diff = np.append(y_diff, y_diff[-1])
+
+        thresholds = tolerance * np.abs(y_diff_pred)
+        thresholds = np.append(thresholds, thresholds[-1])
+        mask = np.abs(y_diff) <= thresholds
+
+        return x[mask], y[mask]
+    
+
+    @staticmethod
+    def _get_coordinates_for_graph(x:NDArray[Any], y:NDArray[Any], graph_callback:Callable) -> Tuple[NDArray[Any], NDArray[Any]]:
+        """ Attempts to approximate the provided x and y values to a specified graph
+        using a provided callback function for graph calculations
+
+        This method aims to fit the provided x and y data points to a graph generated
+        using the `graph_callback`. It initially performs a curve fit for the original
+        data and applies a filtering method to refine the points. If sufficient points
+        remain post-filtering, a smoothed, fitted graph is generated and returned
+
+        Args:
+            x (NDArray[Any]): An array of x-coordinates of the data points
+            y (NDArray[Any]): An array of y-coordinates of the data points
+            graph_callback (Callable): A callback function used for calculating 
+                the values of the approximated graph
+
+        Returns:
+            Tuple[NDArray[Any], NDArray[Any]]: A tuple containing arrays of x and y 
+                coordinates for the approximated graph, or None, None if the approximation 
+                could not be calculated
+        
+        Note:
+            The `graph_callback` should be compatible with the curve fitting method and be able
+            to accept the x values and any fitting parameters
+        """
+        try:
+            popt, _ = curve_fit(graph_callback, x, y)
+            y_pred = graph_callback(x, *popt)
+
+            x_filtered, y_filtered = LRFigures._filter(x, y, y_pred)
+            
+            if len(x_filtered) < 0.75 * len(x):
+                log.error(f"Not enough values left to calculate a graph: {len(x_filtered)} of {len(x)}")
+                return None, None
+            
+            x_smooth_filtered = np.linspace(min(x_filtered), max(x_filtered), 100)
+            popt_filtered, _ = curve_fit(graph_callback, x_filtered, y_filtered)
+            return x_smooth_filtered, graph_callback(x_smooth_filtered, *popt_filtered)
+        except RuntimeError:
+            return None, None
+    
+
+    @staticmethod
+    def _logarithm(x:NDArray[Any], y:NDArray[Any]) -> Tuple[NDArray[Any], NDArray[Any]]:
+        """ Attempts to approximate a logarithmic graph using given x and y coordinates.
+
+        This method leverages a predefined lambda function (a * np.log(b * x)) with 
+        curve fitting techniques to approximate a logarithmic graph. The fitted graph 
+        is derived by employing the _get_coordinates_for_graph method, which takes the provided x and 
+        y coordinates along with the logarithmic function as inputs, subsequently returning 
+        the coordinates of the approximated graph
+
+        Args:
+            x (NDArray[Any]): An array of x-coordinates of the data points
+            y (NDArray[Any]): An array of y-coordinates of the data points
+
+        Returns:
+            Tuple[NDArray[Any], NDArray[Any]]: A tuple containing arrays of x and y 
+                coordinates for the approximated graph, or None, None if the approximation 
+                could not be calculated
+        
+        Note:
+            The method may return (None, None) indicating the inability to approximate
+            the graph based on provided coordinates and the logarithmic function
+        """
+        return LRFigures._get_coordinates_for_graph(x, y, lambda x, a, b: a * np.log(b * x))
+    
+
+    @staticmethod
+    def _inverse_logarithm(x:NDArray[Any], y:NDArray[Any]) -> Tuple[NDArray[Any], NDArray[Any]]:
+        """ Attempts to approximate a logarithmic graph using given x and y coordinates.
+
+        This method leverages a predefined lambda function (a + b / np.log(x)) with 
+        curve fitting techniques to approximate a inverse logarithmic graph. The fitted graph 
+        is derived by employing the _get_coordinates_for_graph method, which takes the provided x and 
+        y coordinates along with the inverse logarithmic function as inputs, subsequently returning 
+        the coordinates of the approximated graph
+
+        Args:
+            x (NDArray[Any]): An array of x-coordinates of the data points
+            y (NDArray[Any]): An array of y-coordinates of the data points
+
+        Returns:
+            Tuple[NDArray[Any], NDArray[Any]]: A tuple containing arrays of x and y 
+                coordinates for the approximated graph, or None, None if the approximation 
+                could not be calculated
+        
+        Note:
+            The method may return (None, None) indicating the inability to approximate
+            the graph based on provided coordinates and the logarithmic function
+        """
+        return LRFigures._get_coordinates_for_graph(x, y, lambda x, a, b: a + b/np.log(x))
+
+
+    @staticmethod
+    def _polymorph(x:NDArray[Any], y:NDArray[Any]) -> Tuple[NDArray[Any], NDArray[Any]]:
+        """ Approximate a polynomial graph using the given x and y coordinates.
+
+        This method utilizes numpy's polyfit to estimate a polynomial graph based on the
+        provided x and y coordinates. Initially, the method filters the data points to 
+        ones close to the initial polynomial fit, using an adjustable tolerance. It seeks 
+        to maintain at least 75% of the original data points by incrementally increasing 
+        the tolerance if needed. Finally, it returns x and y coordinates derived from the 
+        approximated polynomial for a smoothed x range
+
+        Args:
+            x (NDArray[Any]): An array of x-coordinates of the data points
+            y (NDArray[Any]): An array of y-coordinates of the data points
+
+        Returns:
+            Tuple[NDArray[Any], NDArray[Any]]: A tuple containing arrays of x and y 
+                coordinates for the approximated graph
+        
+        Notes:
+        - The method employs a second-degree polynomial for the initial approximation
+        - Consider that substantial increments in tolerance might affect the reliability 
+          of the approximation
+        """
+        coefficients = np.polyfit(x, y, 2)
+        polynomial = np.poly1d(coefficients)
+        y_pred = polynomial(x)
+
+        tolerance = 0.5
+        x_filtered, y_filtered = LRFigures._filter(x, y, y_pred, tolerance)
+        while len(x_filtered) < 0.75 * len(x):
+            tolerance += 0.1
+            x_filtered, y_filtered = LRFigures._filter(x, y, y_pred, tolerance)
+            log.error(f"More than 25% of all x values will be ignored: {len(x_filtered)} of {len(x)}")
+
+        x_smooth_filtered = np.linspace(min(x_filtered), max(x_filtered), 100)
+        coefficients = np.polyfit(x_filtered, y_filtered, 2)
+        polynomial = np.poly1d(coefficients)
+        return x_smooth_filtered, polynomial(x_smooth_filtered)
+
+
     def save(self, config:Configuration) -> None:
         """ Stores the plotted diagrams as PDF files based on the current metrics
 
@@ -200,7 +369,19 @@ class LRFigures:
                 color = self._COLORS[i]
                 log.debug(f"Plot color: {color} for question: {question_id} with i: {i}")
 
+                x = np.array([int(i) for i in metric["labels"]])
+                y = np.array(metric["values"])
+
+                x_smooth, y_smooth = LRFigures._logarithm(x, y)
+                if (y_smooth is None):
+                    x_smooth, y_smooth = LRFigures._inverse_logarithm(x, y)
+
+                if (y_smooth is None):
+                    x_smooth, y_smooth = LRFigures._polymorph(x, y)
+    
+                plt.plot(x_smooth, y_smooth, f"{color}-", alpha=0.5, linewidth=0.2)
                 plt.plot(metric["labels"], metric["values"], f"{color}o")
+
                 x_label += f"\nEssay Set {question_id} is represented as {self._COLOR_NAMES[i]}"
                 i += 1
 
