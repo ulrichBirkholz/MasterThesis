@@ -112,24 +112,52 @@ class LRCalculator:
         """
         return tuple(self._safe_calculation(lambda: getattr(self.lex, method), method) for method in self._METHODS)
 
+    @staticmethod
+    def _find_min_and_max_values(metrics:List[Tuple[float, ...]]) -> Tuple[Tuple[float, ...], Tuple[float, ...]]:
+        """ Compute the minimum and maximum lexical richness values for each metric across all answers
+
+        For each metric in the list of tuples, this method calculates the minimal and maximal
+        lexical richness, ignoring any NaN values
+
+        Args:
+            metrics (List[Tuple[float, ...]]): A list of tuples, where each tuple represents the 
+                lexical richness metrics of an answer
+
+        Returns:
+            Tuple[Tuple[float, ...], Tuple[float, ...]]: A tuple of two tuples. The first tuple
+                contains the minimum lexical richness values for each metric, and the second tuple
+                contains the maximum lexical richness values for each metric
+        """
+        min_lr = tuple(
+            min((value for value in group if not np.isnan(value))) for group in zip(*metrics)
+        )
+
+        max_lr = tuple(
+            max((value for value in group if not np.isnan(value))) for group in zip(*metrics)
+        )
+        return min_lr, max_lr
 
     @staticmethod
-    def calculate_lr(answers:List[Answer]) -> Tuple[float, Any, Tuple[float, ...]]:
+    def calculate_lr(answers:List[Answer]) -> Tuple[float, Any, Tuple[float, ...], Tuple[float, ...], Tuple[float, ...]]:
         """ Computes lexical richness for a list of answers both individually and as a whole
 
         Args:
             answers (List[Answer]): List of answers for which lexical diversity should be computed
 
         Returns:
-            Tuple[float, Any, Tuple[float, ...]]: A tuple containing:
+            Tuple[float, Any, Tuple[float, ...], Tuple[float, ...], Tuple[float, ...]]: A tuple containing:
             - Average lexical diversity per answer
             - Count of answers not used in calculations due to specific conditions
             - Lexical diversity of the combined answers
+            - The minimal lexical diversity for each metric across all answers
+            - The maximal lexical diversity for each metric across all answers
         """
         average_lr = [LRCalculator(answer.answer).data for answer in answers]
         average_lr_mask = np.isnan(average_lr)
 
-        return np.nanmean(np.array(average_lr), axis=0), np.sum(average_lr_mask, axis=0), LRCalculator(' '.join([answer.answer for answer in answers])).data
+        min_lr, max_lr = LRCalculator._find_min_and_max_values(average_lr)
+
+        return np.nanmean(np.array(average_lr), axis=0), np.sum(average_lr_mask, axis=0), LRCalculator(' '.join([answer.answer for answer in answers])).data, min_lr, max_lr
 
 
 class LRFigures:
@@ -430,14 +458,21 @@ def _calculate_and_save_lexical_richness(path, answers_per_question:Dict[str, An
             else:
                 answers = answers_for_question
 
-            average_lr, skipped_answers, total_lr = LRCalculator.calculate_lr(answers)
+            average_lr, skipped_answers, total_lr, min_lr, max_lr = LRCalculator.calculate_lr(answers)
 
             diagrams.plot(labels, len(answers), total_lr, question)
+
             # Total for all answers
             writer.writerow([question, len(answers), data_source + ' Total'] + list(total_lr) + ['N/A']*len(labels))
 
             # Average per answer
             writer.writerow([question, len(answers), data_source + ' Average'] + list(average_lr) + list(skipped_answers))
+
+            # Minimum across all answer
+            writer.writerow([question, len(answers), data_source + ' Minimum'] + list(min_lr) + list(skipped_answers))
+
+            # Maximum across all answer
+            writer.writerow([question, len(answers), data_source + ' Maximum'] + list(max_lr) + list(skipped_answers))
 
 
 def _get_random_answers(answers:List[Answer], number:int) -> List[Answer]:
